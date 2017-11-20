@@ -1,29 +1,27 @@
-package Logic;
+package ComponentMap;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 
-public class Environment {
-	private static Rectangle[] nodes =
-			{new Rectangle(0, 0, 10,720),
-    		new Rectangle(10, 0, 1270,10),
-    		new Rectangle(1270, 10, 10,710),
-    		new Rectangle(10,710, 1270,10),
-    		new Rectangle(635, 0, 10,360)
-			};
+public class Environment extends Rectangle {
 	
-	public static boolean checkShapeIntersection(Shape block) {
+	public Environment(int x,int y ,int w ,int h ,Color c) {
+		super(x,y,w,h);
+		this.setFill(c);
+	}
+	
+	public static boolean checkShapeIntersection(List<Environment> nodes,Shape block) {
 	    boolean collisionDetected = false;
 	    for (Shape static_bloc : nodes) {
-	      if (static_bloc != block) {
 	        Shape intersect = Shape.intersect(block, static_bloc);
 	        if (intersect.getBoundsInLocal().getWidth() != -1) {
 	          collisionDetected = true;
 	        }
-	      }
+	      
 	    }
 
 	    if (collisionDetected) {
@@ -33,9 +31,5 @@ public class Environment {
 	    }
 	  }
 	
-	public static Rectangle[] getEnvironment() {
-		return nodes;
-	}
-
 	
 }
