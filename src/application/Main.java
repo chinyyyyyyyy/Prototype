@@ -16,6 +16,7 @@ public class Main extends Application {
 
 		primaryStage.setScene(town.getTownScene());
 		primaryStage.show();
+		//kuyyyyyyyyyyyyyyyyyyyyyyy
 		
 		
 
