@@ -19,7 +19,7 @@ public class Hero {
 <<<<<<< HEAD
 	private int acpos = 0;
 =======
-	private  int acpos = 0;
+	private int acpos = 0;
 >>>>>>> refs/remotes/origin/master
 	private List<Environment> env = new ArrayList<>();
 	private List<ReceiveAction> re = new ArrayList<>();
@@ -57,7 +57,7 @@ public class Hero {
 <<<<<<< HEAD
 	public void moveunitblockOnKeyPress(Scene scene, Rectangle unit, List<Rectangle> actionblock2) {
 =======
-	public  void moveunitblockOnKeyPress(Scene scene, Rectangle unit, List<Rectangle> actionblock2) {
+	public void moveunitblockOnKeyPress(Scene scene, Rectangle unit, List<Rectangle> actionblock2) {
 >>>>>>> refs/remotes/origin/master
 		scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
 			@Override
@@ -127,7 +127,7 @@ public class Hero {
 <<<<<<< HEAD
 	private void moveRight(boolean right, Rectangle unit, List<Rectangle> actionblock2) {
 =======
-	private  void moveRight(boolean right, Rectangle unit, List<Rectangle> actionblock2) {
+	private void moveRight(boolean right, Rectangle unit, List<Rectangle> actionblock2) {
 >>>>>>> refs/remotes/origin/master
 		if (right == true) {
 			for (int i = 0; i < 10000; i++) {
@@ -183,7 +183,7 @@ public class Hero {
 <<<<<<< HEAD
 	public List<Rectangle> getActionblock() {
 =======
-	public  List<Rectangle> getActionblock() {
+	public List<Rectangle> getActionblock() {
 >>>>>>> refs/remotes/origin/master
 		return actionblock;
 	}
