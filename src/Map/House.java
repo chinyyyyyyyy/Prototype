@@ -13,38 +13,22 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
-public class Farm{
+public class House {
 	private  Group root;
-	private  Scene scene;
+	public  Scene scene;
 	private  Hero hero;
 	private  List<Environment> e = new ArrayList<>();
 	private  List<ReceiveAction> re = new ArrayList<>();
 	
 
-	public Farm(int starthx,int starthy) {
+	public House(int starthx,int starthy) {
 		root = new Group();
 		scene = new Scene(root,1280,720);
 		Canvas bg = new Canvas(1280,720);
 		GraphicsContext gc = bg.getGraphicsContext2D();
-		gc.setFill(Color.FORESTGREEN);
+		gc.setFill(Color.gray(0.9));
 		gc.fillRect(0, 0, 1280, 720);
 		root.getChildren().add(bg);
-		
-		
-		//CreateEnvironment
-		e.add(new Environment(-10, 0, 10,720,Color.BLACK));//boarderLEFT
-		e.add(new Environment(0, -10, 1280,10,Color.BLACK));//boarderTOP
-		e.add(new Environment(1280, 0, 10,720,Color.BLACK));//boarderRIGHT
-		e.add(new Environment(0,720, 1280,10,Color.BLACK));//boarderBOTTOM
-		
-		e.add(new Environment(10,0,300,140,Color.BLACK));//Hen
-		e.add(new Environment(350,0,300,140,Color.BLACK));//Barn
-		e.add(new Environment(710,40,120,90,Color.BURLYWOOD));//DropBox
-		e.add(new Environment(900,10,370,200,Color.BLACK));//House
-		e.add(new Environment(900,420,280,200,Color.AQUAMARINE));//House
-		root.getChildren().addAll(e);
-		
-
 		
 		for(int i = 90;i < 800;i+=80) {
 			for(int j = 220;j < 620;j+=80) {
@@ -53,10 +37,20 @@ public class Farm{
 				re.add(r);
 			}
 		}
-		re.add(new ReceiveAction(710,40,120,90,Color.BURLYWOOD));
-		re.add(new ReceiveAction(900,420,280,200,Color.AQUAMARINE));
 		
 		root.getChildren().addAll(re);
+		
+		e.add(new Environment(-10, 0, 10,720,Color.BLACK));//boarderLEFT
+		e.add(new Environment(0, -10, 1280,10,Color.BLACK));//boarderTOP
+		e.add(new Environment(1280, 0, 10,720,Color.BLACK));//boarderRIGHT
+		e.add(new Environment(0,720, 1280,10,Color.BLACK));//boarderBOTTOM
+		e.add(new Environment(0,0,495,270,Color.BLACK));//Blacksmith
+		e.add(new Environment(1020,0,260,285,Color.BLACK));//Seed Shop
+		e.add(new Environment(1020,300,260,285,Color.BLACK));//Animal Shop
+		e.add(new Environment(630,300,225,225,Color.AQUA));//Fountain
+		
+		root.getChildren().addAll(e);
+		
 		
 
 		hero = new Hero(scene,starthx,starthy,e,re);
@@ -66,8 +60,7 @@ public class Farm{
 		}
 	}
 	
-	public Scene getFarmScene() {
+	public Scene getTownScene() {
 		return this.scene;
 	}
 	
-}

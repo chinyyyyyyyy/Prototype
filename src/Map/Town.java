@@ -15,7 +15,7 @@ import javafx.scene.shape.Rectangle;
 
 public class Town{
 	private  Group root;
-	private  Scene scene;
+	public  Scene scene;
 	private  Hero hero;
 	private  List<Environment> e = new ArrayList<>();
 	private  List<ReceiveAction> re = new ArrayList<>();
