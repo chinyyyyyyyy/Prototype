@@ -11,6 +11,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.transform.Rotate;
+import javafx.util.Pair;
 
 public class Hero {
 	private Rectangle unitblock;
@@ -19,6 +20,7 @@ public class Hero {
 	private int acpos = 0;
 	private List<Environment> env = new ArrayList<>();
 	private List<ReceiveAction> re = new ArrayList<>();
+	private List<Pair<Rectangle,Integer>> WarpList = new ArrayList<>();
 
 	public Hero(Scene scene, int startx, int starty, List<Environment> e, List<ReceiveAction> re) {
 
@@ -42,31 +44,31 @@ public class Hero {
 		abu.setVisible(false);
 		abr.setVisible(false);
 		abd.setVisible(false);
-		moveunitblockOnKeyPress(scene, unitblock, actionblock);
+		moveunitblockOnKeyPress(scene);
 
 		env = e;
 		this.re = re;
 	}
 
-	public void moveunitblockOnKeyPress(Scene scene, Rectangle unit, List<Rectangle> actionblock2) {
+	public void moveunitblockOnKeyPress(Scene scene) {
 		scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
 			@Override
 			public void handle(KeyEvent event) {
 				if (event.getCode().equals(KeyCode.UP)) {
-					turnTo(1, actionblock2);
-					moveUp(true, unit, actionblock2);
+					turnTo(1);
+					moveUp(true);
 
 				} else if (event.getCode().equals(KeyCode.RIGHT)) {
-					turnTo(0, actionblock2);
-					moveRight(true, unit, actionblock2);
+					turnTo(0);
+					moveRight(true);
 
 				} else if (event.getCode().equals(KeyCode.DOWN)) {
-					turnTo(3, actionblock2);
-					moveUp(false, unit, actionblock2);
+					turnTo(3);
+					moveUp(false);
 
 				} else if (event.getCode().equals(KeyCode.LEFT)) {
-					turnTo(2, actionblock2);
-					moveRight(false, unit, actionblock2);
+					turnTo(2);
+					moveRight(false);
 
 				} else if (event.getCode().equals(KeyCode.Z)) {
 					ReceiveAction.checkAction(re, getActiveBlock());
@@ -79,18 +81,18 @@ public class Hero {
 		double x, y;
 	}
 
-	private void moveUp(boolean up, Rectangle unit, List<Rectangle> actionblock2) {
+	private void moveUp(boolean up) {
 		if (up == true) {
 			for (int i = 0; i < 10000; i++) {
-				unit.setLayoutY(unit.getLayoutY() - KEYBOARD_MOVEMENT_DELTA);
-				for (Rectangle r : actionblock2) {
+				unitblock.setLayoutY(unitblock.getLayoutY() - KEYBOARD_MOVEMENT_DELTA);
+				for (Rectangle r : actionblock) {
 					r.setLayoutY(r.getLayoutY() - KEYBOARD_MOVEMENT_DELTA);
 				}
 			}
-			if (Environment.checkShapeIntersection(env, unit)) {
+			if (Environment.checkShapeIntersection(env, unitblock)) {
 				for (int i = 0; i < 10000; i++) {
-					unit.setLayoutY(unit.getLayoutY() + KEYBOARD_MOVEMENT_DELTA);
-					for (Rectangle r : actionblock2) {
+					unitblock.setLayoutY(unitblock.getLayoutY() + KEYBOARD_MOVEMENT_DELTA);
+					for (Rectangle r : actionblock) {
 						r.setLayoutY(r.getLayoutY() + KEYBOARD_MOVEMENT_DELTA);
 					}
 				}
@@ -98,15 +100,15 @@ public class Hero {
 			}
 		} else {
 			for (int i = 0; i < 10000; i++) {
-				unit.setLayoutY(unit.getLayoutY() + KEYBOARD_MOVEMENT_DELTA);
-				for (Rectangle r : actionblock2) {
+				unitblock.setLayoutY(unitblock.getLayoutY() + KEYBOARD_MOVEMENT_DELTA);
+				for (Rectangle r : actionblock) {
 					r.setLayoutY(r.getLayoutY() + KEYBOARD_MOVEMENT_DELTA);
 				}
 			}
-			if (Environment.checkShapeIntersection(env, unit)) {
+			if (Environment.checkShapeIntersection(env,unitblock)) {
 				for (int i = 0; i < 10000; i++) {
-					unit.setLayoutY(unit.getLayoutY() - KEYBOARD_MOVEMENT_DELTA);
-					for (Rectangle r : actionblock2) {
+					unitblock.setLayoutY(unitblock.getLayoutY() - KEYBOARD_MOVEMENT_DELTA);
+					for (Rectangle r : actionblock) {
 						r.setLayoutY(r.getLayoutY() - KEYBOARD_MOVEMENT_DELTA);
 					}
 				}
@@ -114,33 +116,33 @@ public class Hero {
 		}
 	}
 
-	private void moveRight(boolean right, Rectangle unit, List<Rectangle> actionblock2) {
+	private void moveRight(boolean right) {
 		if (right == true) {
 			for (int i = 0; i < 10000; i++) {
-				unit.setLayoutX(unit.getLayoutX() + KEYBOARD_MOVEMENT_DELTA);
-				for (Rectangle r : actionblock2) {
+				unitblock.setLayoutX(unitblock.getLayoutX() + KEYBOARD_MOVEMENT_DELTA);
+				for (Rectangle r : actionblock) {
 					r.setLayoutX(r.getLayoutX() + KEYBOARD_MOVEMENT_DELTA);
 				}
 			}
-			if (Environment.checkShapeIntersection(env, unit)) {
+			if (Environment.checkShapeIntersection(env,unitblock)) {
 				for (int i = 0; i < 10000; i++) {
-					unit.setLayoutX(unit.getLayoutX() - KEYBOARD_MOVEMENT_DELTA);
-					for (Rectangle r : actionblock2) {
+					unitblock.setLayoutX(unitblock.getLayoutX() - KEYBOARD_MOVEMENT_DELTA);
+					for (Rectangle r : actionblock) {
 						r.setLayoutX(r.getLayoutX() - KEYBOARD_MOVEMENT_DELTA);
 					}
 				}
 			}
 		} else {
 			for (int i = 0; i < 10000; i++) {
-				unit.setLayoutX(unit.getLayoutX() - KEYBOARD_MOVEMENT_DELTA);
-				for (Rectangle r : actionblock2) {
+				unitblock.setLayoutX(unitblock.getLayoutX() - KEYBOARD_MOVEMENT_DELTA);
+				for (Rectangle r : actionblock) {
 					r.setLayoutX(r.getLayoutX() - KEYBOARD_MOVEMENT_DELTA);
 				}
 			}
-			if (Environment.checkShapeIntersection(env, unit)) {
+			if (Environment.checkShapeIntersection(env, unitblock)) {
 				for (int i = 0; i < 10000; i++) {
-					unit.setLayoutX(unit.getLayoutX() + KEYBOARD_MOVEMENT_DELTA);
-					for (Rectangle r : actionblock2) {
+					unitblock.setLayoutX(unitblock.getLayoutX() + KEYBOARD_MOVEMENT_DELTA);
+					for (Rectangle r : actionblock) {
 						r.setLayoutX(r.getLayoutX() + KEYBOARD_MOVEMENT_DELTA);
 					}
 				}
@@ -148,13 +150,13 @@ public class Hero {
 		}
 	}
 
-	private void turnTo(int pos, List<Rectangle> acb) {
+	private void turnTo(int pos) {
 		if (acpos != pos) {
-			for (int i = 0; i < acb.size(); i++) {
+			for (int i = 0; i < actionblock.size(); i++) {
 				if (i != pos) {
-					acb.get(i).setVisible(false);
+					actionblock.get(i).setVisible(false);
 				} else {
-					acb.get(i).setVisible(true);
+					actionblock.get(i).setVisible(true);
 				}
 			}
 			acpos = pos;
@@ -170,6 +172,7 @@ public class Hero {
 	}
 
 	public Rectangle getActiveBlock() {
+
 		Rectangle activeblock = null;
 		for (Rectangle r : actionblock) {
 			if (r.isVisible()) {
@@ -179,4 +182,7 @@ public class Hero {
 		return activeblock;
 	}
 
+	public void setWarpBlockList(List<Pair<Rectangle,Integer>> wl) {
+		WarpList = wl;
+	}
 }
