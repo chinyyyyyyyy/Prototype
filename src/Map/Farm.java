@@ -37,11 +37,11 @@ public class Farm{
 		e.add(new Environment(1280, 0, 10,720,Color.BLACK));//boarderRIGHT
 		e.add(new Environment(0,720, 1280,10,Color.BLACK));//boarderBOTTOM
 		
-		e.add(new Environment(10,0,300,140,Color.BLACK));//Hen
-		e.add(new Environment(350,0,300,140,Color.BLACK));//Barn
+		e.add(new Environment(10,10,300,120,Color.BLACK));//Hen
+		e.add(new Environment(350,10,300,120,Color.BLACK));//Barn
 		e.add(new Environment(710,40,120,90,Color.BURLYWOOD));//DropBox
 		e.add(new Environment(900,10,370,200,Color.BLACK));//House
-		e.add(new Environment(900,420,280,200,Color.AQUAMARINE));//House
+		e.add(new Environment(900,420,280,200,Color.AQUAMARINE));//Ponds
 		root.getChildren().addAll(e);
 		
 
@@ -53,8 +53,8 @@ public class Farm{
 				re.add(r);
 			}
 		}
-		re.add(new ReceiveAction(710,40,120,90,Color.BURLYWOOD));
-		re.add(new ReceiveAction(900,420,280,200,Color.AQUAMARINE));
+		re.add(new ReceiveAction(710,40,120,90,Color.BURLYWOOD));//DropBox
+		re.add(new ReceiveAction(900,420,280,200,Color.AQUAMARINE));//Ponds
 		
 		root.getChildren().addAll(re);
 		

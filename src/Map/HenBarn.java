@@ -13,14 +13,14 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
-public class House {
+public class HenBarn {
 	private Group root;
 	public Scene scene;
 	private Hero hero;
 	private List<Environment> e = new ArrayList<>();
 	private List<ReceiveAction> re = new ArrayList<>();
 
-	public House(int starthx, int starthy) {
+	public HenBarn(int starthx, int starthy) {
 		root = new Group();
 		scene = new Scene(root, 1280, 720);
 		Canvas bg = new Canvas(1280, 720);
@@ -29,25 +29,41 @@ public class House {
 		gc.fillRect(0, 0, 1280, 720);
 		root.getChildren().add(bg);
 
-		//Boarder
+		// Boarder
 		e.add(new Environment(-10, 0, 10, 720, Color.BLACK));// boarderLEFT
 		e.add(new Environment(0, -10, 1280, 10, Color.BLACK));// boarderTOP
 		e.add(new Environment(1280, 0, 10, 720, Color.BLACK));// boarderRIGHT
 		e.add(new Environment(0, 720, 1280, 10, Color.BLACK));// boarderBOTTOM
-		//Furniture
-		e.add(new Environment(0, 0, 100, 100, Color.BLACK));// Lamp
-		e.add(new Environment(0, 600, 150,120, Color.BLACK));//ToolBlock
-		e.add(new Environment(490, 0, 300, 50, Color.BLACK));// TV
-		e.add(new Environment(1080, 0, 200, 300, Color.BLACK));//BED
-		e.add(new Environment(1265, 500, 15, 120, Color.BLACK));//Calendar
+		// Partition TOP
+		e.add(new Environment(300, 0, 15, 200, Color.BLACK));
+		e.add(new Environment(433, 0, 15, 200, Color.BLACK));
+		e.add(new Environment(566, 0, 15, 200, Color.BLACK));
+		e.add(new Environment(699, 0, 15, 200, Color.BLACK));
+		e.add(new Environment(832, 0, 15, 200, Color.BLACK));
+		e.add(new Environment(965, 0, 15, 200, Color.BLACK));
+		// stall TOP
+		e.add(new Environment(315, 0, 118, 200, Color.CHOCOLATE));
+		e.add(new Environment(448, 0, 118, 200, Color.CHOCOLATE));
+		e.add(new Environment(581, 0, 118, 200, Color.CHOCOLATE));
+		e.add(new Environment(714, 0, 118, 200, Color.CHOCOLATE));
+		e.add(new Environment(847, 0, 118, 200, Color.CHOCOLATE));
+		//Hay
+		e.add(new Environment(0, 400, 150, 200, Color.BLACK));
+
+
 		root.getChildren().addAll(e);
+
+
+
+		// re.add(new ReceiveAction(490, 0, 300, 50, Color.MEDIUMPURPLE));// TV
 		
-		
-		re.add(new ReceiveAction(490, 0, 300, 50, Color.MEDIUMPURPLE));// TV
-		re.add(new ReceiveAction(1080, 0, 200, 300, Color.RED));//BED
-		re.add(new ReceiveAction(1265, 500, 15, 120, Color.ALICEBLUE));//Calendar
-		
-		
+		re.add(new ReceiveAction(315, 0, 118, 200, Color.CHOCOLATE));
+		re.add(new ReceiveAction(448, 0, 118, 200, Color.CHOCOLATE));
+		re.add(new ReceiveAction(581, 0, 118, 200, Color.CHOCOLATE));
+		re.add(new ReceiveAction(714, 0, 118, 200, Color.CHOCOLATE));
+		re.add(new ReceiveAction(847, 0, 118, 200, Color.CHOCOLATE));
+		//HAY
+		e.add(new Environment(0, 400, 150, 200, Color.BLACK));
 		root.getChildren().addAll(re);
 
 		hero = new Hero(scene, starthx, starthy, e, re);
@@ -57,7 +73,7 @@ public class House {
 		}
 	}
 
-	public Scene getHouseScene() {
+	public Scene getHenBarnScene() {
 		return this.scene;
 	}
 }
