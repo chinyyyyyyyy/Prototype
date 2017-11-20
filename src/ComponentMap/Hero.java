@@ -13,12 +13,12 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.transform.Rotate;
 
 public class Hero {
-	private static Rectangle unitblock;
-	private static List<Rectangle> actionblock = new ArrayList<>();
+	private Rectangle unitblock;
+	private List<Rectangle> actionblock = new ArrayList<>();
 	private final static double KEYBOARD_MOVEMENT_DELTA = 0.00075;
-	private static int acpos = 0;
-	private static List<Environment> env = new ArrayList<>();
-	private static List<ReceiveAction> re = new ArrayList<>();
+	private int acpos = 0;
+	private List<Environment> env = new ArrayList<>();
+	private List<ReceiveAction> re = new ArrayList<>();
 
 	public Hero(Scene scene,int startx,int starty,List<Environment> e
 			,List<ReceiveAction> re) {
@@ -46,7 +46,7 @@ public class Hero {
 		this.re = re;
 	}
 
-	public static void moveunitblockOnKeyPress(Scene scene, Rectangle unit, List<Rectangle> actionblock2) {
+	public void moveunitblockOnKeyPress(Scene scene, Rectangle unit, List<Rectangle> actionblock2) {
 		scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
 			@Override
 			public void handle(KeyEvent event) {
@@ -77,7 +77,7 @@ public class Hero {
 		double x, y;
 	}
 
-	private static void moveUp(boolean up, Rectangle unit, List<Rectangle> actionblock2) {
+	private void moveUp(boolean up, Rectangle unit, List<Rectangle> actionblock2) {
 		if (up == true) {
 			for (int i = 0; i < 10000; i++) {
 				unit.setLayoutY(unit.getLayoutY() - KEYBOARD_MOVEMENT_DELTA);
@@ -112,7 +112,7 @@ public class Hero {
 		}
 	}
 
-	private static void moveRight(boolean right, Rectangle unit, List<Rectangle> actionblock2) {
+	private void moveRight(boolean right, Rectangle unit, List<Rectangle> actionblock2) {
 		if (right == true) {
 			for (int i = 0; i < 10000; i++) {
 				unit.setLayoutX(unit.getLayoutX() + KEYBOARD_MOVEMENT_DELTA);
@@ -146,7 +146,7 @@ public class Hero {
 		}
 	}
 
-	private static void turnTo(int pos, List<Rectangle> acb) {
+	private void turnTo(int pos, List<Rectangle> acb) {
 		if (acpos != pos) {
 			for (int i = 0; i < acb.size(); i++) {
 				if (i != pos) {
@@ -163,11 +163,11 @@ public class Hero {
 		return unitblock;
 	}
 
-	public static List<Rectangle> getActionblock() {
+	public List<Rectangle> getActionblock() {
 		return actionblock;
 	}
 
-	public static Rectangle getActiveBlock() {
+	public Rectangle getActiveBlock() {
 		Rectangle activeblock = null;
 		for (Rectangle r : actionblock) {
 			if (r.isVisible()) {

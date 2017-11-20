@@ -54,7 +54,7 @@ public class Farm{
 
 		hero = new Hero(scene,starthx,starthy,e,re);
 		root.getChildren().addAll(hero.getUnitblock());
-		for (Rectangle r : Hero.getActionblock()) {
+		for (Rectangle r : hero.getActionblock()) {
 			root.getChildren().add(r);
 		}
 	}

@@ -12,7 +12,7 @@ public class Main extends Application {
 
 	@Override
 	public void start(Stage primaryStage) {
-//		Farm farm = new Farm(340,345);
+		Farm farm = new Farm(340,345);
 		Town town = new Town(0,600);
 
 		primaryStage.setScene(town.getTownScene());
