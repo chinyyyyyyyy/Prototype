@@ -1,6 +1,5 @@
 package application;
 
-import java.util.Scanner;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.stage.Stage;

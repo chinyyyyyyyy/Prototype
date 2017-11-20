@@ -16,14 +16,21 @@ public class Hero {
 	private Rectangle unitblock;
 	private List<Rectangle> actionblock = new ArrayList<>();
 	private final static double KEYBOARD_MOVEMENT_DELTA = 0.00075;
+<<<<<<< HEAD
 	private int acpos = 0;
+=======
+	private  int acpos = 0;
+>>>>>>> refs/remotes/origin/master
 	private List<Environment> env = new ArrayList<>();
 	private List<ReceiveAction> re = new ArrayList<>();
 
 	public Hero(Scene scene,int startx,int starty,List<Environment> e
 			,List<ReceiveAction> re) {
+		
 		unitblock = new Rectangle(startx, starty,75,75);
 		unitblock.setFill(Color.AQUA);
+		
+		
 		Rectangle abl = new Rectangle(startx + unitblock.getWidth(), starty, 75,75);
 		Rectangle abu = new Rectangle(startx, starty - unitblock.getHeight(), 75,75);
 		Rectangle abr = new Rectangle(startx - unitblock.getWidth(), starty, 75,75);
@@ -42,11 +49,16 @@ public class Hero {
 		abr.setVisible(false);
 		abd.setVisible(false);
 		moveunitblockOnKeyPress(scene, unitblock, actionblock);
+		
 		env = e;
 		this.re = re;
 	}
 
+<<<<<<< HEAD
 	public void moveunitblockOnKeyPress(Scene scene, Rectangle unit, List<Rectangle> actionblock2) {
+=======
+	public  void moveunitblockOnKeyPress(Scene scene, Rectangle unit, List<Rectangle> actionblock2) {
+>>>>>>> refs/remotes/origin/master
 		scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
 			@Override
 			public void handle(KeyEvent event) {
@@ -112,7 +124,11 @@ public class Hero {
 		}
 	}
 
+<<<<<<< HEAD
 	private void moveRight(boolean right, Rectangle unit, List<Rectangle> actionblock2) {
+=======
+	private  void moveRight(boolean right, Rectangle unit, List<Rectangle> actionblock2) {
+>>>>>>> refs/remotes/origin/master
 		if (right == true) {
 			for (int i = 0; i < 10000; i++) {
 				unit.setLayoutX(unit.getLayoutX() + KEYBOARD_MOVEMENT_DELTA);
@@ -158,12 +174,17 @@ public class Hero {
 			acpos = pos;
 		}
 	}
+	
 
 	public Rectangle getUnitblock() {
 		return unitblock;
 	}
 
+<<<<<<< HEAD
 	public List<Rectangle> getActionblock() {
+=======
+	public  List<Rectangle> getActionblock() {
+>>>>>>> refs/remotes/origin/master
 		return actionblock;
 	}
 

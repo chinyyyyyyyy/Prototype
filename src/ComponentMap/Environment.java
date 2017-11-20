@@ -24,11 +24,7 @@ public class Environment extends Rectangle {
 	      
 	    }
 
-	    if (collisionDetected) {
-	      return true;
-	    } else {
-	      return false;
-	    }
+	   return collisionDetected;
 	  }
 	
 	
