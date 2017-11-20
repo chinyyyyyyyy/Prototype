@@ -15,12 +15,25 @@ public class ReceiveAction extends Rectangle{
 	}
 	
 	public static void checkAction(List<ReceiveAction> re,Rectangle r) {
-	    for (Shape receive : re) {
+	    for (ReceiveAction receive : re) {
 	        Shape intersect = Shape.intersect(r, receive);
-	        if (intersect.getBoundsInLocal().getWidth()>50 && intersect.getBoundsInLocal().getHeight()>50) {
-	        	System.out.println("Action is on" + re.indexOf(receive));
+	        double wi = intersect.getBoundsInLocal().getWidth();
+	        double hi = intersect.getBoundsInLocal().getHeight();
+	        double wr = receive.getWidth();
+	        double hr = receive.getHeight();
+	        double wa = r.getWidth();
+	        double ha = r.getHeight();
+	        if (wr < wa && hr < ha ) {
+	        	if(wi == wr && hi == hr  ) System.out.println("Action is on" + re.indexOf(receive));
+	        }else if (wr >= wa && hr < ha ) {
+	        	if(wi >= 0.8*wa && hi == hr  ) System.out.println("Action is on" + re.indexOf(receive));
+	        }else if (wr < wa && hr >= ha ) {
+	        	if(wi == wr && hi >= 0.8*ha  ) System.out.println("Action is on" + re.indexOf(receive));
+	        }else if (wr >= wa && hr >= ha ) {
+	        	if(wi >= 0.8*wa && hi >= 0.8*ha ) System.out.println("Action is on" + re.indexOf(receive));
 	        }
-	      }
+	    }
+	        
 
 	}		
 
