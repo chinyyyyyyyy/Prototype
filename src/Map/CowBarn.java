@@ -13,7 +13,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
-public class CowBarn {
+public class CowBarn implements setsceneable{
 	private Group root;
 	public Scene scene;
 	private Hero hero;
@@ -85,7 +85,7 @@ public class CowBarn {
 		}
 	}
 
-	public Scene getCowBarnScene() {
+	public Scene getScene() {
 		return this.scene;
 	}
 }

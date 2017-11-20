@@ -13,7 +13,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
-public class House {
+public class House implements setsceneable{
 	private Group root;
 	public Scene scene;
 	private Hero hero;
@@ -57,7 +57,7 @@ public class House {
 		}
 	}
 
-	public Scene getHouseScene() {
+	public Scene getScene() {
 		return this.scene;
 	}
 }

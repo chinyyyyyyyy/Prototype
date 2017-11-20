@@ -89,6 +89,11 @@ public class Hero {
 					r.setLayoutY(r.getLayoutY() - KEYBOARD_MOVEMENT_DELTA);
 				}
 			}
+			
+			if(SceneManager.CheckOnWarpBlock(WarpList,unitblock)!=-1){
+				SceneManager.warpTo(SceneManager.CheckOnWarpBlock(WarpList,unitblock));
+			}
+			
 			if (Environment.checkShapeIntersection(env, unitblock)) {
 				for (int i = 0; i < 10000; i++) {
 					unitblock.setLayoutY(unitblock.getLayoutY() + KEYBOARD_MOVEMENT_DELTA);
@@ -105,6 +110,11 @@ public class Hero {
 					r.setLayoutY(r.getLayoutY() + KEYBOARD_MOVEMENT_DELTA);
 				}
 			}
+			
+			if(SceneManager.CheckOnWarpBlock(WarpList,unitblock)!=-1){
+				SceneManager.warpTo(SceneManager.CheckOnWarpBlock(WarpList,unitblock));
+			}
+			
 			if (Environment.checkShapeIntersection(env,unitblock)) {
 				for (int i = 0; i < 10000; i++) {
 					unitblock.setLayoutY(unitblock.getLayoutY() - KEYBOARD_MOVEMENT_DELTA);
@@ -124,6 +134,11 @@ public class Hero {
 					r.setLayoutX(r.getLayoutX() + KEYBOARD_MOVEMENT_DELTA);
 				}
 			}
+			if(SceneManager.CheckOnWarpBlock(WarpList,unitblock)!=-1){
+				SceneManager.warpTo(SceneManager.CheckOnWarpBlock(WarpList,unitblock));
+			}
+			
+			
 			if (Environment.checkShapeIntersection(env,unitblock)) {
 				for (int i = 0; i < 10000; i++) {
 					unitblock.setLayoutX(unitblock.getLayoutX() - KEYBOARD_MOVEMENT_DELTA);
@@ -132,6 +147,7 @@ public class Hero {
 					}
 				}
 			}
+			
 		} else {
 			for (int i = 0; i < 10000; i++) {
 				unitblock.setLayoutX(unitblock.getLayoutX() - KEYBOARD_MOVEMENT_DELTA);
@@ -139,6 +155,11 @@ public class Hero {
 					r.setLayoutX(r.getLayoutX() - KEYBOARD_MOVEMENT_DELTA);
 				}
 			}
+				
+			if(SceneManager.CheckOnWarpBlock(WarpList,unitblock)!=-1){
+				SceneManager.warpTo(SceneManager.CheckOnWarpBlock(WarpList,unitblock));
+			}
+			
 			if (Environment.checkShapeIntersection(env, unitblock)) {
 				for (int i = 0; i < 10000; i++) {
 					unitblock.setLayoutX(unitblock.getLayoutX() + KEYBOARD_MOVEMENT_DELTA);

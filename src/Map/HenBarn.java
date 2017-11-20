@@ -12,13 +12,15 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.util.Pair;
 
-public class HenBarn {
+public class HenBarn implements setsceneable {
 	private Group root;
 	public Scene scene;
 	private Hero hero;
 	private List<Environment> e = new ArrayList<>();
 	private List<ReceiveAction> re = new ArrayList<>();
+	private  List<Pair<Rectangle,Integer>> WarpList = new ArrayList<>();
 
 	public HenBarn(int starthx, int starthy) {
 		root = new Group();
@@ -65,15 +67,23 @@ public class HenBarn {
 		//HAY
 		e.add(new Environment(0, 400, 150, 200, Color.BLACK));
 		root.getChildren().addAll(re);
+		
+		Rectangle warpblocktofarm = new Rectangle(580,695,120,25);
+		warpblocktofarm.setFill(Color.RED);
+		root.getChildren().add(warpblocktofarm);
+		Pair<Rectangle,Integer> tofarm = new Pair<Rectangle,Integer>(warpblocktofarm,0);
+		WarpList.add(tofarm);
 
 		hero = new Hero(scene, starthx, starthy, e, re);
 		root.getChildren().addAll(hero.getUnitblock());
 		for (Rectangle r : hero.getActionblock()) {
 			root.getChildren().add(r);
 		}
+		
+		hero.setWarpBlockList(WarpList);
 	}
 
-	public Scene getHenBarnScene() {
+	public Scene getScene() {
 		return this.scene;
 	}
 }
