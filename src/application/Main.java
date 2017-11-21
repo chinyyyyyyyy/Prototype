@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ComponentMap.SceneManager;
+import Logic.World;
 import Map.Blacksmith;
 import Map.CowBarn;
 import Map.Farm;
@@ -22,6 +23,7 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		
+		World w = new World();
 		List<setsceneable> listmap = new ArrayList<>();
 		Farm farm = new Farm(340,345);
 		Town town = new Town(0,560);

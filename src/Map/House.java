@@ -3,6 +3,7 @@ package Map;
 import java.util.ArrayList;
 import java.util.List;
 
+import ComponentMap.Bed;
 import ComponentMap.Environment;
 import ComponentMap.Hero;
 import ComponentMap.ReceiveAction;
@@ -48,7 +49,7 @@ public class House implements setsceneable{
 		
 		
 		re.add(new ReceiveAction(490, 0, 300, 50, Color.MEDIUMPURPLE));// TV
-		re.add(new ReceiveAction(1080, 0, 200, 300, Color.RED));//BED
+		re.add(new Bed(1080, 0, 200, 300, Color.RED));//BED
 		re.add(new ReceiveAction(1265, 500, 15, 120, Color.ALICEBLUE));//Calendar
 		root.getChildren().addAll(re);
 		

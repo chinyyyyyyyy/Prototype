@@ -10,6 +10,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.Shape;
 import javafx.scene.transform.Rotate;
 import javafx.util.Pair;
 
@@ -71,7 +72,9 @@ public class Hero {
 					moveRight(false);
 
 				} else if (event.getCode().equals(KeyCode.Z)) {
-					ReceiveAction.checkAction(re, getActiveBlock());
+					 for (ReceiveAction receive : re) {
+						 receive.checkAction(getActiveBlock());	 
+					 }
 				}
 			}
 		});
@@ -83,91 +86,26 @@ public class Hero {
 
 	private void moveUp(boolean up) {
 		if (up == true) {
-			for (int i = 0; i < 10000; i++) {
-				unitblock.setLayoutY(unitblock.getLayoutY() - KEYBOARD_MOVEMENT_DELTA);
-				for (Rectangle r : actionblock) {
-					r.setLayoutY(r.getLayoutY() - KEYBOARD_MOVEMENT_DELTA);
-				}
-			}
-			
-			if(SceneManager.CheckOnWarpBlock(WarpList,unitblock)!=-1){
-				SceneManager.warpTo(SceneManager.CheckOnWarpBlock(WarpList,unitblock));
-			}
-			
-			if (Environment.checkShapeIntersection(env, unitblock)) {
-				for (int i = 0; i < 10000; i++) {
-					unitblock.setLayoutY(unitblock.getLayoutY() + KEYBOARD_MOVEMENT_DELTA);
-					for (Rectangle r : actionblock) {
-						r.setLayoutY(r.getLayoutY() + KEYBOARD_MOVEMENT_DELTA);
-					}
-				}
-
-			}
+			positionChange(true,true);
+			checkUnitOnWarpBlock();
+			if (CheckIntersectForEachEnv()) positionChange(true,false);
+	
 		} else {
-			for (int i = 0; i < 10000; i++) {
-				unitblock.setLayoutY(unitblock.getLayoutY() + KEYBOARD_MOVEMENT_DELTA);
-				for (Rectangle r : actionblock) {
-					r.setLayoutY(r.getLayoutY() + KEYBOARD_MOVEMENT_DELTA);
-				}
-			}
-			
-			if(SceneManager.CheckOnWarpBlock(WarpList,unitblock)!=-1){
-				SceneManager.warpTo(SceneManager.CheckOnWarpBlock(WarpList,unitblock));
-			}
-			
-			if (Environment.checkShapeIntersection(env,unitblock)) {
-				for (int i = 0; i < 10000; i++) {
-					unitblock.setLayoutY(unitblock.getLayoutY() - KEYBOARD_MOVEMENT_DELTA);
-					for (Rectangle r : actionblock) {
-						r.setLayoutY(r.getLayoutY() - KEYBOARD_MOVEMENT_DELTA);
-					}
-				}
-			}
+			positionChange(true,false);	
+			checkUnitOnWarpBlock();
+			if (CheckIntersectForEachEnv()) positionChange(true,true);
 		}
 	}
 
 	private void moveRight(boolean right) {
 		if (right == true) {
-			for (int i = 0; i < 10000; i++) {
-				unitblock.setLayoutX(unitblock.getLayoutX() + KEYBOARD_MOVEMENT_DELTA);
-				for (Rectangle r : actionblock) {
-					r.setLayoutX(r.getLayoutX() + KEYBOARD_MOVEMENT_DELTA);
-				}
-			}
-			if(SceneManager.CheckOnWarpBlock(WarpList,unitblock)!=-1){
-				SceneManager.warpTo(SceneManager.CheckOnWarpBlock(WarpList,unitblock));
-			}
-			
-			
-			if (Environment.checkShapeIntersection(env,unitblock)) {
-				for (int i = 0; i < 10000; i++) {
-					unitblock.setLayoutX(unitblock.getLayoutX() - KEYBOARD_MOVEMENT_DELTA);
-					for (Rectangle r : actionblock) {
-						r.setLayoutX(r.getLayoutX() - KEYBOARD_MOVEMENT_DELTA);
-					}
-				}
-			}
-			
+			positionChange(false,true);
+			checkUnitOnWarpBlock();
+			if (CheckIntersectForEachEnv()) positionChange(false,false);
 		} else {
-			for (int i = 0; i < 10000; i++) {
-				unitblock.setLayoutX(unitblock.getLayoutX() - KEYBOARD_MOVEMENT_DELTA);
-				for (Rectangle r : actionblock) {
-					r.setLayoutX(r.getLayoutX() - KEYBOARD_MOVEMENT_DELTA);
-				}
-			}
-				
-			if(SceneManager.CheckOnWarpBlock(WarpList,unitblock)!=-1){
-				SceneManager.warpTo(SceneManager.CheckOnWarpBlock(WarpList,unitblock));
-			}
-			
-			if (Environment.checkShapeIntersection(env, unitblock)) {
-				for (int i = 0; i < 10000; i++) {
-					unitblock.setLayoutX(unitblock.getLayoutX() + KEYBOARD_MOVEMENT_DELTA);
-					for (Rectangle r : actionblock) {
-						r.setLayoutX(r.getLayoutX() + KEYBOARD_MOVEMENT_DELTA);
-					}
-				}
-			}
+			positionChange(false,false);	
+			checkUnitOnWarpBlock();
+			if (CheckIntersectForEachEnv()) positionChange(false,true);
 		}
 	}
 
@@ -206,4 +144,57 @@ public class Hero {
 	public void setWarpBlockList(List<Pair<Rectangle,Integer>> wl) {
 		WarpList = wl;
 	}
+
+	private void checkUnitOnWarpBlock() {
+		if(SceneManager.CheckOnWarpBlock(WarpList,unitblock)!=-1){
+			SceneManager.warpTo(SceneManager.CheckOnWarpBlock(WarpList,unitblock));
+		}
+	}
+	
+	private boolean CheckIntersectForEachEnv() {
+		boolean struck = false;
+		for (Environment e : env) {
+			if(e.checkShapeIntersection(unitblock)) struck = true;
+		}
+		return struck;
+	}
+	
+	/*for move first arg if true is y false is x
+	 * first arg if true is y ,false is x
+	 * second arg if true is forward, is backward
+	 */
+	private void positionChange(boolean axis,boolean step) {
+		if(axis == true && step == true) {
+			for (int i = 0; i < 10000; i++) {
+				unitblock.setLayoutY(unitblock.getLayoutY() - KEYBOARD_MOVEMENT_DELTA);
+				for (Rectangle r : actionblock) {
+					r.setLayoutY(r.getLayoutY() - KEYBOARD_MOVEMENT_DELTA);
+				}
+			}
+		}else if(axis == true && step == false) {
+			for (int i = 0; i < 10000; i++) {
+				unitblock.setLayoutY(unitblock.getLayoutY() + KEYBOARD_MOVEMENT_DELTA);
+				for (Rectangle r : actionblock) {
+					r.setLayoutY(r.getLayoutY() + KEYBOARD_MOVEMENT_DELTA);
+					}
+				}
+			
+		}else if(axis == false && step == true) {
+			for (int i = 0; i < 10000; i++) {
+				unitblock.setLayoutX(unitblock.getLayoutX() + KEYBOARD_MOVEMENT_DELTA);
+				for (Rectangle r : actionblock) {
+					r.setLayoutX(r.getLayoutX() + KEYBOARD_MOVEMENT_DELTA);
+				}
+			}
+
+		}else if(axis == false && step == false) {
+			for (int i = 0; i < 10000; i++) {
+				unitblock.setLayoutX(unitblock.getLayoutX() - KEYBOARD_MOVEMENT_DELTA);
+				for (Rectangle r : actionblock) {
+					r.setLayoutX(r.getLayoutX() - KEYBOARD_MOVEMENT_DELTA);
+				}
+			}
+		}
+	}
+
 }
