@@ -12,6 +12,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.util.Pair;
 
 public class House implements setsceneable{
 	private Group root;
@@ -19,6 +20,7 @@ public class House implements setsceneable{
 	private Hero hero;
 	private List<Environment> e = new ArrayList<>();
 	private List<ReceiveAction> re = new ArrayList<>();
+	private  List<Pair<Rectangle,Integer>> WarpList = new ArrayList<>();
 
 	public House(int starthx, int starthy) {
 		root = new Group();
@@ -27,6 +29,8 @@ public class House implements setsceneable{
 		GraphicsContext gc = bg.getGraphicsContext2D();
 		gc.setFill(Color.TAN);
 		gc.fillRect(0, 0, 1280, 720);
+		gc.setFill(Color.TOMATO);
+		gc.fillOval(440,210,400, 300);
 		root.getChildren().add(bg);
 
 		//Boarder
@@ -46,15 +50,22 @@ public class House implements setsceneable{
 		re.add(new ReceiveAction(490, 0, 300, 50, Color.MEDIUMPURPLE));// TV
 		re.add(new ReceiveAction(1080, 0, 200, 300, Color.RED));//BED
 		re.add(new ReceiveAction(1265, 500, 15, 120, Color.ALICEBLUE));//Calendar
-		
-		
 		root.getChildren().addAll(re);
+		
+		Rectangle warpblocktofarm = new Rectangle(580,695,120,25);
+		warpblocktofarm.setFill(Color.RED);
+		root.getChildren().add(warpblocktofarm);
+		Pair<Rectangle,Integer> tofarm = new Pair<Rectangle,Integer>(warpblocktofarm,0);
+		WarpList.add(tofarm);
 
 		hero = new Hero(scene, starthx, starthy, e, re);
 		root.getChildren().addAll(hero.getUnitblock());
 		for (Rectangle r : hero.getActionblock()) {
 			root.getChildren().add(r);
 		}
+		hero.setWarpBlockList(WarpList);
+		
+		
 	}
 
 	public Scene getScene() {

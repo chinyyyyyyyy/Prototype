@@ -50,18 +50,18 @@ public class Farm implements setsceneable{
 		
 		
 		e.add(new Environment(350,0,90,140,Color.BLACK));//Barn
-		e.add(new Environment(440,0,120,90,Color.BLACK));//Barn
+		e.add(new Environment(440,0,120,115,Color.BLACK));//Barn
 		e.add(new Environment(560,0,90,140,Color.BLACK));//Barn
-		Rectangle warpblocktocowbarn = new Rectangle(440,90,120,50);
+		Rectangle warpblocktocowbarn = new Rectangle(440,115,120,25);
 		warpblocktocowbarn.setFill(Color.RED);
 		root.getChildren().add(warpblocktocowbarn);
 		Pair<Rectangle,Integer> tocowbarn = new Pair<Rectangle,Integer>(warpblocktocowbarn,3);
 		WarpList.add(tocowbarn);
 		
 		e.add(new Environment(910,0,125,200,Color.BLACK));//House
-		e.add(new Environment(1035,0,120,150,Color.BLACK));//House
+		e.add(new Environment(1035,0,120,175,Color.BLACK));//House
 		e.add(new Environment(1155,0,125,200,Color.BLACK));//House
-		Rectangle warpblocktohouse = new Rectangle(1035,150,120,50);
+		Rectangle warpblocktohouse = new Rectangle(1035,175,120,25);
 		warpblocktohouse.setFill(Color.RED);
 		root.getChildren().add(warpblocktohouse);
 		Pair<Rectangle,Integer> tocowhouse = new Pair<Rectangle,Integer>(warpblocktohouse,2);
@@ -87,7 +87,7 @@ public class Farm implements setsceneable{
 		root.getChildren().addAll(re);
 		
 		
-		Rectangle warpblocktotown = new Rectangle(1230,250,50,120);
+		Rectangle warpblocktotown = new Rectangle(1255,250,25,120);
 		warpblocktotown.setFill(Color.RED);
 		root.getChildren().addAll(warpblocktotown);
 		Pair<Rectangle,Integer> totown = new Pair<Rectangle,Integer>(warpblocktotown,1);
