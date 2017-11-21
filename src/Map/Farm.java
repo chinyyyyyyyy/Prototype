@@ -12,13 +12,15 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.util.Pair;
 
-public class Farm{
+public class Farm implements setsceneable{
 	private  Group root;
 	private  Scene scene;
 	private  Hero hero;
 	private  List<Environment> e = new ArrayList<>();
 	private  List<ReceiveAction> re = new ArrayList<>();
+	private  List<Pair<Rectangle,Integer>> WarpList = new ArrayList<>();
 	
 
 	public Farm(int starthx,int starthy) {
@@ -37,11 +39,37 @@ public class Farm{
 		e.add(new Environment(1280, 0, 10,720,Color.BLACK));//boarderRIGHT
 		e.add(new Environment(0,720, 1280,10,Color.BLACK));//boarderBOTTOM
 		
-		e.add(new Environment(10,0,300,140,Color.BLACK));//Hen
-		e.add(new Environment(350,0,300,140,Color.BLACK));//Barn
-		e.add(new Environment(710,40,120,90,Color.BURLYWOOD));//DropBox
-		e.add(new Environment(900,10,370,200,Color.BLACK));//House
-		e.add(new Environment(900,420,280,200,Color.AQUAMARINE));//House
+		e.add(new Environment(0,0,90,140,Color.BLACK));//Hen
+		e.add(new Environment(90,0,120,115,Color.BLACK));//Hen
+		e.add(new Environment(210,0,100,140,Color.BLACK));//Hen
+		Rectangle warpblocktohenbarn = new Rectangle(90,115,120,25);
+		warpblocktohenbarn.setFill(Color.RED);
+		root.getChildren().add(warpblocktohenbarn);
+		Pair<Rectangle,Integer> tohenbarn = new Pair<Rectangle,Integer>(warpblocktohenbarn,4);
+		WarpList.add(tohenbarn);
+		
+		
+		e.add(new Environment(350,0,90,140,Color.BLACK));//Barn
+		e.add(new Environment(440,0,120,90,Color.BLACK));//Barn
+		e.add(new Environment(560,0,90,140,Color.BLACK));//Barn
+		Rectangle warpblocktocowbarn = new Rectangle(440,90,120,50);
+		warpblocktocowbarn.setFill(Color.RED);
+		root.getChildren().add(warpblocktocowbarn);
+		Pair<Rectangle,Integer> tocowbarn = new Pair<Rectangle,Integer>(warpblocktocowbarn,3);
+		WarpList.add(tocowbarn);
+		
+		e.add(new Environment(910,0,125,200,Color.BLACK));//House
+		e.add(new Environment(1035,0,120,150,Color.BLACK));//House
+		e.add(new Environment(1155,0,125,200,Color.BLACK));//House
+		Rectangle warpblocktohouse = new Rectangle(1035,150,120,50);
+		warpblocktohouse.setFill(Color.RED);
+		root.getChildren().add(warpblocktohouse);
+		Pair<Rectangle,Integer> tocowhouse = new Pair<Rectangle,Integer>(warpblocktohouse,2);
+		WarpList.add(tocowhouse);
+		
+		
+		e.add(new Environment(710,40,120,100,Color.BURLYWOOD));//DropBox
+		e.add(new Environment(910,420,280,200,Color.AQUAMARINE));//Ponds
 		root.getChildren().addAll(e);
 		
 
@@ -53,10 +81,18 @@ public class Farm{
 				re.add(r);
 			}
 		}
-		re.add(new ReceiveAction(710,40,120,90,Color.BURLYWOOD));
-		re.add(new ReceiveAction(900,420,280,200,Color.AQUAMARINE));
+		re.add(new ReceiveAction(710,40,100,100,Color.BURLYWOOD));//DropBox
+		re.add(new ReceiveAction(910,420,280,200,Color.AQUAMARINE));//Ponds
 		
 		root.getChildren().addAll(re);
+		
+		
+		Rectangle warpblocktotown = new Rectangle(1230,250,50,120);
+		warpblocktotown.setFill(Color.RED);
+		root.getChildren().addAll(warpblocktotown);
+		Pair<Rectangle,Integer> totown = new Pair<Rectangle,Integer>(warpblocktotown,1);
+		WarpList.add(totown);
+		
 		
 
 		hero = new Hero(scene,starthx,starthy,e,re);
@@ -64,9 +100,12 @@ public class Farm{
 		for (Rectangle r : hero.getActionblock()) {
 			root.getChildren().add(r);
 		}
+		hero.setWarpBlockList(WarpList);
 	}
 	
-	public Scene getFarmScene() {
+	
+	
+	public Scene getScene() {
 		return this.scene;
 	}
 	
