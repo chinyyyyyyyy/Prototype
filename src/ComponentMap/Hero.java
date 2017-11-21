@@ -89,7 +89,6 @@ public class Hero {
 			positionChange(true,true);
 			checkUnitOnWarpBlock();
 			if (CheckIntersectForEachEnv()) positionChange(true,false);
-	
 		} else {
 			positionChange(true,false);	
 			checkUnitOnWarpBlock();
@@ -120,25 +119,6 @@ public class Hero {
 			}
 			acpos = pos;
 		}
-	}
-
-	public Rectangle getUnitblock() {
-		return unitblock;
-	}
-
-	public List<Rectangle> getActionblock() {
-		return actionblock;
-	}
-
-	public Rectangle getActiveBlock() {
-
-		Rectangle activeblock = null;
-		for (Rectangle r : actionblock) {
-			if (r.isVisible()) {
-				activeblock = r;
-			}
-		}
-		return activeblock;
 	}
 
 	public void setWarpBlockList(List<Pair<Rectangle,Integer>> wl) {
@@ -196,5 +176,28 @@ public class Hero {
 			}
 		}
 	}
+	
+	
+	
+	//For use in other method
+	public Rectangle getUnitblock() {
+		return unitblock;
+	}
+
+	public List<Rectangle> getActionblock() {
+		return actionblock;
+	}
+
+	public Rectangle getActiveBlock() {
+
+		Rectangle activeblock = null;
+		for (Rectangle r : actionblock) {
+			if (r.isVisible()) {
+				activeblock = r;
+			}
+		}
+		return activeblock;
+	}
+
 
 }
