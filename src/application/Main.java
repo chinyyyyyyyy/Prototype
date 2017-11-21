@@ -14,8 +14,8 @@ public class Main extends Application {
 		Farm farm = new Farm(340,345);
 		Town town = new Town(0,600);
 		
-		primaryStage.setScene(farm.getFarmScene());
-		//primaryStage.setScene(town.getTownScene());
+		//primaryStage.setScene(farm.getFarmScene());
+		primaryStage.setScene(town.getTownScene());
 		primaryStage.show();
 
 
