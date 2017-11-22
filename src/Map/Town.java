@@ -31,16 +31,6 @@ public class Town implements setsceneable {
 		gc.fillRect(0, 0, 1280, 720);
 		root.getChildren().add(bg);
 
-//		for (int i = 90; i < 800; i += 80) {
-//			for (int j = 220; j < 620; j += 80) {
-//				ReceiveAction r = new ReceiveAction(i, j, 80, 80, Color.DARKGOLDENROD);// tile
-//				r.setStroke(Color.BLACK);
-//				re.add(r);
-//			}
-//		}
-//
-//		root.getChildren().addAll(re);
-
 		e.add(new Environment(-10, 0, 10, 720, Color.BLACK));// boarderLEFT
 		e.add(new Environment(0, -10, 1280, 10, Color.BLACK));// boarderTOP
 		e.add(new Environment(1280, 0, 10, 720, Color.BLACK));// boarderRIGHT
