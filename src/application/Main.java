@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ComponentMap.SceneManager;
+import Logic.Backpack;
 import Logic.World;
 import Map.Blacksmith;
 import Map.CowBarn;
@@ -16,14 +17,30 @@ import Map.HenBarn;
 import Map.House;
 import Map.Town;
 import Map.setsceneable;
+import Tool.Axe;
+import Tool.Hammer;
+import Tool.Hoe;
+import Tool.WateringCan;
 
 public class Main extends Application {
 
 
 	@Override
 	public void start(Stage primaryStage) {
-		
+		//--------------set up world---------------------//
 		World w = new World();
+		Backpack b = new Backpack();
+		//---------------set up tool---------------------//
+		Axe axe = new Axe();
+		Hammer hammer = new Hammer();
+		Hoe hoe = new Hoe();
+		WateringCan wateringcan = new WateringCan();
+		Backpack.addItem(axe);
+		Backpack.addItem(hammer);
+		Backpack.addItem(hoe);
+		Backpack.addItem(wateringcan);
+		
+		//---------------set up map---------------------//
 		List<setsceneable> listmap = new ArrayList<>();
 		Farm farm = new Farm(340,345);
 		Town town = new Town(0,560);

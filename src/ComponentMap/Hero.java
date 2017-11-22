@@ -3,6 +3,7 @@ package ComponentMap;
 import java.util.ArrayList;
 import java.util.List;
 
+import Logic.Backpack;
 import javafx.event.EventHandler;
 import javafx.geometry.Bounds;
 import javafx.scene.Scene;
@@ -75,6 +76,8 @@ public class Hero {
 					 for (ReceiveAction receive : re) {
 						 receive.checkAction(getActiveBlock());	 
 					 }
+				}else if (event.getCode().equals(KeyCode.E)) {
+					 Backpack.ChangeItem();
 				}
 			}
 		});
