@@ -45,8 +45,24 @@ public class Town implements setsceneable {
 		Pair<Rectangle, Integer> toblacksmith = new Pair<Rectangle, Integer>(warpblocktoblacksmith, 5);
 		WarpList.add(toblacksmith);
 
-		e.add(new Environment(1020, 0, 260, 285, Color.BLACK));// Seed Shop
-		e.add(new Environment(1020, 300, 260, 285, Color.BLACK));// Animal Shop
+		e.add(new Environment(1020, 0, 260, 82, Color.BLACK));// Seed Shop
+		e.add(new Environment(1045, 82, 235, 120, Color.BLACK));// Seed Shop
+		e.add(new Environment(1020, 202, 260, 83, Color.BLACK));// Seed Shop
+		Rectangle warpblocktoseedshop = new Rectangle(1020, 82, 25, 120);
+		warpblocktoseedshop.setFill(Color.RED);
+		root.getChildren().addAll(warpblocktoseedshop);
+		Pair<Rectangle, Integer> toseedshop = new Pair<Rectangle, Integer>(warpblocktoseedshop, 7);
+		WarpList.add(toseedshop);
+		
+		e.add(new Environment(1020, 300, 260, 82, Color.BLACK));// Animal Shop
+		e.add(new Environment(1045, 382, 235, 120, Color.BLACK));// Animal Shop
+		e.add(new Environment(1020, 502, 260, 83, Color.BLACK));// Animal Shop
+		Rectangle warpblocktoanimalshop = new Rectangle(1020, 382, 25, 120);
+		warpblocktoanimalshop.setFill(Color.RED);
+		root.getChildren().addAll(warpblocktoanimalshop);
+		Pair<Rectangle, Integer> toanimalshop = new Pair<Rectangle, Integer>(warpblocktoanimalshop, 6);
+		WarpList.add(toanimalshop);
+		
 		e.add(new Environment(630, 300, 225, 225, Color.AQUA));// Fountain
 
 		root.getChildren().addAll(e);

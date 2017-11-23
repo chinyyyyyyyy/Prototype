@@ -10,11 +10,13 @@ import java.util.List;
 import ComponentMap.SceneManager;
 import Logic.Backpack;
 import Logic.World;
+import Map.AnimalShop;
 import Map.Blacksmith;
 import Map.CowBarn;
 import Map.Farm;
 import Map.HenBarn;
 import Map.House;
+import Map.SeedShop;
 import Map.Town;
 import Map.setsceneable;
 import Tool.Axe;
@@ -48,12 +50,17 @@ public class Main extends Application {
 		CowBarn cowbarn = new CowBarn(603,645);
 		HenBarn henbarn = new HenBarn(603,600);
 		Blacksmith blacksmith = new Blacksmith(603,645);
+		AnimalShop animalshop = new AnimalShop(0,300);
+		SeedShop seedshop = new SeedShop(0,300);
+		
 		listmap.add(farm);
 		listmap.add(town);
 		listmap.add(house);
 		listmap.add(cowbarn);
 		listmap.add(henbarn);
 		listmap.add(blacksmith);
+		listmap.add(animalshop);
+		listmap.add(seedshop);
 		SceneManager sm = new  SceneManager(primaryStage,listmap);
 		AnimationTimer animation = new AnimationTimer() {
 			public void handle(long now) {
