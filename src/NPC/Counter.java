@@ -1,6 +1,7 @@
 package NPC;
 
 import ComponentMap.NPC;
+import ComponentMap.SceneManager;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
@@ -24,6 +25,7 @@ public class Counter extends NPC {
 			System.out.println("What do you want Today?");
 
 		}
+		SceneManager.warpTo(8);
 	}
 
 }

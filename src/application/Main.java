@@ -19,6 +19,7 @@ import Map.House;
 import Map.SeedShop;
 import Map.Town;
 import Map.setsceneable;
+import SpecialScene.BuyingMenu;
 import Tool.Axe;
 import Tool.Hammer;
 import Tool.Hoe;
@@ -52,6 +53,7 @@ public class Main extends Application {
 		Blacksmith blacksmith = new Blacksmith(603,645);
 		AnimalShop animalshop = new AnimalShop(0,300);
 		SeedShop seedshop = new SeedShop(0,300);
+		BuyingMenu bmenu = new BuyingMenu();
 		
 		listmap.add(farm);
 		listmap.add(town);
@@ -61,6 +63,7 @@ public class Main extends Application {
 		listmap.add(blacksmith);
 		listmap.add(animalshop);
 		listmap.add(seedshop);
+		listmap.add(bmenu);
 		SceneManager sm = new  SceneManager(primaryStage,listmap);
 		AnimationTimer animation = new AnimationTimer() {
 			public void handle(long now) {

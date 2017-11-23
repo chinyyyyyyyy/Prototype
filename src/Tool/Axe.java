@@ -1,7 +1,7 @@
 package Tool;
 
 import ComponentMap.Feild;
-import Map.ActionByToolAble;
+import ComponentMap.ActionByToolAble;
 
 public class Axe extends Tool {
 	public Axe() {
