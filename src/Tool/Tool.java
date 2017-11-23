@@ -1,6 +1,6 @@
 package Tool;
 
-import Map.ActionByToolAble;
+import ComponentMap.ActionByToolAble;
 
 public abstract class Tool {
 	protected String name; 

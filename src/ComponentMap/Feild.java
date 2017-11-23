@@ -2,7 +2,7 @@ package ComponentMap;
 
 import Logic.Backpack;
 import Logic.World;
-import Map.ActionByToolAble;
+import ComponentMap.ActionByToolAble;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
