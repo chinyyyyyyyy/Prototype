@@ -5,17 +5,13 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 
-public class Florist extends NPC {
+public class Counter extends NPC {
 
-	private String name;
-
-	public Florist(int x, int y, int w, int h, Color c, String Name) {
+	public Counter(int x, int y, int w, int h, Color c) {
 		super(x, y, w, h, c);
-		this.name = Name;
 	}
 
 	public void Welcome() {
-		System.out.println("Plant make our world beautiful~. Do you think so ?");
 	}
 
 	public void checkAction(Rectangle r) {
@@ -24,13 +20,10 @@ public class Florist extends NPC {
 		double hi = intersect.getBoundsInLocal().getHeight();
 		double wa = r.getWidth();
 		double ha = r.getHeight();
-		if (wi >= 0.9 * wa && hi >= 0.9 * ha) {
-			System.out.println("Hello, My name is "+this.name);
+		if (wi >= 0.5 * wa && hi >= 0.5 * ha) {
+			System.out.println("What do you want Today?");
 
 		}
 	}
 
-	public String getName() {
-		return this.name;
-	}
 }

@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ComponentMap.Environment;
+import ComponentMap.HasNPC;
 import ComponentMap.Hero;
+import ComponentMap.NPC;
 import ComponentMap.ReceiveAction;
 import NPC.BlackSmith;
 import javafx.scene.Group;
@@ -15,10 +17,12 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Pair;
 
-public class Blacksmith implements setsceneable {
+public class Blacksmith implements setsceneable,HasNPC {
 	private Group root;
 	public Scene scene;
 	private Hero hero;
+	private NPC npc;
+	BlackSmith blacksmith;
 	private List<Environment> e = new ArrayList<>();
 	private List<ReceiveAction> re = new ArrayList<>();
 	private List<Pair<Rectangle, Integer>> WarpList = new ArrayList<>();
@@ -47,8 +51,8 @@ public class Blacksmith implements setsceneable {
 		
 		//npc
 		e.add(new Environment(1030, 250, 75, 75, Color.STEELBLUE));
-		BlackSmith blacksmith = new BlackSmith(1030, 250, 75, 75, Color.STEELBLUE,"Kuy");
-//		blacksmith.Welcome();
+		blacksmith = new BlackSmith(1030, 250, 75, 75, Color.STEELBLUE,"Gill");
+		npc = blacksmith;
 		re.add(blacksmith);
 
 		root.getChildren().addAll(e);
@@ -71,5 +75,9 @@ public class Blacksmith implements setsceneable {
 
 	public Scene getScene() {
 		return this.scene;
+	}
+	
+	public NPC getNPC() {
+		return this.npc;
 	}
 }

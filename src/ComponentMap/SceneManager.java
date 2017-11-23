@@ -23,6 +23,9 @@ public class SceneManager extends Rectangle{
 	
 	public static void warpTo(int mapno) {
 		primaryStage.setScene(listmap.get(mapno).getScene());
+		if(listmap.get(mapno) instanceof HasNPC) {
+			((HasNPC) listmap.get(mapno)).getNPC().Welcome();
+		}
 	}
 	
 	public static int CheckOnWarpBlock(List<Pair<Rectangle,Integer>> WarpList,Rectangle unitblock) {

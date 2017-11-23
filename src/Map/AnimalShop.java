@@ -4,8 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ComponentMap.Environment;
+import ComponentMap.HasNPC;
 import ComponentMap.Hero;
+import ComponentMap.NPC;
 import ComponentMap.ReceiveAction;
+import NPC.AnimalSeller;
+import NPC.Counter;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -14,10 +18,12 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Pair;
 
-public class AnimalShop implements setsceneable {
+public class AnimalShop implements setsceneable,HasNPC {
 	private Group root;
 	public Scene scene;
 	private Hero hero;
+	private AnimalSeller animalseller;
+	private NPC npc;
 	private List<Environment> e = new ArrayList<>();
 	private List<ReceiveAction> re = new ArrayList<>();
 	private List<Pair<Rectangle, Integer>> WarpList = new ArrayList<>();
@@ -46,11 +52,14 @@ public class AnimalShop implements setsceneable {
 		e.add(new Environment(940, 230, 70, 250, Color.BLACK));
 		e.add(new Environment(940, 480, 200, 70, Color.BLACK));
 		e.add(new Environment(950, 285, 50, 100, Color.YELLOW));
-		re.add(new ReceiveAction(950, 285, 50, 100, Color.YELLOW));
+		Counter counter = new Counter(950, 285, 50, 100, Color.YELLOW);
+		re.add(counter);
 		
 		//npc
 		e.add(new Environment(1030, 300, 75, 75, Color.STEELBLUE));
-		re.add(new ReceiveAction(1030, 300, 75, 75, Color.STEELBLUE));
+		animalseller = new AnimalSeller(1030, 300, 75, 75, Color.STEELBLUE,"Peter");
+		npc = animalseller;
+		re.add(animalseller);
 
 		root.getChildren().addAll(e);
 		root.getChildren().addAll(re);
@@ -72,5 +81,9 @@ public class AnimalShop implements setsceneable {
 
 	public Scene getScene() {
 		return this.scene;
+	}
+	
+	public NPC getNPC() {
+		return this.npc;
 	}
 }

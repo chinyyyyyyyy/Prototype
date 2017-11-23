@@ -4,8 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ComponentMap.Environment;
+import ComponentMap.HasNPC;
 import ComponentMap.Hero;
+import ComponentMap.NPC;
 import ComponentMap.ReceiveAction;
+import NPC.Counter;
+import NPC.Florist;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -14,10 +18,12 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Pair;
 
-public class SeedShop implements setsceneable {
+public class SeedShop implements setsceneable,HasNPC {
 	private Group root;
 	public Scene scene;
 	private Hero hero;
+	private Florist florist;
+	private NPC npc;
 	private List<Environment> e = new ArrayList<>();
 	private List<ReceiveAction> re = new ArrayList<>();
 	private List<Pair<Rectangle, Integer>> WarpList = new ArrayList<>();
@@ -38,19 +44,23 @@ public class SeedShop implements setsceneable {
 		e.add(new Environment(0, 720, 1280, 10, Color.BLACK));// boarderBOTTOM
 
 		// shelf
-		e.add(new Environment(100, 100, 720, 70, Color.LIMEGREEN));
-		e.add(new Environment(100, 530, 720, 70, Color.LIMEGREEN));
+		e.add(new Environment(100, 100, 640, 70, Color.LIMEGREEN));
+		e.add(new Environment(100, 530, 640, 70, Color.LIMEGREEN));
 
 		// counter
-		e.add(new Environment(850, 40, 70, 200, Color.BLACK));
-		e.add(new Environment(920, 170, 250, 70, Color.BLACK));
-		e.add(new Environment(1170, 40, 70, 200, Color.BLACK));
-		e.add(new Environment(1000, 180, 100, 50, Color.YELLOW));
-		re.add(new ReceiveAction(1000, 180, 100, 50, Color.YELLOW));
+		e.add(new Environment(850, 90, 70, 200, Color.BLACK));
+		e.add(new Environment(920, 220, 250, 70, Color.BLACK));
+		e.add(new Environment(1170, 90, 70, 200, Color.BLACK));
+		e.add(new Environment(1000, 230, 100, 50, Color.YELLOW));
+		Counter counter = new Counter(1000, 230, 100, 50, Color.YELLOW);
+		re.add(counter);
+		
 		
 		//npc 
-		e.add(new Environment(1010, 70, 75, 75, Color.STEELBLUE));
-		re.add(new ReceiveAction(1010, 70, 75, 75, Color.STEELBLUE));
+		e.add(new Environment(1010, 125, 75, 75, Color.STEELBLUE));
+		florist = new Florist(1010, 125, 75, 75, Color.STEELBLUE,"Ann");
+		npc = florist;
+		re.add(florist);
 
 		root.getChildren().addAll(e);
 		root.getChildren().addAll(re);
@@ -72,5 +82,9 @@ public class SeedShop implements setsceneable {
 
 	public Scene getScene() {
 		return this.scene;
+	}
+	
+	public NPC getNPC() {
+		return this.npc;
 	}
 }
