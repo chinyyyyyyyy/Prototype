@@ -4,8 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ComponentMap.Environment;
+import ComponentMap.Feild;
 import ComponentMap.Hero;
 import ComponentMap.ReceiveAction;
+import ComponentMap.Stone;
+import ComponentMap.Wood;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -81,6 +84,19 @@ public class Farm implements setsceneable{
 				re.add(r);
 			}
 		}
+		//---------------------Add Feild-----------------------//
+		Feild test = new Feild(800,620,80,80,Color.DARKGOLDENROD);
+		Stone stone = new Stone();
+		test.setStone(stone);
+		test.update();
+		re.add(test);
+		Feild test2 = new Feild(720,620,80,80,Color.DARKGOLDENROD);
+		Wood wood = new Wood();
+		test2.setWood(wood);
+		test2.update();
+		re.add(test2);
+		//---------------------Add Feild-----------------------//
+		
 		re.add(new ReceiveAction(710,40,100,100,Color.BURLYWOOD));//DropBox
 		re.add(new ReceiveAction(910,420,280,200,Color.AQUAMARINE));//Ponds
 		

@@ -46,7 +46,6 @@ public class SceneManager extends Rectangle{
 	        	if(wi >= 0.8*wa && hi >= 0.8*ha ) pos = p.getValue();;
 	        }
 	    }
-		System.out.println(pos);
 		return pos;
 	        
 
