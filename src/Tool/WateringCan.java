@@ -1,7 +1,7 @@
 package Tool;
 
 import ComponentMap.Feild;
-import Map.ActionByToolAble;
+import ComponentMap.ActionByToolAble;
 
 public class WateringCan extends Tool{
 	private final int MAX_CAPACITY = 10;

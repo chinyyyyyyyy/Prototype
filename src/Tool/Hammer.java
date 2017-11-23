@@ -1,7 +1,7 @@
 package Tool;
 
 import ComponentMap.Feild;
-import Map.ActionByToolAble;
+import ComponentMap.ActionByToolAble;
 
 public class Hammer extends Tool{
 	public Hammer() {
