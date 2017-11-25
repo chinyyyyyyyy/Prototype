@@ -18,11 +18,41 @@ import javafx.util.Pair;
 public class Hero {
 	private Rectangle unitblock;
 	private List<Rectangle> actionblock = new ArrayList<>();
-	private final static double KEYBOARD_MOVEMENT_DELTA = 0.005;
+	private final static double KEYBOARD_MOVEMENT_DELTA = 0.00075;
 	private int acpos = 0;
 	private List<Environment> env = new ArrayList<>();
 	private List<ReceiveAction> re = new ArrayList<>();
 	private List<Pair<Rectangle,Integer>> WarpList = new ArrayList<>();
+	
+	public Hero() {
+		
+	}
+	public Hero(Scene scene, int startx, int starty) {
+
+		unitblock = new Rectangle(startx, starty, 75, 75);
+		unitblock.setFill(Color.AQUA);
+
+		Rectangle abl = new Rectangle(startx + unitblock.getWidth(), starty, 75, 75);
+		Rectangle abu = new Rectangle(startx, starty - unitblock.getHeight(), 75, 75);
+		Rectangle abr = new Rectangle(startx - unitblock.getWidth(), starty, 75, 75);
+		Rectangle abd = new Rectangle(startx, starty + unitblock.getHeight(), 75, 75);
+		abl.setOpacity(0.1);
+		abu.setOpacity(0.1);
+		abd.setOpacity(0.1);
+		abr.setOpacity(0.1);
+
+		actionblock.add(abl);
+		actionblock.add(abu);
+		actionblock.add(abr);
+		actionblock.add(abd);
+		abl.setVisible(true);
+		abu.setVisible(false);
+		abr.setVisible(false);
+		abd.setVisible(false);
+		moveunitblockOnKeyPress(scene);
+
+	}
+
 
 	public Hero(Scene scene, int startx, int starty, List<Environment> e, List<ReceiveAction> re) {
 
@@ -137,7 +167,9 @@ public class Hero {
 	private boolean CheckIntersectForEachEnv() {
 		boolean struck = false;
 		for (Environment e : env) {
-			if(e.checkShapeIntersection(unitblock)) struck = true;
+			if(e.checkShapeIntersection(unitblock)) {
+				struck = true;
+				}
 		}
 		return struck;
 	}
@@ -201,6 +233,27 @@ public class Hero {
 		}
 		return activeblock;
 	}
-
+	
+	
+	public List<Environment> getEnvList(){
+		return this.env;
+	}
+	
+	public void addReceive(ReceiveAction receive) {
+		re.add(receive);
+	}
+	
+	public void addEnvlist(List<Environment> recieveEnv) {
+		for(Environment e :recieveEnv) {
+			env.add(e);
+		}
+	}
+	
+	public void addReclist(List<ReceiveAction> recieveAc) {
+		for(ReceiveAction e :recieveAc) {
+			re.add(e);
+		}
+	}
+	
 
 }

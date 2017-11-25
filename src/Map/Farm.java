@@ -6,9 +6,13 @@ import java.util.List;
 import ComponentMap.Environment;
 import ComponentMap.Feild;
 import ComponentMap.Hero;
+import ComponentMap.Pond;
 import ComponentMap.ReceiveAction;
 import ComponentMap.Stone;
 import ComponentMap.Wood;
+import Logic.World;
+import Plant.Plant;
+import Plant.PlantA;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -20,7 +24,7 @@ import javafx.util.Pair;
 public class Farm implements setsceneable{
 	private  Group root;
 	private  Scene scene;
-	private  Hero hero;
+	private  static Hero hero;
 	private  List<Environment> e = new ArrayList<>();
 	private  List<ReceiveAction> re = new ArrayList<>();
 	private  List<Pair<Rectangle,Integer>> WarpList = new ArrayList<>();
@@ -34,7 +38,7 @@ public class Farm implements setsceneable{
 		gc.setFill(Color.FORESTGREEN);
 		gc.fillRect(0, 0, 1280, 720);
 		root.getChildren().add(bg);
-		
+		hero = new Hero(scene,starthx,starthy);
 		
 		//CreateEnvironment
 		e.add(new Environment(-10, 0, 10,720,Color.BLACK));//boarderLEFT
@@ -77,28 +81,35 @@ public class Farm implements setsceneable{
 		
 
 		
+		//------------------------Add Feild------------------------------//
 		for(int i = 90;i < 800;i+=80) {
 			for(int j = 220;j < 620;j+=80) {
-				ReceiveAction r = new ReceiveAction(i,j, 80, 80,Color.DARKGOLDENROD);//feild
-				r.setStroke(Color.BLACK);
-				re.add(r);
+				double random = Math.random();
+				if(0 <= random && random < 0.7) {
+					Feild r = new Feild(i,j, 80, 80,Color.rgb(185, 156, 107));
+					re.add(r);
+				}else if(0.7 <= random && random < 0.85) {
+					Stone s = new Stone();
+					Feild r = new Feild(i,j, 80, 80,Color.rgb(185, 156, 107),s);
+					re.add(r);
+				}else {
+					Wood w = new Wood();
+					Feild r = new Feild(i,j, 80, 80,Color.rgb(185, 156, 107),w);
+					re.add(r);
+				}
+				
 			}
 		}
-		//---------------------Add Feild-----------------------//
-		Feild test = new Feild(800,620,80,80,Color.DARKGOLDENROD);
-		Stone stone = new Stone();
-		test.setStone(stone);
-		test.update();
-		re.add(test);
-		Feild test2 = new Feild(720,620,80,80,Color.DARKGOLDENROD);
-		Wood wood = new Wood();
-		test2.setWood(wood);
-		test2.update();
-		re.add(test2);
-		//---------------------Add Feild-----------------------//
 		
+		
+		Feild f = new Feild(800,620, 80, 80,Color.rgb(185, 156, 107));
+		Plant p = new PlantA();
+		f.setPlant(p);
+		re.add(f);
+		 World.getListUpdate().add(f);
+		//---------------------Add POND-----------------------//
+		re.add(new Pond(910,420,280,200,Color.AQUAMARINE));//Pond
 		re.add(new ReceiveAction(710,40,100,100,Color.BURLYWOOD));//DropBox
-		re.add(new ReceiveAction(910,420,280,200,Color.AQUAMARINE));//Ponds
 		
 		root.getChildren().addAll(re);
 		
@@ -109,9 +120,9 @@ public class Farm implements setsceneable{
 		Pair<Rectangle,Integer> totown = new Pair<Rectangle,Integer>(warpblocktotown,1);
 		WarpList.add(totown);
 		
-		
+		hero.addEnvlist(e);
+		hero.addReclist(re);
 
-		hero = new Hero(scene,starthx,starthy,e,re);
 		root.getChildren().addAll(hero.getUnitblock());
 		for (Rectangle r : hero.getActionblock()) {
 			root.getChildren().add(r);
@@ -119,10 +130,14 @@ public class Farm implements setsceneable{
 		hero.setWarpBlockList(WarpList);
 	}
 	
-	
-	
+
 	public Scene getScene() {
 		return this.scene;
 	}
+	
+	public static List<Environment> getFarmEnvList() {
+		return hero.getEnvList();
+	}
+
 	
 }

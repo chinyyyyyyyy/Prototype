@@ -27,7 +27,6 @@ import Tool.WateringCan;
 
 public class Main extends Application {
 
-
 	@Override
 	public void start(Stage primaryStage) {
 		//--------------set up world---------------------//
@@ -45,7 +44,7 @@ public class Main extends Application {
 		
 		//---------------set up map---------------------//
 		List<setsceneable> listmap = new ArrayList<>();
-		Farm farm = new Farm(340,345);
+		Farm farm = new Farm(1000,300);
 		Town town = new Town(0,560);
 		House house = new House(603,645);
 		CowBarn cowbarn = new CowBarn(603,645);
