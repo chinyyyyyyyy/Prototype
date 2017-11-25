@@ -99,6 +99,6 @@ public class Counter extends NPC {
 			}
 		
 		}
-//		SceneManager.warpTo(8);
+		//SceneManager.warpTo(8);
 	}
 }

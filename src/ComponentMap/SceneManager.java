@@ -17,7 +17,7 @@ public class SceneManager extends Rectangle{
 	public SceneManager(Stage s,List<setsceneable> lm) {
 		primaryStage =s;
 		listmap = lm;
-		primaryStage.setScene(lm.get(6).getScene());
+		primaryStage.setScene(lm.get(0).getScene());
 		primaryStage.show();
 		primaryStage.setTitle("Harvest Sun");
 	}

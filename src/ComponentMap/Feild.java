@@ -110,7 +110,7 @@ public class Feild extends ReceiveAction implements ActionByToolAble,updateEvery
 	}
 	
 	public Boolean canwater() {
-		if(stone == null && wood == null && plant != null) {
+		if(stone == null && wood == null && plant != null && plant.checkState()<2 ) {
 			return true;
 		}
 		return false;
@@ -128,7 +128,7 @@ public class Feild extends ReceiveAction implements ActionByToolAble,updateEvery
 	}
 	
 	public Boolean canshovel() {
-		if(stone == null && wood == null ) {
+		if(stone == null && wood == null && plant == null ) {
 			return true;
 		}
 		return false;
@@ -138,10 +138,22 @@ public class Feild extends ReceiveAction implements ActionByToolAble,updateEvery
 		return plant;
 	}
 	
+	public boolean  canplant() {
+		if(plant == null && stone == null && isshovel) return true;
+		return false;
+	}
+	
 	public void setPlant(Plant p) {
 		plant = p;
+		isshovel = false;
 		this.setFill(Color.rgb(0, 187, 51));
 		
+	}
+	
+	public void resetPlant() {
+		plant = null;
+		isshovel = false;
+		update();
 	}
 
 	
@@ -152,7 +164,7 @@ public class Feild extends ReceiveAction implements ActionByToolAble,updateEvery
 		}else if(stone != null) {
 			this.setFill(Color.GRAY);
 		}else if(isWaterToday == true){
-			this.setOpacity(0.5);;
+			this.setFill(Color.BLACK);
 		}else if(isshovel == true) {
 			this.setFill(Color.rgb(97,51,24));
 		}else {

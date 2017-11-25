@@ -22,7 +22,9 @@ import Map.setsceneable;
 import SpecialScene.BuyingMenu;
 import Tool.Axe;
 import Tool.Hammer;
+import Tool.Hand;
 import Tool.Hoe;
+import Tool.SeedplantA;
 import Tool.WateringCan;
 
 public class Main extends Application {
@@ -37,10 +39,14 @@ public class Main extends Application {
 		Hammer hammer = new Hammer();
 		Hoe hoe = new Hoe();
 		WateringCan wateringcan = new WateringCan();
+		Hand hand =  new Hand();
+		SeedplantA seed1 = new SeedplantA(50);
 		Backpack.addItem(axe);
 		Backpack.addItem(hammer);
 		Backpack.addItem(hoe);
 		Backpack.addItem(wateringcan);
+		Backpack.addItem(seed1 );
+		Backpack.addItem(hand );
 		
 		//---------------set up map---------------------//
 		List<setsceneable> listmap = new ArrayList<>();

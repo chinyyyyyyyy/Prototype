@@ -11,8 +11,8 @@ public class Backpack {
 	private static int max_bagsize;
 	
 	public Backpack() {
-		max_bagsize = 5;
-		backpack = new ArrayList<>(5);
+		max_bagsize = 10;
+		backpack = new ArrayList<>(10);
 		indexitemonhand = 0;
 	}
 	

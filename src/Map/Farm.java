@@ -3,6 +3,7 @@ package Map;
 import java.util.ArrayList;
 import java.util.List;
 
+import ComponentMap.Dropbox;
 import ComponentMap.Environment;
 import ComponentMap.Feild;
 import ComponentMap.Hero;
@@ -88,28 +89,25 @@ public class Farm implements setsceneable{
 				if(0 <= random && random < 0.7) {
 					Feild r = new Feild(i,j, 80, 80,Color.rgb(185, 156, 107));
 					re.add(r);
+					World.getListUpdate().add(r);
 				}else if(0.7 <= random && random < 0.85) {
 					Stone s = new Stone();
 					Feild r = new Feild(i,j, 80, 80,Color.rgb(185, 156, 107),s);
 					re.add(r);
+					World.getListUpdate().add(r);
 				}else {
 					Wood w = new Wood();
 					Feild r = new Feild(i,j, 80, 80,Color.rgb(185, 156, 107),w);
 					re.add(r);
+					World.getListUpdate().add(r);
 				}
 				
 			}
 		}
 		
-		
-		Feild f = new Feild(800,620, 80, 80,Color.rgb(185, 156, 107));
-		Plant p = new PlantA();
-		f.setPlant(p);
-		re.add(f);
-		 World.getListUpdate().add(f);
 		//---------------------Add POND-----------------------//
 		re.add(new Pond(910,420,280,200,Color.AQUAMARINE));//Pond
-		re.add(new ReceiveAction(710,40,100,100,Color.BURLYWOOD));//DropBox
+		re.add(new Dropbox(710,40,100,100,Color.BURLYWOOD));//DropBox
 		
 		root.getChildren().addAll(re);
 		
