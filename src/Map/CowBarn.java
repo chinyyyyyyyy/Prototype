@@ -3,9 +3,13 @@ package Map;
 import java.util.ArrayList;
 import java.util.List;
 
+import Animal.Animal;
+import Animal.Cow;
 import ComponentMap.Environment;
+import ComponentMap.HasAnimal;
 import ComponentMap.Hero;
 import ComponentMap.ReceiveAction;
+import NPC.Counter;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -14,13 +18,15 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Pair;
 
-public class CowBarn implements setsceneable{
+public class CowBarn implements setsceneable,HasAnimal{
 	private Group root;
 	public Scene scene;
 	private Hero hero;
+	private int CurrentCow = 0;
 	private List<Environment> e = new ArrayList<>();
 	private List<ReceiveAction> re = new ArrayList<>();
 	private  List<Pair<Rectangle,Integer>> WarpList = new ArrayList<>();
+	public static List<Pair<Integer,Integer> > position = new ArrayList<Pair<Integer,Integer> >();
 
 	public CowBarn(int starthx, int starthy) {
 		root = new Group();
@@ -64,20 +70,21 @@ public class CowBarn implements setsceneable{
 		root.getChildren().addAll(e);
 
 		// stall LEFT
-		re.add(new ReceiveAction(0, 0, 200, 129, Color.CHOCOLATE));
-		re.add(new ReceiveAction(0, 144, 200, 129, Color.CHOCOLATE));
-		re.add(new ReceiveAction(0, 288, 200, 129, Color.CHOCOLATE));
-		re.add(new ReceiveAction(0, 432, 200, 129, Color.CHOCOLATE));
-		re.add(new ReceiveAction(0, 576, 200, 144, Color.CHOCOLATE));
+		position.add(new Pair<Integer, Integer>(100,15));
+		position.add(new Pair<Integer, Integer>(100,159));
+		position.add(new Pair<Integer, Integer>(100,303));
+		position.add(new Pair<Integer, Integer>(100,447));
+		position.add(new Pair<Integer, Integer>(100,598));
 		// stall RIGHT
-		re.add(new ReceiveAction(1080, 0, 200, 129, Color.CHOCOLATE));
-		re.add(new ReceiveAction(1080, 144, 200, 129, Color.CHOCOLATE));
-		re.add(new ReceiveAction(1080, 288, 200, 129, Color.CHOCOLATE));
-		re.add(new ReceiveAction(1080, 432, 200, 129, Color.CHOCOLATE));
-		re.add(new ReceiveAction(1080, 576, 200, 144, Color.CHOCOLATE));
+		position.add(new Pair<Integer, Integer>(1080,15));
+		position.add(new Pair<Integer, Integer>(1080,169));
+		position.add(new Pair<Integer, Integer>(1080,303));
+		position.add(new Pair<Integer, Integer>(1080,447));
+		position.add(new Pair<Integer, Integer>(1080,598));
+		
 		//HAY
 		re.add(new ReceiveAction(540, 0, 200, 150, Color.BLACK));
-
+		
 		root.getChildren().addAll(re);
 		
 		Rectangle warpblocktofarm = new Rectangle(580,695,120,25);
@@ -96,5 +103,27 @@ public class CowBarn implements setsceneable{
 
 	public Scene getScene() {
 		return this.scene;
+	}
+	
+	public void addCow() {
+		for(int i = this.CurrentCow ; i< getAnimalCount() ; i++) {
+			Animal x = Counter.animal.get(i);
+			if(x instanceof Cow) {
+				re.add(x);
+				Environment cow = new Environment((int) x.getX(),(int) x.getY(),100,100,Color.ALICEBLUE);
+				e.add(cow);
+				root.getChildren().add(x);
+				root.getChildren().add(cow);
+			}
+		}
+	}
+	
+	public void update() {
+		addCow();
+		this.CurrentCow = getAnimalCount();
+	}
+	
+	public static int getAnimalCount() {
+		return Cow.getCowCount();
 	}
 }

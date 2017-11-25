@@ -22,6 +22,9 @@ public class SceneManager extends Rectangle{
 	}
 	
 	public static void warpTo(int mapno) {
+		if(listmap.get(mapno) instanceof HasAnimal) {
+			((HasAnimal) listmap.get(mapno)).update();
+		}
 		primaryStage.setScene(listmap.get(mapno).getScene());
 		if(listmap.get(mapno) instanceof HasNPC) {
 			((HasNPC) listmap.get(mapno)).getNPC().Welcome();
