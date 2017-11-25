@@ -12,7 +12,7 @@ public class Milk extends Product{
 		return MilkCount;
 	}
 
-	public static void addMilkCount() {
+	public static void addMilk() {
 		MilkCount++;
 	}
 }

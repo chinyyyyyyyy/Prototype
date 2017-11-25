@@ -23,7 +23,7 @@ public class Cow extends Animal{
 	}
 	
 	public void produce() {
-		Milk.addMilkCount();
+		Milk.addMilk();
 	}
 
 	public void checkAction(Rectangle r) {
@@ -34,7 +34,7 @@ public class Cow extends Animal{
 		double ha = r.getHeight();
 		if (wi >= 0.9 * wa && hi >= 0.9 * ha) {
 			cry();
-//			this.love++;
+			this.love++;
 //			System.out.println(""+this.love);
 //			produce();
 //			System.out.println(Milk.getMilkCount());

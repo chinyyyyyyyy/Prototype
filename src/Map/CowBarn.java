@@ -5,6 +5,7 @@ import java.util.List;
 
 import Animal.Animal;
 import Animal.Cow;
+import Animal.Sheep;
 import ComponentMap.Environment;
 import ComponentMap.HasAnimal;
 import ComponentMap.Hero;
@@ -22,7 +23,7 @@ public class CowBarn implements setsceneable,HasAnimal{
 	private Group root;
 	public Scene scene;
 	private Hero hero;
-	private int CurrentCow = 0;
+	private int CurrentAnimal = 0;
 	private List<Environment> e = new ArrayList<>();
 	private List<ReceiveAction> re = new ArrayList<>();
 	private  List<Pair<Rectangle,Integer>> WarpList = new ArrayList<>();
@@ -105,8 +106,8 @@ public class CowBarn implements setsceneable,HasAnimal{
 		return this.scene;
 	}
 	
-	public void addCow() {
-		for(int i = this.CurrentCow ; i< getAnimalCount() ; i++) {
+	public void addAnimal() throws IndexOutOfBoundsException{
+		for(int i = this.CurrentAnimal ; i< getAnimalCount() ; i++) {
 			Animal x = Counter.animal.get(i);
 			if(x instanceof Cow) {
 				re.add(x);
@@ -114,16 +115,22 @@ public class CowBarn implements setsceneable,HasAnimal{
 				e.add(cow);
 				root.getChildren().add(x);
 				root.getChildren().add(cow);
+			}else if(x instanceof Sheep) {
+				re.add(x);
+				Environment sheep = new Environment((int) x.getX(),(int) x.getY(),100,100,Color.ANTIQUEWHITE);
+				e.add(sheep);
+				root.getChildren().add(x);
+				root.getChildren().add(sheep);
 			}
 		}
 	}
 	
 	public void update() {
-		addCow();
-		this.CurrentCow = getAnimalCount();
+		addAnimal();
+		this.CurrentAnimal = getAnimalCount();
 	}
 	
 	public static int getAnimalCount() {
-		return Cow.getCowCount();
+		return Cow.getCowCount()+Sheep.getSheepCount();
 	}
 }

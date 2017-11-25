@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Map.setsceneable;
+import NPC.Counter;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 import javafx.stage.Stage;
@@ -16,7 +17,7 @@ public class SceneManager extends Rectangle{
 	public SceneManager(Stage s,List<setsceneable> lm) {
 		primaryStage =s;
 		listmap = lm;
-		primaryStage.setScene(lm.get(0).getScene());
+		primaryStage.setScene(lm.get(6).getScene());
 		primaryStage.show();
 		primaryStage.setTitle("Harvest Sun");
 	}
