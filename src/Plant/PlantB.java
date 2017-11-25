@@ -8,6 +8,7 @@ public class PlantB extends Plant {
 
 	public PlantB() {
 		dayofgrowth = 0;
+		name = "PlantB";
 	}
 
 	@Override

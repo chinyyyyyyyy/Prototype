@@ -52,15 +52,12 @@ public class Main extends Application {
 		Backpack.addItem(hammer);
 		Backpack.addItem(hoe);
 		Backpack.addItem(wateringcan);
-<<<<<<< HEAD
 		Backpack.addItem(seed1 );
 		Backpack.addItem(hand );
 		
 		//---------------set up map---------------------//
-=======
 
 		// ---------------set up map---------------------//
->>>>>>> 639ce3b53fc963fdb513a38c2f3c2e8e785093cb
 		List<setsceneable> listmap = new ArrayList<>();
 		Farm farm = new Farm(1000, 300);
 		Town town = new Town(0, 560);

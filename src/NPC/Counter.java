@@ -2,10 +2,13 @@ package NPC;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
+
 import Animal.Animal;
 import ComponentMap.NPC;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.Shape;
 
 public class Counter extends NPC {
 
@@ -20,7 +23,6 @@ public class Counter extends NPC {
 	}
 
 	public void checkAction(Rectangle r) {
-<<<<<<< HEAD
 		Shape intersect = Shape.intersect(r, this);
 		double wi = intersect.getBoundsInLocal().getWidth();
 		double hi = intersect.getBoundsInLocal().getHeight();
@@ -61,8 +63,6 @@ public class Counter extends NPC {
 		
 		}
 		//SceneManager.warpTo(8);
-=======
->>>>>>> 639ce3b53fc963fdb513a38c2f3c2e8e785093cb
 	}
 
 }
