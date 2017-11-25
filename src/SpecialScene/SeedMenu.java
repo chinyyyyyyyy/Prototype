@@ -1,10 +1,8 @@
 package SpecialScene;
 
-import ComponentMap.Hero;
-import ComponentMap.ReceiveAction;
 import ComponentMap.SceneManager;
-import Logic.Backpack;
 import Map.setsceneable;
+import NPC.CounterSeed;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -15,7 +13,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
-public class BuyingMenu implements setsceneable {
+public class SeedMenu implements setsceneable {
 	private Group root;
 	public Scene scene;
 	private Canvas c = new Canvas(1280, 720);
@@ -24,16 +22,18 @@ public class BuyingMenu implements setsceneable {
 	private static final int MAX_COLUMN = 2;
 	private int row;
 	private int column;
-	private int amouttype1;
-	private int amouttype2;
-	private int amouttype3;
-	private int priceof1;
-	private int priceof2;
-	private int priceof3;
-	
-	
+	private static int amouttype1;
+	private static int amouttype2;
+	private static int amouttype3;
+	private static int priceof1;
+	private static int priceof2;
+	private static int priceof3;
+	private int sc;
+	private String type1;
+	private String type2;
+	private String type3;
 
-	public BuyingMenu() {
+	public SeedMenu(String type1, int price1, String type2, int price2, String type3, int price3, int sc) {
 		root = new Group();
 		scene = new Scene(root);
 		root.getChildren().add(c);
@@ -42,10 +42,14 @@ public class BuyingMenu implements setsceneable {
 		amouttype1 = 0;
 		amouttype2 = 0;
 		amouttype3 = 0;
-		priceof1 = 50;
-		priceof2 = 100;
-		priceof3 = 300;
-		
+		this.type1 = type1;
+		this.type2 = type2;
+		this.type3 = type3;
+		priceof1 = price1;
+		priceof2 = price2;
+		priceof3 = price3;
+		this.sc = sc;
+
 		update();
 		EventKeyPress(scene);
 	}
@@ -55,7 +59,7 @@ public class BuyingMenu implements setsceneable {
 			@Override
 			public void handle(KeyEvent event) {
 				if (event.getCode().equals(KeyCode.X)) {
-					SceneManager.warpTo(7);
+					SceneManager.warpTo(sc);
 				}
 				if (event.getCode().equals(KeyCode.UP)) {
 					gc.clearRect(0, 0, 1280, 720);
@@ -78,7 +82,7 @@ public class BuyingMenu implements setsceneable {
 					update();
 				}
 				if (event.getCode().equals(KeyCode.Z)) {
-					editAmount() ;
+					editAmount();
 				}
 			}
 		});
@@ -116,30 +120,36 @@ public class BuyingMenu implements setsceneable {
 		}
 	}
 
-	private void update() {
+	protected void update() {
 		gc.setFill(Color.ANTIQUEWHITE);
 		gc.fillRect(0, 0, 1280, 720);
 		gc.setFill(Color.BLACK);
 		gc.setFont(new Font("abc", 50));
-		gc.fillText("MenuJA", 500, 50);
+		gc.fillText("SeedShopJA", 500, 50);
 		gc.setStroke(Color.RED);
-		gc.fillText("Type1", 50, 200);
-		gc.fillText("Type2", 50, 350);
-		gc.fillText("Type2", 50, 500);
-		gc.fillText("X"+priceof1, 725, 200);
-		gc.fillText("X"+priceof2, 725, 350);
-		gc.fillText("X"+priceof3, 725, 500);
+		gc.fillText("Amount", 640, 120);
+		gc.fillText("Cost", 1000, 120);
+		gc.fillText(type1, 50, 200);
+		gc.fillText(type2, 50, 350);
+		gc.fillText(type3, 50, 500);
+		gc.fillText("Total Cost", 50, 650);
+		gc.fillText("" + getTotalCost(), 350, 650);
+		gc.fillText("X" + priceof1, 725, 200);
+		gc.fillText("X" + priceof2, 725, 350);
+		gc.fillText("X" + priceof3, 725, 500);
 		gc.fillText(amouttype1 + "", 675, 200);
 		gc.fillText(amouttype2 + "", 675, 350);
 		gc.fillText(amouttype3 + "", 675, 500);
-		gc.fillText(amouttype1*priceof1+"", 1000, 200);
-		gc.fillText(amouttype2*priceof2+"",1000, 350);
-		gc.fillText(amouttype3*priceof3+"",1000, 500);
+		gc.fillText(amouttype1 * priceof1 + "", 1000, 200);
+		gc.fillText(amouttype2 * priceof2 + "", 1000, 350);
+		gc.fillText(amouttype3 * priceof3 + "", 1000, 500);
+		gc.fillText("RESET", 675, 650);
+		gc.fillText("OK", 925, 650);
 
 		gc.strokeRect(600 + column * 250, 150 + row * 150, 50, 50);
 	}
 
-	private void editAmount() {
+	protected void editAmount() {
 		if (column == 0) {
 			if (row == 0 && amouttype1 > 0)
 				amouttype1--;
@@ -147,6 +157,10 @@ public class BuyingMenu implements setsceneable {
 				amouttype2--;
 			else if (row == 2 && amouttype3 > 0)
 				amouttype3--;
+			else if (row == 3) {
+				reset();
+			}
+
 		} else if (column == 1) {
 			if (row == 0)
 				amouttype1++;
@@ -154,12 +168,51 @@ public class BuyingMenu implements setsceneable {
 				amouttype2++;
 			else if (row == 2)
 				amouttype3++;
+			else if (row == 3) {
+				CounterSeed.update(amouttype1, amouttype2, amouttype3);
+				SceneManager.warpTo(this.sc);
+				reset();
+			}
 		}
 		update();
 	}
 
 	public Scene getScene() {
 		return scene;
+	}
+
+	public void reset() {
+		amouttype1 = 0;
+		amouttype2 = 0;
+		amouttype3 = 0;
+	}
+
+	public static int getTotalCost() {
+		return amouttype1 * priceof1 + amouttype2 * priceof2 + amouttype3 * priceof3;
+	}
+
+	public static int getAmouttype1() {
+		return amouttype1;
+	}
+
+	public static int getAmouttype2() {
+		return amouttype2;
+	}
+
+	public static int getAmouttype3() {
+		return amouttype3;
+	}
+
+	public static int getPriceof1() {
+		return priceof1;
+	}
+
+	public static int getPriceof2() {
+		return priceof2;
+	}
+
+	public static int getPriceof3() {
+		return priceof3;
 	}
 
 }

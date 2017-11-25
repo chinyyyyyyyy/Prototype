@@ -2,19 +2,10 @@ package NPC;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
-
 import Animal.Animal;
-import Animal.Cow;
-import Animal.Hen;
-import Animal.Sheep;
 import ComponentMap.NPC;
-import ComponentMap.SceneManager;
-import Map.CowBarn;
-import Map.HenBarn;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.shape.Shape;
 
 public class Counter extends NPC {
 
@@ -27,39 +18,9 @@ public class Counter extends NPC {
 
 	public void Welcome() {
 	}
-	
-	public void BuyCow(int num) throws IndexOutOfBoundsException{
-		int testx = CowBarn.position.get(CowBarn.getAnimalCount()+num-1).getKey();
-		for(int i = 0; i<num;i++) {
-			Cow.addCow();
-			int sx = CowBarn.position.get(CowBarn.getAnimalCount()-1).getKey();
-			int sy = CowBarn.position.get(CowBarn.getAnimalCount()-1).getValue();
-			animal.add(new Cow(sx,sy,100,100,Color.ALICEBLUE));		
-		}
-	}
-	
-	public void BuySheep(int num) throws IndexOutOfBoundsException{
-		int testx = CowBarn.position.get(CowBarn.getAnimalCount()+num-1).getKey();
-		for(int i = 0; i<num;i++) {
-			Sheep.addSheep();
-			int sx = CowBarn.position.get(CowBarn.getAnimalCount()-1).getKey();
-			int sy = CowBarn.position.get(CowBarn.getAnimalCount()-1).getValue();
-			animal.add(new Sheep(sx,sy,100,100,Color.ANTIQUEWHITE));		
-		}
-	}
-	
-	public void BuyHen(int num) throws IndexOutOfBoundsException{
-		int testx = HenBarn.actionposition.get(HenBarn.getAnimalCount()+num-1).getKey();
-		for(int i = 0; i<num;i++) {
-			Hen.addHen();
-			int sx = HenBarn.actionposition.get(HenBarn.getAnimalCount()-1).getKey();
-			int sy = HenBarn.actionposition.get(HenBarn.getAnimalCount()-1).getValue();
-			hen.add(new Hen(sx,sy,80,80,Color.LIMEGREEN));		
-		}
-	}
-
 
 	public void checkAction(Rectangle r) {
+<<<<<<< HEAD
 		Shape intersect = Shape.intersect(r, this);
 		double wi = intersect.getBoundsInLocal().getWidth();
 		double hi = intersect.getBoundsInLocal().getHeight();
@@ -100,5 +61,8 @@ public class Counter extends NPC {
 		
 		}
 		//SceneManager.warpTo(8);
+=======
+>>>>>>> 639ce3b53fc963fdb513a38c2f3c2e8e785093cb
 	}
+
 }
