@@ -1,12 +1,12 @@
 package Plant;
 
-public class PlantA extends Plant {
+public class PlantB extends Plant {
 	private final int SEED_DURATION = 2;
 	private final int SPOURT_DURATION = 4;
 	public static int SeedCount = 0;
-	public static final int SeedCost = 50;
+	public static final int SeedCost = 100;
 
-	public PlantA() {
+	public PlantB() {
 		dayofgrowth = 0;
 	}
 

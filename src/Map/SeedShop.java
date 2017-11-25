@@ -9,6 +9,7 @@ import ComponentMap.Hero;
 import ComponentMap.NPC;
 import ComponentMap.ReceiveAction;
 import NPC.Counter;
+import NPC.CounterSeed;
 import NPC.Florist;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -18,7 +19,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Pair;
 
-public class SeedShop implements setsceneable,HasNPC {
+public class SeedShop implements setsceneable, HasNPC {
 	private Group root;
 	public Scene scene;
 	private Hero hero;
@@ -52,13 +53,12 @@ public class SeedShop implements setsceneable,HasNPC {
 		e.add(new Environment(920, 220, 250, 70, Color.BLACK));
 		e.add(new Environment(1170, 90, 70, 200, Color.BLACK));
 		e.add(new Environment(1000, 230, 100, 50, Color.YELLOW));
-		Counter counter = new Counter(1000, 230, 100, 50, Color.YELLOW);
+		Counter counter = new CounterSeed(1000, 230, 100, 50, Color.YELLOW);
 		re.add(counter);
-		
-		
-		//npc 
+
+		// npc
 		e.add(new Environment(1010, 125, 75, 75, Color.STEELBLUE));
-		florist = new Florist(1010, 125, 75, 75, Color.STEELBLUE,"Ann");
+		florist = new Florist(1010, 125, 75, 75, Color.STEELBLUE, "Ann");
 		npc = florist;
 		re.add(florist);
 
@@ -83,7 +83,7 @@ public class SeedShop implements setsceneable,HasNPC {
 	public Scene getScene() {
 		return this.scene;
 	}
-	
+
 	public NPC getNPC() {
 		return this.npc;
 	}

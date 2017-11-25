@@ -10,6 +10,7 @@ import ComponentMap.NPC;
 import ComponentMap.ReceiveAction;
 import NPC.AnimalSeller;
 import NPC.Counter;
+import NPC.CounterAnimal;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -52,7 +53,7 @@ public class AnimalShop implements setsceneable,HasNPC {
 		e.add(new Environment(940, 230, 70, 250, Color.BLACK));
 		e.add(new Environment(940, 480, 200, 70, Color.BLACK));
 		e.add(new Environment(950, 285, 50, 100, Color.YELLOW));
-		Counter counter = new Counter(950, 285, 50, 100, Color.YELLOW);
+		Counter counter = new CounterAnimal(950, 285, 50, 100, Color.YELLOW);
 		re.add(counter);
 		
 		//npc

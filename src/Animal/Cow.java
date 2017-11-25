@@ -5,23 +5,24 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 
-public class Cow extends Animal{
-	
+public class Cow extends Animal {
+
 	protected String name;
-	protected static int CowCount=0;
+	protected static int CowCount = 0;
 	protected int age;
 	protected int love;
-	
+	public static final int COST = 5000;
+
 	public Cow(int x, int y, int w, int h, Color c) {
 		super(x, y, w, h, c);
-		this.age=1;
-		this.love=0;
+		this.age = 1;
+		this.love = 0;
 	}
-	
+
 	public void cry() {
 		System.out.println("Mooooooooo");
 	}
-	
+
 	public void produce() {
 		Milk.addMilk();
 	}
@@ -35,12 +36,12 @@ public class Cow extends Animal{
 		if (wi >= 0.9 * wa && hi >= 0.9 * ha) {
 			cry();
 			this.love++;
-//			System.out.println(""+this.love);
-//			produce();
-//			System.out.println(Milk.getMilkCount());
+			// System.out.println(""+this.love);
+			// produce();
+			// System.out.println(Milk.getMilkCount());
 		}
 	}
-	
+
 	public static void addCow() {
 		CowCount++;
 	}
