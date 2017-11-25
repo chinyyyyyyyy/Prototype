@@ -18,7 +18,7 @@ import javafx.util.Pair;
 public class Hero {
 	private Rectangle unitblock;
 	private List<Rectangle> actionblock = new ArrayList<>();
-	private final static double KEYBOARD_MOVEMENT_DELTA = 0.00075;
+	private final static double KEYBOARD_MOVEMENT_DELTA = 0.005;
 	private int acpos = 0;
 	private List<Environment> env = new ArrayList<>();
 	private List<ReceiveAction> re = new ArrayList<>();
