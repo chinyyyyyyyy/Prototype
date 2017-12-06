@@ -5,11 +5,13 @@ import Logic.updateEveryday;
 import Map.Farm;
 import Plant.Plant;
 import ComponentMap.ActionByToolAble;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 
-public class Feild extends ReceiveAction implements ActionByToolAble,updateEveryday {
+public class Feild extends ReceiveAction implements ActionByToolAble, updateEveryday {
 	private Stone stone = null;
 	private Wood wood = null;
 	private Boolean isWaterToday = false;
@@ -20,50 +22,48 @@ public class Feild extends ReceiveAction implements ActionByToolAble,updateEvery
 	private int width;
 	private int height;
 	private Environment env;
+	private Image woodimg = new Image(ClassLoader.getSystemResource("single wood2.png").toString());
+	private Image stoneimg = new Image(ClassLoader.getSystemResource("single stone2.png").toString());
+	private Image soil1 = new Image(ClassLoader.getSystemResource("soil1.png").toString());
 
-	
-	////--------------------Constructor-----------------------//
-	
+	//// --------------------Constructor-----------------------//
+
 	public Feild(int x, int y, int w, int h, Color c) {
 		super(x, y, w, h, c);
-		 xpos = x;
-		 ypos = y;
-		 width = w;
-		 height = h;
-		this.setStroke(Color.BLACK);
-			
+		xpos = x;
+		ypos = y;
+		width = w;
+		height = h;
+		update();
+
 	}
-	
-	public Feild(int x, int y, int w, int h, Color c,Stone stone) {
+
+	public Feild(int x, int y, int w, int h, Color c, Stone stone) {
 		super(x, y, w, h, c);
 		xpos = x;
-		 ypos = y;
-		 width = w;
-		 height = h;
+		ypos = y;
+		width = w;
+		height = h;
 		env = new Environment(x, y, w, h, Color.BISQUE);
-		env.setVisible(false);
 		Farm.getFarmEnvList().add(env);
-		this.setStroke(Color.BLACK);
 		this.stone = stone;
 		update();
 	}
-	
-	public Feild(int x, int y, int w, int h, Color c,Wood wood) {
+
+	public Feild(int x, int y, int w, int h, Color c, Wood wood) {
 		super(x, y, w, h, c);
 		xpos = x;
-		 ypos = y;
-		 width = w;
-		 height = h;
+		ypos = y;
+		width = w;
+		height = h;
 		env = new Environment(x, y, w, h, Color.BISQUE);
-		env.setVisible(true);
 		Farm.getFarmEnvList().add(env);
-		this.setStroke(Color.BLACK);
 		this.wood = wood;
 		update();
 	}
-	
-	////--------------------Method of obstacle-----------------------///
-	
+
+	//// --------------------Method of obstacle-----------------------///
+
 	public void setStone(Stone s) {
 		this.stone = s;
 		env = new Environment(xpos, ypos, width, height, Color.BISQUE);
@@ -71,18 +71,18 @@ public class Feild extends ReceiveAction implements ActionByToolAble,updateEvery
 		Farm.getFarmEnvList().add(env);
 		update();
 	}
-	
-	public Stone getStone(){
+
+	public Stone getStone() {
 		return stone;
 	}
-	
+
 	public void delStone() {
 		this.stone = null;
 		Farm.getFarmEnvList().remove(env);
 		env = null;
 		update();
 	}
-	
+
 	public void setWood(Wood wood) {
 		this.wood = wood;
 		env = new Environment(xpos, ypos, width, height, Color.BISQUE);
@@ -90,89 +90,90 @@ public class Feild extends ReceiveAction implements ActionByToolAble,updateEvery
 		Farm.getFarmEnvList().add(env);
 		update();
 	}
-	
-	public Wood getWood(){
+
+	public Wood getWood() {
 		return wood;
 	}
-	
+
 	public void delWood() {
 		this.wood = null;
 		Farm.getFarmEnvList().remove(env);
 		env = null;
 		update();
 	}
-	
-	////--------------------Method of Watering-----------------------///
-	
+
+	//// --------------------Method of Watering-----------------------///
+
 	public void watering() {
-		isWaterToday =  true;
+		isWaterToday = true;
 		update();
 	}
-	
+
 	public Boolean canwater() {
-		if(stone == null && wood == null && plant != null && plant.checkState()<2 ) {
+		if (stone == null && wood == null && plant != null && plant.checkState() < 2) {
 			return true;
 		}
 		return false;
 	}
-	
+
 	public void resetwaternewday() {
-		isWaterToday =  false;
+		isWaterToday = false;
 		update();
 	}
-	
-	////--------------------Method of shovel-----------------------///
+
+	//// --------------------Method of shovel-----------------------///
 	public void shovel() {
 		isshovel = true;
 		update();
 	}
-	
+
 	public Boolean canshovel() {
-		if(stone == null && wood == null && plant == null ) {
+		if (stone == null && wood == null && plant == null) {
 			return true;
 		}
 		return false;
 	}
-	////--------------------Method of Plant-----------------------///
+
+	//// --------------------Method of Plant-----------------------///
 	public Plant getPlant() {
 		return plant;
 	}
-	
-	public boolean  canplant() {
-		if(plant == null && stone == null && isshovel) return true;
+
+	public boolean canplant() {
+		if (plant == null && stone == null && isshovel)
+			return true;
 		return false;
 	}
-	
+
 	public void setPlant(Plant p) {
 		plant = p;
 		isshovel = false;
 		this.setFill(Color.rgb(0, 187, 51));
-		
+
 	}
-	
+
 	public void resetPlant() {
 		plant = null;
 		isshovel = false;
 		update();
 	}
 
-	
-	
 	public void update() {
-		if(wood != null) {
-			this.setFill(Color.SADDLEBROWN);
-		}else if(stone != null) {
-			this.setFill(Color.GRAY);
-		}else if(isWaterToday == true){
+		if (wood != null) {
+			this.setFill(new ImagePattern(woodimg));
+		} else if (stone != null) {
+			this.setFill(new ImagePattern(stoneimg));
+		} else if (isWaterToday == true) {
 			this.setFill(Color.BLACK);
-		}else if(isshovel == true) {
-			this.setFill(Color.rgb(97,51,24));
-		}else {
-			this.setFill(Color.rgb(185, 156, 107));
+		} else if (isshovel == true) {
+			this.setOpacity(1);
+			this.setFill(new ImagePattern(soil1));
+		} else {
+			this.setOpacity(0);
 		}
 	}
-	
-	//-------------------update-------------------------//
+
+	// -------------------update-------------------------//
 	@Override
 	public void checkAction(Rectangle r) {
 		Shape intersect = Shape.intersect(r, this);
@@ -184,21 +185,22 @@ public class Feild extends ReceiveAction implements ActionByToolAble,updateEvery
 		double ha = r.getHeight();
 		if (wi >= 0.9 * wa && hi >= 0.9 * ha) {
 			Backpack.CheckItemOnHand().Action(this);
-			
+
 		}
 	}
-	
+
 	public void updateafterendday() {
-		if(plant != null) {
-			if(isWaterToday  == true) plant.addDayOfGrowth();
+		if (plant != null) {
+			if (isWaterToday == true)
+				plant.addDayOfGrowth();
 			isWaterToday = false;
 			this.setOpacity(1);
-			if(plant.checkState() == 0) {
+			if (plant.checkState() == 0) {
 				this.setFill(Color.rgb(0, 187, 51));
-			}else if(plant.checkState() == 1) {
-				this.setFill(Color.rgb(63,122, 77));
-			}else if(plant.checkState() == 2) {
-				this.setFill(Color.rgb(24,69, 59));
+			} else if (plant.checkState() == 1) {
+				this.setFill(Color.rgb(63, 122, 77));
+			} else if (plant.checkState() == 2) {
+				this.setFill(Color.rgb(24, 69, 59));
 			}
 		}
 	}

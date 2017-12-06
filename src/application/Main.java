@@ -3,10 +3,8 @@ package application;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.stage.Stage;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import Animal.Cow;
 import Animal.Hen;
 import Animal.Sheep;
@@ -81,6 +79,10 @@ public class Main extends Application {
 		listmap.add(seedshop); // 7
 		listmap.add(animalmenu); // 8
 		listmap.add(seedmenu); // 9
+		
+		
+		primaryStage.setResizable(false);
+		primaryStage.sizeToScene();
 		SceneManager sm = new SceneManager(primaryStage, listmap);
 		AnimationTimer animation = new AnimationTimer() {
 			public void handle(long now) {

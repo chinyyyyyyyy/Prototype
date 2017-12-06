@@ -3,8 +3,17 @@ package ComponentMap;
 import java.util.ArrayList;
 import java.util.List;
 
+import Logic.Backpack;
 import Map.setsceneable;
 import NPC.Counter;
+import javafx.event.EventHandler;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 import javafx.stage.Stage;
@@ -17,9 +26,28 @@ public class SceneManager extends Rectangle {
 	public SceneManager(Stage s, List<setsceneable> lm) {
 		primaryStage = s;
 		listmap = lm;
-		primaryStage.setScene(lm.get(0).getScene());
+		
+		Group root = new Group();
+		Scene scene = new Scene(root,1280,760);
+		Canvas c = new Canvas(1280,760);
+		Image OpenSceneImg = new Image(ClassLoader.getSystemResource("MainMenu.jpg").toString());
+		GraphicsContext gc = c.getGraphicsContext2D();
+		gc.drawImage(OpenSceneImg ,0,0);
+		root.getChildren().add(c);
+		primaryStage.setScene(scene);
 		primaryStage.show();
 		primaryStage.setTitle("Harvest Sun");
+		
+		scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+			@Override
+			public void handle(KeyEvent event) {
+				if (event.getCode().equals(KeyCode.ENTER)) {
+					primaryStage.setScene(lm.get(0).getScene());
+				} 
+			}
+		});
+		
+
 	}
 
 	public static void warpTo(int mapno) {
