@@ -3,10 +3,8 @@ package application;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.stage.Stage;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import Animal.Cow;
 import Animal.Hen;
 import Animal.Sheep;
@@ -29,7 +27,9 @@ import SpecialScene.AnimalMenu;
 import SpecialScene.SeedMenu;
 import Tool.Axe;
 import Tool.Hammer;
+import Tool.Hand;
 import Tool.Hoe;
+import Tool.SeedplantA;
 import Tool.WateringCan;
 
 public class Main extends Application {
@@ -44,10 +44,16 @@ public class Main extends Application {
 		Hammer hammer = new Hammer();
 		Hoe hoe = new Hoe();
 		WateringCan wateringcan = new WateringCan();
+		Hand hand =  new Hand();
+		SeedplantA seed1 = new SeedplantA(50);
 		Backpack.addItem(axe);
 		Backpack.addItem(hammer);
 		Backpack.addItem(hoe);
 		Backpack.addItem(wateringcan);
+		Backpack.addItem(seed1 );
+		Backpack.addItem(hand );
+		
+		//---------------set up map---------------------//
 
 		// ---------------set up map---------------------//
 		List<setsceneable> listmap = new ArrayList<>();
@@ -73,6 +79,10 @@ public class Main extends Application {
 		listmap.add(seedshop); // 7
 		listmap.add(animalmenu); // 8
 		listmap.add(seedmenu); // 9
+		
+		
+		primaryStage.setResizable(false);
+		primaryStage.sizeToScene();
 		SceneManager sm = new SceneManager(primaryStage, listmap);
 		AnimationTimer animation = new AnimationTimer() {
 			public void handle(long now) {

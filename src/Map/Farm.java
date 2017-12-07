@@ -2,7 +2,7 @@ package Map;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import ComponentMap.Dropbox;
 import ComponentMap.Environment;
 import ComponentMap.Feild;
 import ComponentMap.Hero;
@@ -17,7 +17,9 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Pair;
 
@@ -29,14 +31,22 @@ public class Farm implements setsceneable{
 	private  List<ReceiveAction> re = new ArrayList<>();
 	private  List<Pair<Rectangle,Integer>> WarpList = new ArrayList<>();
 	
+	
+	
 
 	public Farm(int starthx,int starthy) {
 		root = new Group();
 		scene = new Scene(root,1280,720);
 		Canvas bg = new Canvas(1280,720);
 		GraphicsContext gc = bg.getGraphicsContext2D();
-		gc.setFill(Color.FORESTGREEN);
-		gc.fillRect(0, 0, 1280, 720);
+		Image Bg = new Image(ClassLoader.getSystemResource("BgFarm.png").toString());
+		Image house = new Image(ClassLoader.getSystemResource("House2.png").toString());
+		Image henhouse = new Image(ClassLoader.getSystemResource("HenHosue.png").toString());
+		Image barn = new Image(ClassLoader.getSystemResource("Barn.png").toString());
+		gc.drawImage(Bg,0,0);
+		gc.drawImage(house,900,0);
+		gc.drawImage(henhouse,25,0);
+		gc.drawImage(barn,365,0);
 		root.getChildren().add(bg);
 		hero = new Hero(scene,starthx,starthy);
 		
@@ -46,76 +56,104 @@ public class Farm implements setsceneable{
 		e.add(new Environment(1280, 0, 10,720,Color.BLACK));//boarderRIGHT
 		e.add(new Environment(0,720, 1280,10,Color.BLACK));//boarderBOTTOM
 		
-		e.add(new Environment(0,0,90,140,Color.BLACK));//Hen
-		e.add(new Environment(90,0,120,115,Color.BLACK));//Hen
-		e.add(new Environment(210,0,100,140,Color.BLACK));//Hen
-		Rectangle warpblocktohenbarn = new Rectangle(90,115,120,25);
-		warpblocktohenbarn.setFill(Color.RED);
+		//-----------------------HenHouse---------------------------------//
+		Environment henhouse1  =  new Environment(0,0,90,140,Color.BLACK);
+		Environment henhouse2  =  new Environment(90,0,120,115,Color.BLACK);
+		Environment henhouse3  =  new Environment(210,0,60,140,Color.BLACK);
+		henhouse1.setOpacity(0);
+		henhouse2.setOpacity(0);
+		henhouse3.setOpacity(0);
+		e.add(henhouse1);
+		e.add(henhouse2);
+		e.add(henhouse3);
+		Rectangle warpblocktohenbarn = new Rectangle(95,115,100,25);
+		warpblocktohenbarn.setOpacity(0);
 		root.getChildren().add(warpblocktohenbarn);
 		Pair<Rectangle,Integer> tohenbarn = new Pair<Rectangle,Integer>(warpblocktohenbarn,4);
 		WarpList.add(tohenbarn);
 		
 		
-		e.add(new Environment(350,0,90,140,Color.BLACK));//Barn
-		e.add(new Environment(440,0,120,115,Color.BLACK));//Barn
-		e.add(new Environment(560,0,90,140,Color.BLACK));//Barn
-		Rectangle warpblocktocowbarn = new Rectangle(440,115,120,25);
-		warpblocktocowbarn.setFill(Color.RED);
+		//-----------------------Barn---------------------------------//
+		Environment barn1  =  new Environment(380,0,60,140,Color.BLACK);
+		Environment barn2  =  new Environment(440,0,120,115,Color.BLACK);
+		Environment barn3   =  new Environment(560,0,40,140,Color.BLACK);
+		barn1.setOpacity(0);
+		barn2.setOpacity(0);
+		barn3.setOpacity(0);
+		e.add(barn1);
+		e.add(barn2);
+		e.add(barn3);
+		Rectangle warpblocktocowbarn = new Rectangle(440,115,100,25);
+		warpblocktocowbarn.setOpacity(0);
 		root.getChildren().add(warpblocktocowbarn);
 		Pair<Rectangle,Integer> tocowbarn = new Pair<Rectangle,Integer>(warpblocktocowbarn,3);
 		WarpList.add(tocowbarn);
 		
-		e.add(new Environment(910,0,125,200,Color.BLACK));//House
-		e.add(new Environment(1035,0,120,175,Color.BLACK));//House
-		e.add(new Environment(1155,0,125,200,Color.BLACK));//House
-		Rectangle warpblocktohouse = new Rectangle(1035,175,120,25);
-		warpblocktohouse.setFill(Color.RED);
+		//-----------------------House---------------------------------//
+		Environment house1 = new  Environment(910,0,125,210,Color.BLACK);
+		Environment house2 = new  Environment(1035,0,120,180,Color.BLACK);
+		Environment house3 = new  Environment(1155,0,125,210,Color.BLACK);
+		house1.setOpacity(0);
+		house2.setOpacity(0);
+		house3.setOpacity(0);
+		e.add(house1);
+		e.add(house2);
+		e.add(house3);
+		Rectangle warpblocktohouse = new Rectangle(1050,180,100,25);
+		warpblocktohouse.setOpacity(0);
 		root.getChildren().add(warpblocktohouse);
-		Pair<Rectangle,Integer> tocowhouse = new Pair<Rectangle,Integer>(warpblocktohouse,2);
-		WarpList.add(tocowhouse);
+		Pair<Rectangle,Integer> tohouse = new Pair<Rectangle,Integer>(warpblocktohouse,2);
+		WarpList.add(tohouse);
 		
-		
-		e.add(new Environment(710,40,120,100,Color.BURLYWOOD));//DropBox
-		e.add(new Environment(910,420,280,200,Color.AQUAMARINE));//Ponds
-		root.getChildren().addAll(e);
-		
-
-		
-		//------------------------Add Feild------------------------------//
+		//---------------------------Feild------------------------------//
 		for(int i = 90;i < 800;i+=80) {
 			for(int j = 220;j < 620;j+=80) {
 				double random = Math.random();
 				if(0 <= random && random < 0.7) {
 					Feild r = new Feild(i,j, 80, 80,Color.rgb(185, 156, 107));
 					re.add(r);
+					World.getListUpdate().add(r);
 				}else if(0.7 <= random && random < 0.85) {
 					Stone s = new Stone();
 					Feild r = new Feild(i,j, 80, 80,Color.rgb(185, 156, 107),s);
 					re.add(r);
+					World.getListUpdate().add(r);
 				}else {
 					Wood w = new Wood();
 					Feild r = new Feild(i,j, 80, 80,Color.rgb(185, 156, 107),w);
 					re.add(r);
+					World.getListUpdate().add(r);
 				}
 				
 			}
 		}
 		
-		
-		Feild f = new Feild(800,620, 80, 80,Color.rgb(185, 156, 107));
-		Plant p = new PlantA();
-		f.setPlant(p);
-		re.add(f);
-		 World.getListUpdate().add(f);
 		//---------------------Add POND-----------------------//
-		re.add(new Pond(910,420,280,200,Color.AQUAMARINE));//Pond
-		re.add(new ReceiveAction(710,40,100,100,Color.BURLYWOOD));//DropBox
+		Environment pondenv = new Environment(910,420,280,200,Color.AQUAMARINE);
+		pondenv.setOpacity(0);
+		e.add(pondenv);//Ponds
+		Pond actionpond = new Pond(910,420,280,200,Color.AQUAMARINE);
+		actionpond.setOpacity(0);
+		re.add(actionpond);//Pond
 		
+		
+		//---------------------Add dropbox-----------------------//
+		Image dropbox = new Image(ClassLoader.getSystemResource("Dropbox2.png").toString());
+		Environment dropboxenv = new Environment(720,50,90,90,Color.BURLYWOOD);
+		Dropbox dropboxact = new Dropbox(720,50,90,90,Color.BURLYWOOD);
+		dropboxenv.setOpacity(0);
+		dropboxact.setFill(new ImagePattern(dropbox));
+		e.add(dropboxenv);
+		re.add(dropboxact);
+		
+		
+		
+		root.getChildren().addAll(e);
 		root.getChildren().addAll(re);
 		
 		
-		Rectangle warpblocktotown = new Rectangle(1255,250,25,120);
-		warpblocktotown.setFill(Color.RED);
+		Rectangle warpblocktotown = new Rectangle(1265,250,15,120);
+		warpblocktotown.setOpacity(0);
 		root.getChildren().addAll(warpblocktotown);
 		Pair<Rectangle,Integer> totown = new Pair<Rectangle,Integer>(warpblocktotown,1);
 		WarpList.add(totown);
