@@ -3,15 +3,22 @@ package Tool;
 import ComponentMap.ActionByToolAble;
 import ComponentMap.Feild;
 import Logic.Backpack;
+import Logic.InBackpack;
 import Plant.PlantA;
 
-public class SeedplantA extends Tool {
-	private int seedamout;
+public class SeedB extends Seed implements InBackpack{
+	private static int seedamout;
+	private String name;
 
-	public SeedplantA(int amount) {
-		this.seedamout = amount;
-		this.name = "PlantA";
+	public SeedB(int amount) {
+		seedamout = amount;
+		this.name = "PlantB";
 	}
+	
+	public void cry() {
+		System.out.println(name);
+	}
+
 
 	@Override
 	public void Action(ActionByToolAble a) {
@@ -31,5 +38,17 @@ public class SeedplantA extends Tool {
 
 	public void CheckUpgrade() {
 	}
+
+	public static void addSeed(int numB) {
+		// TODO Auto-generated method stub
+		seedamout+=numB;
+	}
 	
+	public int getAmount() {
+		return seedamout;
+	}
+	
+	public static int getSeedAmount() {
+		return seedamout;
+	}
 }

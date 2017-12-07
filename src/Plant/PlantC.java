@@ -3,7 +3,6 @@ package Plant;
 public class PlantC extends Plant {
 	private final int SEED_DURATION = 2;
 	private final int SPOURT_DURATION = 4;
-	public static int SeedCount = 0;
 	public static final int SeedCost = 200;
 
 	public PlantC() {
@@ -22,7 +21,4 @@ public class PlantC extends Plant {
 		}
 	}
 
-	public static void addSeed() {
-		SeedCount++;
-	}
 }

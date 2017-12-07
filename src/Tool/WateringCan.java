@@ -8,8 +8,8 @@ import ComponentMap.ActionByToolAble;
 public class WateringCan extends Tool {
 	private final int MAX_CAPACITY = 10;
 	private int water_level;
+	private static boolean max;
 	private static boolean upgradeable;
-	private static String stat = "";
 
 	public WateringCan() {
 		this.name = "WATERINGCAN";
@@ -30,16 +30,26 @@ public class WateringCan extends Tool {
 		}
 	}
 
-	public void CheckUpgrade() {
-		if (this.timeofuse >= ToolStatus.getUpgradeLevel().get(0))
-			upgradeable = true;
-	}
 
 	public void cry() {
 		System.out.println(name + " has " + water_level);
 	}
 
+	public void CheckUpgrade() {
+		if (this.level == 2) {
+			upgradeable = false;
+			max = true;
+			return;
+		}
+		if (this.timeofuse >= ToolStatus.getUpgradeLevel().get(this.level))
+			upgradeable = true;
+		else
+			upgradeable = false;
+	}
+
 	public static String isUpgradeable() {
+		if (max)
+			return "MAX";
 		if (upgradeable)
 			return "upgrade?";
 		return "";
@@ -49,12 +59,4 @@ public class WateringCan extends Tool {
 		WateringCan.upgradeable = upgradeable;
 	}
 
-	public static String getStat() {
-		return stat;
-	}
-
-	public static void setStat(String stat) {
-		WateringCan.stat = stat;
-	}
-	
 }

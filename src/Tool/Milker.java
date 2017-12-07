@@ -15,8 +15,12 @@ public class Milker extends Tool {
 	public void Action(ActionByToolAble a) {
 		// TODO Auto-generated method stub
 		if (a instanceof Cow) {
-			if (((Cow) a).getProduceable())
+			if (((Cow) a).getProduceable()) {
 				((Cow) a).produce();
+				System.out.println("Milk Success");
+			}else {
+				System.out.println("You can't milk now.");
+			}
 		}
 	}
 

@@ -1,7 +1,10 @@
 package Animal;
 
 import ComponentMap.ActionByToolAble;
+import Logic.Backpack;
+import Logic.InBackpack;
 import Product.Wool;
+import Tool.Scissors;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
@@ -28,6 +31,8 @@ public class Sheep extends Animal implements ActionByToolAble{
 	}
 
 	public void produce() {
+		if (Wool.getWoolCount() == 0)
+			Backpack.getBackpack().add(new Wool());
 		Wool.addWool();
 		this.produceable=false;
 		cry();
@@ -42,8 +47,14 @@ public class Sheep extends Animal implements ActionByToolAble{
 		double wa = r.getWidth();
 		double ha = r.getHeight();
 		if (wi >= 0.9 * wa && hi >= 0.9 * ha) {
-			cry();
-			this.love++;
+			InBackpack item = Backpack.CheckItemOnHand();
+			if(item instanceof Scissors) {
+				((Scissors) item).Action(this);
+			}else {
+				cry();
+				this.love++;							
+			}
+//			System.out.println("Age = "+this.age+", daycount = "+this.daycount);
 		}
 	}
 	
@@ -73,6 +84,7 @@ public class Sheep extends Animal implements ActionByToolAble{
 	
 	public void updateafterendday() {
 		this.age++;
+		this.daycount++;
 		if(this.daycount>=5) this.produceable = true;
 	}
 	

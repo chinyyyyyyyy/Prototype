@@ -15,8 +15,13 @@ public class Scissors extends Tool {
 	public void Action(ActionByToolAble a) {
 		// TODO Auto-generated method stub
 		if (a instanceof Sheep) {
-			if (((Sheep) a).getProduceable())
+			if (((Sheep) a).getProduceable()) {
 				((Sheep) a).produce();
+				System.out.println("Cut Success");
+			}else {
+				System.out.println("You can't cut now.");
+			}
+				
 		}
 	}
 

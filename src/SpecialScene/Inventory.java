@@ -1,8 +1,11 @@
 package SpecialScene;
 
 import ComponentMap.SceneManager;
+import ComponentMap.StackAble;
 import Logic.Backpack;
+import Logic.InBackpack;
 import Map.setsceneable;
+import Tool.Tool;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -119,14 +122,26 @@ public class Inventory implements setsceneable, SpecialScene {
 			for (int j = 0; j < MAX_COLUMN; j++) {
 				gc.setStroke(Color.BLACK);
 				gc.setFill(Color.ALICEBLUE);
+				if(i==0 && j<4) {
+					InBackpack x = Backpack.getBackpack().get(j);
+					if(((Tool) x).getLevel()==2) {
+						gc.setFill(Color.GOLD);
+					}else if(((Tool) x).getLevel()==1)
+						gc.setFill(Color.SILVER);
+				}
 				gc.fillRect(150 + j * 100, 250 + i * 150, 100, 100);
 				gc.strokeRect(150 + j * 100, 250 + i * 150, 100, 100);
 				int index = (10 * i + j) % 10;
 				if (index < Backpack.getBackpack().size()) {
 					gc.setFill(Color.BLACK);
 					gc.setFont(new Font("abc", 20));
-					gc.fillText(Backpack.getBackpack().get(index).getClass().getSimpleName(), 180 + j * 100,
+					InBackpack x = Backpack.getBackpack().get(index);
+					gc.fillText(x.getClass().getSimpleName(), 180 + j * 100,
 							310 + i * 150);
+					if(x instanceof StackAble) {
+						gc.fillText("x" + ((StackAble) x).getAmount(), 210 + j * 100,
+								340 + i * 150);
+					}
 				}
 			}
 		}

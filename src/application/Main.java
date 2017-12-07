@@ -26,6 +26,7 @@ import Plant.PlantB;
 import Plant.PlantC;
 import SpecialScene.AnimalBuyer;
 import SpecialScene.AnimalMenu;
+import SpecialScene.BlackSmithMenu;
 import SpecialScene.Inventory;
 import SpecialScene.Profile;
 import SpecialScene.SeedMenu;
@@ -37,7 +38,7 @@ import Tool.Hand;
 import Tool.Hoe;
 import Tool.Milker;
 import Tool.Scissors;
-import Tool.SeedplantA;
+import Tool.SeedA;
 import Tool.WateringCan;
 
 public class Main extends Application {
@@ -53,7 +54,7 @@ public class Main extends Application {
 		Hoe hoe = new Hoe();
 		WateringCan wateringcan = new WateringCan();
 		Hand hand =  new Hand();
-		SeedplantA seed1 = new SeedplantA(50);
+		SeedA seed1 = new SeedA(50);
 		Backpack.addItem(axe);
 		Backpack.addItem(hammer);
 		Backpack.addItem(hoe);
@@ -79,6 +80,7 @@ public class Main extends Application {
 		AnimalBuyer animalbuyer = new AnimalBuyer();
 		ToolMenu toolmenu = new ToolMenu("Milker",Milker.COST,"Scissors",Scissors.COST);
 		Inventory inventory = new Inventory();
+		BlackSmithMenu blackmenu = new BlackSmithMenu();
 		
 		listmap.add(farm); // 0
 		listmap.add(town); // 1
@@ -96,6 +98,7 @@ public class Main extends Application {
 		listmap.add(animalbuyer); //13
 		listmap.add(toolmenu); //14
 		listmap.add(inventory); //15
+		listmap.add(blackmenu); //16
 		
 		primaryStage.setResizable(false);
 		primaryStage.sizeToScene();

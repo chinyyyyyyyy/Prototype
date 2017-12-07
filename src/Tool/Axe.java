@@ -6,11 +6,12 @@ import ComponentMap.ActionByToolAble;
 
 public class Axe extends Tool {
 	private static boolean upgradeable;
-	private static String stat = "";
+	private static boolean max;
 
 	public Axe() {
 		this.name = "AXE";
-		this.timeofuse = 0;
+		this.timeofuse = 120;
+		this.level=0;
 	}
 
 	@Override
@@ -25,26 +26,26 @@ public class Axe extends Tool {
 	}
 
 	public void CheckUpgrade() {
-		if (this.timeofuse >= ToolStatus.getUpgradeLevel().get(0))
+		if (this.level == 2) {
+			upgradeable = false;
+			max = true;
+			return;
+		}
+		if (this.timeofuse >= ToolStatus.getUpgradeLevel().get(this.level))
 			upgradeable = true;
+		else
+			upgradeable = false;
 	}
 
 	public static String isUpgradeable() {
+		if (max)
+			return "MAX";
 		if (upgradeable)
 			return "upgrade?";
 		return "";
 	}
-
 	public static void setUpgradeable(boolean upgradeable) {
 		Axe.upgradeable = upgradeable;
-	}
-
-	public static String getStat() {
-		return stat;
-	}
-
-	public static void setStat(String stat) {
-		Axe.stat = stat;
 	}
 
 }

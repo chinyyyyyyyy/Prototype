@@ -3,15 +3,16 @@ package Tool;
 import ComponentMap.ActionByToolAble;
 import ComponentMap.Dropbox;
 import ComponentMap.Feild;
+import Logic.InBackpack;
 import Plant.OnHandAble;
 
-public class Hand extends Tool {
+public class Hand implements InBackpack {
 	private OnHandAble onhand;
+	private String name;
 
 	public Hand() {
 		onhand = null;
 		this.name = "Hand";
-		this.timeofuse = 0;
 	}
 
 	@Override

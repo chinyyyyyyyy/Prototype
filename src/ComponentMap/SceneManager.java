@@ -110,4 +110,8 @@ public class SceneManager extends Rectangle {
 	public static void setSceneNumber(int sceneNumber) {
 		SceneManager.sceneNumber = sceneNumber;
 	}
+	
+	public static List<setsceneable> getListMap(){
+		return listmap;
+	}
 }

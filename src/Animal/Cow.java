@@ -1,7 +1,10 @@
 package Animal;
 
 import ComponentMap.ActionByToolAble;
+import Logic.Backpack;
+import Logic.InBackpack;
 import Product.Milk;
+import Tool.Milker;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
@@ -28,6 +31,8 @@ public class Cow extends Animal implements ActionByToolAble {
 	}
 
 	public void produce() {
+		if (Milk.getMilkCount() == 0)
+			Backpack.getBackpack().add(new Milk());
 		Milk.addMilk();
 		this.produceable=false;
 		cry();
@@ -42,8 +47,13 @@ public class Cow extends Animal implements ActionByToolAble {
 		double wa = r.getWidth();
 		double ha = r.getHeight();
 		if (wi >= 0.9 * wa && hi >= 0.9 * ha) {
-			cry();
-			this.love++;
+			InBackpack item = Backpack.CheckItemOnHand();
+			if(item instanceof Milker) {
+				((Milker) item).Action(this);
+			}else {
+				cry();
+				this.love++;							
+			}
 		}
 	}
 
@@ -73,6 +83,7 @@ public class Cow extends Animal implements ActionByToolAble {
 
 	public void updateafterendday() {
 		this.age++;
+		this.daycount++;
 		if(this.daycount>=7) this.produceable = true;
 	}
 	
