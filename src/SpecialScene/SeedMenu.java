@@ -1,6 +1,8 @@
 package SpecialScene;
 
+import ComponentMap.Hero;
 import ComponentMap.SceneManager;
+import Logic.World;
 import Map.setsceneable;
 import NPC.CounterSeed;
 import javafx.event.EventHandler;
@@ -13,7 +15,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
-public class SeedMenu implements setsceneable {
+public class SeedMenu implements setsceneable,SpecialScene {
 	private Group root;
 	public Scene scene;
 	private Canvas c = new Canvas(1280, 720);
@@ -120,7 +122,7 @@ public class SeedMenu implements setsceneable {
 		}
 	}
 
-	protected void update() {
+	public void update() {
 		gc.setFill(Color.ANTIQUEWHITE);
 		gc.fillRect(0, 0, 1280, 720);
 		gc.setFill(Color.BLACK);
@@ -169,8 +171,11 @@ public class SeedMenu implements setsceneable {
 			else if (row == 2)
 				amouttype3++;
 			else if (row == 3) {
-				CounterSeed.update(amouttype1, amouttype2, amouttype3);
-				SceneManager.warpTo(this.sc);
+				World.setMoney(World.getMoney() - SeedMenu.getTotalCost());
+				if (World.getBuyable()) {
+					CounterSeed.update(amouttype1, amouttype2, amouttype3);
+					SceneManager.warpTo(this.sc);
+				}
 				reset();
 			}
 		}

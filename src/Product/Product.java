@@ -1,8 +1,14 @@
 package Product;
 
-public abstract class Product {
-	
-	protected String name;
+import Logic.InBackpack;
+
+public abstract class Product implements InBackpack{
+
 	protected int price;
+	
+	public void cry() {
+		System.out.println(this.getClass().getSimpleName());
+	}
+
 
 }

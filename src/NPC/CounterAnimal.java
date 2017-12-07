@@ -3,6 +3,7 @@ package NPC;
 import Animal.Cow;
 import Animal.Hen;
 import Animal.Sheep;
+import ComponentMap.Hero;
 import ComponentMap.SceneManager;
 import Map.CowBarn;
 import Map.HenBarn;
@@ -82,7 +83,7 @@ public class CounterAnimal extends Counter {
 		double ha = r.getHeight();
 		if (wi >= 0.5 * wa && hi >= 0.5 * ha) {
 			System.out.println("What do you want Today?");
-			SceneManager.warpTo(8);
+			SceneManager.warpTo(13);
 		}
 	}
 
@@ -91,7 +92,7 @@ public class CounterAnimal extends Counter {
 		BuySheep(numsheep);
 		BuyHen(numhen);
 		System.out.println("Total cost is " + AnimalMenu.getTotalCost() + " $");
-		System.out.println("Thank you very much ~");
+		System.out.println("Thank you very much ~");			
 		// System.out.println("You have " + Cow.getCowCount() + " Cow.");
 		// System.out.println("You have " + Sheep.getSheepCount() + " Sheep.");
 		// System.out.println("You have " + Hen.getHenCount() + " Hen.");

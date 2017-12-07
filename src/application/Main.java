@@ -19,16 +19,24 @@ import Map.HenBarn;
 import Map.House;
 import Map.SeedShop;
 import Map.Town;
+import Map.Welcome;
 import Map.setsceneable;
 import Plant.PlantA;
 import Plant.PlantB;
 import Plant.PlantC;
+import SpecialScene.AnimalBuyer;
 import SpecialScene.AnimalMenu;
+import SpecialScene.Inventory;
+import SpecialScene.Profile;
 import SpecialScene.SeedMenu;
+import SpecialScene.ToolMenu;
+import SpecialScene.ToolStatus;
 import Tool.Axe;
 import Tool.Hammer;
 import Tool.Hand;
 import Tool.Hoe;
+import Tool.Milker;
+import Tool.Scissors;
 import Tool.SeedplantA;
 import Tool.WateringCan;
 
@@ -52,9 +60,6 @@ public class Main extends Application {
 		Backpack.addItem(wateringcan);
 		Backpack.addItem(seed1 );
 		Backpack.addItem(hand );
-		
-		//---------------set up map---------------------//
-
 		// ---------------set up map---------------------//
 		List<setsceneable> listmap = new ArrayList<>();
 		Farm farm = new Farm(1000, 300);
@@ -65,10 +70,16 @@ public class Main extends Application {
 		Blacksmith blacksmith = new Blacksmith(603, 645);
 		AnimalShop animalshop = new AnimalShop(0, 300);
 		SeedShop seedshop = new SeedShop(0, 300);
-		AnimalMenu animalmenu = new AnimalMenu("Cow", Cow.COST, "Sheep", Sheep.COST, "Hen", Hen.COST, 6);
+		AnimalMenu animalmenu = new AnimalMenu("Cow", Cow.COST, "Sheep", Sheep.COST, "Hen", Hen.COST, 13);
 		SeedMenu seedmenu = new SeedMenu("PlantA", PlantA.SeedCost, "PlantB", PlantB.SeedCost, "PlantC",
 				PlantC.SeedCost, 7);
-
+		Welcome welcome = new Welcome();
+		Profile profile = new Profile();
+		ToolStatus toolstatus = new ToolStatus();
+		AnimalBuyer animalbuyer = new AnimalBuyer();
+		ToolMenu toolmenu = new ToolMenu("Milker",Milker.COST,"Scissors",Scissors.COST);
+		Inventory inventory = new Inventory();
+		
 		listmap.add(farm); // 0
 		listmap.add(town); // 1
 		listmap.add(house); // 2
@@ -79,7 +90,12 @@ public class Main extends Application {
 		listmap.add(seedshop); // 7
 		listmap.add(animalmenu); // 8
 		listmap.add(seedmenu); // 9
-		
+		listmap.add(welcome); //10
+		listmap.add(profile); //11
+		listmap.add(toolstatus); //12
+		listmap.add(animalbuyer); //13
+		listmap.add(toolmenu); //14
+		listmap.add(inventory); //15
 		
 		primaryStage.setResizable(false);
 		primaryStage.sizeToScene();

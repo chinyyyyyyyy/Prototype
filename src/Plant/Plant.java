@@ -15,8 +15,6 @@ public abstract class Plant implements OnHandAble {
 		return this.name;
 	}
 	
-	
-
 	public abstract int checkState();
 	
 	@Override 
