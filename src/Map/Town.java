@@ -33,14 +33,20 @@ public class Town implements setsceneable {
 		GraphicsContext gc = bg.getGraphicsContext2D();
 		Image Bg = new Image(ClassLoader.getSystemResource("MapTown.png").toString());
 		Image blacksmithimg = new Image(ClassLoader.getSystemResource("Blacksmith2.png").toString());
+		Image petshopimg = new Image(ClassLoader.getSystemResource("Petshop2.png").toString());
+		Image plantshopimg = new Image(ClassLoader.getSystemResource("Plantshop.png").toString());
 		gc.drawImage(Bg,0,0);
 		gc.drawImage(blacksmithimg,27,0);
+		gc.drawImage(petshopimg,1000,300);
+		gc.drawImage(plantshopimg,1000,0);
 		root.getChildren().add(bg);
 
 		e.add(new Environment(-10, 0, 10, 720, Color.BLACK));// boarderLEFT
 		e.add(new Environment(0, -10, 1280, 10, Color.BLACK));// boarderTOP
 		e.add(new Environment(1280, 0, 10, 720, Color.BLACK));// boarderRIGHT
-		e.add(new Environment(0, 720, 1280, 10, Color.BLACK));// boarderBOTTOM
+		Environment tree = new  Environment(0, 640, 1280, 10, Color.BLACK);
+		tree.setOpacity(0);
+		e.add(tree);// boarderBOTTOM
 
 		//------------------Black Smith------------------------------------//
 		Environment blacksmith1 = new Environment(0, 0, 190, 300, Color.BLACK);
@@ -53,27 +59,38 @@ public class Town implements setsceneable {
 		e.add(blacksmith2);
 		e.add(blacksmith3);
 		Rectangle warpblocktoblacksmith = new Rectangle(195, 250, 100, 25);
-		warpblocktoblacksmith.setFill(Color.RED);
+		warpblocktoblacksmith.setOpacity(0);
 		root.getChildren().add(warpblocktoblacksmith);
 		Pair<Rectangle, Integer> toblacksmith = new Pair<Rectangle, Integer>(warpblocktoblacksmith, 5);
 		WarpList.add(toblacksmith);
 		
-		
-		
-
-		e.add(new Environment(1020, 0, 260, 82, Color.BLACK));// Seed Shop
-		e.add(new Environment(1045, 82, 235, 120, Color.BLACK));// Seed Shop
-		e.add(new Environment(1020, 202, 260, 83, Color.BLACK));// Seed Shop
-		Rectangle warpblocktoseedshop = new Rectangle(1020, 82, 25, 120);
-		warpblocktoseedshop.setFill(Color.RED);
+		//---------------------- seed shop------------------------------------//
+		Environment seedshop1 = new Environment(1020, 75, 260, 82, Color.BLACK);
+		Environment seedshop2 = new Environment(1045, 157, 235, 120, Color.BLACK);
+		Environment seedshop3 = new Environment(1020, 277, 260, 83, Color.BLACK);
+		seedshop1.setOpacity(0);
+		seedshop2.setOpacity(0);
+		seedshop3.setOpacity(0);
+		e.add(seedshop1);
+		e.add(seedshop2);
+		e.add(seedshop3);
+		Rectangle warpblocktoseedshop = new Rectangle(1020, 157, 25, 120);
+		warpblocktoseedshop.setOpacity(0);
 		root.getChildren().addAll(warpblocktoseedshop);
 		Pair<Rectangle, Integer> toseedshop = new Pair<Rectangle, Integer>(warpblocktoseedshop, 7);
 		WarpList.add(toseedshop);
 		
-		e.add(new Environment(1020, 300, 260, 82, Color.BLACK));// Animal Shop
-		e.add(new Environment(1045, 382, 235, 120, Color.BLACK));// Animal Shop
-		e.add(new Environment(1020, 502, 260, 83, Color.BLACK));// Animal Shop
-		Rectangle warpblocktoanimalshop = new Rectangle(1020, 382, 25, 120);
+		//------------------------Animal Shop------------------------------------//
+		Environment animalshop1 = new Environment(1020, 385, 260, 82, Color.BLACK);
+		Environment animalshop2 = new Environment(1045, 467, 235, 120, Color.BLACK);
+		Environment animalshop3 = new Environment(1020, 587, 260, 83, Color.BLACK);
+		animalshop1.setOpacity(0);
+		animalshop2.setOpacity(0);
+		animalshop3.setOpacity(0);
+		e.add(animalshop1);
+		e.add(animalshop2);
+		e.add(animalshop3);
+		Rectangle warpblocktoanimalshop = new Rectangle(1020, 467, 25, 120);
 		warpblocktoanimalshop.setOpacity(0);
 		root.getChildren().addAll(warpblocktoanimalshop);
 		Pair<Rectangle, Integer> toanimalshop = new Pair<Rectangle, Integer>(warpblocktoanimalshop, 6);
