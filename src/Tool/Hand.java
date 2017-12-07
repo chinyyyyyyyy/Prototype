@@ -3,7 +3,6 @@ package Tool;
 import ComponentMap.ActionByToolAble;
 import ComponentMap.Dropbox;
 import ComponentMap.Feild;
-import ComponentMap.Pond;
 import Plant.OnHandAble;
 
 public class Hand extends Tool {
@@ -37,4 +36,8 @@ public class Hand extends Tool {
 			System.out.println(name + " is holding a " + onhand.getName());
 		}
 	}
+	
+	public void CheckUpgrade() {
+	}
 }
+

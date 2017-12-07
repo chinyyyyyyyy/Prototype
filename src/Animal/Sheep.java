@@ -1,22 +1,26 @@
 package Animal;
 
+import ComponentMap.ActionByToolAble;
 import Product.Wool;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 
-public class Sheep extends Animal {
+public class Sheep extends Animal implements ActionByToolAble{
 
 	protected String name;
 	protected static int SheepCount = 0;
 	protected int age;
 	protected int love;
 	public static final int COST = 3000;
+	protected int daycount;
 
 	public Sheep(int x, int y, int w, int h, Color c) {
 		super(x, y, w, h, c);
 		this.age = 1;
 		this.love = 0;
+		this.daycount=0;
+		this.produceable=false;
 	}
 
 	public void cry() {
@@ -25,6 +29,10 @@ public class Sheep extends Animal {
 
 	public void produce() {
 		Wool.addWool();
+		this.produceable=false;
+		cry();
+		this.love++;
+		this.daycount=0;
 	}
 
 	public void checkAction(Rectangle r) {
@@ -36,12 +44,9 @@ public class Sheep extends Animal {
 		if (wi >= 0.9 * wa && hi >= 0.9 * ha) {
 			cry();
 			this.love++;
-			// System.out.println(""+this.love);
-			// produce();
-			// System.out.println(Milk.getMilkCount());
 		}
 	}
-
+	
 	public static void addSheep() {
 		SheepCount++;
 	}
@@ -64,5 +69,14 @@ public class Sheep extends Animal {
 
 	public int getLove() {
 		return love;
+	}
+	
+	public void updateafterendday() {
+		this.age++;
+		if(this.daycount>=5) this.produceable = true;
+	}
+	
+	public boolean getProduceable() {
+		return this.produceable;
 	}
 }

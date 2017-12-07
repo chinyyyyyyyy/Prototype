@@ -1,9 +1,11 @@
 package NPC;
 
+import ComponentMap.Hero;
 import ComponentMap.SceneManager;
 import Plant.PlantA;
 import Plant.PlantB;
 import Plant.PlantC;
+import SpecialScene.AnimalMenu;
 import SpecialScene.SeedMenu;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -32,7 +34,7 @@ public class CounterSeed extends Counter {
 		BuySeedB(numB);
 		BuySeedC(numC);
 		System.out.println("Total cost is " + SeedMenu.getTotalCost() + " $");
-		System.out.println("Thank you very much ~");
+		System.out.println("Thank you very much ~");			
 	}
 
 	private static void BuySeedC(int numC) {

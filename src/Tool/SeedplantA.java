@@ -29,4 +29,7 @@ public class SeedplantA extends Tool {
 		}
 	}
 
+	public void CheckUpgrade() {
+	}
+	
 }

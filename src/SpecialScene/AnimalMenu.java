@@ -1,6 +1,7 @@
 package SpecialScene;
 
 import ComponentMap.SceneManager;
+import Logic.World;
 import Map.setsceneable;
 import NPC.CounterAnimal;
 import javafx.event.EventHandler;
@@ -13,7 +14,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
-public class AnimalMenu implements setsceneable {
+public class AnimalMenu implements setsceneable,SpecialScene {
 
 	private Group root;
 	public Scene scene;
@@ -121,7 +122,7 @@ public class AnimalMenu implements setsceneable {
 		}
 	}
 
-	protected void update() {
+	public void update() {
 		gc.setFill(Color.ANTIQUEWHITE);
 		gc.fillRect(0, 0, 1280, 720);
 		gc.setFill(Color.BLACK);
@@ -136,7 +137,7 @@ public class AnimalMenu implements setsceneable {
 		gc.fillText("X" + priceof1, 725, 200);
 		gc.fillText("X" + priceof2, 725, 350);
 		gc.fillText("X" + priceof3, 725, 500);
-		gc.fillText("Amount", 640, 120);
+		gc.fillText("Amount", 675, 120);
 		gc.fillText("Cost", 1000, 120);
 		gc.fillText(amouttype1 + "", 675, 200);
 		gc.fillText(amouttype2 + "", 675, 350);
@@ -147,7 +148,7 @@ public class AnimalMenu implements setsceneable {
 		gc.fillText("RESET", 675, 650);
 		gc.fillText("OK", 925, 650);
 
-		gc.strokeRect(600 + column * 250, 150 + row * 150, 50, 50);
+		gc.strokeRect(600 + column * 275, 150 + row * 150, 50, 50);
 	}
 
 	protected void editAmount() {
@@ -175,7 +176,8 @@ public class AnimalMenu implements setsceneable {
 				} catch (IndexOutOfBoundsException e) {
 					reset();
 				}
-				if (CounterAnimal.canBuyBarn && CounterAnimal.canBuyHen) {
+				World.setMoney(World.getMoney()-AnimalMenu.getTotalCost());
+				if (CounterAnimal.canBuyBarn && CounterAnimal.canBuyHen && World.getBuyable()) {
 					CounterAnimal.update(amouttype1, amouttype2, amouttype3);
 					SceneManager.warpTo(sc);
 				}

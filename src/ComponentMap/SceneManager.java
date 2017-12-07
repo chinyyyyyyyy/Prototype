@@ -6,6 +6,7 @@ import java.util.List;
 import Logic.Backpack;
 import Map.setsceneable;
 import NPC.Counter;
+import SpecialScene.SpecialScene;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -22,6 +23,7 @@ import javafx.util.Pair;
 public class SceneManager extends Rectangle {
 	private static Stage primaryStage;
 	private static List<setsceneable> listmap = new ArrayList<>();
+	private static int sceneNumber;
 
 	public SceneManager(Stage s, List<setsceneable> lm) {
 		primaryStage = s;
@@ -42,7 +44,7 @@ public class SceneManager extends Rectangle {
 			@Override
 			public void handle(KeyEvent event) {
 				if (event.getCode().equals(KeyCode.ENTER)) {
-					primaryStage.setScene(lm.get(5).getScene());
+					primaryStage.setScene(lm.get(10).getScene());
 				} 
 			}
 		});
@@ -53,6 +55,14 @@ public class SceneManager extends Rectangle {
 	public static void warpTo(int mapno) {
 		if (listmap.get(mapno) instanceof HasAnimal) {
 			((HasAnimal) listmap.get(mapno)).update();
+		}
+		
+		if (listmap.get(mapno) instanceof SpecialScene) {
+			((SpecialScene) listmap.get(mapno)).update();
+		}
+		
+		if (listmap.get(mapno) instanceof SpecialScene == false) {
+			setSceneNumber(mapno);
 		}
 		primaryStage.setScene(listmap.get(mapno).getScene());
 		if (listmap.get(mapno) instanceof HasNPC) {
@@ -93,4 +103,11 @@ public class SceneManager extends Rectangle {
 
 	}
 
+	public static int getSceneNumber() {
+		return sceneNumber;
+	}
+
+	public static void setSceneNumber(int sceneNumber) {
+		SceneManager.sceneNumber = sceneNumber;
+	}
 }

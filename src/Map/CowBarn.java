@@ -10,6 +10,7 @@ import ComponentMap.Environment;
 import ComponentMap.HasAnimal;
 import ComponentMap.Hero;
 import ComponentMap.ReceiveAction;
+import Logic.World;
 import NPC.Counter;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -109,6 +110,7 @@ public class CowBarn implements setsceneable,HasAnimal{
 	public void addAnimal() throws IndexOutOfBoundsException{
 		for(int i = this.CurrentAnimal ; i< getAnimalCount() ; i++) {
 			Animal x = Counter.animal.get(i);
+			World.getListUpdate().add(x);
 			if(x instanceof Cow) {
 				re.add(x);
 				Environment cow = new Environment((int) x.getX(),(int) x.getY(),100,100,Color.ALICEBLUE);
