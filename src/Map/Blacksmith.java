@@ -13,6 +13,7 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Pair;
@@ -32,31 +33,33 @@ public class Blacksmith implements setsceneable,HasNPC {
 		scene = new Scene(root, 1280, 720);
 		Canvas bg = new Canvas(1280, 720);
 		GraphicsContext gc = bg.getGraphicsContext2D();
-		gc.setFill(Color.BURLYWOOD);
-		gc.fillRect(0, 0, 1280, 720);
+		Image background = new Image(ClassLoader.getSystemResource("inBlacksmith.png").toString());
+		Image furnance = new Image(ClassLoader.getSystemResource("furnance.png").toString());
+		gc.drawImage(background,0,0);
+		gc.drawImage(furnance,640,0);
 		root.getChildren().add(bg);
 
 		// Boarder
 		e.add(new Environment(-10, 0, 10, 720, Color.BLACK));// boarderLEFT
-		e.add(new Environment(0, -10, 1280, 10, Color.BLACK));// boarderTOP
+		e.add(new Environment(0, 225, 1280, 10, Color.BLACK));// boarderTOP
 		e.add(new Environment(1280, 0, 10, 720, Color.BLACK));// boarderRIGHT
 		e.add(new Environment(0, 720, 1280, 10, Color.BLACK));// boarderBOTTOM
 
 		// shelf
-		e.add(new Environment(100, 50, 100, 620, Color.SADDLEBROWN));
+		e.add(new Environment(160,350, 120, 240, Color.SADDLEBROWN));
+		e.add(new Environment(0,230, 150, 150, Color.SADDLEBROWN));
 
 		// oven
-		e.add(new Environment(640, 0, 400, 170, Color.BROWN));
-		e.add(new Environment(715, 40, 250, 130, Color.ORANGE));
+		e.add(new Environment(640, 0, 200, 300, Color.BROWN));
 		
 		//npc
-		e.add(new Environment(1030, 250, 75, 75, Color.STEELBLUE));
-		blacksmith = new BlackSmith(1030, 250, 75, 75, Color.STEELBLUE,"Gill");
+		e.add(new Environment(1080, 250, 180, 200, Color.STEELBLUE));
+		blacksmith = new BlackSmith(1080, 250, 75, 75, Color.STEELBLUE,"Gill");
 		npc = blacksmith;
 		re.add(blacksmith);
 
-		root.getChildren().addAll(e);
-		root.getChildren().addAll(re);
+		//root.getChildren().addAll(e);
+		//root.getChildren().addAll(re);
 
 		Rectangle warpblocktotown = new Rectangle(580, 695, 120, 25);
 		warpblocktotown.setFill(Color.RED);

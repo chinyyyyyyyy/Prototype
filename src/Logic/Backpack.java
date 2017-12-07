@@ -31,7 +31,7 @@ public class Backpack {
 	}
 	
 	public static void addItem(Tool t) {
-		if (backpack.size()<max_bagsize) backpack.add(t);
+		if (backpack.size() < max_bagsize) backpack.add(t);
 	}
 	
 	public static void deleteItem() {
