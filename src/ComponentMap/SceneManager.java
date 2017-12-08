@@ -44,11 +44,7 @@ public class SceneManager extends Rectangle {
 			@Override
 			public void handle(KeyEvent event) {
 				if (event.getCode().equals(KeyCode.ENTER)) {
-<<<<<<< HEAD
-					primaryStage.setScene(lm.get(2).getScene());
-=======
-					primaryStage.setScene(lm.get(4).getScene());
->>>>>>> d5f985bf4684c0154f7e8ab59687f5e06b12ee9e
+					primaryStage.setScene(lm.get(10).getScene());
 				} 
 			}
 		});

@@ -62,33 +62,11 @@ public class HenBarn implements setsceneable, HasAnimal {
 		e.add(new Environment(581, 0, 118, 200, Color.CHOCOLATE));
 		e.add(new Environment(714, 0, 118, 200, Color.CHOCOLATE));
 		e.add(new Environment(847, 0, 118, 200, Color.CHOCOLATE));
-<<<<<<< HEAD
+		
 		// Hay
-		e.add(new Environment(0, 400, 150, 200, Color.BLACK));
-		haygetter = new HayGetter(0, 400, 150, 200, Color.BLACK);
+		e.add(new Environment(0, 550, 150, 200, Color.BLACK));
+		haygetter = new HayGetter(0, 550, 150, 200, Color.BLACK);
 		re.add(haygetter);
-=======
-
-	    
-		//Hen
-		position.add(new Pair<Integer, Integer>(334,40));
-		position.add(new Pair<Integer, Integer>(467,40));
-		position.add(new Pair<Integer, Integer>(600,40));
-		position.add(new Pair<Integer, Integer>(733,40));
-		position.add(new Pair<Integer, Integer>(866,40));
-		actionposition.add(new Pair<Integer, Integer>(334,120));
-		actionposition.add(new Pair<Integer, Integer>(467,120));
-		actionposition.add(new Pair<Integer, Integer>(600,120));
-		actionposition.add(new Pair<Integer, Integer>(733,120));
-		actionposition.add(new Pair<Integer, Integer>(866,120));
-		
-		//HAY
-		e.add(new Environment(0, 550, 150, 100, Color.BLACK));
-		//root.getChildren().addAll(e);
-		//root.getChildren().addAll(re);
-		
-
->>>>>>> d5f985bf4684c0154f7e8ab59687f5e06b12ee9e
 
 		root.getChildren().addAll(e);
 
@@ -103,16 +81,6 @@ public class HenBarn implements setsceneable, HasAnimal {
 		actionposition.add(new Pair<Integer, Integer>(600, 120));
 		actionposition.add(new Pair<Integer, Integer>(733, 120));
 		actionposition.add(new Pair<Integer, Integer>(866, 120));
-
-		// // Egg
-		// for (int i = 0; i < this.CurrentAnimal; i++) {
-		// if (Counter.hen.get(i).getProduceable()) {
-		// gc.setFill(Color.WHITE);
-		// gc.fillOval(actionposition.get(i).getKey(), actionposition.get(i).getValue(),
-		// 70, 70);
-		// }
-		// }
-
 		root.getChildren().addAll(re);
 
 		Rectangle warpblocktofarm = new Rectangle(580, 695, 120, 25);
