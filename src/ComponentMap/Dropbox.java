@@ -6,6 +6,7 @@ import Logic.Backpack;
 import Logic.InBackpack;
 import Logic.updateEveryday;
 import Plant.OnHandAble;
+import Plant.Plant;
 import Product.Product;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -49,6 +50,8 @@ public class Dropbox extends ReceiveAction implements ActionByToolAble,updateEve
 			InBackpack item = Backpack.CheckItemOnHand();
 			if (item instanceof Product) {
 				((Product) item).Action(this);
+			}else if (item instanceof Plant) {
+				((Plant) item).Action(this);
 			}
 		}
 	}

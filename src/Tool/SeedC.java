@@ -4,7 +4,7 @@ import ComponentMap.ActionByToolAble;
 import ComponentMap.Feild;
 import Logic.Backpack;
 import Logic.InBackpack;
-import Plant.PlantA;
+import Plant.PlantC;
 
 public class SeedC extends Seed implements InBackpack {
 	private static int seedamout;
@@ -12,7 +12,7 @@ public class SeedC extends Seed implements InBackpack {
 
 	public SeedC(int amount) {
 		seedamout = amount;
-		this.name = "PlantC";
+		this.name = "SeedC";
 	}
 	
 	public void cry() {
@@ -23,14 +23,13 @@ public class SeedC extends Seed implements InBackpack {
 	public void Action(ActionByToolAble a) {
 		if (a instanceof Feild) {
 			if (((Feild) a).canplant() && seedamout > 0) {
-				((Feild) a).setPlant(new PlantA());
+				((Feild) a).setPlant(new PlantC());
 			}
 			seedamout--;
 			System.out.println("Seed Left = " + seedamout);
 			if (seedamout == 0) {
 				System.out.println("Seed Out");
 				Backpack.deleteItem();
-				Backpack.ChangeItem();
 			}
 		}
 	}

@@ -157,6 +157,8 @@ public class Inventory implements setsceneable, SpecialScene {
 		}
 		gc.setStroke(Color.RED);
 		gc.strokeRect(152 + column * 100, 252 + row * 150, 96, 96);
+		
+		System.out.println("Max = "+Backpack.getMaxSize()+", Current = "+Backpack.getBackpack().size()+", isFull = "+Backpack.isFull());
 	}
 
 	public Scene getScene() {

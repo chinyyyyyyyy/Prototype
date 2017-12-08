@@ -23,10 +23,15 @@ public class HayGetter extends NPC{
 		double wa = r.getWidth();
 		double ha = r.getHeight();
 		if (wi >= 0.9 * wa && hi >= 0.9 * ha) {
-			if (Hay.getHayCount() == 0)
-				Backpack.getBackpack().add(new Hay());
-			Hay.addHay();
-			System.out.println("Get Hay!");
+				if (Hay.getHayCount() == 0) {
+					if (Backpack.isFull()) {
+						System.out.println("Your bag is full.");
+						return;
+					}
+					else Backpack.addItem(new Hay());
+				}
+				Hay.addHay();
+				System.out.println("Get Hay!");
 		}
 	}
 }

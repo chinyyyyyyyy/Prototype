@@ -12,7 +12,7 @@ public class SeedA extends Seed implements InBackpack {
 
 	public SeedA(int amount) {
 		seedamout = amount;
-		this.name = "PlantA";
+		this.name = "SeedA";
 	}
 	
 	public void cry() {
@@ -30,7 +30,6 @@ public class SeedA extends Seed implements InBackpack {
 			if (seedamout == 0) {
 				System.out.println("Seed Out");
 				Backpack.deleteItem();
-				Backpack.ChangeItem();
 			}
 		}
 	}

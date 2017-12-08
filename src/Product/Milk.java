@@ -3,7 +3,7 @@ package Product;
 public class Milk extends Product{
 	
 	protected static int MilkCount=0;
-	protected static final int COST = 200;
+	protected static final int COST = 300;
 	
 	public Milk() {
 		this.price=COST;

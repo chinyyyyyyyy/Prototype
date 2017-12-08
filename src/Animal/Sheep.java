@@ -39,13 +39,19 @@ public class Sheep extends Animal implements ActionByToolAble{
 	}
 
 	public void produce() {
-		if (Wool.getWoolCount() == 0)
-			Backpack.getBackpack().add(new Wool());
+		if (Wool.getWoolCount() == 0) {
+			if(Backpack.isFull()) {
+				System.out.println("Your bag is full.");
+				return;
+			}
+			else Backpack.addItem(new Wool());	
+		}
 		Wool.addWool();
 		this.produceable=false;
 		cry();
 		this.love++;
 		this.daycount=0;
+		System.out.println("Cut Success");
 	}
 
 	public void checkAction(Rectangle r) {
