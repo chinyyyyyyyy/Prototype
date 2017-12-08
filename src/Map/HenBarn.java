@@ -16,6 +16,7 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Pair;
@@ -39,13 +40,13 @@ public class HenBarn implements setsceneable, HasAnimal {
 		scene = new Scene(root, 1280, 720);
 		bg = new Canvas(1280, 720);
 		GraphicsContext gc = bg.getGraphicsContext2D();
-		gc.setFill(Color.TAN);
-		gc.fillRect(0, 0, 1280, 720);
+		Image background = new Image(ClassLoader.getSystemResource("inHenhouse.png").toString());
+		gc.drawImage(background,0,0);
 		root.getChildren().add(bg);
 
 		// Boarder
 		e.add(new Environment(-10, 0, 10, 720, Color.BLACK));// boarderLEFT
-		e.add(new Environment(0, -10, 1280, 10, Color.BLACK));// boarderTOP
+		e.add(new Environment(0, 225, 1280, 10, Color.BLACK));// boarderTOP
 		e.add(new Environment(1280, 0, 10, 720, Color.BLACK));// boarderRIGHT
 		e.add(new Environment(0, 720, 1280, 10, Color.BLACK));// boarderBOTTOM
 		// Partition TOP
@@ -61,10 +62,33 @@ public class HenBarn implements setsceneable, HasAnimal {
 		e.add(new Environment(581, 0, 118, 200, Color.CHOCOLATE));
 		e.add(new Environment(714, 0, 118, 200, Color.CHOCOLATE));
 		e.add(new Environment(847, 0, 118, 200, Color.CHOCOLATE));
+<<<<<<< HEAD
 		// Hay
 		e.add(new Environment(0, 400, 150, 200, Color.BLACK));
 		haygetter = new HayGetter(0, 400, 150, 200, Color.BLACK);
 		re.add(haygetter);
+=======
+
+	    
+		//Hen
+		position.add(new Pair<Integer, Integer>(334,40));
+		position.add(new Pair<Integer, Integer>(467,40));
+		position.add(new Pair<Integer, Integer>(600,40));
+		position.add(new Pair<Integer, Integer>(733,40));
+		position.add(new Pair<Integer, Integer>(866,40));
+		actionposition.add(new Pair<Integer, Integer>(334,120));
+		actionposition.add(new Pair<Integer, Integer>(467,120));
+		actionposition.add(new Pair<Integer, Integer>(600,120));
+		actionposition.add(new Pair<Integer, Integer>(733,120));
+		actionposition.add(new Pair<Integer, Integer>(866,120));
+		
+		//HAY
+		e.add(new Environment(0, 550, 150, 100, Color.BLACK));
+		//root.getChildren().addAll(e);
+		//root.getChildren().addAll(re);
+		
+
+>>>>>>> d5f985bf4684c0154f7e8ab59687f5e06b12ee9e
 
 		root.getChildren().addAll(e);
 

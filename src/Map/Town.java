@@ -51,7 +51,7 @@ public class Town implements setsceneable {
 		//------------------Black Smith------------------------------------//
 		Environment blacksmith1 = new Environment(0, 0, 190, 300, Color.BLACK);
 		Environment blacksmith2 = new Environment(190, 0, 120, 250, Color.BLACK);
-		Environment blacksmith3 = new Environment(310, 0, 190, 300, Color.BLACK);
+		Environment blacksmith3 = new Environment(310, 0, 120, 300, Color.BLACK);
 		blacksmith1.setOpacity(0);
 		blacksmith2.setOpacity(0);
 		blacksmith3.setOpacity(0);
