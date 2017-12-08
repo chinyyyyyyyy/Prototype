@@ -1,13 +1,12 @@
 package Product;
 
-import ComponentMap.ActionByToolAble;
-
 public class Egg extends Product{
 
 	protected static int EggCount=0;
-	protected static final int COST = 100;
+	protected static final int COST = 50;
 	
 	public Egg() {
+		this.price=COST;
 	}
 
 	public static int getEggCount() {
@@ -18,10 +17,11 @@ public class Egg extends Product{
 		EggCount++;
 	}
 	
-	public void Action(ActionByToolAble a) {
-	}
-	
 	public int getAmount() {
 		return EggCount;
+	}
+	
+	public void clear() {
+		EggCount=0;
 	}
 }

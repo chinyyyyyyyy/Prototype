@@ -18,12 +18,10 @@ public abstract class Tool implements InBackpack {
 	public void upgrade() {
 		if (getTimeOfUse() == 300) {
 			this.level += 2;
-			System.out.println("Upgrade Successful !");
 		} else if (getTimeOfUse() >= ToolStatus.getUpgradeLevel().get(level)) {
 			this.level++;
-			System.out.println("Upgrade Successful !");
-		} else
-			System.out.println("Sorry Your Tool can't upgrade.");
+		}
+		System.out.println("Upgrade Successful !");
 		CheckUpgrade();
 	}
 
@@ -37,5 +35,5 @@ public abstract class Tool implements InBackpack {
 		return level;
 	}
 
-	public abstract void CheckUpgrade();
+	public abstract boolean CheckUpgrade();
 }

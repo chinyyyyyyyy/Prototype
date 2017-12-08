@@ -27,7 +27,7 @@ public class BlackSmith extends NPC {
 		double ha = r.getHeight();
 		if (wi >= 0.9 * wa && hi >= 0.9 * ha) {
 			System.out.println("Hello, My name is "+this.name);
-			SceneManager.warpTo(16);
+			SceneManager.warpTo(18);
 		}
 	}
 

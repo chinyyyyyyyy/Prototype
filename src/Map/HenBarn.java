@@ -10,6 +10,7 @@ import ComponentMap.Hero;
 import ComponentMap.ReceiveAction;
 import Logic.World;
 import NPC.Counter;
+import NPC.HayGetter;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -23,6 +24,7 @@ public class HenBarn implements setsceneable, HasAnimal {
 	private Group root;
 	public Scene scene;
 	private Hero hero;
+	private HayGetter haygetter;
 	private int CurrentAnimal = 0;
 	private List<Environment> e = new ArrayList<>();
 	private List<ReceiveAction> re = new ArrayList<>();
@@ -59,52 +61,26 @@ public class HenBarn implements setsceneable, HasAnimal {
 		e.add(new Environment(581, 0, 118, 200, Color.CHOCOLATE));
 		e.add(new Environment(714, 0, 118, 200, Color.CHOCOLATE));
 		e.add(new Environment(847, 0, 118, 200, Color.CHOCOLATE));
-
-	    
-		//Hen
-		position.add(new Pair<Integer, Integer>(334,40));
-		position.add(new Pair<Integer, Integer>(467,40));
-		position.add(new Pair<Integer, Integer>(600,40));
-		position.add(new Pair<Integer, Integer>(733,40));
-		position.add(new Pair<Integer, Integer>(866,40));
-		actionposition.add(new Pair<Integer, Integer>(334,120));
-		actionposition.add(new Pair<Integer, Integer>(467,120));
-		actionposition.add(new Pair<Integer, Integer>(600,120));
-		actionposition.add(new Pair<Integer, Integer>(733,120));
-		actionposition.add(new Pair<Integer, Integer>(866,120));
 		
-		//HAY
-		e.add(new Environment(0, 550, 150, 100, Color.BLACK));
-		//root.getChildren().addAll(e);
-		//root.getChildren().addAll(re);
-		
-
-
-		root.getChildren().addAll(e);
+		// Hay
+		e.add(new Environment(0, 550, 150, 200, Color.BLACK));
+		haygetter = new HayGetter(0, 550, 150, 200, Color.BLACK);
+		re.add(haygetter);
 
 		// Hen
-		position.add(new Pair<Integer, Integer>(334, 40));
-		position.add(new Pair<Integer, Integer>(467, 40));
-		position.add(new Pair<Integer, Integer>(600, 40));
-		position.add(new Pair<Integer, Integer>(733, 40));
-		position.add(new Pair<Integer, Integer>(866, 40));
-		actionposition.add(new Pair<Integer, Integer>(334, 120));
-		actionposition.add(new Pair<Integer, Integer>(467, 120));
-		actionposition.add(new Pair<Integer, Integer>(600, 120));
-		actionposition.add(new Pair<Integer, Integer>(733, 120));
-		actionposition.add(new Pair<Integer, Integer>(866, 120));
-
-		// Egg
-		for (int i = 0; i < this.CurrentAnimal; i++) {
-			if (Counter.hen.get(i).getProduceable()) {
-				gc.setFill(Color.WHITE);
-				gc.fillOval(actionposition.get(i).getKey(), actionposition.get(i).getValue(), 70, 70);
-			}
-		}
-
-		// HAY
-		e.add(new Environment(0, 400, 150, 200, Color.BLACK));
-		root.getChildren().addAll(re);
+		position.add(new Pair<Integer, Integer>(334, 260));
+		position.add(new Pair<Integer, Integer>(467, 260));
+		position.add(new Pair<Integer, Integer>(600, 260));
+		position.add(new Pair<Integer, Integer>(733, 260));
+		position.add(new Pair<Integer, Integer>(866, 260));
+		actionposition.add(new Pair<Integer, Integer>(334, 340));
+		actionposition.add(new Pair<Integer, Integer>(467, 340));
+		actionposition.add(new Pair<Integer, Integer>(600, 340));
+		actionposition.add(new Pair<Integer, Integer>(733, 340));
+		actionposition.add(new Pair<Integer, Integer>(866, 340));
+		
+//		root.getChildren().addAll(e);
+//		root.getChildren().addAll(re);
 
 		Rectangle warpblocktofarm = new Rectangle(580, 695, 120, 25);
 		warpblocktofarm.setFill(Color.RED);
@@ -133,7 +109,10 @@ public class HenBarn implements setsceneable, HasAnimal {
 				re.add(x);
 				Environment hen = new Environment(position.get(i).getKey(), position.get(i).getValue(), 80, 80,
 						Color.ORANGERED);
+				Environment egg = new Environment(actionposition.get(i).getKey(), actionposition.get(i).getValue(), 80, 80,
+						Color.LIMEGREEN);
 				e.add(hen);
+				e.add(egg);
 				root.getChildren().add(x);
 				root.getChildren().add(hen);
 			}
@@ -143,12 +122,12 @@ public class HenBarn implements setsceneable, HasAnimal {
 	public void update() {
 		addAnimal();
 		this.CurrentAnimal = getAnimalCount();
-		egg = new Canvas(1280,720);
+		egg = new Canvas(1280, 720);
 		GraphicsContext gc = egg.getGraphicsContext2D();
 		for (int i = 0; i < this.CurrentAnimal; i++) {
 			if (Counter.hen.get(i).getProduceable()) {
 				gc.setFill(Color.WHITE);
-				gc.fillOval(actionposition.get(i).getKey()+25, actionposition.get(i).getValue()+20, 40, 50);
+				gc.fillOval(actionposition.get(i).getKey() + 25, actionposition.get(i).getValue() + 20, 40, 50);
 			} else {
 				gc.setFill(Color.LIMEGREEN);
 				gc.fillRect(actionposition.get(i).getKey(), actionposition.get(i).getValue(), 80, 80);

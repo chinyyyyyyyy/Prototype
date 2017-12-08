@@ -5,7 +5,10 @@ import ComponentMap.StackAble;
 import Logic.Backpack;
 import Logic.InBackpack;
 import Map.setsceneable;
+import Tool.Hay;
+import Tool.Seed;
 import Tool.Tool;
+import Tool.WateringCan;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -26,6 +29,7 @@ public class Inventory implements setsceneable, SpecialScene {
 	private int row;
 	private static int MAX_ROW = 1;
 	private static final int MAX_COLUMN = 10;
+	private static int size = 11;
 
 	public Inventory() {
 		root = new Group();
@@ -119,7 +123,7 @@ public class Inventory implements setsceneable, SpecialScene {
 		gc.fillText("Item List", 150, 180);
 
 		for (int i = 0; i < MAX_ROW; i++) {
-			for (int j = 0; j < MAX_COLUMN; j++) {
+			for (int j = 1; j <= MAX_COLUMN; j++) {
 				gc.setStroke(Color.BLACK);
 				gc.setFill(Color.ALICEBLUE);
 				if(i==0 && j<4) {
@@ -129,17 +133,23 @@ public class Inventory implements setsceneable, SpecialScene {
 					}else if(((Tool) x).getLevel()==1)
 						gc.setFill(Color.SILVER);
 				}
-				gc.fillRect(150 + j * 100, 250 + i * 150, 100, 100);
-				gc.strokeRect(150 + j * 100, 250 + i * 150, 100, 100);
-				int index = (10 * i + j) % 10;
+				int index = (10 * i + j) % size;
+				if(index < Backpack.getBackpack().size() && Backpack.getBackpack().get(index) instanceof Hay) gc.setFill(Color.GREENYELLOW);
+				else if(index < Backpack.getBackpack().size() && Backpack.getBackpack().get(index) instanceof Seed) gc.setFill(Color.SPRINGGREEN);
+				gc.fillRect(150 + (j-1) * 100, 250 + i * 150, 100, 100);
+				gc.strokeRect(150 + (j-1) * 100, 250 + i * 150, 100, 100);
 				if (index < Backpack.getBackpack().size()) {
+					InBackpack x = Backpack.getBackpack().get(index);
+					if(x instanceof WateringCan) {
+						gc.setFill(Color.DEEPSKYBLUE);
+						gc.fillRect(150 + (j-1) * 100, 250 + i * 150 + (1-WateringCan.getWaterLevel())*100, 100, WateringCan.getWaterLevel()*100);
+					}
 					gc.setFill(Color.BLACK);
 					gc.setFont(new Font("abc", 20));
-					InBackpack x = Backpack.getBackpack().get(index);
-					gc.fillText(x.getClass().getSimpleName(), 180 + j * 100,
+					gc.fillText(x.getClass().getSimpleName(), 180 + (j-1) * 100,
 							310 + i * 150);
 					if(x instanceof StackAble) {
-						gc.fillText("x" + ((StackAble) x).getAmount(), 210 + j * 100,
+						gc.fillText("x" + ((StackAble) x).getAmount(), 210 + (j-1) * 100,
 								340 + i * 150);
 					}
 				}
@@ -151,5 +161,10 @@ public class Inventory implements setsceneable, SpecialScene {
 
 	public Scene getScene() {
 		return scene;
+	}
+	
+	public static void upgrade() {
+		MAX_ROW++;
+		size=Backpack.getMaxSize();
 	}
 }

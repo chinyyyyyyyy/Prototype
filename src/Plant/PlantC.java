@@ -15,7 +15,12 @@ public class PlantC extends Plant {
 
 	public PlantC() {
 		dayofgrowth = 0;
+<<<<<<< HEAD
 		name = "Cucumber";
+=======
+		name = "PantC";
+		this.price=SeedCost;
+>>>>>>> aa7b0763d113a7f8f87e2716088d974a0a001958
 	}
 
 	@Override

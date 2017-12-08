@@ -1,13 +1,15 @@
 package Animal;
 
+import ComponentMap.ActionByToolAble;
 import ComponentMap.SceneManager;
 import Logic.Backpack;
 import Product.Egg;
+import Tool.Hay;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 
-public class Hen extends Animal {
+public class Hen extends Animal implements ActionByToolAble{
 
 	protected String name;
 	protected static int HenCount = 0;
@@ -19,6 +21,7 @@ public class Hen extends Animal {
 		super(x, y, w, h, c);
 		this.age = 1;
 		this.love = 0;
+		this.produceable=false;
 	}
 
 	public void cry() {
@@ -30,6 +33,12 @@ public class Hen extends Animal {
 			Backpack.getBackpack().add(new Egg());
 		Egg.addEgg();
 		this.produceable = false;
+	}
+	
+	public void eat() {
+		cry();
+		this.love++;
+		this.feedable=false;
 	}
 
 	public void checkAction(Rectangle r) {
@@ -43,10 +52,11 @@ public class Hen extends Animal {
 				produce();
 				System.out.println("Get Egg");
 				SceneManager.warpTo(SceneManager.getSceneNumber());
-			}
-			else {
+			}else if(Backpack.CheckItemOnHand() instanceof Hay){
+				((Hay) Backpack.CheckItemOnHand()).Action(this);
+			}else {
 				cry();
-				this.love++;
+				this.love++;							
 			}
 		}
 	}
@@ -78,6 +88,7 @@ public class Hen extends Animal {
 	public void updateafterendday() {
 		this.age++;
 		this.produceable = true;
+		this.feedable=true;
 	}
 
 	public boolean getProduceable() {

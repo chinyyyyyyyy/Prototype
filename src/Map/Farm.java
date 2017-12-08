@@ -141,6 +141,7 @@ public class Farm implements setsceneable{
 		Image dropbox = new Image(ClassLoader.getSystemResource("Dropbox2.png").toString());
 		Environment dropboxenv = new Environment(720,50,90,90,Color.BURLYWOOD);
 		Dropbox dropboxact = new Dropbox(720,50,90,90,Color.BURLYWOOD);
+		World.getListUpdate().add(dropboxact);
 		dropboxenv.setOpacity(0);
 		dropboxact.setFill(new ImagePattern(dropbox));
 		e.add(dropboxenv);

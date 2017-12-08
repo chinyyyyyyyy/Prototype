@@ -2,6 +2,7 @@ package Tool;
 
 import Animal.Sheep;
 import ComponentMap.ActionByToolAble;
+import ComponentMap.SceneManager;
 
 public class Scissors extends Tool {
 	
@@ -18,6 +19,7 @@ public class Scissors extends Tool {
 			if (((Sheep) a).getProduceable()) {
 				((Sheep) a).produce();
 				System.out.println("Cut Success");
+				SceneManager.warpTo(SceneManager.getSceneNumber());
 			}else {
 				System.out.println("You can't cut now.");
 			}
@@ -25,6 +27,7 @@ public class Scissors extends Tool {
 		}
 	}
 
-	public void CheckUpgrade() {
+	public boolean CheckUpgrade() {
+		return false;
 	}
 }

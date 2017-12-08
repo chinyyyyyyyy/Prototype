@@ -2,10 +2,7 @@ package ComponentMap;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import Logic.Backpack;
 import Map.setsceneable;
-import NPC.Counter;
 import SpecialScene.SpecialScene;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
@@ -24,6 +21,9 @@ public class SceneManager extends Rectangle {
 	private static Stage primaryStage;
 	private static List<setsceneable> listmap = new ArrayList<>();
 	private static int sceneNumber;
+	private static int previousScene;
+	private static int currentScene;
+
 
 	public SceneManager(Stage s, List<setsceneable> lm) {
 		primaryStage = s;
@@ -44,7 +44,11 @@ public class SceneManager extends Rectangle {
 			@Override
 			public void handle(KeyEvent event) {
 				if (event.getCode().equals(KeyCode.ENTER)) {
+<<<<<<< HEAD
 					primaryStage.setScene(lm.get(0).getScene());
+=======
+					primaryStage.setScene(lm.get(10).getScene());
+>>>>>>> aa7b0763d113a7f8f87e2716088d974a0a001958
 				} 
 			}
 		});
@@ -53,6 +57,7 @@ public class SceneManager extends Rectangle {
 	}
 
 	public static void warpTo(int mapno) {
+		setPreviousScene(currentScene);
 		if (listmap.get(mapno) instanceof HasAnimal) {
 			((HasAnimal) listmap.get(mapno)).update();
 		}
@@ -65,9 +70,10 @@ public class SceneManager extends Rectangle {
 			setSceneNumber(mapno);
 		}
 		primaryStage.setScene(listmap.get(mapno).getScene());
-		if (listmap.get(mapno) instanceof HasNPC) {
+		if (listmap.get(mapno) instanceof HasNPC && listmap.get(previousScene) instanceof SpecialScene == false) {
 			((HasNPC) listmap.get(mapno)).getNPC().Welcome();
 		}
+		setCurrentScene(mapno);
 	}
 
 	public static int CheckOnWarpBlock(List<Pair<Rectangle, Integer>> WarpList, Rectangle unitblock) {
@@ -113,5 +119,21 @@ public class SceneManager extends Rectangle {
 	
 	public static List<setsceneable> getListMap(){
 		return listmap;
+	}
+
+	public static int getPreviousScene() {
+		return previousScene;
+	}
+
+	public static void setPreviousScene(int previousScene) {
+		SceneManager.previousScene = previousScene;
+	}
+
+	public static int getCurrentScene() {
+		return currentScene;
+	}
+
+	public static void setCurrentScene(int currentScene) {
+		SceneManager.currentScene = currentScene;
 	}
 }

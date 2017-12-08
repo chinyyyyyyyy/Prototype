@@ -51,4 +51,8 @@ public class SeedC extends Seed implements InBackpack {
 	public static int getSeedAmount() {
 		return seedamout;
 	}
+	
+	public void clear() {
+		seedamout=0;
+	}
 }

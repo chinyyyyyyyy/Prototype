@@ -7,6 +7,7 @@ public class PlantA extends Plant {
 	private final int SEED_DURATION = 2;
 	private final int SPOURT_DURATION = 4;
 	public static final int SeedCost = 50;
+<<<<<<< HEAD
 	public static final ImagePattern seedstate = new ImagePattern(new Image(ClassLoader.getSystemResource("seedstate.png").toString()));
 	public static final ImagePattern  wateredseedstate = new ImagePattern(new Image(ClassLoader.getSystemResource("wateredseedstate.png").toString()));
 	public static final ImagePattern  sproutstate = new ImagePattern(new Image(ClassLoader.getSystemResource("radishsprout.png").toString()));
@@ -16,6 +17,15 @@ public class PlantA extends Plant {
 	public PlantA() {
 		dayofgrowth = 0;
 		name = "Radish";
+=======
+	
+	
+
+	public PlantA() {
+		dayofgrowth = 0;
+		name = "PlantA";
+		this.price=SeedCost;
+>>>>>>> aa7b0763d113a7f8f87e2716088d974a0a001958
 	}
 
 	@Override
