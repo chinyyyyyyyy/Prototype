@@ -15,12 +15,9 @@ public class PlantB extends Plant {
 
 	public PlantB() {
 		dayofgrowth = 0;
-<<<<<<< HEAD
 		name = "Potato";
-=======
-		name = "PlantB";
 		this.price=SeedCost;
->>>>>>> aa7b0763d113a7f8f87e2716088d974a0a001958
+
 	}
 
 	@Override

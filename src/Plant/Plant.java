@@ -1,11 +1,9 @@
 package Plant;
 
-<<<<<<< HEAD
-import javafx.scene.paint.Color;
+
 import javafx.scene.paint.ImagePattern;
 
-=======
->>>>>>> aa7b0763d113a7f8f87e2716088d974a0a001958
+
 public abstract class Plant implements OnHandAble {
 	protected int dayofgrowth;
 	protected String name;
