@@ -1,6 +1,7 @@
 package Plant;
 
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
 
 public abstract class Plant implements OnHandAble {
 	protected int dayofgrowth;
@@ -15,7 +16,9 @@ public abstract class Plant implements OnHandAble {
 		return this.name;
 	}
 	
-	public abstract int checkState();
+	 public abstract ImagePattern checkState();
+	 
+	 public abstract ImagePattern getWateredstate();
 	
 	@Override 
 	public String toString() {

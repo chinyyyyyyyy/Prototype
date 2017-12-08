@@ -5,6 +5,7 @@ import ComponentMap.Feild;
 import Logic.Backpack;
 import Logic.InBackpack;
 import Plant.PlantA;
+import Plant.PlantB;
 
 public class SeedB extends Seed implements InBackpack{
 	private static int seedamout;
@@ -24,7 +25,7 @@ public class SeedB extends Seed implements InBackpack{
 	public void Action(ActionByToolAble a) {
 		if (a instanceof Feild) {
 			if (((Feild) a).canplant() && seedamout > 0) {
-				((Feild) a).setPlant(new PlantA());
+				((Feild) a).setPlant(new PlantB());
 			}
 			seedamout--;
 			System.out.println("Seed Left = " + seedamout);

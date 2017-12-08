@@ -2,14 +2,16 @@ package ComponentMap;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import Logic.Backpack;
+import javafx.animation.AnimationTimer;
 import javafx.event.EventHandler;
 import javafx.geometry.Bounds;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 import javafx.scene.transform.Rotate;
@@ -24,6 +26,10 @@ public class Hero {
 	private List<ReceiveAction> re = new ArrayList<>();
 	private List<Pair<Rectangle, Integer>> WarpList = new ArrayList<>();
 	private static String Name;
+	private static List<ImagePattern> walkup = new ArrayList<>();
+	private static List<ImagePattern> walkleft = new ArrayList<>();
+	private static List<ImagePattern> walkright = new ArrayList<>();
+	private static List<ImagePattern> walkdown = new ArrayList<>();
 
 	public Hero() {
 
@@ -53,6 +59,36 @@ public class Hero {
 		abd.setVisible(false);
 		moveunitblockOnKeyPress(scene);
 
+		// -----------------------------set walk up------------------------------//
+		Image walkup1 = new Image(ClassLoader.getSystemResource("walkup-1.png").toString());
+		Image walkup2 = new Image(ClassLoader.getSystemResource("walkup0.png").toString());
+		Image walkup3 = new Image(ClassLoader.getSystemResource("walkup+1.png").toString());
+		walkup.add(new ImagePattern(walkup1));
+		walkup.add(new ImagePattern(walkup2));
+		walkup.add(new ImagePattern(walkup3));
+		// -----------------------------set walk down------------------------------//
+		Image walkdown1 = new Image(ClassLoader.getSystemResource("walkdown-1.png").toString());
+		Image walkdown2 = new Image(ClassLoader.getSystemResource("walkdown0.png").toString());
+		Image walkdown3 = new Image(ClassLoader.getSystemResource("walkdown+1.png").toString());
+		walkdown.add(new ImagePattern(walkdown1));
+		walkdown.add(new ImagePattern(walkdown2));
+		walkdown.add(new ImagePattern(walkdown3));
+		// -----------------------------set walk left------------------------------//
+		Image walkleft1 = new Image(ClassLoader.getSystemResource("walkleft-1.png").toString());
+		Image walkleft2 = new Image(ClassLoader.getSystemResource("walkleft0.png").toString());
+		Image walkleft3 = new Image(ClassLoader.getSystemResource("walkleft+1.png").toString());
+		walkleft.add(new ImagePattern(walkleft1));
+		walkleft.add(new ImagePattern(walkleft2));
+		walkleft.add(new ImagePattern(walkleft3));
+		// -----------------------------set walk right------------------------------//
+		Image walkright1 = new Image(ClassLoader.getSystemResource("walkright-1.png").toString());
+		Image walkright2 = new Image(ClassLoader.getSystemResource("walkright0.png").toString());
+		Image walkright3 = new Image(ClassLoader.getSystemResource("walkright+1.png").toString());
+		walkright.add(new ImagePattern(walkright1));
+		walkright.add(new ImagePattern(walkright2));
+		walkright.add(new ImagePattern(walkright3));
+
+		unitblock.setFill(walkright.get(1));
 	}
 
 	public Hero(Scene scene, int startx, int starty, List<Environment> e, List<ReceiveAction> re) {
@@ -81,26 +117,87 @@ public class Hero {
 
 		env = e;
 		this.re = re;
+		unitblock.setFill(walkright.get(1));
 	}
 
 	public void moveunitblockOnKeyPress(Scene scene) {
+		AnimationTimer walkupanimation = new AnimationTimer() {
+			long startNanoTime = System.nanoTime();
+
+			public void handle(long currentNanoTime) {
+				double t = ((currentNanoTime - startNanoTime) / 1000000000.0) % 0.9;
+				if (t <= 0.3) {
+					unitblock.setFill(walkup.get(0));
+				} else if (t <= 0.6) {
+					unitblock.setFill(walkup.get(1));
+				} else {
+					unitblock.setFill(walkup.get(2));
+				}
+			}
+		};
+		AnimationTimer walkdownanimation = new AnimationTimer() {
+			long startNanoTime = System.nanoTime();
+
+			public void handle(long currentNanoTime) {
+				double t = ((currentNanoTime - startNanoTime) / 1000000000.0) % 0.9;
+				if (t <= 0.3) {
+					unitblock.setFill(walkdown.get(0));
+				} else if (t <= 0.6) {
+					unitblock.setFill(walkdown.get(1));
+				} else {
+					unitblock.setFill(walkdown.get(2));
+				}
+			}
+		};
+		AnimationTimer walkleftanimation = new AnimationTimer() {
+			long startNanoTime = System.nanoTime();
+
+			public void handle(long currentNanoTime) {
+				double t = ((currentNanoTime - startNanoTime) / 1000000000.0) % 0.9;
+				if (t <= 0.3) {
+					unitblock.setFill(walkleft.get(0));
+				} else if (t <= 0.6) {
+					unitblock.setFill(walkleft.get(1));
+				} else {
+					unitblock.setFill(walkleft.get(2));
+				}
+			}
+		};
+		AnimationTimer walkrightanimation = new AnimationTimer() {
+			long startNanoTime = System.nanoTime();
+
+			public void handle(long currentNanoTime) {
+				double t = ((currentNanoTime - startNanoTime) / 1000000000.0) % 0.9;
+				if (t <= 0.3) {
+					unitblock.setFill(walkright.get(0));
+				} else if (t <= 0.6) {
+					unitblock.setFill(walkright.get(1));
+				} else {
+					unitblock.setFill(walkright.get(2));
+				}
+			}
+		};
 		scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
 			@Override
 			public void handle(KeyEvent event) {
 				if (event.getCode().equals(KeyCode.UP)) {
 					turnTo(1);
+					walkupanimation.start();
 					moveUp(true);
 
 				} else if (event.getCode().equals(KeyCode.RIGHT)) {
 					turnTo(0);
+					walkrightanimation.start();
 					moveRight(true);
 
 				} else if (event.getCode().equals(KeyCode.DOWN)) {
 					turnTo(3);
+					walkdownanimation.start();
 					moveUp(false);
 
 				} else if (event.getCode().equals(KeyCode.LEFT)) {
 					turnTo(2);
+					walkleftanimation.start();
 					moveRight(false);
 
 				} else if (event.getCode().equals(KeyCode.Z)) {
@@ -118,6 +215,26 @@ public class Hero {
 				}
 			}
 		});
+
+		scene.setOnKeyReleased(new EventHandler<KeyEvent>() {
+			@Override
+			public void handle(KeyEvent event) {
+				walkupanimation.stop();
+				walkdownanimation.stop();
+				walkleftanimation.stop();
+				walkrightanimation.stop();
+				if(getActiveBlock() == actionblock.get(0)) {
+					unitblock.setFill(walkright.get(1));
+				}else if(getActiveBlock() == actionblock.get(1)) {
+					unitblock.setFill(walkup.get(1));
+				}else if(getActiveBlock() == actionblock.get(2)) {
+					unitblock.setFill(walkleft.get(1));
+				}else if(getActiveBlock() == actionblock.get(3)) {
+					unitblock.setFill(walkdown.get(1));
+				}
+			}
+		});
+
 	}
 
 	class Delta {
@@ -270,5 +387,5 @@ public class Hero {
 	public static void setName(String name) {
 		Name = name;
 	}
-	
+
 }

@@ -2,7 +2,6 @@ package Map;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import Animal.Animal;
 import Animal.Hen;
 import ComponentMap.Environment;

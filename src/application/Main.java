@@ -39,6 +39,8 @@ import Tool.Hoe;
 import Tool.Milker;
 import Tool.Scissors;
 import Tool.SeedA;
+import Tool.SeedB;
+import Tool.SeedC;
 import Tool.WateringCan;
 
 public class Main extends Application {
@@ -54,12 +56,16 @@ public class Main extends Application {
 		Hoe hoe = new Hoe();
 		WateringCan wateringcan = new WateringCan();
 		Hand hand =  new Hand();
-		SeedA seed1 = new SeedA(50);
+		SeedA seed1 = new SeedA(5);
+		SeedB seed2 = new SeedB(5);
+		SeedC seed3 = new SeedC(5);
 		Backpack.addItem(axe);
 		Backpack.addItem(hammer);
 		Backpack.addItem(hoe);
 		Backpack.addItem(wateringcan);
 		Backpack.addItem(seed1 );
+		Backpack.addItem(seed2 );
+		Backpack.addItem(seed3 );
 		Backpack.addItem(hand );
 		// ---------------set up map---------------------//
 		List<setsceneable> listmap = new ArrayList<>();
