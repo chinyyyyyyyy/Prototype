@@ -1,12 +1,11 @@
 package Product;
 
-import ComponentMap.ActionByToolAble;
-
 public class Wool extends Product{
 	protected static int WoolCount=0;
 	protected static final int COST = 100;
 	
 	public Wool() {
+		this.price=COST;
 	}
 
 	public static int getWoolCount() {
@@ -16,11 +15,12 @@ public class Wool extends Product{
 	public static void addWool() {
 		WoolCount++;
 	}
-	
-	public void Action(ActionByToolAble a) {
-	}
-	
+
 	public int getAmount() {
 		return WoolCount;
+	}
+	
+	public void clear() {
+		WoolCount=0;
 	}
 }

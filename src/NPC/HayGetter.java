@@ -1,22 +1,19 @@
 package NPC;
 
 import ComponentMap.NPC;
-import ComponentMap.SceneManager;
+import Logic.Backpack;
+import Tool.Hay;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 
-public class BlackSmith extends NPC {
+public class HayGetter extends NPC{
 
-	private String name;
-
-	public BlackSmith(int x, int y, int w, int h, Color c, String Name) {
+	public HayGetter(int x, int y, int w, int h, Color c) {
 		super(x, y, w, h, c);
-		this.name = Name;
 	}
 
 	public void Welcome() {
-		System.out.println("Hello, What do you want today?");
 	}
 
 	public void checkAction(Rectangle r) {
@@ -26,12 +23,10 @@ public class BlackSmith extends NPC {
 		double wa = r.getWidth();
 		double ha = r.getHeight();
 		if (wi >= 0.9 * wa && hi >= 0.9 * ha) {
-			System.out.println("Hello, My name is "+this.name);
-			SceneManager.warpTo(18);
+			if (Hay.getHayCount() == 0)
+				Backpack.getBackpack().add(new Hay());
+			Hay.addHay();
+			System.out.println("Get Hay!");
 		}
-	}
-
-	public String getName() {
-		return this.name;
 	}
 }

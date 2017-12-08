@@ -4,6 +4,7 @@ import ComponentMap.ActionByToolAble;
 import Logic.Backpack;
 import Logic.InBackpack;
 import Product.Wool;
+import Tool.Hay;
 import Tool.Scissors;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -24,6 +25,13 @@ public class Sheep extends Animal implements ActionByToolAble{
 		this.love = 0;
 		this.daycount=0;
 		this.produceable=false;
+	}
+	
+	public void eat() {
+		cry();
+		this.love++;
+		this.feedable=false;
+		this.daycount++;
 	}
 
 	public void cry() {
@@ -50,6 +58,8 @@ public class Sheep extends Animal implements ActionByToolAble{
 			InBackpack item = Backpack.CheckItemOnHand();
 			if(item instanceof Scissors) {
 				((Scissors) item).Action(this);
+			}else if(item instanceof Hay){
+				((Hay) item).Action(this);
 			}else {
 				cry();
 				this.love++;							
@@ -84,8 +94,8 @@ public class Sheep extends Animal implements ActionByToolAble{
 	
 	public void updateafterendday() {
 		this.age++;
-		this.daycount++;
-		if(this.daycount>=5) this.produceable = true;
+		this.feedable=true;
+		if(this.daycount>=1) this.produceable = true;
 	}
 	
 	public boolean getProduceable() {

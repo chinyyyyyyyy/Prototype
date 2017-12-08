@@ -25,16 +25,15 @@ public class Hoe extends Tool {
 		}
 	}
 
-	public void CheckUpgrade() {
+	public boolean CheckUpgrade() {
 		if (this.level == 2) {
 			upgradeable = false;
 			max = true;
-			return;
-		}
-		if (this.timeofuse >= ToolStatus.getUpgradeLevel().get(this.level))
+		}else if (this.timeofuse >= ToolStatus.getUpgradeLevel().get(this.level))
 			upgradeable = true;
 		else
 			upgradeable = false;
+		return upgradeable;
 	}
 
 	public static String isUpgradeable() {

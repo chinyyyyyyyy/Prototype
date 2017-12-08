@@ -41,7 +41,7 @@ public class BlackSmithMenu implements setsceneable, SpecialScene {
 			@Override
 			public void handle(KeyEvent event) {
 				if (event.getCode().equals(KeyCode.X)) {
-					SceneManager.warpTo(5);
+					SceneManager.warpTo(18);
 				}
 				if (event.getCode().equals(KeyCode.UP)) {
 					gc.clearRect(0, 0, 1280, 720);
@@ -55,10 +55,12 @@ public class BlackSmithMenu implements setsceneable, SpecialScene {
 				}
 
 				if (event.getCode().equals(KeyCode.Z)) {
-					InBackpack item = Backpack.getBackpack().get(row);
-					((Tool) item).CheckUpgrade();
-					((Tool) item).upgrade();
-					update();
+					InBackpack item = Backpack.getBackpack().get(row+1);
+					if(((Tool) item).CheckUpgrade()) {
+						((Tool) item).upgrade();
+						update();
+					}else
+						System.out.println("Sorry Your Tool can't upgrade.");
 				}
 			}
 		});

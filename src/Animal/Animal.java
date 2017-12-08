@@ -9,6 +9,7 @@ public abstract class Animal extends ReceiveAction implements updateEveryday{
 	
 	protected String name;
 	protected boolean produceable;
+	protected boolean feedable=true;
 	
 	public Animal(int x, int y, int w, int h, Color c) {
 		super(x, y, w, h, c);
@@ -16,10 +17,16 @@ public abstract class Animal extends ReceiveAction implements updateEveryday{
 
 	public abstract void cry();
 	
+	public abstract void eat();
+	
 	public abstract void produce();
 	
 	public abstract boolean getProduceable();
 
 	public abstract void checkAction(Rectangle r);
+	
+	public boolean getFeedable() {
+		return feedable;
+	}
 
 }

@@ -26,12 +26,15 @@ import Plant.PlantB;
 import Plant.PlantC;
 import SpecialScene.AnimalBuyer;
 import SpecialScene.AnimalMenu;
+import SpecialScene.BlackSmithInterface;
 import SpecialScene.BlackSmithMenu;
 import SpecialScene.Inventory;
 import SpecialScene.Profile;
 import SpecialScene.SeedMenu;
+import SpecialScene.Summary;
 import SpecialScene.ToolMenu;
 import SpecialScene.ToolStatus;
+import SpecialScene.UpgradeBag;
 import Tool.Axe;
 import Tool.Hammer;
 import Tool.Hand;
@@ -55,12 +58,12 @@ public class Main extends Application {
 		WateringCan wateringcan = new WateringCan();
 		Hand hand =  new Hand();
 		SeedA seed1 = new SeedA(50);
+		Backpack.addItem(hand );
 		Backpack.addItem(axe);
 		Backpack.addItem(hammer);
 		Backpack.addItem(hoe);
 		Backpack.addItem(wateringcan);
 		Backpack.addItem(seed1 );
-		Backpack.addItem(hand );
 		// ---------------set up map---------------------//
 		List<setsceneable> listmap = new ArrayList<>();
 		Farm farm = new Farm(1000, 300);
@@ -81,7 +84,9 @@ public class Main extends Application {
 		ToolMenu toolmenu = new ToolMenu("Milker",Milker.COST,"Scissors",Scissors.COST);
 		Inventory inventory = new Inventory();
 		BlackSmithMenu blackmenu = new BlackSmithMenu();
-		
+		UpgradeBag upgradebag = new UpgradeBag();
+		BlackSmithInterface blackinter = new BlackSmithInterface(); 
+		Summary summary = new Summary();	
 		listmap.add(farm); // 0
 		listmap.add(town); // 1
 		listmap.add(house); // 2
@@ -99,6 +104,9 @@ public class Main extends Application {
 		listmap.add(toolmenu); //14
 		listmap.add(inventory); //15
 		listmap.add(blackmenu); //16
+		listmap.add(upgradebag); //17
+		listmap.add(blackinter); //18
+		listmap.add(summary); //19
 		
 		primaryStage.setResizable(false);
 		primaryStage.sizeToScene();

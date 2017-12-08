@@ -8,6 +8,7 @@ public class PlantC extends Plant {
 	public PlantC() {
 		dayofgrowth = 0;
 		name = "PantC";
+		this.price=SeedCost;
 	}
 
 	@Override

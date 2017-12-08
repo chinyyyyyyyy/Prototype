@@ -1,13 +1,12 @@
 package Product;
 
-import ComponentMap.ActionByToolAble;
-
 public class Milk extends Product{
 	
 	protected static int MilkCount=0;
-	protected static final int COST = 100;
+	protected static final int COST = 200;
 	
 	public Milk() {
+		this.price=COST;
 	}
 
 	public static int getMilkCount() {
@@ -18,10 +17,11 @@ public class Milk extends Product{
 		MilkCount++;
 	}
 	
-	public void Action(ActionByToolAble a) {
-	}
-	
 	public int getAmount() {
 		return MilkCount;
+	}
+	
+	public void clear() {
+		MilkCount=0;
 	}
 }

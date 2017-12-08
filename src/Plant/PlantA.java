@@ -4,10 +4,13 @@ public class PlantA extends Plant {
 	private final int SEED_DURATION = 2;
 	private final int SPOURT_DURATION = 4;
 	public static final int SeedCost = 50;
+	
+	
 
 	public PlantA() {
 		dayofgrowth = 0;
 		name = "PlantA";
+		this.price=SeedCost;
 	}
 
 	@Override

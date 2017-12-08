@@ -3,6 +3,7 @@ package Logic;
 import java.util.ArrayList;
 import java.util.List;
 
+import ComponentMap.Dropbox;
 import ComponentMap.HasAnimal;
 import ComponentMap.Hero;
 import ComponentMap.SceneManager;
@@ -18,7 +19,7 @@ public class World {
 
 	public World() {
 		days = 1;
-		money = 5000;
+		money = 50000;
 		Buyable = true;
 		season.add("Spring");
 		season.add("Summer");
@@ -27,23 +28,29 @@ public class World {
 	}
 
 	public static void nextDay() {
-		days += 1;
 		for (updateEveryday i : listupdate) {
 			i.updateafterendday();
 		}
-		if (days > 30) {
-			ss = (ss + 1) % 4;
-			days = 1;
-		}
-		
+	
 		for(setsceneable i : SceneManager.getListMap()) {
 			if(i instanceof HasAnimal) {
 				((HasAnimal) i).update();
 			}
 		}
+		
+		SceneManager.warpTo(19);
+	}
+	
+	public static void Tomorrow() {
+		days += 1;
+		if (days > 30) {
+			ss = (ss + 1) % 4;
+			days = 1;
+		}	
+		setMoney(money+Dropbox.getTotalsell());
 		System.out.println("Good Morning " + Hero.getName());
-		System.out.println("Today is day " + days);
-
+		System.out.println("Today is day " + World.getDay());
+		Dropbox.clear();
 	}
 
 	public static int getDay() {

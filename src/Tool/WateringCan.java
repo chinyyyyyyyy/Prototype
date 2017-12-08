@@ -6,8 +6,8 @@ import SpecialScene.ToolStatus;
 import ComponentMap.ActionByToolAble;
 
 public class WateringCan extends Tool {
-	private final int MAX_CAPACITY = 10;
-	private int water_level;
+	private static final int MAX_CAPACITY = 10;
+	private static int water_level;
 	private static boolean max;
 	private static boolean upgradeable;
 
@@ -35,16 +35,15 @@ public class WateringCan extends Tool {
 		System.out.println(name + " has " + water_level);
 	}
 
-	public void CheckUpgrade() {
+	public boolean CheckUpgrade() {
 		if (this.level == 2) {
 			upgradeable = false;
 			max = true;
-			return;
-		}
-		if (this.timeofuse >= ToolStatus.getUpgradeLevel().get(this.level))
+		}else if (this.timeofuse >= ToolStatus.getUpgradeLevel().get(this.level))
 			upgradeable = true;
 		else
 			upgradeable = false;
+		return upgradeable;
 	}
 
 	public static String isUpgradeable() {
@@ -57,6 +56,10 @@ public class WateringCan extends Tool {
 
 	public static void setUpgradeable(boolean upgradeable) {
 		WateringCan.upgradeable = upgradeable;
+	}
+	
+	public static double getWaterLevel() {
+		return (water_level+0.0)/MAX_CAPACITY;
 	}
 
 }
