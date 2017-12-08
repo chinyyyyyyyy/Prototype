@@ -19,7 +19,6 @@ public class SeedB extends Seed implements InBackpack{
 		System.out.println(name);
 	}
 
-
 	@Override
 	public void Action(ActionByToolAble a) {
 		if (a instanceof Feild) {
