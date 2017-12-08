@@ -16,7 +16,6 @@ public class PlantC extends Plant {
 	public PlantC() {
 		dayofgrowth = 0;
 		name = "Cucumber";
-		name = "PantC";
 		this.price=SeedCost;
 	}
 

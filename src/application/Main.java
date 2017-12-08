@@ -59,25 +59,18 @@ public class Main extends Application {
 		Hoe hoe = new Hoe();
 		WateringCan wateringcan = new WateringCan();
 		Hand hand =  new Hand();
-<<<<<<< HEAD
 		SeedA seed1 = new SeedA(5);
 		SeedB seed2 = new SeedB(5);
 		SeedC seed3 = new SeedC(5);
-=======
-		SeedA seed1 = new SeedA(50);
 		Backpack.addItem(hand );
->>>>>>> aa7b0763d113a7f8f87e2716088d974a0a001958
 		Backpack.addItem(axe);
 		Backpack.addItem(hammer);
 		Backpack.addItem(hoe);
 		Backpack.addItem(wateringcan);
 		Backpack.addItem(seed1 );
-<<<<<<< HEAD
 		Backpack.addItem(seed2 );
 		Backpack.addItem(seed3 );
 		Backpack.addItem(hand );
-=======
->>>>>>> aa7b0763d113a7f8f87e2716088d974a0a001958
 		// ---------------set up map---------------------//
 		List<setsceneable> listmap = new ArrayList<>();
 		Farm farm = new Farm(1000, 300);
