@@ -5,8 +5,10 @@ import ComponentMap.Dropbox;
 import ComponentMap.StackAble;
 import Logic.Backpack;
 import Logic.InBackpack;
+import javafx.scene.paint.ImagePattern;
 
 public abstract class Plant implements InBackpack, StackAble, OnHandAble {
+
 	protected int dayofgrowth;
 	protected String name;
 	protected int price;
@@ -31,7 +33,9 @@ public abstract class Plant implements InBackpack, StackAble, OnHandAble {
 		return this.name;
 	}
 
-	public abstract int checkState();
+	public abstract ImagePattern checkState();
+
+	public abstract ImagePattern getWateredstate();
 
 	@Override
 	public String toString() {

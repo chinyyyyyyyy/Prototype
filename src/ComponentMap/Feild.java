@@ -110,7 +110,7 @@ public class Feild extends ReceiveAction implements ActionByToolAble, updateEver
 	}
 
 	public Boolean canwater() {
-		if (stone == null && wood == null && plant != null && plant.checkState() < 2) {
+		if (stone == null && wood == null && plant != null ) {
 			return true;
 		}
 		return false;
@@ -148,7 +148,8 @@ public class Feild extends ReceiveAction implements ActionByToolAble, updateEver
 	public void setPlant(Plant p) {
 		plant = p;
 		isshovel = false;
-		this.setFill(Color.rgb(0, 187, 51));
+		this.setFill(plant.checkState());
+		System.out.println(plant.getName());
 
 	}
 
@@ -164,7 +165,10 @@ public class Feild extends ReceiveAction implements ActionByToolAble, updateEver
 		} else if (stone != null) {
 			this.setFill(new ImagePattern(stoneimg));
 		} else if (isWaterToday == true) {
-			this.setFill(Color.BLACK);
+			this.setOpacity(1);
+			if(plant != null) {
+				this.setFill(plant.getWateredstate());
+			}
 		} else if (isshovel == true) {
 			this.setOpacity(1);
 			this.setFill(new ImagePattern(soil1));
@@ -194,13 +198,8 @@ public class Feild extends ReceiveAction implements ActionByToolAble, updateEver
 				plant.addDayOfGrowth();
 			isWaterToday = false;
 			this.setOpacity(1);
-			if (plant.checkState() == 0) {
-				this.setFill(Color.rgb(0, 187, 51));
-			} else if (plant.checkState() == 1) {
-				this.setFill(Color.rgb(63, 122, 77));
-			} else if (plant.checkState() == 2) {
-				this.setFill(Color.rgb(24, 69, 59));
-			}
+			this.setFill(plant.checkState());
+			
 		}
 	}
 
