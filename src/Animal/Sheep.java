@@ -95,7 +95,7 @@ public class Sheep extends Animal implements ActionByToolAble{
 	public void updateafterendday() {
 		this.age++;
 		this.feedable=true;
-		if(this.daycount>=1) this.produceable = true;
+		if(this.daycount>=5) this.produceable = true;
 	}
 	
 	public boolean getProduceable() {

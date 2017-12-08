@@ -6,10 +6,7 @@ import Logic.Backpack;
 import Logic.InBackpack;
 import Logic.updateEveryday;
 import Plant.OnHandAble;
-import Product.Egg;
-import Product.Milk;
 import Product.Product;
-import Product.Wool;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
@@ -23,12 +20,6 @@ public class Dropbox extends ReceiveAction implements ActionByToolAble,updateEve
 	public Dropbox(int x, int y, int w, int h, Color c) {
 		super(x, y, w, h, c);
 		// TODO Auto-generated constructor stub
-		listindropbox.add(new Pair<OnHandAble, Integer>(new Egg(),3));
-		listindropbox.add(new Pair<OnHandAble, Integer>(new Wool(),4));
-		listindropbox.add(new Pair<OnHandAble, Integer>(new Milk(),5));
-		listindropbox.add(new Pair<OnHandAble, Integer>(new Egg(),3));
-		listindropbox.add(new Pair<OnHandAble, Integer>(new Wool(),4));
-		listindropbox.add(new Pair<OnHandAble, Integer>(new Milk(),5));
 	}
 
 	public static void addProduct(OnHandAble item) {

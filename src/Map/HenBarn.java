@@ -68,20 +68,20 @@ public class HenBarn implements setsceneable, HasAnimal {
 		haygetter = new HayGetter(0, 550, 150, 200, Color.BLACK);
 		re.add(haygetter);
 
-		root.getChildren().addAll(e);
-
 		// Hen
-		position.add(new Pair<Integer, Integer>(334, 40));
-		position.add(new Pair<Integer, Integer>(467, 40));
-		position.add(new Pair<Integer, Integer>(600, 40));
-		position.add(new Pair<Integer, Integer>(733, 40));
-		position.add(new Pair<Integer, Integer>(866, 40));
-		actionposition.add(new Pair<Integer, Integer>(334, 120));
-		actionposition.add(new Pair<Integer, Integer>(467, 120));
-		actionposition.add(new Pair<Integer, Integer>(600, 120));
-		actionposition.add(new Pair<Integer, Integer>(733, 120));
-		actionposition.add(new Pair<Integer, Integer>(866, 120));
-		root.getChildren().addAll(re);
+		position.add(new Pair<Integer, Integer>(334, 260));
+		position.add(new Pair<Integer, Integer>(467, 260));
+		position.add(new Pair<Integer, Integer>(600, 260));
+		position.add(new Pair<Integer, Integer>(733, 260));
+		position.add(new Pair<Integer, Integer>(866, 260));
+		actionposition.add(new Pair<Integer, Integer>(334, 340));
+		actionposition.add(new Pair<Integer, Integer>(467, 340));
+		actionposition.add(new Pair<Integer, Integer>(600, 340));
+		actionposition.add(new Pair<Integer, Integer>(733, 340));
+		actionposition.add(new Pair<Integer, Integer>(866, 340));
+		
+//		root.getChildren().addAll(e);
+//		root.getChildren().addAll(re);
 
 		Rectangle warpblocktofarm = new Rectangle(580, 695, 120, 25);
 		warpblocktofarm.setFill(Color.RED);
@@ -110,7 +110,10 @@ public class HenBarn implements setsceneable, HasAnimal {
 				re.add(x);
 				Environment hen = new Environment(position.get(i).getKey(), position.get(i).getValue(), 80, 80,
 						Color.ORANGERED);
+				Environment egg = new Environment(actionposition.get(i).getKey(), actionposition.get(i).getValue(), 80, 80,
+						Color.LIMEGREEN);
 				e.add(hen);
+				e.add(egg);
 				root.getChildren().add(x);
 				root.getChildren().add(hen);
 			}
