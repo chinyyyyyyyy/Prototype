@@ -1,5 +1,7 @@
 package Product;
 
+import ComponentMap.ActionByToolAble;
+
 public class Egg extends Product{
 
 	protected static int EggCount=0;
@@ -14,5 +16,12 @@ public class Egg extends Product{
 
 	public static void addEgg() {
 		EggCount++;
+	}
+	
+	public void Action(ActionByToolAble a) {
+	}
+	
+	public int getAmount() {
+		return EggCount;
 	}
 }

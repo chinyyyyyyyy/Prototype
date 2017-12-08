@@ -6,7 +6,7 @@ import ComponentMap.ActionByToolAble;
 
 public class Hammer extends Tool {
 	private static boolean upgradeable;
-	private static String stat = "";
+	private static boolean max;
 
 	public Hammer() {
 		this.name = "HAMMER";
@@ -25,26 +25,26 @@ public class Hammer extends Tool {
 	}
 
 	public void CheckUpgrade() {
-		if (this.timeofuse >= ToolStatus.getUpgradeLevel().get(0))
+		if (this.level == 2) {
+			upgradeable = false;
+			max = true;
+			return;
+		}
+		if (this.timeofuse >= ToolStatus.getUpgradeLevel().get(this.level))
 			upgradeable = true;
+		else
+			upgradeable = false;
 	}
 
 	public static String isUpgradeable() {
+		if (max)
+			return "MAX";
 		if (upgradeable)
 			return "upgrade?";
 		return "";
 	}
-
 	public static void setUpgradeable(boolean upgradeable) {
 		Hammer.upgradeable = upgradeable;
-	}
-
-	public static String getStat() {
-		return stat;
-	}
-
-	public static void setStat(String stat) {
-		Hammer.stat = stat;
 	}
 	
 }

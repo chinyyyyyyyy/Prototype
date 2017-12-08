@@ -1,5 +1,7 @@
 package Animal;
 
+import ComponentMap.SceneManager;
+import Logic.Backpack;
 import Product.Egg;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -24,7 +26,10 @@ public class Hen extends Animal {
 	}
 
 	public void produce() {
+		if (Egg.getEggCount() == 0)
+			Backpack.getBackpack().add(new Egg());
 		Egg.addEgg();
+		this.produceable = false;
 	}
 
 	public void checkAction(Rectangle r) {
@@ -34,11 +39,15 @@ public class Hen extends Animal {
 		double wa = r.getWidth();
 		double ha = r.getHeight();
 		if (wi >= 0.9 * wa && hi >= 0.9 * ha) {
-			cry();
-			this.love++;
-			// System.out.println(""+this.love);
-			// produce();
-			// System.out.println(Milk.getMilkCount());
+			if (this.getProduceable()) {
+				produce();
+				System.out.println("Get Egg");
+				SceneManager.warpTo(SceneManager.getSceneNumber());
+			}
+			else {
+				cry();
+				this.love++;
+			}
 		}
 	}
 
@@ -64,6 +73,15 @@ public class Hen extends Animal {
 
 	public int getLove() {
 		return love;
+	}
+
+	public void updateafterendday() {
+		this.age++;
+		this.produceable = true;
+	}
+
+	public boolean getProduceable() {
+		return this.produceable;
 	}
 
 }

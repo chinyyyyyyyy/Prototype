@@ -179,7 +179,7 @@ public class AnimalMenu implements setsceneable,SpecialScene {
 				World.setMoney(World.getMoney()-AnimalMenu.getTotalCost());
 				if (CounterAnimal.canBuyBarn && CounterAnimal.canBuyHen && World.getBuyable()) {
 					CounterAnimal.update(amouttype1, amouttype2, amouttype3);
-					SceneManager.warpTo(sc);
+					SceneManager.warpTo(6);
 				}
 				reset();
 				CounterAnimal.canBuyBarn = true;

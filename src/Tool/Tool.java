@@ -2,10 +2,12 @@ package Tool;
 
 import ComponentMap.ActionByToolAble;
 import Logic.InBackpack;
+import SpecialScene.ToolStatus;
 
-public abstract class Tool implements InBackpack{
+public abstract class Tool implements InBackpack {
 	protected String name;
 	protected double timeofuse;
+	protected int level;
 
 	public void cry() {
 		System.out.println(name);
@@ -13,9 +15,26 @@ public abstract class Tool implements InBackpack{
 
 	public abstract void Action(ActionByToolAble a);
 
+	public void upgrade() {
+		if (getTimeOfUse() == 300) {
+			this.level += 2;
+			System.out.println("Upgrade Successful !");
+		} else if (getTimeOfUse() >= ToolStatus.getUpgradeLevel().get(level)) {
+			this.level++;
+			System.out.println("Upgrade Successful !");
+		} else
+			System.out.println("Sorry Your Tool can't upgrade.");
+		CheckUpgrade();
+	}
+
 	public double getTimeOfUse() {
-		if(timeofuse>300) timeofuse=300;
+		if (timeofuse > 300)
+			timeofuse = 300;
 		return timeofuse;
+	}
+
+	public int getLevel() {
+		return level;
 	}
 
 	public abstract void CheckUpgrade();

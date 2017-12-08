@@ -3,7 +3,10 @@ package Logic;
 import java.util.ArrayList;
 import java.util.List;
 
+import ComponentMap.HasAnimal;
 import ComponentMap.Hero;
+import ComponentMap.SceneManager;
+import Map.setsceneable;
 
 public class World {
 	private static int days;
@@ -31,6 +34,12 @@ public class World {
 		if (days > 30) {
 			ss = (ss + 1) % 4;
 			days = 1;
+		}
+		
+		for(setsceneable i : SceneManager.getListMap()) {
+			if(i instanceof HasAnimal) {
+				((HasAnimal) i).update();
+			}
 		}
 		System.out.println("Good Morning " + Hero.getName());
 		System.out.println("Today is day " + days);

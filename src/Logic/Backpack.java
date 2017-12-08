@@ -14,7 +14,7 @@ public class Backpack {
 		indexitemonhand = 0;
 	}
 	
-	public static InBackpack  CheckItemOnHand() {
+	public static InBackpack CheckItemOnHand() {
 		return backpack.get(indexitemonhand);
 	}
 	

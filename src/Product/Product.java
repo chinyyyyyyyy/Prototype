@@ -1,8 +1,9 @@
 package Product;
 
+import ComponentMap.StackAble;
 import Logic.InBackpack;
 
-public abstract class Product implements InBackpack{
+public abstract class Product implements InBackpack,StackAble{
 
 	protected int price;
 	
