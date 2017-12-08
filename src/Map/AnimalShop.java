@@ -15,6 +15,7 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Pair;
@@ -34,40 +35,38 @@ public class AnimalShop implements setsceneable,HasNPC {
 		scene = new Scene(root, 1280, 720);
 		Canvas bg = new Canvas(1280, 720);
 		GraphicsContext gc = bg.getGraphicsContext2D();
-		gc.setFill(Color.SPRINGGREEN);
-		gc.fillRect(0, 0, 1280, 720);
+		Image background = new Image(ClassLoader.getSystemResource("inAnimalshop.png").toString());
+		gc.drawImage(background,0,0);
 		root.getChildren().add(bg);
 
 		// Boarder
 		e.add(new Environment(-10, 0, 10, 720, Color.BLACK));// boarderLEFT
-		e.add(new Environment(0, -10, 1280, 10, Color.BLACK));// boarderTOP
+		e.add(new Environment(0, 225, 1280, 10, Color.BLACK));// boarderTOP
 		e.add(new Environment(1280, 0, 10, 720, Color.BLACK));// boarderRIGHT
 		e.add(new Environment(0, 720, 1280, 10, Color.BLACK));// boarderBOTTOM
 
 		// shelf
-		e.add(new Environment(100, 100, 720, 70, Color.SEAGREEN));
-		e.add(new Environment(100, 530, 720, 70, Color.SEAGREEN));
+		e.add(new Environment(0, 200, 600, 105, Color.SEAGREEN));
+		e.add(new Environment(0,550, 1000, 100, Color.SEAGREEN));
+		e.add(new Environment(1010,225, 275,470, Color.SEAGREEN));
 
 		// counter
-		e.add(new Environment(940, 160, 200, 70, Color.BLACK));
-		e.add(new Environment(940, 230, 70, 250, Color.BLACK));
-		e.add(new Environment(940, 480, 200, 70, Color.BLACK));
-		e.add(new Environment(950, 285, 50, 100, Color.YELLOW));
-		Counter counter = new CounterAnimal(950, 285, 50, 100, Color.YELLOW);
+		e.add(new Environment(765, 315, 70, 185, Color.BLACK));
+		Counter counter = new CounterAnimal(765, 360, 50, 100, Color.YELLOW);
 		re.add(counter);
 		
 		//npc
-		e.add(new Environment(1030, 300, 75, 75, Color.STEELBLUE));
-		animalseller = new AnimalSeller(1030, 300, 75, 75, Color.STEELBLUE,"Peter");
+		e.add(new Environment(850, 380, 75, 75, Color.STEELBLUE));
+		animalseller = new AnimalSeller(850, 380, 80, 80, Color.STEELBLUE,"Peter");
 		npc = animalseller;
 		re.add(animalseller);
 
-		root.getChildren().addAll(e);
-		root.getChildren().addAll(re);
+		//root.getChildren().addAll(e);
+		//root.getChildren().addAll(re);
 
-		Rectangle warpblocktotown = new Rectangle(0, 280, 25, 120);
+		Rectangle warpblocktotown = new Rectangle(0, 420, 25, 100);
 		warpblocktotown.setFill(Color.RED);
-		root.getChildren().add(warpblocktotown);
+		//root.getChildren().add(warpblocktotown);
 		Pair<Rectangle, Integer> totown = new Pair<Rectangle, Integer>(warpblocktotown, 1);
 		WarpList.add(totown);
 

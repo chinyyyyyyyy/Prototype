@@ -14,6 +14,7 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Pair;
@@ -34,13 +35,13 @@ public class HenBarn implements setsceneable,HasAnimal {
 		scene = new Scene(root, 1280, 720);
 		Canvas bg = new Canvas(1280, 720);
 		GraphicsContext gc = bg.getGraphicsContext2D();
-		gc.setFill(Color.TAN);
-		gc.fillRect(0, 0, 1280, 720);
+		Image background = new Image(ClassLoader.getSystemResource("inHenhouse.png").toString());
+		gc.drawImage(background,0,0);
 		root.getChildren().add(bg);
 
 		// Boarder
 		e.add(new Environment(-10, 0, 10, 720, Color.BLACK));// boarderLEFT
-		e.add(new Environment(0, -10, 1280, 10, Color.BLACK));// boarderTOP
+		e.add(new Environment(0, 225, 1280, 10, Color.BLACK));// boarderTOP
 		e.add(new Environment(1280, 0, 10, 720, Color.BLACK));// boarderRIGHT
 		e.add(new Environment(0, 720, 1280, 10, Color.BLACK));// boarderBOTTOM
 		// Partition TOP
@@ -56,10 +57,7 @@ public class HenBarn implements setsceneable,HasAnimal {
 		e.add(new Environment(581, 0, 118, 200, Color.CHOCOLATE));
 		e.add(new Environment(714, 0, 118, 200, Color.CHOCOLATE));
 		e.add(new Environment(847, 0, 118, 200, Color.CHOCOLATE));
-		//Hay
-		e.add(new Environment(0, 400, 150, 200, Color.BLACK));
 
-		root.getChildren().addAll(e);
 	    
 		//Hen
 		position.add(new Pair<Integer, Integer>(334,40));
@@ -74,8 +72,9 @@ public class HenBarn implements setsceneable,HasAnimal {
 		actionposition.add(new Pair<Integer, Integer>(866,120));
 		
 		//HAY
-		e.add(new Environment(0, 400, 150, 200, Color.BLACK));
-		root.getChildren().addAll(re);
+		e.add(new Environment(0, 550, 150, 100, Color.BLACK));
+		//root.getChildren().addAll(e);
+		//root.getChildren().addAll(re);
 		
 		Rectangle warpblocktofarm = new Rectangle(580,695,120,25);
 		warpblocktofarm.setFill(Color.RED);

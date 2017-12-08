@@ -68,8 +68,8 @@ public class Main extends Application {
 		CowBarn cowbarn = new CowBarn(603, 645);
 		HenBarn henbarn = new HenBarn(603, 600);
 		Blacksmith blacksmith = new Blacksmith(603, 645);
-		AnimalShop animalshop = new AnimalShop(0, 300);
-		SeedShop seedshop = new SeedShop(0, 300);
+		AnimalShop animalshop = new AnimalShop(0, 420);
+		SeedShop seedshop = new SeedShop(0, 420);
 		AnimalMenu animalmenu = new AnimalMenu("Cow", Cow.COST, "Sheep", Sheep.COST, "Hen", Hen.COST, 13);
 		SeedMenu seedmenu = new SeedMenu("PlantA", PlantA.SeedCost, "PlantB", PlantB.SeedCost, "PlantC",
 				PlantC.SeedCost, 7);

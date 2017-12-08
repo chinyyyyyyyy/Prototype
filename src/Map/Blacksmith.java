@@ -63,7 +63,7 @@ public class Blacksmith implements setsceneable,HasNPC {
 
 		Rectangle warpblocktotown = new Rectangle(580, 695, 120, 25);
 		warpblocktotown.setFill(Color.RED);
-		root.getChildren().add(warpblocktotown);
+		//root.getChildren().add(warpblocktotown);
 		Pair<Rectangle, Integer> totown = new Pair<Rectangle, Integer>(warpblocktotown, 1);
 		WarpList.add(totown);
 
