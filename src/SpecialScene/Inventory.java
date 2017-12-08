@@ -5,6 +5,7 @@ import ComponentMap.StackAble;
 import Logic.Backpack;
 import Logic.InBackpack;
 import Map.setsceneable;
+import Plant.Plant;
 import Tool.Hay;
 import Tool.Seed;
 import Tool.Tool;
@@ -146,7 +147,13 @@ public class Inventory implements setsceneable, SpecialScene {
 					}
 					gc.setFill(Color.BLACK);
 					gc.setFont(new Font("abc", 20));
-					gc.fillText(x.getClass().getSimpleName(), 180 + (j-1) * 100,
+					String name;
+					if(x instanceof Plant) {
+						name=((Plant) x).getName();
+					}else {
+						name = x.getClass().getSimpleName();
+					}
+					gc.fillText(name, 180 + (j-1) * 100,
 							310 + i * 150);
 					if(x instanceof StackAble) {
 						gc.fillText("x" + ((StackAble) x).getAmount(), 210 + (j-1) * 100,
@@ -158,7 +165,7 @@ public class Inventory implements setsceneable, SpecialScene {
 		gc.setStroke(Color.RED);
 		gc.strokeRect(152 + column * 100, 252 + row * 150, 96, 96);
 		
-		System.out.println("Max = "+Backpack.getMaxSize()+", Current = "+Backpack.getBackpack().size()+", isFull = "+Backpack.isFull());
+//		System.out.println("Max = "+Backpack.getMaxSize()+", Current = "+Backpack.getBackpack().size()+", isFull = "+Backpack.isFull());
 	}
 
 	public Scene getScene() {

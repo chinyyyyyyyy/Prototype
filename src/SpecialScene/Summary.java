@@ -5,6 +5,7 @@ import ComponentMap.SceneManager;
 import Logic.World;
 import Map.setsceneable;
 import Plant.OnHandAble;
+import Plant.Plant;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -60,7 +61,13 @@ public class Summary implements setsceneable, SpecialScene {
 		for(int i=0 ; i < Dropbox.getListindropbox().size() ; i++) {
 			gc.strokeRect(50, 220+60*i, 50, 50);
 			Pair<OnHandAble, Integer> x = Dropbox.getListindropbox().get(i);
-			gc.fillText(x.getKey().getClass().getSimpleName(), 150, 270+60*i);
+			String name;
+			if(x.getKey() instanceof Plant) {
+				name=((Plant) x.getKey()).getName();
+			}else {
+				name = x.getKey().getClass().getSimpleName();
+			}
+			gc.fillText(name, 150, 270+60*i);
 			gc.fillText("x"+x.getValue(), 800, 270+60*i);
 			gc.fillText(""+x.getKey().getPrice()*x.getValue(), 970, 270+60*i);		
 		}

@@ -23,8 +23,7 @@ public class Hand implements InBackpack {
 	@Override
 	public void Action(ActionByToolAble a) {
 		// TODO Auto-generated method stub
-		if (onhand == null && a instanceof Feild && ((Feild) a).getPlant() != null
-				&& ((Feild) a).getPlant().checkState() == 2) {
+		if (onhand == null && a instanceof Feild && ((Feild) a).getPlant() != null) {
 			Plant x = ((Feild) a).getPlant();
 			if (x instanceof PlantA) {
 				if (((PlantA) x).getAmount() == 0) {
