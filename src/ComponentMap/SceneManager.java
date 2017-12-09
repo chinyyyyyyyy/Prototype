@@ -2,6 +2,8 @@ package ComponentMap;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import Map.HaveTime;
 import Map.setsceneable;
 import SpecialScene.SpecialScene;
 import application.Main;
@@ -75,6 +77,12 @@ public class SceneManager extends Rectangle {
 		primaryStage.setScene(listmap.get(mapno).getScene());
 		if (listmap.get(mapno) instanceof HasNPC && listmap.get(previousScene) instanceof SpecialScene == false) {
 			((HasNPC) listmap.get(mapno)).getNPC().Welcome();
+		}
+		
+		if(listmap.get(mapno) instanceof HaveTime) {
+			((HaveTime) listmap.get(mapno)).removeClock();
+			((HaveTime) listmap.get(mapno)).addClock();
+			Clock.stopClock();
 		}
 		setCurrentScene(mapno);
 	}

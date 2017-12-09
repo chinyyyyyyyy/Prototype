@@ -3,12 +3,19 @@ package application;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import java.util.ArrayList;
 import java.util.List;
 import Animal.Cow;
 import Animal.Hen;
 import Animal.Sheep;
+import ComponentMap.Clock;
 import ComponentMap.SceneManager;
 import Logic.Backpack;
 import Logic.World;
@@ -55,6 +62,7 @@ public class Main extends Application {
 	private static int minute;
 	private static int checktime;
 	private Thread timerThread;
+	public static String time="";
 
 	@Override
 	public void start(Stage primaryStage) {
@@ -139,7 +147,7 @@ public class Main extends Application {
 		minute = 0;
 		timerThread = new Thread(() -> {
 			while (true) {
-				// System.out.println("Pause Game " + isPause());
+				 System.out.println("Pause Game " + isPause());
 				while (isPause() == false) {
 					try {
 						Thread.sleep(10);
@@ -169,6 +177,7 @@ public class Main extends Application {
 			}
 		});
 		this.timerThread.start();
+			
 	}
 
 	public static void main(String[] args) {
@@ -189,6 +198,7 @@ public class Main extends Application {
 		} else
 			m = "" + minute;
 		System.out.println(h + " : " + m);
+		time=h+":"+m;
 	}
 
 	public static boolean isPause() {
@@ -212,12 +222,20 @@ public class Main extends Application {
 		checktime = 0;
 		World.setNextday(false);
 	}
+	
+	public static String getTime() {
+		return time;
+	}
 
 	@Override
 	public void stop() throws Exception {
 		// TODO Auto-generated method stub
 		this.timerThread.interrupt();
+<<<<<<< HEAD
 		SceneManager.stopMusic();
 		Thread.interrupted();
+=======
+		Clock.stopClock();
+>>>>>>> f6ec040b898eb89b4bcdd6c715de83eaa4b5a68f
 	}
 }

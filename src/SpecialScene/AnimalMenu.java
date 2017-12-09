@@ -175,14 +175,14 @@ public class AnimalMenu implements setsceneable,SpecialScene {
 				} catch (IndexOutOfBoundsException e) {
 					reset();
 				}
-				World.setMoney(World.getMoney()-AnimalMenu.getTotalCost());
-				if (CounterAnimal.canBuyBarn && CounterAnimal.canBuyHen && World.getBuyable()) {
-					CounterAnimal.update(amouttype1, amouttype2, amouttype3);
-					SceneManager.warpTo(6);
+				if(CounterAnimal.isBuyable()) {
+					World.setMoney(World.getMoney()-AnimalMenu.getTotalCost());
+					if (CounterAnimal.canBuyBarn && CounterAnimal.canBuyHen && World.getBuyable()) {
+						CounterAnimal.update(amouttype1, amouttype2, amouttype3);
+						SceneManager.warpTo(6);
+					}		
 				}
 				reset();
-				CounterAnimal.canBuyBarn = true;
-				CounterAnimal.canBuyHen = true;
 			}
 		}
 		update();
@@ -196,6 +196,8 @@ public class AnimalMenu implements setsceneable,SpecialScene {
 		amouttype1 = 0;
 		amouttype2 = 0;
 		amouttype3 = 0;
+		CounterAnimal.canBuyBarn = true;
+		CounterAnimal.canBuyHen = true;
 	}
 
 	public static int getTotalCost() {

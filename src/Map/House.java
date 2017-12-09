@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ComponentMap.Bed;
+import ComponentMap.Clock;
 import ComponentMap.Environment;
 import ComponentMap.Hero;
 import ComponentMap.ReceiveAction;
+import javafx.application.Platform;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -16,13 +18,14 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Pair;
 
-public class House implements setsceneable{
+public class House implements setsceneable,HaveTime{
 	private Group root;
 	public Scene scene;
 	private Hero hero;
 	private List<Environment> e = new ArrayList<>();
 	private List<ReceiveAction> re = new ArrayList<>();
 	private  List<Pair<Rectangle,Integer>> WarpList = new ArrayList<>();
+	private Clock clock = new Clock();
 
 	public House(int starthx, int starthy) {
 		root = new Group();
@@ -65,8 +68,26 @@ public class House implements setsceneable{
 			root.getChildren().add(r);
 		}
 		hero.setWarpBlockList(WarpList);
-		
-		
+	}
+	
+	public void addClock() {
+		Platform.runLater(() -> {
+			root.getChildren().add(clock);
+		});
+		try {
+			Clock.TurnClock();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public void removeClock() {
+		if(root.getChildren().contains(clock)) {
+			Platform.runLater(() -> {
+				root.getChildren().remove(clock);
+			});		
+		}
 	}
 
 	public Scene getScene() {
