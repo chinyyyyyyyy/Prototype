@@ -12,6 +12,7 @@ public abstract class Plant implements InBackpack, StackAble, OnHandAble {
 	protected int dayofgrowth;
 	protected String name;
 	protected int price;
+	protected boolean harvestable;
 
 	public void cry() {
 		System.out.println(this.getClass().getSimpleName());
@@ -50,4 +51,7 @@ public abstract class Plant implements InBackpack, StackAble, OnHandAble {
 		return price;
 	}
 
+	public boolean isHarvestable() {
+		return harvestable;
+	}
 }

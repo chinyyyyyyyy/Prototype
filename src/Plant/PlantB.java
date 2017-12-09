@@ -24,11 +24,13 @@ public class PlantB extends Plant {
 		dayofgrowth = 0;
 		name = "Potato";
 		this.price = FruitCost;
+		this.harvestable=false;
 	}
 
 	public void Harvest() {
 		PlantCount++;
 		System.out.println("Harvest Success");
+		this.harvestable=false;
 	}
 
 	public int getAmount() {
@@ -42,6 +44,7 @@ public class PlantB extends Plant {
 	@Override
 	public ImagePattern checkState() {
 		if (dayofgrowth > SPOURT_DURATION) {
+			this.harvestable=true;
 			return matualstate;
 		} else if (dayofgrowth > SEED_DURATION) {
 			return sproutstate;

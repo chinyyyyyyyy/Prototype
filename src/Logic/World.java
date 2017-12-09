@@ -2,22 +2,20 @@ package Logic;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import ComponentMap.Dropbox;
 import ComponentMap.HasAnimal;
 import ComponentMap.Hero;
 import ComponentMap.SceneManager;
 import Map.setsceneable;
 
-
 public class World {
+	private static boolean nextday=false;
 	private static int days;
 	private static List<updateEveryday> listupdate = new ArrayList<>();
 	private static int money;
 	private static boolean Buyable;
 	private static List<String> season = new ArrayList<>();
 	private static int ss = 0;
-
 	public World() {
 		days = 1;
 		money = 5000;
@@ -32,14 +30,12 @@ public class World {
 		for (updateEveryday i : listupdate) {
 			i.updateafterendday();
 		}
-
 	
 		for(setsceneable i : SceneManager.getListMap()) {
 			if(i instanceof HasAnimal) {
 				((HasAnimal) i).update();
 			}
 		}
-		
 		SceneManager.warpTo(19);
 	}
 	
@@ -53,6 +49,7 @@ public class World {
 		System.out.println("Good Morning " + Hero.getName());
 		System.out.println("Today is day " + World.getDay());
 		Dropbox.clear();
+		setNextday(true);
 	}
 
 	public static int getDay() {
@@ -87,4 +84,11 @@ public class World {
 		return Buyable;
 	}
 
+	public static boolean isNextday() {
+		return nextday;
+	}
+
+	public static void setNextday(boolean nextday) {
+		World.nextday = nextday;
+	}
 }
