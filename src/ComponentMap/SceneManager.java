@@ -2,10 +2,9 @@ package ComponentMap;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import Logic.Sound;
 import Map.setsceneable;
 import SpecialScene.SpecialScene;
+import application.Main;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -28,8 +27,8 @@ public class SceneManager extends Rectangle {
 	private static int currentScene;
 	public static AudioClip  bgm = new AudioClip(ClassLoader.getSystemResource("bgm.mp3").toString()) ;
 
-
 	public SceneManager(Stage s, List<setsceneable> lm) {
+		Main.setPause(true);
 		primaryStage = s;
 		listmap = lm;
 		
@@ -40,6 +39,7 @@ public class SceneManager extends Rectangle {
 		GraphicsContext gc = c.getGraphicsContext2D();
 		gc.drawImage(OpenSceneImg ,0,0);
 		root.getChildren().add(c);
+		
 		primaryStage.setScene(scene);
 		primaryStage.show();
 		primaryStage.setTitle("Harvest Sun");
@@ -49,8 +49,7 @@ public class SceneManager extends Rectangle {
 			public void handle(KeyEvent event) {
 				if (event.getCode().equals(KeyCode.ENTER)) {
 					primaryStage.setScene(lm.get(10).getScene());
-					bgm.play();
-		            
+					bgm.play();    
 				} 
 			}
 		});
@@ -66,10 +65,12 @@ public class SceneManager extends Rectangle {
 		
 		if (listmap.get(mapno) instanceof SpecialScene) {
 			((SpecialScene) listmap.get(mapno)).update();
+			Main.setPause(true);
 		}
 		
 		if (listmap.get(mapno) instanceof SpecialScene == false) {
 			setSceneNumber(mapno);
+			Main.setPause(false);
 		}
 		primaryStage.setScene(listmap.get(mapno).getScene());
 		if (listmap.get(mapno) instanceof HasNPC && listmap.get(previousScene) instanceof SpecialScene == false) {

@@ -110,7 +110,7 @@ public class Feild extends ReceiveAction implements ActionByToolAble, updateEver
 	}
 
 	public Boolean canwater() {
-		if (stone == null && wood == null && plant != null ) {
+		if (stone == null && wood == null && plant != null && plant.isHarvestable() == false) {
 			return true;
 		}
 		return false;

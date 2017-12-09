@@ -2,6 +2,7 @@ package application;
 
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.stage.Stage;
 import java.util.ArrayList;
 import java.util.List;
@@ -48,6 +49,13 @@ import Tool.WateringCan;
 
 public class Main extends Application {
 
+	public static boolean Pause = false;
+	private static int currentTime;
+	private static int hour;
+	private static int minute;
+	private static int checktime;
+	private Thread timerThread;
+
 	@Override
 	public void start(Stage primaryStage) {
 		// --------------set up world---------------------//
@@ -58,18 +66,18 @@ public class Main extends Application {
 		Hammer hammer = new Hammer();
 		Hoe hoe = new Hoe();
 		WateringCan wateringcan = new WateringCan();
-		Hand hand =  new Hand();
+		Hand hand = new Hand();
 		SeedA seed1 = new SeedA(5);
 		SeedB seed2 = new SeedB(5);
 		SeedC seed3 = new SeedC(5);
-		Backpack.addItem(hand );
+		Backpack.addItem(hand);
 		Backpack.addItem(axe);
 		Backpack.addItem(hammer);
 		Backpack.addItem(hoe);
 		Backpack.addItem(wateringcan);
-		Backpack.addItem(seed1 );
-		Backpack.addItem(seed2 );
-		Backpack.addItem(seed3 );
+		Backpack.addItem(seed1);
+		Backpack.addItem(seed2);
+		Backpack.addItem(seed3);
 		// ---------------set up map---------------------//
 		List<setsceneable> listmap = new ArrayList<>();
 		Farm farm = new Farm(1000, 300);
@@ -87,12 +95,12 @@ public class Main extends Application {
 		Profile profile = new Profile();
 		ToolStatus toolstatus = new ToolStatus();
 		AnimalBuyer animalbuyer = new AnimalBuyer();
-		ToolMenu toolmenu = new ToolMenu("Milker",Milker.COST,"Scissors",Scissors.COST);
+		ToolMenu toolmenu = new ToolMenu("Milker", Milker.COST, "Scissors", Scissors.COST);
 		Inventory inventory = new Inventory();
 		BlackSmithMenu blackmenu = new BlackSmithMenu();
 		UpgradeBag upgradebag = new UpgradeBag();
-		BlackSmithInterface blackinter = new BlackSmithInterface(); 
-		Summary summary = new Summary();	
+		BlackSmithInterface blackinter = new BlackSmithInterface();
+		Summary summary = new Summary();
 		listmap.add(farm); // 0
 		listmap.add(town); // 1
 		listmap.add(house); // 2
@@ -103,28 +111,111 @@ public class Main extends Application {
 		listmap.add(seedshop); // 7
 		listmap.add(animalmenu); // 8
 		listmap.add(seedmenu); // 9
-		listmap.add(welcome); //10
-		listmap.add(profile); //11
-		listmap.add(toolstatus); //12
-		listmap.add(animalbuyer); //13
-		listmap.add(toolmenu); //14
-		listmap.add(inventory); //15
-		listmap.add(blackmenu); //16
-		listmap.add(upgradebag); //17
-		listmap.add(blackinter); //18
-		listmap.add(summary); //19
-		
+		listmap.add(welcome); // 10
+		listmap.add(profile); // 11
+		listmap.add(toolstatus); // 12
+		listmap.add(animalbuyer); // 13
+		listmap.add(toolmenu); // 14
+		listmap.add(inventory); // 15
+		listmap.add(blackmenu); // 16
+		listmap.add(upgradebag); // 17
+		listmap.add(blackinter); // 18
+		listmap.add(summary); // 19
+
 		primaryStage.setResizable(false);
 		primaryStage.sizeToScene();
 		SceneManager sm = new SceneManager(primaryStage, listmap);
 		AnimationTimer animation = new AnimationTimer() {
 			public void handle(long now) {
+				// clock(hour,minute);
 			}
 		};
 		animation.start();
+
+		// ------------------------------------------------Clock------------------------------------------------
+		checktime = 0;
+		currentTime = -1;
+		hour = 5;
+		minute = 0;
+		timerThread = new Thread(() -> {
+			while (true) {
+				// System.out.println("Pause Game " + isPause());
+				while (isPause() == false) {
+					try {
+						Thread.sleep(10);
+						if (World.isNextday())
+							resetTime();
+						checktime += 10;
+						if (checktime == 1000 || currentTime == -1) {
+							currentTime++;
+							minute = (currentTime * 10) % 60;
+							if (currentTime % 6 == 0) {
+								hour = (hour + 1) % 24;
+							}
+							clock(hour, minute);
+							checktime = 0;
+						}
+						if (currentTime == 120) {
+							Platform.runLater(() -> {
+								World.nextDay();
+							});
+						}
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						System.out.println("End Game");
+						return;
+					}
+				}
+			}
+		});
+		this.timerThread.start();
 	}
 
 	public static void main(String[] args) {
 		launch(args);
+	}
+
+	public static void clock(int hour, int minute) {
+		String h;
+		String m;
+
+		if (hour < 10) {
+			h = "0" + hour;
+		} else
+			h = "" + hour;
+
+		if (minute < 10) {
+			m = "0" + minute;
+		} else
+			m = "" + minute;
+		System.out.println(h + " : " + m);
+	}
+
+	public static boolean isPause() {
+		return Pause;
+	}
+
+	public static void setPause(boolean pause) {
+		Pause = pause;
+	}
+
+	public static void resetTime() {
+		if (currentTime < 108) {
+			hour = 5;
+		} else if (currentTime < 120) {
+			hour = 7;
+		} else {
+			hour = 9;
+		}
+		minute = 0;
+		currentTime = -1 + (hour - 5) * 6;
+		checktime = 0;
+		World.setNextday(false);
+	}
+
+	@Override
+	public void stop() throws Exception {
+		// TODO Auto-generated method stub
+		this.timerThread.interrupt();
 	}
 }
