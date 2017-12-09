@@ -21,6 +21,11 @@ public abstract class Product implements InBackpack, StackAble, OnHandAble {
 			Backpack.deleteItem();
 		}
 	}
+	
+	@Override
+	public String toString() {
+		return getName();
+	}
 
 	public String getName() {
 		return this.getClass().getSimpleName();

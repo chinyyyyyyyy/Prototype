@@ -7,21 +7,40 @@ public class PlantB extends Plant {
 	private final int SEED_DURATION = 2;
 	private final int SPOURT_DURATION = 4;
 	public static final int SeedCost = 100;
-	public static final ImagePattern seedstate = new ImagePattern(new Image(ClassLoader.getSystemResource("seedstate.png").toString()));
-	public static final ImagePattern wateredseedstate = new ImagePattern(new Image(ClassLoader.getSystemResource("wateredseedstate.png").toString()));
-	public static final ImagePattern sproutstate = new ImagePattern(new  Image(ClassLoader.getSystemResource("potatosprout.png").toString()));
-	public static final ImagePattern wateredsproutstate=  new ImagePattern(new Image(ClassLoader.getSystemResource("wateredpotatosprout.png").toString()));
-	public static final ImagePattern matualstate = new ImagePattern(new Image(ClassLoader.getSystemResource("potatomatual.png").toString()));
+	public static final int FruitCost = 150;
+	protected static int PlantCount = 0;
+	public static final ImagePattern seedstate = new ImagePattern(
+			new Image(ClassLoader.getSystemResource("seedstate.png").toString()));
+	public static final ImagePattern wateredseedstate = new ImagePattern(
+			new Image(ClassLoader.getSystemResource("wateredseedstate.png").toString()));
+	public static final ImagePattern sproutstate = new ImagePattern(
+			new Image(ClassLoader.getSystemResource("potatosprout.png").toString()));
+	public static final ImagePattern wateredsproutstate = new ImagePattern(
+			new Image(ClassLoader.getSystemResource("wateredpotatosprout.png").toString()));
+	public static final ImagePattern matualstate = new ImagePattern(
+			new Image(ClassLoader.getSystemResource("potatomatual.png").toString()));
 
 	public PlantB() {
 		dayofgrowth = 0;
 		name = "Potato";
-		this.price=SeedCost;
+		this.price = FruitCost;
+	}
 
+	public void Harvest() {
+		PlantCount++;
+		System.out.println("Harvest Success");
+	}
+
+	public int getAmount() {
+		return PlantCount;
+	}
+
+	public void clear() {
+		PlantCount = 0;
 	}
 
 	@Override
-	public  ImagePattern checkState() {
+	public ImagePattern checkState() {
 		if (dayofgrowth > SPOURT_DURATION) {
 			return matualstate;
 		} else if (dayofgrowth > SEED_DURATION) {
@@ -30,13 +49,13 @@ public class PlantB extends Plant {
 			return seedstate;
 		}
 	}
-	
+
 	@Override
-	public  ImagePattern getWateredstate() {
+	public ImagePattern getWateredstate() {
 		if (dayofgrowth > SEED_DURATION) {
 			return wateredsproutstate;
 		} else {
-			return wateredseedstate ;
+			return wateredseedstate;
 		}
 	}
 }

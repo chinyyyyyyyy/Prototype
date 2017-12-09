@@ -2,7 +2,7 @@ package Product;
 
 public class Wool extends Product{
 	protected static int WoolCount=0;
-	protected static final int COST = 100;
+	protected static final int COST = 200;
 	
 	public Wool() {
 		this.price=COST;

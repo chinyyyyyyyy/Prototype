@@ -32,13 +32,19 @@ public class Cow extends Animal implements ActionByToolAble {
 	}
 
 	public void produce() {
-		if (Milk.getMilkCount() == 0)
-			Backpack.getBackpack().add(new Milk());
+		if (Milk.getMilkCount() == 0) {
+			if(Backpack.isFull()) {
+				System.out.println("Your bag is full.");
+				return;
+			}
+			else Backpack.addItem(new Milk());
+		}
 		Milk.addMilk();
 		this.produceable=false;
 		cry();
 		this.love++;
 		this.daycount=0;
+		System.out.println("Milk Success");
 	}
 	
 	public void eat() {

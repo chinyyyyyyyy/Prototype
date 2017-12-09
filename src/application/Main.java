@@ -70,7 +70,6 @@ public class Main extends Application {
 		Backpack.addItem(seed1 );
 		Backpack.addItem(seed2 );
 		Backpack.addItem(seed3 );
-		Backpack.addItem(hand );
 		// ---------------set up map---------------------//
 		List<setsceneable> listmap = new ArrayList<>();
 		Farm farm = new Farm(1000, 300);

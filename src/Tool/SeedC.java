@@ -4,7 +4,6 @@ import ComponentMap.ActionByToolAble;
 import ComponentMap.Feild;
 import Logic.Backpack;
 import Logic.InBackpack;
-import Plant.PlantA;
 import Plant.PlantC;
 
 public class SeedC extends Seed implements InBackpack {
@@ -13,7 +12,7 @@ public class SeedC extends Seed implements InBackpack {
 
 	public SeedC(int amount) {
 		seedamout = amount;
-		this.name = "PlantC";
+		this.name = "SeedC";
 	}
 	
 	public void cry() {
@@ -31,7 +30,6 @@ public class SeedC extends Seed implements InBackpack {
 			if (seedamout == 0) {
 				System.out.println("Seed Out");
 				Backpack.deleteItem();
-				Backpack.ChangeItem();
 			}
 		}
 	}

@@ -2,7 +2,6 @@ package NPC;
 
 import ComponentMap.SceneManager;
 import Logic.Backpack;
-import SpecialScene.SeedMenu;
 import Tool.SeedA;
 import Tool.SeedB;
 import Tool.SeedC;
@@ -12,8 +11,11 @@ import javafx.scene.shape.Shape;
 
 public class CounterSeed extends Counter {
 
+	private static boolean buyable;
+
 	public CounterSeed(int x, int y, int w, int h, Color c) {
 		super(x, y, w, h, c);
+		setBuyable(true);
 	}
 
 	public void checkAction(Rectangle r) {
@@ -29,31 +31,58 @@ public class CounterSeed extends Counter {
 	}
 
 	public static void update(int numA, int numB, int numC) {
-		BuySeedA(numA);
-		BuySeedB(numB);
-		BuySeedC(numC);
-		System.out.println("Total cost is " + SeedMenu.getTotalCost() + " $");
-		System.out.println("Thank you very much ~");
+		if (numA != 0)
+			BuySeedA(numA);
+		if (numB != 0)
+			BuySeedB(numB);
+		if (numC != 0)
+			BuySeedC(numC);
 	}
 
 	private static void BuySeedC(int numC) {
 		// TODO Auto-generated method stub
-		if (SeedC.getSeedAmount() == 0)
+		if (SeedC.getSeedAmount() == 0) {
+			if (Backpack.isFull()) {
+				System.out.println("Your bag is full.");
+				setBuyable(isBuyable() && false);
+				return;
+			}
 			Backpack.getBackpack().add(new SeedC(0));
+		}
 		SeedC.addSeed(numC);
 	}
 
 	private static void BuySeedB(int numB) {
 		// TODO Auto-generated method stub
-		if (SeedB.getSeedAmount() == 0)
+		if (SeedB.getSeedAmount() == 0) {
+			if (Backpack.isFull()) {
+				System.out.println("Your bag is full.");
+				setBuyable(isBuyable() && false);
+				return;
+			}
 			Backpack.getBackpack().add(new SeedB(0));
+		}
 		SeedB.addSeed(numB);
 	}
 
 	private static void BuySeedA(int numA) {
 		// TODO Auto-generated method stub
-		if (SeedA.getSeedAmount() == 0)
+		if (SeedA.getSeedAmount() == 0) {
+			if (Backpack.isFull()) {
+				System.out.println("Your bag is full.");
+				setBuyable(isBuyable() && false);
+				return;
+			}
 			Backpack.getBackpack().add(new SeedA(0));
+		}
 		SeedA.addSeed(numA);
+	}
+
+	public static boolean isBuyable() {
+		return buyable;
+	}
+
+	public static void setBuyable(boolean buyable) {
+		CounterSeed.buyable = buyable;
 	}
 }

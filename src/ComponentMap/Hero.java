@@ -214,6 +214,8 @@ public class Hero {
 					SceneManager.warpTo(18);
 				} else if (event.getCode().equals(KeyCode.V)) {
 					SceneManager.warpTo(13);
+				} else if (event.getCode().equals(KeyCode.N)) {
+					SceneManager.warpTo(9);
 				}
 			}
 		});

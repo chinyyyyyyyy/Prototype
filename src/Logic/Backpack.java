@@ -11,12 +11,12 @@ import Tool.Hand;
 public class Backpack {
 	private static List<InBackpack> backpack;
 	private static int indexitemonhand;
-	private static int max_bagsize;
+	private static int max_bagsize=11;
 	private static int level;
+	private static boolean full=false;
 
 	public Backpack() {
-		max_bagsize = 11;
-		backpack = new ArrayList<>(11);
+		backpack = new ArrayList<>();
 		indexitemonhand = 0;
 		setLevel(0);
 	}
@@ -36,6 +36,7 @@ public class Backpack {
 				backpack.get(indexitemonhand).cry();
 		} else {
 			indexitemonhand = 0;
+			Hand.setOnhand(null);
 			backpack.get(indexitemonhand).cry();
 		}
 	}
@@ -51,17 +52,24 @@ public class Backpack {
 	}
 
 	public static void addItem(InBackpack t) {
-		if (backpack.size() < max_bagsize)
-			backpack.add(t);
-		else
+		if(isFull() == false) backpack.add(t);
+		else {
 			System.out.println("Your bag is full.");
+			return;
+		}
+		if (backpack.size() >= max_bagsize) {	
+			setFull(true);
+		}
 	}
 
 	public static void deleteItem() {
 		if (backpack.size() != 0) {
-			if(backpack.get(indexitemonhand) instanceof StackAble) {
+			if (backpack.get(indexitemonhand) instanceof StackAble) {
 				((StackAble) backpack.get(indexitemonhand)).clear();
-			}	
+			}
+			if (isFull()) {
+				setFull(false);
+			}
 			backpack.remove(indexitemonhand);
 		}
 		indexitemonhand = 0;
@@ -87,5 +95,13 @@ public class Backpack {
 
 	public static int getMaxSize() {
 		return max_bagsize;
+	}
+
+	public static boolean isFull() {
+		return full;
+	}
+	
+	public static void setFull(boolean set) {
+		full=set;
 	}
 }

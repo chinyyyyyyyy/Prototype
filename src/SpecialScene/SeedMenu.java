@@ -1,6 +1,5 @@
 package SpecialScene;
 
-import ComponentMap.Hero;
 import ComponentMap.SceneManager;
 import Logic.World;
 import Map.setsceneable;
@@ -170,10 +169,14 @@ public class SeedMenu implements setsceneable,SpecialScene {
 			else if (row == 2)
 				amouttype3++;
 			else if (row == 3) {
-				World.setMoney(World.getMoney() - SeedMenu.getTotalCost());
-				if (World.getBuyable()) {
-					CounterSeed.update(amouttype1, amouttype2, amouttype3);
-					SceneManager.warpTo(this.sc);
+				CounterSeed.update(amouttype1, amouttype2, amouttype3);
+				if(CounterSeed.isBuyable()) {
+					World.setMoney(World.getMoney() - SeedMenu.getTotalCost());		
+					if (World.getBuyable()) {
+						System.out.println("Total cost is " + SeedMenu.getTotalCost() + " $");
+						System.out.println("Thank you very much ~");
+						SceneManager.warpTo(this.sc);
+					}
 				}
 				reset();
 			}
@@ -189,6 +192,7 @@ public class SeedMenu implements setsceneable,SpecialScene {
 		amouttype1 = 0;
 		amouttype2 = 0;
 		amouttype3 = 0;
+		CounterSeed.setBuyable(true);
 	}
 
 	public static int getTotalCost() {

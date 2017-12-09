@@ -17,9 +17,8 @@ public class Milker extends Tool {
 		// TODO Auto-generated method stub
 		if (a instanceof Cow) {
 			if (((Cow) a).getProduceable()) {
-				((Cow) a).produce();
-				SceneManager.warpTo(SceneManager.getSceneNumber());
-				System.out.println("Milk Success");
+					((Cow) a).produce();
+					SceneManager.warpTo(SceneManager.getSceneNumber());
 			}else {
 				System.out.println("You can't milk now.");
 			}

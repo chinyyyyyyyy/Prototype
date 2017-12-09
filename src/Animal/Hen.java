@@ -29,9 +29,15 @@ public class Hen extends Animal implements ActionByToolAble{
 	}
 
 	public void produce() {
-		if (Egg.getEggCount() == 0)
-			Backpack.getBackpack().add(new Egg());
+		if (Egg.getEggCount() == 0) {
+			if(Backpack.isFull()) {
+				System.out.println("Your bag is full.");
+				return;
+			}
+			else Backpack.addItem(new Egg());
+		}
 		Egg.addEgg();
+		System.out.println("Get Egg");
 		this.produceable = false;
 	}
 	
@@ -49,9 +55,8 @@ public class Hen extends Animal implements ActionByToolAble{
 		double ha = r.getHeight();
 		if (wi >= 0.9 * wa && hi >= 0.9 * ha) {
 			if (this.getProduceable()) {
-				produce();
-				System.out.println("Get Egg");
-				SceneManager.warpTo(SceneManager.getSceneNumber());
+					produce();		
+					SceneManager.warpTo(SceneManager.getSceneNumber());
 			}else if(Backpack.CheckItemOnHand() instanceof Hay){
 				((Hay) Backpack.CheckItemOnHand()).Action(this);
 			}else {
