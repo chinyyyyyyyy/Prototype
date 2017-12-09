@@ -231,11 +231,8 @@ public class Main extends Application {
 	public void stop() throws Exception {
 		// TODO Auto-generated method stub
 		this.timerThread.interrupt();
-<<<<<<< HEAD
 		SceneManager.stopMusic();
 		Thread.interrupted();
-=======
 		Clock.stopClock();
->>>>>>> f6ec040b898eb89b4bcdd6c715de83eaa4b5a68f
 	}
 }
