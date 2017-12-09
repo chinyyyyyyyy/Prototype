@@ -17,6 +17,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Pair;
 
@@ -33,6 +34,8 @@ public class HenBarn implements setsceneable, HasAnimal {
 	public static List<Pair<Integer, Integer>> actionposition = new ArrayList<Pair<Integer, Integer>>();
 	private Canvas bg;
 	private Canvas egg;
+	private static final ImagePattern chickenimg = new ImagePattern(
+			new Image(ClassLoader.getSystemResource("Chicken.png").toString()));
 
 	public HenBarn(int starthx, int starthy) {
 		root = new Group();
@@ -40,7 +43,7 @@ public class HenBarn implements setsceneable, HasAnimal {
 		bg = new Canvas(1280, 720);
 		GraphicsContext gc = bg.getGraphicsContext2D();
 		Image background = new Image(ClassLoader.getSystemResource("inHenhouse.png").toString());
-		gc.drawImage(background,0,0);
+		gc.drawImage(background, 0, 0);
 		root.getChildren().add(bg);
 
 		// Boarder
@@ -61,7 +64,7 @@ public class HenBarn implements setsceneable, HasAnimal {
 		e.add(new Environment(581, 0, 118, 200, Color.CHOCOLATE));
 		e.add(new Environment(714, 0, 118, 200, Color.CHOCOLATE));
 		e.add(new Environment(847, 0, 118, 200, Color.CHOCOLATE));
-		
+
 		// Hay
 		e.add(new Environment(0, 550, 150, 200, Color.BLACK));
 		haygetter = new HayGetter(0, 550, 150, 200, Color.BLACK);
@@ -73,14 +76,14 @@ public class HenBarn implements setsceneable, HasAnimal {
 		position.add(new Pair<Integer, Integer>(600, 260));
 		position.add(new Pair<Integer, Integer>(733, 260));
 		position.add(new Pair<Integer, Integer>(866, 260));
-		actionposition.add(new Pair<Integer, Integer>(334, 340));
-		actionposition.add(new Pair<Integer, Integer>(467, 340));
-		actionposition.add(new Pair<Integer, Integer>(600, 340));
-		actionposition.add(new Pair<Integer, Integer>(733, 340));
-		actionposition.add(new Pair<Integer, Integer>(866, 340));
-		
-//		root.getChildren().addAll(e);
-//		root.getChildren().addAll(re);
+		actionposition.add(new Pair<Integer, Integer>(320, 350));
+		actionposition.add(new Pair<Integer, Integer>(455, 350));
+		actionposition.add(new Pair<Integer, Integer>(585, 350));
+		actionposition.add(new Pair<Integer, Integer>(715, 350));
+		actionposition.add(new Pair<Integer, Integer>(850, 350));
+
+		// root.getChildren().addAll(e);
+		// root.getChildren().addAll(re);
 
 		Rectangle warpblocktofarm = new Rectangle(580, 695, 120, 25);
 		warpblocktofarm.setFill(Color.RED);
@@ -88,7 +91,7 @@ public class HenBarn implements setsceneable, HasAnimal {
 		Pair<Rectangle, Integer> tofarm = new Pair<Rectangle, Integer>(warpblocktofarm, 0);
 		WarpList.add(tofarm);
 
-		hero = new Hero(scene, starthx, starthy, e, re);
+		hero = new Hero(scene, starthx, starthy, e, re,true);
 		root.getChildren().addAll(hero.getUnitblock());
 		for (Rectangle r : hero.getActionblock()) {
 			root.getChildren().add(r);
@@ -109,8 +112,10 @@ public class HenBarn implements setsceneable, HasAnimal {
 				re.add(x);
 				Environment hen = new Environment(position.get(i).getKey(), position.get(i).getValue(), 80, 80,
 						Color.ORANGERED);
-				Environment egg = new Environment(actionposition.get(i).getKey(), actionposition.get(i).getValue(), 80, 80,
-						Color.LIMEGREEN);
+				hen.setFill(chickenimg);
+				Environment egg = new Environment(actionposition.get(i).getKey(), actionposition.get(i).getValue(), 100,
+						100, Color.LIMEGREEN);
+				egg.setOpacity(0);
 				e.add(hen);
 				e.add(egg);
 				root.getChildren().add(x);
@@ -126,11 +131,13 @@ public class HenBarn implements setsceneable, HasAnimal {
 		GraphicsContext gc = egg.getGraphicsContext2D();
 		for (int i = 0; i < this.CurrentAnimal; i++) {
 			if (Counter.hen.get(i).getProduceable()) {
-				gc.setFill(Color.WHITE);
-				gc.fillOval(actionposition.get(i).getKey() + 25, actionposition.get(i).getValue() + 20, 40, 50);
-			} else {
-				gc.setFill(Color.LIMEGREEN);
-				gc.fillRect(actionposition.get(i).getKey(), actionposition.get(i).getValue(), 80, 80);
+				Counter.hen.get(i).setTraywithegg();
+			} 
+				else if (Counter.hen.get(i).getFeedable() == false) {
+				Counter.hen.get(i).setTraywithhay();
+			} 
+			else {
+				Counter.hen.get(i).setTray();
 			}
 		}
 		root.getChildren().add(egg);

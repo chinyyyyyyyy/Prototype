@@ -11,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
@@ -25,23 +26,25 @@ public class Welcome implements setsceneable {
 	public Welcome() {
 		Group root = new Group();
 		GridPane pane = new GridPane();
-		pane.setPadding(new Insets(350,300,250,550));
+		pane.setPadding(new Insets(350,500,250,550));
 		
-		gc.setFill(Color.ANTIQUEWHITE);
-		gc.fillRect(0, 0, 1280, 720);
-		gc.setFill(Color.BLACK);
-		gc.setFont(new Font("abc", 30));
-		gc.fillText("Please enter your name :", 480, 300);
+		
+		Image background = new Image(ClassLoader.getSystemResource("entergame.png").toString());
+		gc.drawImage(background,0,0);
 		
 		this.nameField = new TextField();
 		nameField.setPromptText("Enter Your name here.");
-		nameField.setPrefSize(200, 50);
+		nameField.setPrefSize(400, 75);
 		nameField.setAlignment(Pos.CENTER);
+		nameField.setOpacity(0.75);
+		nameField.setFont(new Font("Monospace", 35));
+		nameField.setLayoutX(440);
+		nameField.setLayoutY(500);
 		
-		pane.add(nameField,0,0);
+		
 		
 		root.getChildren().add(c);
-		root.getChildren().add(pane);
+		root.getChildren().add(nameField);
 		scene = new Scene(root);
 		
 		nameField.setOnAction(new EventHandler<ActionEvent>() {

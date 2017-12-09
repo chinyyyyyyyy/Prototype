@@ -91,15 +91,29 @@ public class Hero {
 		unitblock.setFill(walkright.get(1));
 	}
 
-	public Hero(Scene scene, int startx, int starty, List<Environment> e, List<ReceiveAction> re) {
-
-		unitblock = new Rectangle(startx, starty, 75, 75);
+	public Hero(Scene scene, int startx, int starty, List<Environment> e, List<ReceiveAction> re,boolean isBig) {
+		Rectangle abl;
+		Rectangle abu;
+		Rectangle abr;
+		Rectangle abd;
+		if(isBig ) {
+		unitblock = new Rectangle(startx, starty, 100, 100);
 		unitblock.setFill(Color.AQUA);
-
-		Rectangle abl = new Rectangle(startx + unitblock.getWidth(), starty, 75, 75);
-		Rectangle abu = new Rectangle(startx, starty - unitblock.getHeight(), 75, 75);
-		Rectangle abr = new Rectangle(startx - unitblock.getWidth(), starty, 75, 75);
-		Rectangle abd = new Rectangle(startx, starty + unitblock.getHeight(), 75, 75);
+		abl = new Rectangle(startx + unitblock.getWidth(), starty, 100, 100);
+		abu = new Rectangle(startx, starty - unitblock.getHeight(), 100, 100);
+		abr = new Rectangle(startx - unitblock.getWidth(), starty, 100, 100);
+		abd = new Rectangle(startx, starty + unitblock.getHeight(), 100, 100);
+		}else {
+			unitblock = new Rectangle(startx, starty, 75, 75);
+			unitblock.setFill(Color.AQUA);
+			abl = new Rectangle(startx + unitblock.getWidth(), starty, 75, 75);
+			abu = new Rectangle(startx, starty - unitblock.getHeight(), 75, 75);
+			abr = new Rectangle(startx - unitblock.getWidth(), starty, 75, 75);
+			abd = new Rectangle(startx, starty + unitblock.getHeight(), 75, 75);
+		}
+		
+		
+		
 		abl.setOpacity(0.1);
 		abu.setOpacity(0.1);
 		abd.setOpacity(0.1);

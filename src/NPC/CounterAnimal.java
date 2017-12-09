@@ -51,7 +51,9 @@ public class CounterAnimal extends Counter {
 			Cow.addCow();
 			int sx = CowBarn.position.get(CowBarn.getAnimalCount() - 1).getKey();
 			int sy = CowBarn.position.get(CowBarn.getAnimalCount() - 1).getValue();
-			animal.add(new Cow(sx, sy, 100, 100, Color.ALICEBLUE));
+			Cow c = new Cow(sx, sy, 100, 100, Color.ALICEBLUE);
+			c.setOpacity(0);
+			animal.add(c);
 		}
 	}
 
@@ -61,7 +63,9 @@ public class CounterAnimal extends Counter {
 			Sheep.addSheep();
 			int sx = CowBarn.position.get(CowBarn.getAnimalCount() - 1).getKey();
 			int sy = CowBarn.position.get(CowBarn.getAnimalCount() - 1).getValue();
-			animal.add(new Sheep(sx, sy, 100, 100, Color.ANTIQUEWHITE));
+			Sheep s = new Sheep(sx, sy, 100, 100, Color.ALICEBLUE);
+			s.setOpacity(0);
+			animal.add(s);
 		}
 	}
 
@@ -70,8 +74,11 @@ public class CounterAnimal extends Counter {
 			Hen.addHen();
 			int sx = HenBarn.actionposition.get(HenBarn.getAnimalCount() - 1).getKey();
 			int sy = HenBarn.actionposition.get(HenBarn.getAnimalCount() - 1).getValue();
-			hen.add(new Hen(sx, sy, 80, 80, Color.LIMEGREEN));
+			hen.add(new Hen(sx, sy, 100,100, Color.LIMEGREEN));
 		}
+		
+		
+		
 	}
 
 	public void checkAction(Rectangle r) {

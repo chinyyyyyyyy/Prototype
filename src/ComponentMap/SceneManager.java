@@ -139,4 +139,8 @@ public class SceneManager extends Rectangle {
 	public static void setCurrentScene(int currentScene) {
 		SceneManager.currentScene = currentScene;
 	}
+	
+	public static void stopMusic() {
+		bgm.stop();
+	}
 }

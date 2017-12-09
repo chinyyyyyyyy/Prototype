@@ -51,13 +51,13 @@ public class AnimalShop implements setsceneable,HasNPC {
 		e.add(new Environment(1010,225, 275,470, Color.SEAGREEN));
 
 		// counter
-		e.add(new Environment(765, 315, 70, 185, Color.BLACK));
-		Counter counter = new CounterAnimal(765, 360, 50, 100, Color.YELLOW);
+		e.add(new Environment(765, 347, 70, 185, Color.BLACK));
+		Counter counter = new CounterAnimal(765, 392, 50, 100, Color.YELLOW);
 		re.add(counter);
 		
 		//npc
-		e.add(new Environment(850, 380, 75, 75, Color.STEELBLUE));
-		animalseller = new AnimalSeller(850, 380, 80, 80, Color.STEELBLUE,"Peter");
+		e.add(new Environment(850, 412, 75, 75, Color.STEELBLUE));
+		animalseller = new AnimalSeller(850, 412, 80, 80, Color.STEELBLUE,"Peter");
 		npc = animalseller;
 		re.add(animalseller);
 
@@ -70,7 +70,7 @@ public class AnimalShop implements setsceneable,HasNPC {
 		Pair<Rectangle, Integer> totown = new Pair<Rectangle, Integer>(warpblocktotown, 1);
 		WarpList.add(totown);
 
-		hero = new Hero(scene, starthx, starthy, e, re);
+		hero = new Hero(scene, starthx, starthy, e, re,true);
 		root.getChildren().addAll(hero.getUnitblock());
 		for (Rectangle r : hero.getActionblock()) {
 			root.getChildren().add(r);

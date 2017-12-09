@@ -5,11 +5,13 @@ import ComponentMap.SceneManager;
 import Logic.Backpack;
 import Product.Egg;
 import Tool.Hay;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 
-public class Hen extends Animal implements ActionByToolAble{
+public class Hen extends Animal implements ActionByToolAble {
 
 	protected String name;
 	protected static int HenCount = 0;
@@ -21,7 +23,8 @@ public class Hen extends Animal implements ActionByToolAble{
 		super(x, y, w, h, c);
 		this.age = 1;
 		this.love = 0;
-		this.produceable=false;
+		this.produceable = false;
+
 	}
 
 	public void cry() {
@@ -30,21 +33,21 @@ public class Hen extends Animal implements ActionByToolAble{
 
 	public void produce() {
 		if (Egg.getEggCount() == 0) {
-			if(Backpack.isFull()) {
+			if (Backpack.isFull()) {
 				System.out.println("Your bag is full.");
 				return;
-			}
-			else Backpack.addItem(new Egg());
+			} else
+				Backpack.addItem(new Egg());
 		}
 		Egg.addEgg();
 		System.out.println("Get Egg");
 		this.produceable = false;
 	}
-	
+
 	public void eat() {
 		cry();
 		this.love++;
-		this.feedable=false;
+		this.feedable = false;
 	}
 
 	public void checkAction(Rectangle r) {
@@ -55,13 +58,14 @@ public class Hen extends Animal implements ActionByToolAble{
 		double ha = r.getHeight();
 		if (wi >= 0.9 * wa && hi >= 0.9 * ha) {
 			if (this.getProduceable()) {
-					produce();		
-					SceneManager.warpTo(SceneManager.getSceneNumber());
-			}else if(Backpack.CheckItemOnHand() instanceof Hay){
+				produce();
+				SceneManager.warpTo(SceneManager.getSceneNumber());
+			} else if (Backpack.CheckItemOnHand() instanceof Hay) {
 				((Hay) Backpack.CheckItemOnHand()).Action(this);
-			}else {
+				SceneManager.warpTo(SceneManager.getSceneNumber());
+			} else {
 				cry();
-				this.love++;							
+				this.love++;
 			}
 		}
 	}
@@ -93,7 +97,7 @@ public class Hen extends Animal implements ActionByToolAble{
 	public void updateafterendday() {
 		this.age++;
 		this.produceable = true;
-		this.feedable=true;
+		this.feedable = true;
 	}
 
 	public boolean getProduceable() {

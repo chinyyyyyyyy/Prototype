@@ -18,7 +18,7 @@ public class World {
 	private static int ss = 0;
 	public World() {
 		days = 1;
-		money = 5000;
+		money = 50000;
 		Buyable = true;
 		season.add("Spring");
 		season.add("Summer");

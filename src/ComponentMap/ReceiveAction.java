@@ -26,13 +26,13 @@ public class ReceiveAction extends Rectangle {
 			if (wi == wr && hi == hr)
 				System.out.println("OK");
 		} else if (wr >= wa && hr < ha) {
-			if (wi >= 0.8 * wa && hi == hr)
+			if (wi >= 0.7 * wa && hi == hr)
 				System.out.println("OK");
 		} else if (wr < wa && hr >= ha) {
-			if (wi == wr && hi >= 0.8 * ha)
+			if (wi == wr && hi >= 0.7 * ha)
 				System.out.println("OK");
 		} else if (wr >= wa && hr >= ha) {
-			if (wi >= 0.8 * wa && hi >= 0.8 * ha)
+			if (wi >= 0.7 * wa && hi >= 0.7 * ha)
 				System.out.println("OK");
 		}
 

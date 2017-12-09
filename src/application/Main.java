@@ -82,10 +82,10 @@ public class Main extends Application {
 		List<setsceneable> listmap = new ArrayList<>();
 		Farm farm = new Farm(1000, 300);
 		Town town = new Town(0, 560);
-		House house = new House(603, 645);
-		CowBarn cowbarn = new CowBarn(603, 645);
-		HenBarn henbarn = new HenBarn(603, 600);
-		Blacksmith blacksmith = new Blacksmith(603, 645);
+		House house = new House(603, 610);
+		CowBarn cowbarn = new CowBarn(603, 610);
+		HenBarn henbarn = new HenBarn(603, 610);
+		Blacksmith blacksmith = new Blacksmith(603, 610);
 		AnimalShop animalshop = new AnimalShop(0, 420);
 		SeedShop seedshop = new SeedShop(0, 420);
 		AnimalMenu animalmenu = new AnimalMenu("Cow", Cow.COST, "Sheep", Sheep.COST, "Hen", Hen.COST, 13);
@@ -217,5 +217,7 @@ public class Main extends Application {
 	public void stop() throws Exception {
 		// TODO Auto-generated method stub
 		this.timerThread.interrupt();
+		SceneManager.stopMusic();
+		Thread.interrupted();
 	}
 }

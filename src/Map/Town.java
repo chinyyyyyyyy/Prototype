@@ -103,13 +103,13 @@ public class Town implements setsceneable {
 
 		root.getChildren().addAll(e);
 
-		Rectangle warpblocktofarm = new Rectangle(0, 520, 15, 100);
-		warpblocktofarm.setOpacity(0);
+		Rectangle warpblocktofarm = new Rectangle(0, 520, 15, 120);
+		warpblocktofarm.setOpacity(1);
 		root.getChildren().addAll(warpblocktofarm);
 		Pair<Rectangle, Integer> tofarm = new Pair<Rectangle, Integer>(warpblocktofarm, 0);
 		WarpList.add(tofarm);
 
-		hero = new Hero(scene, starthx, starthy, e, re);
+		hero = new Hero(scene, starthx, starthy, e, re,false);
 		root.getChildren().addAll(hero.getUnitblock());
 		for (Rectangle r : hero.getActionblock()) {
 			root.getChildren().add(r);

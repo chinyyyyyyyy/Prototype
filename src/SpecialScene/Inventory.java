@@ -73,6 +73,7 @@ public class Inventory implements setsceneable, SpecialScene {
 						Backpack.SelectItem(row, column);
 					} catch (IndexOutOfBoundsException e) {
 						System.out.println("This slot is empty.");
+						Backpack.SelectItem(0,0);
 					}
 				}
 				if (event.getCode().equals(KeyCode.I)) {
@@ -149,14 +150,8 @@ public class Inventory implements setsceneable, SpecialScene {
 					gc.setFont(new Font("abc", 20));
 					Image picture;
 					String name;
-//					if(x instanceof Plant) {
-//						name=((Plant) x).getName();
-//					}else {
-						picture = x.getImage();
-					//}
+					picture = x.getImage();
 					gc.drawImage(picture, 150 + (j-1) * 100,250 + i * 150);
-//					gc.fillText(name, 180 + (j-1) * 100,
-//							310 + i * 150);
 					if(x instanceof StackAble) {
 						gc.fillText("x" + ((StackAble) x).getAmount(), 210 + (j-1) * 100,
 								340 + i * 150);
