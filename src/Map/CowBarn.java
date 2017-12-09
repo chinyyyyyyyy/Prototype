@@ -77,13 +77,13 @@ public class CowBarn implements setsceneable, HasAnimal {
 		root.getChildren().addAll(e);
 
 		// stall LEFT
-		position.add(new Pair<Integer, Integer>(100, 15));
+//		position.add(new Pair<Integer, Integer>(100, 15));
 		position.add(new Pair<Integer, Integer>(100, 159));
 		position.add(new Pair<Integer, Integer>(100, 303));
 		position.add(new Pair<Integer, Integer>(100, 447));
 		position.add(new Pair<Integer, Integer>(100, 598));
 		// stall RIGHT
-		position.add(new Pair<Integer, Integer>(1080, 15));
+//		position.add(new Pair<Integer, Integer>(1080, 15));
 		position.add(new Pair<Integer, Integer>(1080, 169));
 		position.add(new Pair<Integer, Integer>(1080, 303));
 		position.add(new Pair<Integer, Integer>(1080, 447));

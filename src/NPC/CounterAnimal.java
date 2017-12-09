@@ -15,6 +15,7 @@ public class CounterAnimal extends Counter {
 
 	public static boolean canBuyBarn = true;
 	public static boolean canBuyHen = true;
+	private static boolean buyable;
 
 	public CounterAnimal(int x, int y, int w, int h, Color c) {
 		super(x, y, w, h, c);
@@ -91,9 +92,18 @@ public class CounterAnimal extends Counter {
 		BuySheep(numsheep);
 		BuyHen(numhen);
 		System.out.println("Total cost is " + AnimalMenu.getTotalCost() + " $");
-		System.out.println("Thank you very much ~");			
+		System.out.println("Thank you very much ~");
 		// System.out.println("You have " + Cow.getCowCount() + " Cow.");
 		// System.out.println("You have " + Sheep.getSheepCount() + " Sheep.");
 		// System.out.println("You have " + Hen.getHenCount() + " Hen.");
+	}
+
+	public static boolean isBuyable() {
+		buyable = canBuyBarn && canBuyHen;
+		return buyable;
+	}
+
+	public static void setBuyable(boolean buyable) {
+		CounterAnimal.buyable = buyable;
 	}
 }
