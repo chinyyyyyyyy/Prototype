@@ -15,6 +15,7 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
@@ -146,14 +147,16 @@ public class Inventory implements setsceneable, SpecialScene {
 					}
 					gc.setFill(Color.BLACK);
 					gc.setFont(new Font("abc", 20));
+					Image picture;
 					String name;
-					if(x instanceof Plant) {
-						name=((Plant) x).getName();
-					}else {
-						name = x.getClass().getSimpleName();
-					}
-					gc.fillText(name, 180 + (j-1) * 100,
-							310 + i * 150);
+//					if(x instanceof Plant) {
+//						name=((Plant) x).getName();
+//					}else {
+						picture = x.getImage();
+					//}
+					gc.drawImage(picture, 150 + (j-1) * 100,250 + i * 150);
+//					gc.fillText(name, 180 + (j-1) * 100,
+//							310 + i * 150);
 					if(x instanceof StackAble) {
 						gc.fillText("x" + ((StackAble) x).getAmount(), 210 + (j-1) * 100,
 								340 + i * 150);

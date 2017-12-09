@@ -5,10 +5,12 @@ import ComponentMap.Feild;
 import Logic.Backpack;
 import Logic.InBackpack;
 import Plant.PlantB;
+import javafx.scene.image.Image;
 
 public class SeedB extends Seed implements InBackpack{
 	private static int seedamout;
 	private String name;
+	private Image seedimg = new Image(ClassLoader.getSystemResource("potatoseed.png").toString());
 
 	public SeedB(int amount) {
 		seedamout = amount;
@@ -52,5 +54,9 @@ public class SeedB extends Seed implements InBackpack{
 	
 	public void clear() {
 		seedamout=0;
+	}
+	
+	public Image getImage() {
+		return seedimg;
 	}
 }

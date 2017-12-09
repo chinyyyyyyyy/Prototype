@@ -19,6 +19,7 @@ public class PlantC extends Plant {
 			new Image(ClassLoader.getSystemResource("wateredcucumbersprout.png").toString()));
 	public static final ImagePattern matualstate = new ImagePattern(
 			new Image(ClassLoader.getSystemResource("cucumbermatual.png").toString()));
+	public static final Image cucumber = new Image(ClassLoader.getSystemResource("cucumber.png").toString());
 
 	public PlantC() {
 		dayofgrowth = 0;
@@ -56,6 +57,12 @@ public class PlantC extends Plant {
 		} else {
 			return wateredseedstate;
 		}
+	}
+
+	@Override
+	public Image getImage() {
+		// TODO Auto-generated method stub
+		return cucumber;
 	}
 
 }
