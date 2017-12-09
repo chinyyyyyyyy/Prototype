@@ -19,6 +19,7 @@ public class PlantA extends Plant {
 			new Image(ClassLoader.getSystemResource("wateredradishsprout.png").toString()));
 	public static final ImagePattern matualstate = new ImagePattern(
 			new Image(ClassLoader.getSystemResource("radishmatual.png").toString()));
+	public static final Image radish = new Image(ClassLoader.getSystemResource("radish.png").toString());
 
 	public PlantA() {
 		dayofgrowth = 0;
@@ -60,5 +61,11 @@ public class PlantA extends Plant {
 		} else {
 			return wateredseedstate;
 		}
+	}
+
+	@Override
+	public Image getImage() {
+		// TODO Auto-generated method stub
+		return radish;
 	}
 }

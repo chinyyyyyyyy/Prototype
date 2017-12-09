@@ -10,6 +10,7 @@ import Plant.Plant;
 import Plant.PlantA;
 import Plant.PlantB;
 import Plant.PlantC;
+import javafx.scene.image.Image;
 
 public class Hand implements InBackpack {
 	private static OnHandAble onhand;
@@ -75,5 +76,9 @@ public class Hand implements InBackpack {
 
 	public static void setOnhand(OnHandAble a) {
 		onhand = a;
+	}
+	
+	public Image getImage() {
+		return null;
 	}
 }

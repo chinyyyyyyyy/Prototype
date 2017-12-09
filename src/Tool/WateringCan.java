@@ -67,5 +67,15 @@ public class WateringCan extends Tool {
 	public static double getWaterLevel() {
 		return (water_level+0.0)/MAX_CAPACITY;
 	}
+	
+	public Image getImage() {
+		if(this.level == 2) {
+			return gold;
+		}else if (this.level == 1) {
+			return silver;
+		}else {
+			return bronze;
+		}
+	}
 
 }

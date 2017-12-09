@@ -51,4 +51,14 @@ public class Hammer extends Tool {
 		Hammer.upgradeable = upgradeable;
 	}
 	
+	public Image getImage() {
+		if(this.level == 2) {
+			return gold;
+		}else if (this.level == 1) {
+			return silver;
+		}else {
+			return bronze;
+		}
+	}
+	
 }

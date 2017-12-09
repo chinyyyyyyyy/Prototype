@@ -99,18 +99,22 @@ public class ToolStatus implements setsceneable, SpecialScene {
 		gc.fillText("Status", 970, 180);
 
 		gc.strokeRect(50, 220, 80, 80);
+		gc.drawImage(Backpack.getBackpack().get(1).getImage(), 50, 220);
 		gc.fillText("Axe", 150, 280);
 		gc.fillText(Axe.isUpgradeable(), 950, 280);
 
 		gc.strokeRect(50, 340, 80, 80);
+		gc.drawImage(Backpack.getBackpack().get(2).getImage(), 50, 340);
 		gc.fillText("Hammer", 150, 400);
 		gc.fillText(Hammer.isUpgradeable(), 950, 400);
 
 		gc.strokeRect(50, 460, 80, 80);
+		gc.drawImage(Backpack.getBackpack().get(3).getImage(), 50, 460);
 		gc.fillText("Hoe", 150, 520);
 		gc.fillText(Hoe.isUpgradeable(), 950, 520);
 
 		gc.strokeRect(50, 580, 80, 80);
+		gc.drawImage(Backpack.getBackpack().get(4).getImage(), 50, 580);
 		gc.fillText("Can", 150, 640);
 		gc.fillText(WateringCan.isUpgradeable(), 950, 640);
 	}
