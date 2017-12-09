@@ -3,6 +3,7 @@ package Tool;
 import ComponentMap.Feild;
 import ComponentMap.Pond;
 import SpecialScene.ToolStatus;
+import javafx.scene.image.Image;
 import ComponentMap.ActionByToolAble;
 
 public class WateringCan extends Tool {
@@ -10,6 +11,11 @@ public class WateringCan extends Tool {
 	private static int water_level;
 	private static boolean max;
 	private static boolean upgradeable;
+	private Image bronze = new Image(ClassLoader.getSystemResource("bronze_can.png").toString());
+	private Image silver = new Image(ClassLoader.getSystemResource("silver_can.png").toString());
+	private Image gold = new Image(ClassLoader.getSystemResource("gold_can.png").toString());
+
+	
 
 	public WateringCan() {
 		this.name = "WATERINGCAN";

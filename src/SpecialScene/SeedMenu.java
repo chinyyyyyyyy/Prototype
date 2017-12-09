@@ -123,8 +123,7 @@ public class SeedMenu implements setsceneable,SpecialScene {
 	}
 
 	public void update() {
-		gc.setFill(Color.ANTIQUEWHITE);
-		gc.fillRect(0, 0, 1280, 720);
+		gc.drawImage(Background,0,0);
 		gc.setFill(Color.BLACK);
 		gc.setFont(new Font("abc", 50));
 		gc.fillText("SeedShopJA", 500, 50);

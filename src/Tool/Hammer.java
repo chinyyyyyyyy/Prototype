@@ -2,11 +2,16 @@ package Tool;
 
 import ComponentMap.Feild;
 import SpecialScene.ToolStatus;
+import javafx.scene.image.Image;
 import ComponentMap.ActionByToolAble;
 
 public class Hammer extends Tool {
 	private static boolean upgradeable;
 	private static boolean max;
+	private Image bronze = new Image(ClassLoader.getSystemResource("bronze_hammer.png").toString());
+	private Image silver = new Image(ClassLoader.getSystemResource("silver_hammer.png").toString());
+	private Image gold = new Image(ClassLoader.getSystemResource("gold_hammer.png").toString());
+
 
 	public Hammer() {
 		this.name = "HAMMER";

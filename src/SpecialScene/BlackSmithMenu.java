@@ -87,8 +87,7 @@ public class BlackSmithMenu implements setsceneable, SpecialScene {
 
 	public void update() {
 		int count = 0;
-		gc.setFill(Color.ANTIQUEWHITE);
-		gc.fillRect(0, 0, 1280, 720);
+		gc.drawImage(Background,0,0);
 
 		gc.setFill(Color.ALICEBLUE);
 		gc.fillRect(380, 240, 500, 50);

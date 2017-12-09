@@ -2,11 +2,16 @@ package Tool;
 
 import ComponentMap.Feild;
 import SpecialScene.ToolStatus;
+import javafx.scene.image.Image;
 import ComponentMap.ActionByToolAble;
 
 public class Hoe extends Tool {
 	private static boolean upgradeable;
 	private static boolean max;
+	private Image bronze = new Image(ClassLoader.getSystemResource("bronze_hoe.png").toString());
+	private Image silver = new Image(ClassLoader.getSystemResource("silver_hoe.png").toString());
+	private Image gold = new Image(ClassLoader.getSystemResource("gold_hoe.png").toString());
+
 
 	public Hoe() {
 		this.name = "HOE";

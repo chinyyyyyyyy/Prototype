@@ -2,6 +2,8 @@ package ComponentMap;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import Logic.Sound;
 import Map.setsceneable;
 import SpecialScene.SpecialScene;
 import javafx.event.EventHandler;
@@ -12,6 +14,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.media.AudioClip;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 import javafx.stage.Stage;
@@ -23,6 +26,7 @@ public class SceneManager extends Rectangle {
 	private static int sceneNumber;
 	private static int previousScene;
 	private static int currentScene;
+	public static AudioClip  bgm = new AudioClip(ClassLoader.getSystemResource("bgm.mp3").toString()) ;
 
 
 	public SceneManager(Stage s, List<setsceneable> lm) {
@@ -44,8 +48,9 @@ public class SceneManager extends Rectangle {
 			@Override
 			public void handle(KeyEvent event) {
 				if (event.getCode().equals(KeyCode.ENTER)) {
-
-					primaryStage.setScene(lm.get(0).getScene());
+					primaryStage.setScene(lm.get(10).getScene());
+					bgm.play();
+		            
 				} 
 			}
 		});

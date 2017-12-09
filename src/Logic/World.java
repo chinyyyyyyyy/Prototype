@@ -9,6 +9,7 @@ import ComponentMap.Hero;
 import ComponentMap.SceneManager;
 import Map.setsceneable;
 
+
 public class World {
 	private static int days;
 	private static List<updateEveryday> listupdate = new ArrayList<>();
@@ -31,6 +32,7 @@ public class World {
 		for (updateEveryday i : listupdate) {
 			i.updateafterendday();
 		}
+
 	
 		for(setsceneable i : SceneManager.getListMap()) {
 			if(i instanceof HasAnimal) {

@@ -2,11 +2,15 @@ package Tool;
 
 import ComponentMap.Feild;
 import SpecialScene.ToolStatus;
+import javafx.scene.image.Image;
 import ComponentMap.ActionByToolAble;
 
 public class Axe extends Tool {
 	private static boolean upgradeable;
 	private static boolean max;
+	private Image bronze = new Image(ClassLoader.getSystemResource("bronze_axe.png").toString());
+	private Image silver = new Image(ClassLoader.getSystemResource("silver_axe.png").toString());
+	private Image gold = new Image(ClassLoader.getSystemResource("gold_axe.png").toString());
 
 	public Axe() {
 		this.name = "AXE";
