@@ -78,19 +78,11 @@ public class UpgradeBag extends BuyScene implements setsceneable, SpecialScene {
 		if (countupgrade == MAX_UPGRADE) {
 			gc.fillText("Back", 150, 300);
 		} else if (countupgrade == 0) {
-<<<<<<< HEAD
 			gc.fillText("Bag with " + ((Backpack.getMaxSize() - 1)+10) + " slots", 150, 300);
 			gc.fillText("2000", 1000, 300);
 		} else if (countupgrade == 1) {
 			gc.fillText("Bag with " + ((Backpack.getMaxSize() - 1)+10) + " slots", 150, 300);
 			gc.fillText("5000", 1000, 300);
-=======
-			gc.fillText("Bag with " + ((Backpack.getMaxSize() - 1) + 10) + " slots", 150, 200);
-			gc.fillText("2000", 1000, 200);
-		} else if (countupgrade == 1) {
-			gc.fillText("Bag with " + ((Backpack.getMaxSize() - 1) + 10) + " slots", 150, 200);
-			gc.fillText("5000", 1000, 200);
->>>>>>> 64d30409581e6627ee4c9b04044e17a40735900f
 		}
 		gc.fillText("Bag", 150, 200);
 		gc.fillText("Cost", 1000, 200);
