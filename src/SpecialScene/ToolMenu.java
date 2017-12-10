@@ -16,7 +16,6 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 
 public class ToolMenu extends BuyScene implements setsceneable, SpecialScene {
 
@@ -90,8 +89,7 @@ public class ToolMenu extends BuyScene implements setsceneable, SpecialScene {
 					}
 
 					if (World.getBuyable()) {
-						if (DialogCanvas.isHasDialog() == false)
-							SceneManager.warpTo(6);
+						chat("Buying Success !","Total cost is " + AnimalMenu.getTotalCost() + " $");
 						MAX_ROW--;
 						row = 0;
 					}
@@ -123,28 +121,28 @@ public class ToolMenu extends BuyScene implements setsceneable, SpecialScene {
 		gc.drawImage(Background, 0, 0);
 		gc.setFill(Color.BLACK);
 		gc.setFont(header);
-		gc.fillText("Tool", 500, 50);
+		gc.fillText("Tool", 500, 100);
 		gc.setStroke(Color.RED);
 		gc.setFont(body);
 		if (buyMilker && buyScissors) {
-			gc.fillText("Back", 150, 200);
+			gc.fillText("Back", 120, 250);
 		} else if (buyMilker) {
-			gc.fillText(type2, 150, 200);
-			gc.fillText("" + priceof2, 1000, 200);
+			gc.fillText(type2, 120, 250);
+			gc.fillText("" + priceof2, 970, 250);
 		} else if (buyScissors) {
-			gc.fillText(type1, 150, 200);
-			gc.fillText("" + priceof1, 1000, 200);
+			gc.fillText(type1, 120, 250);
+			gc.fillText("" + priceof1, 970, 250);
 		} else {
-			gc.fillText(type1, 150, 200);
-			gc.fillText(type2, 150, 350);
+			gc.fillText(type1, 120, 250);
+			gc.fillText(type2, 120, 400);
 
-			gc.fillText("" + priceof1, 1000, 200);
-			gc.fillText("" + priceof2, 1000, 350);
+			gc.fillText("" + priceof1, 970, 250);
+			gc.fillText("" + priceof2, 970, 400);
 		}
 
-		gc.fillText("Tool", 150, 120);	
-		gc.fillText("Cost", 1000, 120);		
-		gc.drawImage(hand,50, 150 + row * 150);
+		gc.fillText("Tool", 120, 170);	
+		gc.fillText("Cost", 970, 170);		
+		gc.drawImage(hand,20, 200 + row * 150);
 	}
 
 	public Scene getScene() {
@@ -160,6 +158,21 @@ public class ToolMenu extends BuyScene implements setsceneable, SpecialScene {
 			}
 		});
 		if (DialogCanvas.isHasDialog() == false) {
+			DialogCanvas.stopDialog();
+			root.getChildren().remove(d);
+		}
+	}
+	
+	public void chat(String word1, String word2) {
+		// TODO Auto-generated method stub
+		DialogCanvas d = DialogCanvas.Dialog;
+		Platform.runLater(() -> {
+			if(DialogCanvas.isHasDialog() == false) {
+				root.getChildren().add(d);
+				d.Chat(word1,word2);
+			}
+		});
+		if(DialogCanvas.isHasDialog() == false) {
 			DialogCanvas.stopDialog();
 			root.getChildren().remove(d);
 		}

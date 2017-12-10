@@ -73,7 +73,7 @@ public class BlackSmithMenu extends BuyScene implements setsceneable, SpecialSce
 						if (World.getBuyable()) {
 							((Tool) item).upgrade();
 							update();
-							chat("Upgrade Success !");	
+							chat("Upgrade Success !","Total cost is "+cost+" $");	
 						}else {
 							chat("You don't have enough money.");	
 						}
@@ -107,6 +107,17 @@ public class BlackSmithMenu extends BuyScene implements setsceneable, SpecialSce
 
 	public void update() {
 		gc.drawImage(Background, 0, 0);
+		
+		for(int i = 1 ; i<5 ;i++) {
+			if (((Tool) Backpack.getBackpack().get(i)).getLevel() == 0) {
+				gc.setFill(Color.ALICEBLUE);
+			} else if (((Tool) Backpack.getBackpack().get(i)).getLevel() == 1) {
+				gc.setFill(Color.SILVER);
+			} else {
+				gc.setFill(Color.GOLD);
+			}
+			gc.fillRect(50, 220 + (i-1) * 120, 80, 80);
+		}
 
 		gc.setFill(Color.BLACK);
 		gc.setFont(header);
@@ -161,6 +172,21 @@ public class BlackSmithMenu extends BuyScene implements setsceneable, SpecialSce
 			}
 		});
 		if (DialogCanvas.isHasDialog() == false) {
+			DialogCanvas.stopDialog();
+			root.getChildren().remove(d);
+		}
+	}
+	
+	public void chat(String word1, String word2) {
+		// TODO Auto-generated method stub
+		DialogCanvas d = DialogCanvas.Dialog;
+		Platform.runLater(() -> {
+			if(DialogCanvas.isHasDialog() == false) {
+				root.getChildren().add(d);
+				d.Chat(word1,word2);
+			}
+		});
+		if(DialogCanvas.isHasDialog() == false) {
 			DialogCanvas.stopDialog();
 			root.getChildren().remove(d);
 		}

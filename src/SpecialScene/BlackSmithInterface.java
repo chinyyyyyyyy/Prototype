@@ -12,7 +12,6 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 
 public class BlackSmithInterface implements setsceneable,SpecialScene,BuyInterface{
 	private Group root;
@@ -96,6 +95,21 @@ public class BlackSmithInterface implements setsceneable,SpecialScene,BuyInterfa
 			if(DialogCanvas.isHasDialog() == false) {
 				root.getChildren().add(d);
 				d.Chat(word);
+			}
+		});
+		if(DialogCanvas.isHasDialog() == false) {
+			DialogCanvas.stopDialog();
+			root.getChildren().remove(d);
+		}
+	}
+
+	public void chat(String word1, String word2) {
+		// TODO Auto-generated method stub
+		DialogCanvas d = DialogCanvas.Dialog;
+		Platform.runLater(() -> {
+			if(DialogCanvas.isHasDialog() == false) {
+				root.getChildren().add(d);
+				d.Chat(word1,word2);
 			}
 		});
 		if(DialogCanvas.isHasDialog() == false) {

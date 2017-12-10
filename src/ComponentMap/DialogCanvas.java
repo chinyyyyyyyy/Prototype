@@ -98,13 +98,13 @@ public class DialogCanvas extends Canvas {
 						gc.drawImage(texture, 270, 630, 500, 80);
 						gc.setFill(Color.BLACK);
 						time += 10;
-						if (time == 4000) {
+						if (time == 2000) {
 							setHasDialog(false);
 							time = 0;
 							gc.clearRect(0, 0, 1280, 720);
 							stopDialog();
 							break;
-						} else if (time >= 2000) {
+						} else if (time >= 1000) {
 							gc.fillText(blank2 + word2, 290, 680, 460);
 						} else {
 							gc.fillText(blank1 + word1, 290, 680, 460);

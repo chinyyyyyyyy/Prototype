@@ -190,9 +190,7 @@ public class AnimalMenu extends BuyScene implements setsceneable, SpecialScene {
 					World.setMoney(World.getMoney() - AnimalMenu.getTotalCost());
 					if (CounterAnimal.canBuyBarn && CounterAnimal.canBuyHen && World.getBuyable()) {
 						CounterAnimal.update(amouttype1, amouttype2, amouttype3);
-						chat("Total cost is " + AnimalMenu.getTotalCost() + " $");
-						if (DialogCanvas.isHasDialog() == false)
-							SceneManager.warpTo(6);
+						chat("Buying Success !","Total cost is " + AnimalMenu.getTotalCost() + " $");
 					} else {
 						chat("You don't have enough money.");
 					}
@@ -254,6 +252,21 @@ public class AnimalMenu extends BuyScene implements setsceneable, SpecialScene {
 			}
 		});
 		if (DialogCanvas.isHasDialog() == false) {
+			DialogCanvas.stopDialog();
+			root.getChildren().remove(d);
+		}
+	}
+	
+	public void chat(String word1, String word2) {
+		// TODO Auto-generated method stub
+		DialogCanvas d = DialogCanvas.Dialog;
+		Platform.runLater(() -> {
+			if(DialogCanvas.isHasDialog() == false) {
+				root.getChildren().add(d);
+				d.Chat(word1,word2);
+			}
+		});
+		if(DialogCanvas.isHasDialog() == false) {
 			DialogCanvas.stopDialog();
 			root.getChildren().remove(d);
 		}

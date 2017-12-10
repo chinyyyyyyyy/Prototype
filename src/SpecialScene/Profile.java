@@ -16,7 +16,6 @@ import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 
 public class Profile implements setsceneable, SpecialScene {
 	private Group root;
@@ -59,9 +58,9 @@ public class Profile implements setsceneable, SpecialScene {
 		gc.setFill(Color.BLACK);
 		gc.setFont(body);
 		gc.setStroke(Color.RED);
-		gc.drawImage(heroicon,150,100);
+		gc.drawImage(heroicon,150,50);
 		gc.fillText("Name : " + Hero.getName(), 400, 80);
-		gc.fillText("Money : " + World.getMoney(), 800, 80);
+		gc.fillText("Money : " + World.getMoney()+" $", 800, 80);
 		gc.fillText("" + World.getSeason(), 400, 180);
 		gc.fillText("day " + World.getDay(), 800, 180);
 

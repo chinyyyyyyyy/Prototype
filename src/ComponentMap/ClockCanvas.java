@@ -2,6 +2,10 @@ package ComponentMap;
 
 import Logic.Backpack;
 import Logic.InBackpack;
+import Tool.Hay;
+import Tool.Seed;
+import Tool.Tool;
+import Tool.WateringCan;
 import application.Main;
 import javafx.application.Platform;
 import javafx.scene.canvas.Canvas;
@@ -17,6 +21,7 @@ public class ClockCanvas extends Canvas {
 	static final Font header = Font.loadFont(ClassLoader.getSystemResource("fonteiei.ttf").toString(), 60);
 	static final Font body = Font.loadFont(ClassLoader.getSystemResource("fonteiei.ttf").toString(), 40);
 	static final Image texture = new Image(ClassLoader.getSystemResource("texture.png").toString());
+
 	public ClockCanvas() {
 		super(1280, 720);
 		gc = this.getGraphicsContext2D();
@@ -36,15 +41,40 @@ public class ClockCanvas extends Canvas {
 						gc.setStroke(Color.BLACK);
 						gc.setFill(Color.BLACK);
 						gc.fillRect(5, 625, 245, 90);
-						gc.drawImage(texture,10, 630, 150, 80);
-						gc.drawImage(texture,165, 630, 80, 80);
 						gc.setFill(Color.BLACK);
-						// Clock
+
+						// --------------------------- Clock --------------------------------
+						gc.drawImage(texture, 10, 630, 150, 80);
 						gc.setFont(header);
 						gc.fillText(Main.getTime(), 20, 690);
-						// Tool
+
+						// ---------------------------- Tool --------------------------
+						gc.drawImage(texture, 165, 630, 80, 80);
 						InBackpack x = Backpack.CheckItemOnHand();
-						gc.drawImage(x.getImage(), 175,640,60,60);
+						if (x instanceof Tool) {
+							if (((Tool) x).getLevel() != 0) {
+								int index = Backpack.getIndexitemonhand();
+								if (index <= 4) {
+									if (((Tool) x).getLevel() == 2) {
+										gc.setFill(Color.GOLD);
+									} else if (((Tool) x).getLevel() == 1)
+										gc.setFill(Color.SILVER);
+								}
+								if (x instanceof Hay)
+									gc.setFill(Color.GREENYELLOW);
+								else if (x instanceof Seed)
+									gc.setFill(Color.SPRINGGREEN);
+								gc.fillRect(165, 630, 80, 80);
+								gc.strokeRect(165, 630, 80, 80);
+							}
+							if (x instanceof WateringCan) {
+								gc.setFill(Color.DEEPSKYBLUE);
+								gc.fillRect(165, 630 + (1 - WateringCan.getWaterLevel()) * 80, 80,
+										WateringCan.getWaterLevel() * 80);
+							}
+						}
+
+						gc.drawImage(x.getImage(), 175, 640, 60, 60);
 
 					});
 
@@ -60,8 +90,8 @@ public class ClockCanvas extends Canvas {
 	private void initializeGUI() {
 		gc.setFill(Color.ALICEBLUE);
 		gc.setStroke(Color.BLACK);
-		gc.drawImage(texture,10, 630, 150, 80);
-		gc.drawImage(texture,170, 630, 80, 80);
+		gc.drawImage(texture, 10, 630, 150, 80);
+		gc.drawImage(texture, 170, 630, 80, 80);
 
 		gc.setFill(Color.BLACK);
 		gc.fillText(Backpack.CheckItemOnHand().getClass().getSimpleName(), 180, 675, 60);

@@ -6,7 +6,6 @@ import ComponentMap.StackAble;
 import Logic.Backpack;
 import Logic.InBackpack;
 import Map.setsceneable;
-import Plant.Plant;
 import Tool.Hay;
 import Tool.Seed;
 import Tool.Tool;
@@ -149,15 +148,15 @@ public class Inventory implements setsceneable, SpecialScene {
 					if(x instanceof WateringCan) {
 						gc.setFill(Color.DEEPSKYBLUE);
 						gc.fillRect(150 + (j-1) * 100, 250 + i * 150 + (1-WateringCan.getWaterLevel())*100, 100, WateringCan.getWaterLevel()*100);
+						gc.strokeRect(150 + (j-1) * 100, 250 + i * 150, 100, 100);
 					}
 					gc.setFill(Color.BLACK);
 					gc.setFont(new Font("abc", 20));
 					Image picture;
-					String name;
 					picture = x.getImage();
-					gc.drawImage(picture, 150 + (j-1) * 100,250 + i * 150);
+					gc.drawImage(picture, 155 + (j-1) * 100,255 + i * 150);
 					if(x instanceof StackAble) {
-						gc.fillText("x" + ((StackAble) x).getAmount(), 210 + (j-1) * 100,
+						gc.fillText("x" + ((StackAble) x).getAmount(), 215 + (j-1) * 100,
 								340 + i * 150);
 					}
 				}

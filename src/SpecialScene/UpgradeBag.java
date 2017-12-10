@@ -14,7 +14,6 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 
 public class UpgradeBag extends BuyScene implements setsceneable, SpecialScene {
 
@@ -55,11 +54,10 @@ public class UpgradeBag extends BuyScene implements setsceneable, SpecialScene {
 							Backpack.upgrade();
 							countupgrade++;
 							System.out.println("Total cost is " + cost);
+							update();
 							chat("Total cost is " + cost);
 							if (countupgrade == MAX_UPGRADE)
 								upgradeable = false;
-							if (DialogCanvas.isHasDialog() == false)
-								SceneManager.warpTo(18);
 						}
 					}
 				}

@@ -11,6 +11,7 @@ import Tool.Hand;
 public class Backpack {
 	private static List<InBackpack> backpack;
 	private static int indexitemonhand;
+
 	private static int max_bagsize=11;
 	private static int level;
 	private static boolean full=false;
@@ -110,5 +111,13 @@ public class Backpack {
 	
 	public static void setFull(boolean set) {
 		full=set;
+	}
+	
+	public static int getIndexitemonhand() {
+		return indexitemonhand;
+	}
+
+	public static void setIndexitemonhand(int indexitemonhand) {
+		Backpack.indexitemonhand = indexitemonhand;
 	}
 }
