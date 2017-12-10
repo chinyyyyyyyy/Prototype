@@ -83,7 +83,7 @@ public class BlackSmithInterface implements setsceneable,SpecialScene,BuyInterfa
 		gc.fillText("Upgrade Tool", 150, 200);
 		gc.fillText("Upgrade Bag", 150, 350);
 
-		gc.strokeRect(50, 150 + row * 150, 50, 50);
+		gc.drawImage(hand,50, 150 + row * 150);
 	}
 
 	public Scene getScene() {
