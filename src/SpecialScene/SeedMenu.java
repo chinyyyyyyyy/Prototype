@@ -124,29 +124,39 @@ public class SeedMenu extends BuyScene implements setsceneable,SpecialScene {
 	public void update() {
 		gc.drawImage(Background,0,0);
 		gc.setFill(Color.BLACK);
-		gc.setFont(new Font("abc", 50));
-		gc.fillText("SeedShopJA", 500, 50);
+		gc.setFont(header);
+		gc.fillText("SeedShop", 470, 100);
 		gc.setStroke(Color.RED);
-		gc.fillText("Amount", 640, 120);
-		gc.fillText("Cost", 1000, 120);
-		gc.fillText(type1, 50, 200);
-		gc.fillText(type2, 50, 350);
-		gc.fillText(type3, 50, 500);
-		gc.fillText("Total Cost", 50, 650);
-		gc.fillText("" + getTotalCost(), 350, 650);
-		gc.fillText("X" + priceof1, 725, 200);
-		gc.fillText("X" + priceof2, 725, 350);
-		gc.fillText("X" + priceof3, 725, 500);
-		gc.fillText(amouttype1 + "", 675, 200);
-		gc.fillText(amouttype2 + "", 675, 350);
-		gc.fillText(amouttype3 + "", 675, 500);
-		gc.fillText(amouttype1 * priceof1 + "", 1000, 200);
-		gc.fillText(amouttype2 * priceof2 + "", 1000, 350);
-		gc.fillText(amouttype3 * priceof3 + "", 1000, 500);
-		gc.fillText("RESET", 675, 650);
-		gc.fillText("OK", 925, 650);
-
-		gc.strokeRect(600 + column * 250, 150 + row * 150, 50, 50);
+		gc.setFont(body);
+		gc.fillText("Amount", 640, 170);
+		gc.fillText("Cost", 1000, 170);
+		gc.fillText(type1, 50, 250);
+		gc.fillText(type2, 50, 400);
+		gc.fillText(type3, 50, 550);
+		gc.fillText("Total Cost", 50, 700);
+		gc.fillText("" + getTotalCost(), 350, 700);
+		gc.fillText("X" + priceof1, 725, 250);
+		gc.fillText("X" + priceof2, 725, 400);
+		gc.fillText("X" + priceof3, 725, 550);
+		gc.fillText(amouttype1 + "", 675, 250);
+		gc.fillText(amouttype2 + "", 675, 400);
+		gc.fillText(amouttype3 + "", 675, 550);
+		gc.fillText(amouttype1 * priceof1 + "", 1000, 250);
+		gc.fillText(amouttype2 * priceof2 + "", 1000, 400);
+		gc.fillText(amouttype3 * priceof3 + "", 1000, 550);
+		gc.fillText("RESET", 675, 700);
+		gc.fillText("OK", 925, 700);
+		gc.drawImage(plus, 850,200);
+		gc.drawImage(plus, 850,350);
+		gc.drawImage(plus, 850,500);
+		gc.drawImage(minus, 600,200);
+		gc.drawImage(minus, 600,350);
+		gc.drawImage(minus, 600,500);
+		if(row == MAX_ROW-1) {
+			gc.drawImage(hand,600 + column * 250, 200 + row * 150);
+		}else {
+			gc.strokeRect(600 + column * 250, 200 + row * 150, 50, 50);
+		}
 	}
 
 	protected void editAmount() {

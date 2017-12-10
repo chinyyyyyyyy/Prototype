@@ -103,9 +103,10 @@ public class BlackSmithMenu extends BuyScene implements setsceneable, SpecialSce
 		gc.drawImage(Background,0,0);
 
 		gc.setFill(Color.BLACK);
-		gc.setFont(new Font("abc", 50));
-		gc.fillText("Tool Upgrade", 500, 80);
+		gc.setFont(header);
+		gc.fillText("Tool Upgrade", 470, 100);
 		gc.setStroke(Color.RED);
+		gc.setFont(body);
 		gc.fillText("Tool List", 150, 180);
 		gc.fillText("Status", 530, 180);
 		gc.fillText("Cost", 970, 180);
@@ -134,7 +135,7 @@ public class BlackSmithMenu extends BuyScene implements setsceneable, SpecialSce
 		if(WateringCan.isUpgradeable().equals("") == false && WateringCan.UpgradeCost()!=0)
 			gc.fillText(""+WateringCan.UpgradeCost(), 970, 640);
 
-		gc.strokeRect(1200, 240 + row * 120, 50, 50);
+		gc.drawImage(hand,1200, 240 + row * 120);
 	}
 
 	public Scene getScene() {

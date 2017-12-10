@@ -117,9 +117,10 @@ public class ToolMenu extends BuyScene implements setsceneable, SpecialScene {
 	public void update() {
 		gc.drawImage(Background,0,0);
 		gc.setFill(Color.BLACK);
-		gc.setFont(new Font("abc", 50));
-		gc.fillText("ToolJA", 500, 50);
+		gc.setFont(header);
+		gc.fillText("Tool", 500, 50);
 		gc.setStroke(Color.RED);
+		gc.setFont(body);
 		
 		if(buyMilker && buyScissors) {
 			gc.fillText("Back", 150, 200);
@@ -138,7 +139,7 @@ public class ToolMenu extends BuyScene implements setsceneable, SpecialScene {
 		}
 		gc.fillText("Tool", 150, 120);	
 		gc.fillText("Cost", 1000, 120);		
-		gc.strokeRect(50, 150 + row * 150, 50, 50);
+		gc.drawImage(hand,50, 150 + row * 150);
 	}
 
 	public Scene getScene() {

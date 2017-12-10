@@ -93,7 +93,7 @@ public class Main extends Application {
 		AnimalShop animalshop = new AnimalShop(0, 420);
 		SeedShop seedshop = new SeedShop(0, 420);
 		AnimalMenu animalmenu = new AnimalMenu("Cow", Cow.COST, "Sheep", Sheep.COST, "Hen", Hen.COST, 13);
-		SeedMenu seedmenu = new SeedMenu("PlantA", PlantA.SeedCost, "PlantB", PlantB.SeedCost, "PlantC",
+		SeedMenu seedmenu = new SeedMenu("Radish", PlantA.SeedCost, "Potato", PlantB.SeedCost, "Cucumber",
 				PlantC.SeedCost, 7);
 		Welcome welcome = new Welcome();
 		Profile profile = new Profile();

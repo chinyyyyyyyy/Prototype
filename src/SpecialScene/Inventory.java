@@ -119,9 +119,10 @@ public class Inventory implements setsceneable, SpecialScene {
 		gc.drawImage(Background,0,0);
 
 		gc.setFill(Color.BLACK);
-		gc.setFont(new Font("abc", 50));
+		gc.setFont(header);
 		gc.fillText("Backpack", 500, 80);
 		gc.setStroke(Color.RED);
+		gc.setFont(body);
 		gc.fillText("Item List", 150, 180);
 
 		for (int i = 0; i < MAX_ROW; i++) {

@@ -92,9 +92,10 @@ public class ToolStatus implements setsceneable, SpecialScene {
 			}
 		}
 		gc.setFill(Color.BLACK);
-		gc.setFont(new Font("abc", 50));
-		gc.fillText("Tool Status", 500, 80);
+		gc.setFont(header);
+		gc.fillText("Tool Status", 470, 100);
 		gc.setStroke(Color.BLACK);
+		gc.setFont(body);
 		gc.fillText("Tool List", 150, 180);
 		gc.fillText("Status", 970, 180);
 

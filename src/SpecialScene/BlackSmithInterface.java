@@ -74,9 +74,10 @@ public class BlackSmithInterface extends BuyScene implements setsceneable,Specia
 	public void update() {
 		gc.drawImage(Background,0,0);
 		gc.setFill(Color.BLACK);
-		gc.setFont(new Font("abc", 50));
-		gc.fillText("BlackSmithJA", 500, 50);
+		gc.setFont(header);
+		gc.fillText("BlackSmith", 470, 100);
 		gc.setStroke(Color.RED);
+		gc.setFont(body);
 		gc.fillText("Upgrade Tool", 150, 200);
 		gc.fillText("Upgrade Bag", 150, 350);
 

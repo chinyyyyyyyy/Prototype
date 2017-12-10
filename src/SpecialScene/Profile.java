@@ -57,7 +57,7 @@ public class Profile implements setsceneable, SpecialScene {
 	public void update() {
 		gc.drawImage(Background,0,0);
 		gc.setFill(Color.BLACK);
-		gc.setFont(new Font("abc", 50));
+		gc.setFont(body);
 		gc.setStroke(Color.RED);
 		gc.drawImage(heroicon,150,100);
 		gc.fillText("Name : " + Hero.getName(), 400, 80);
