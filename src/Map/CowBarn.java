@@ -84,20 +84,20 @@ public class CowBarn implements setsceneable, HasAnimal, HaveTime {
 		haygetter = new HayGetter(600, 200, 150, 100, Color.BLACK);
 		re.add(haygetter);
 
-		//root.getChildren().addAll(e);
+		// root.getChildren().addAll(e);
 
 		// stall LEFT
-		position.add(new Pair<Integer, Integer>(100, 159));
-		position.add(new Pair<Integer, Integer>(100, 303));
-		position.add(new Pair<Integer, Integer>(100, 447));
-		position.add(new Pair<Integer, Integer>(100, 598));
+		position.add(new Pair<Integer, Integer>(100, 225));
+		position.add(new Pair<Integer, Integer>(100, 340));
+		position.add(new Pair<Integer, Integer>(100, 450));
+		position.add(new Pair<Integer, Integer>(100, 580));
 		// stall RIGHT
-		position.add(new Pair<Integer, Integer>(1080, 169));
-		position.add(new Pair<Integer, Integer>(1080, 303));
-		position.add(new Pair<Integer, Integer>(1080, 447));
-		position.add(new Pair<Integer, Integer>(1080, 598));
+		position.add(new Pair<Integer, Integer>(1080, 225));
+		position.add(new Pair<Integer, Integer>(1080, 340));
+		position.add(new Pair<Integer, Integer>(1080, 450));
+		position.add(new Pair<Integer, Integer>(1080, 580));
 
-		//root.getChildren().addAll(re);
+		// root.getChildren().addAll(re);
 
 		Rectangle warpblocktofarm = new Rectangle(580, 695, 120, 25);
 		warpblocktofarm.setFill(Color.RED);
@@ -105,7 +105,7 @@ public class CowBarn implements setsceneable, HasAnimal, HaveTime {
 		Pair<Rectangle, Integer> tofarm = new Pair<Rectangle, Integer>(warpblocktofarm, 0);
 		WarpList.add(tofarm);
 
-		hero = new Hero(scene, starthx, starthy, e, re,true);
+		hero = new Hero(scene, starthx, starthy, e, re, true);
 		root.getChildren().addAll(hero.getUnitblock());
 		for (Rectangle r : hero.getActionblock()) {
 			root.getChildren().add(r);

@@ -105,7 +105,7 @@ public class Town implements setsceneable, HaveTime {
 		root.getChildren().addAll(e);
 
 		Rectangle warpblocktofarm = new Rectangle(0, 520, 15, 120);
-		warpblocktofarm.setOpacity(1);
+		warpblocktofarm.setOpacity(0);
 		root.getChildren().addAll(warpblocktofarm);
 		Pair<Rectangle, Integer> tofarm = new Pair<Rectangle, Integer>(warpblocktofarm, 0);
 		WarpList.add(tofarm);
