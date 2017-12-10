@@ -14,9 +14,13 @@ public class BlackSmith extends NPC {
 		super(x, y, w, h, c);
 		this.name = Name;
 	}
-
-	public void Welcome() {
-		System.out.println("Hello, What do you want today?");
+	
+	public String Welcome() {
+		return "Iron make me feel energetic !";
+	}
+	
+	public String getDialog() {
+		return "Hello, My name is " + this.name + ", What do you want today?";
 	}
 
 	public void checkAction(Rectangle r) {
@@ -26,6 +30,7 @@ public class BlackSmith extends NPC {
 		double wa = r.getWidth();
 		double ha = r.getHeight();
 		if (wi >= 0.9 * wa && hi >= 0.9 * ha) {
+			SceneManager.setHasConversation(true);
 			System.out.println("Hello, My name is "+this.name);
 			SceneManager.warpTo(18);
 		}

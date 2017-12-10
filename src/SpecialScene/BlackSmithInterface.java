@@ -12,7 +12,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
-public class BlackSmithInterface implements setsceneable,SpecialScene{
+public class BlackSmithInterface extends BuyScene implements setsceneable,SpecialScene{
 	private Group root;
 	public Scene scene;
 	private Canvas c = new Canvas(1280, 720);
@@ -35,7 +35,7 @@ public class BlackSmithInterface implements setsceneable,SpecialScene{
 			@Override
 			public void handle(KeyEvent event) {
 				if (event.getCode().equals(KeyCode.X)) {
-					SceneManager.warpTo(6);
+					SceneManager.warpTo(5);
 				}
 				if (event.getCode().equals(KeyCode.UP)) {
 					gc.clearRect(0, 0, 1280, 720);

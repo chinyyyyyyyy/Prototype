@@ -3,19 +3,13 @@ package application;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import java.util.ArrayList;
 import java.util.List;
 import Animal.Cow;
 import Animal.Hen;
 import Animal.Sheep;
-import ComponentMap.Clock;
+import ComponentMap.DialogCanvas;
 import ComponentMap.SceneManager;
 import Logic.Backpack;
 import Logic.World;
@@ -23,6 +17,7 @@ import Map.AnimalShop;
 import Map.Blacksmith;
 import Map.CowBarn;
 import Map.Farm;
+import Map.HaveTime;
 import Map.HenBarn;
 import Map.House;
 import Map.SeedShop;
@@ -62,7 +57,7 @@ public class Main extends Application {
 	private static int minute;
 	private static int checktime;
 	private Thread timerThread;
-	public static String time="";
+	public static String time = "";
 
 	@Override
 	public void start(Stage primaryStage) {
@@ -109,6 +104,7 @@ public class Main extends Application {
 		UpgradeBag upgradebag = new UpgradeBag();
 		BlackSmithInterface blackinter = new BlackSmithInterface();
 		Summary summary = new Summary();
+
 		listmap.add(farm); // 0
 		listmap.add(town); // 1
 		listmap.add(house); // 2
@@ -147,10 +143,12 @@ public class Main extends Application {
 		minute = 0;
 		timerThread = new Thread(() -> {
 			while (true) {
-				 System.out.println("Pause Game " + isPause());
-				while (isPause() == false) {
+//				System.out.println("Pause Game " + isPause());
+				while (true) {
 					try {
 						Thread.sleep(10);
+						if (isPause())
+							break;
 						if (World.isNextday())
 							resetTime();
 						checktime += 10;
@@ -177,7 +175,7 @@ public class Main extends Application {
 			}
 		});
 		this.timerThread.start();
-			
+
 	}
 
 	public static void main(String[] args) {
@@ -197,8 +195,8 @@ public class Main extends Application {
 			m = "0" + minute;
 		} else
 			m = "" + minute;
-		System.out.println(h + " : " + m);
-		time=h+":"+m;
+		// System.out.println(h + " : " + m);
+		time = h + ":" + m;
 	}
 
 	public static boolean isPause() {
@@ -220,9 +218,10 @@ public class Main extends Application {
 		minute = 0;
 		currentTime = -1 + (hour - 5) * 6;
 		checktime = 0;
+		time = "";
 		World.setNextday(false);
 	}
-	
+
 	public static String getTime() {
 		return time;
 	}
@@ -231,6 +230,10 @@ public class Main extends Application {
 	public void stop() throws Exception {
 		// TODO Auto-generated method stub
 		this.timerThread.interrupt();
-		Clock.stopClock();
+		for (setsceneable i : SceneManager.getListMap()) {
+			if (i instanceof HaveTime) {
+				((HaveTime) i).stopClock();
+			}
+		}
 	}
 }

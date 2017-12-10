@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import Animal.Animal;
 import Animal.Hen;
+import ComponentMap.ClockCanvas;
 import ComponentMap.Environment;
 import ComponentMap.HasAnimal;
 import ComponentMap.Hero;
@@ -11,6 +12,7 @@ import ComponentMap.ReceiveAction;
 import Logic.World;
 import NPC.Counter;
 import NPC.HayGetter;
+import javafx.application.Platform;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -20,7 +22,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Pair;
 
-public class HenBarn implements setsceneable, HasAnimal {
+public class HenBarn implements setsceneable, HasAnimal, HaveTime {
 	private Group root;
 	public Scene scene;
 	private Hero hero;
@@ -33,6 +35,7 @@ public class HenBarn implements setsceneable, HasAnimal {
 	public static List<Pair<Integer, Integer>> actionposition = new ArrayList<Pair<Integer, Integer>>();
 	private Canvas bg;
 	private Canvas egg;
+	private ClockCanvas clock = new ClockCanvas();
 
 	public HenBarn(int starthx, int starthy) {
 		root = new Group();
@@ -40,7 +43,7 @@ public class HenBarn implements setsceneable, HasAnimal {
 		bg = new Canvas(1280, 720);
 		GraphicsContext gc = bg.getGraphicsContext2D();
 		Image background = new Image(ClassLoader.getSystemResource("inHenhouse.png").toString());
-		gc.drawImage(background,0,0);
+		gc.drawImage(background, 0, 0);
 		root.getChildren().add(bg);
 
 		// Boarder
@@ -61,7 +64,7 @@ public class HenBarn implements setsceneable, HasAnimal {
 		e.add(new Environment(581, 0, 118, 200, Color.CHOCOLATE));
 		e.add(new Environment(714, 0, 118, 200, Color.CHOCOLATE));
 		e.add(new Environment(847, 0, 118, 200, Color.CHOCOLATE));
-		
+
 		// Hay
 		e.add(new Environment(0, 550, 150, 200, Color.BLACK));
 		haygetter = new HayGetter(0, 550, 150, 200, Color.BLACK);
@@ -78,9 +81,9 @@ public class HenBarn implements setsceneable, HasAnimal {
 		actionposition.add(new Pair<Integer, Integer>(600, 340));
 		actionposition.add(new Pair<Integer, Integer>(733, 340));
 		actionposition.add(new Pair<Integer, Integer>(866, 340));
-		
-//		root.getChildren().addAll(e);
-//		root.getChildren().addAll(re);
+
+		// root.getChildren().addAll(e);
+		// root.getChildren().addAll(re);
 
 		Rectangle warpblocktofarm = new Rectangle(580, 695, 120, 25);
 		warpblocktofarm.setFill(Color.RED);
@@ -109,8 +112,8 @@ public class HenBarn implements setsceneable, HasAnimal {
 				re.add(x);
 				Environment hen = new Environment(position.get(i).getKey(), position.get(i).getValue(), 80, 80,
 						Color.ORANGERED);
-				Environment egg = new Environment(actionposition.get(i).getKey(), actionposition.get(i).getValue(), 80, 80,
-						Color.LIMEGREEN);
+				Environment egg = new Environment(actionposition.get(i).getKey(), actionposition.get(i).getValue(), 80,
+						80, Color.LIMEGREEN);
 				e.add(hen);
 				e.add(egg);
 				root.getChildren().add(x);
@@ -138,5 +141,34 @@ public class HenBarn implements setsceneable, HasAnimal {
 
 	public static int getAnimalCount() {
 		return Hen.getHenCount();
+	}
+
+	public void addClock() {
+		clock = new ClockCanvas();
+		Platform.runLater(() -> {
+			root.getChildren().add(clock);
+		});
+		try {
+			clock.TurnClock();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public void removeClock() {
+		if (root.getChildren().contains(clock)) {
+			Platform.runLater(() -> {
+				root.getChildren().remove(clock);
+			});
+		}
+	}
+
+	public void stopClock() {
+		if (root.getChildren().contains(clock)) {
+			Platform.runLater(() -> {
+				clock.stopClock();
+			});
+		}
 	}
 }

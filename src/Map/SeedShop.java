@@ -3,6 +3,7 @@ package Map;
 import java.util.ArrayList;
 import java.util.List;
 
+import ComponentMap.ClockCanvas;
 import ComponentMap.Environment;
 import ComponentMap.HasNPC;
 import ComponentMap.Hero;
@@ -11,6 +12,7 @@ import ComponentMap.ReceiveAction;
 import NPC.Counter;
 import NPC.CounterSeed;
 import NPC.Florist;
+import javafx.application.Platform;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -20,7 +22,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Pair;
 
-public class SeedShop implements setsceneable, HasNPC {
+public class SeedShop implements setsceneable, HasNPC, HaveTime {
 	private Group root;
 	public Scene scene;
 	private Hero hero;
@@ -29,6 +31,7 @@ public class SeedShop implements setsceneable, HasNPC {
 	private List<Environment> e = new ArrayList<>();
 	private List<ReceiveAction> re = new ArrayList<>();
 	private List<Pair<Rectangle, Integer>> WarpList = new ArrayList<>();
+	private ClockCanvas clock = new ClockCanvas();
 
 	public SeedShop(int starthx, int starthy) {
 		root = new Group();
@@ -36,7 +39,7 @@ public class SeedShop implements setsceneable, HasNPC {
 		Canvas bg = new Canvas(1280, 720);
 		GraphicsContext gc = bg.getGraphicsContext2D();
 		Image background = new Image(ClassLoader.getSystemResource("inSeedshop.png").toString());
-		gc.drawImage(background,0,0);
+		gc.drawImage(background, 0, 0);
 		root.getChildren().add(bg);
 
 		// Boarder
@@ -51,22 +54,22 @@ public class SeedShop implements setsceneable, HasNPC {
 		e.add(new Environment(1155, 465, 100, 370, Color.LIMEGREEN));
 
 		// counter
-		e.add(new Environment(1080, 225, 50,155, Color.BLACK));
-		e.add(new Environment(1130, 320, 150,60, Color.BLACK));
+		e.add(new Environment(1080, 225, 50, 155, Color.BLACK));
+		e.add(new Environment(1130, 320, 150, 60, Color.BLACK));
 		Counter counter = new CounterSeed(1140, 320, 100, 50, Color.YELLOW);
 		re.add(counter);
 
 		// npc
-		florist = new Florist(1175, 225, 75, 75, Color.STEELBLUE, "Ann");
+		florist = new Florist(1175, 225, 75, 75, Color.STEELBLUE, "Flora");
 		npc = florist;
 		re.add(florist);
 
-		//root.getChildren().addAll(e);
-		//root.getChildren().addAll(re);
+		// root.getChildren().addAll(e);
+		// root.getChildren().addAll(re);
 
 		Rectangle warpblocktotown = new Rectangle(0, 420, 25, 90);
 		warpblocktotown.setFill(Color.RED);
-		//root.getChildren().add(warpblocktotown);
+		// root.getChildren().add(warpblocktotown);
 		Pair<Rectangle, Integer> totown = new Pair<Rectangle, Integer>(warpblocktotown, 1);
 		WarpList.add(totown);
 
@@ -85,5 +88,34 @@ public class SeedShop implements setsceneable, HasNPC {
 
 	public NPC getNPC() {
 		return this.npc;
+	}
+
+	public void addClock() {
+		clock = new ClockCanvas();
+		Platform.runLater(() -> {
+			root.getChildren().add(clock);
+		});
+		try {
+			clock.TurnClock();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public void removeClock() {
+		if (root.getChildren().contains(clock)) {
+			Platform.runLater(() -> {
+				root.getChildren().remove(clock);
+			});
+		}
+	}
+
+	public void stopClock() {
+		if (root.getChildren().contains(clock)) {
+			Platform.runLater(() -> {
+				clock.stopClock();
+			});
+		}
 	}
 }

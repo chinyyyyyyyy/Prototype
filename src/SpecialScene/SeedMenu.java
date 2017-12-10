@@ -14,7 +14,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
-public class SeedMenu implements setsceneable,SpecialScene {
+public class SeedMenu extends BuyScene implements setsceneable,SpecialScene {
 	private Group root;
 	public Scene scene;
 	private Canvas c = new Canvas(1280, 720);

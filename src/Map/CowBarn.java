@@ -5,6 +5,7 @@ import java.util.List;
 import Animal.Animal;
 import Animal.Cow;
 import Animal.Sheep;
+import ComponentMap.ClockCanvas;
 import ComponentMap.Environment;
 import ComponentMap.HasAnimal;
 import ComponentMap.Hero;
@@ -12,6 +13,7 @@ import ComponentMap.ReceiveAction;
 import Logic.World;
 import NPC.Counter;
 import NPC.HayGetter;
+import javafx.application.Platform;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -20,7 +22,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Pair;
 
-public class CowBarn implements setsceneable, HasAnimal {
+public class CowBarn implements setsceneable, HasAnimal, HaveTime {
 	private Group root;
 	public Scene scene;
 	private Hero hero;
@@ -31,6 +33,7 @@ public class CowBarn implements setsceneable, HasAnimal {
 	private List<Pair<Rectangle, Integer>> WarpList = new ArrayList<>();
 	private Canvas barn;
 	public static List<Pair<Integer, Integer>> position = new ArrayList<Pair<Integer, Integer>>();
+	private ClockCanvas clock = new ClockCanvas();
 
 	public CowBarn(int starthx, int starthy) {
 		root = new Group();
@@ -77,13 +80,13 @@ public class CowBarn implements setsceneable, HasAnimal {
 		root.getChildren().addAll(e);
 
 		// stall LEFT
-//		position.add(new Pair<Integer, Integer>(100, 15));
+		// position.add(new Pair<Integer, Integer>(100, 15));
 		position.add(new Pair<Integer, Integer>(100, 159));
 		position.add(new Pair<Integer, Integer>(100, 303));
 		position.add(new Pair<Integer, Integer>(100, 447));
 		position.add(new Pair<Integer, Integer>(100, 598));
 		// stall RIGHT
-//		position.add(new Pair<Integer, Integer>(1080, 15));
+		// position.add(new Pair<Integer, Integer>(1080, 15));
 		position.add(new Pair<Integer, Integer>(1080, 169));
 		position.add(new Pair<Integer, Integer>(1080, 303));
 		position.add(new Pair<Integer, Integer>(1080, 447));
@@ -159,5 +162,34 @@ public class CowBarn implements setsceneable, HasAnimal {
 
 	public static int getAnimalCount() {
 		return Cow.getCowCount() + Sheep.getSheepCount();
+	}
+
+	public void addClock() {
+		clock = new ClockCanvas();
+		Platform.runLater(() -> {
+			root.getChildren().add(clock);
+		});
+		try {
+			clock.TurnClock();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public void removeClock() {
+		if (root.getChildren().contains(clock)) {
+			Platform.runLater(() -> {
+				root.getChildren().remove(clock);
+			});
+		}
+	}
+
+	public void stopClock() {
+		if (root.getChildren().contains(clock)) {
+			Platform.runLater(() -> {
+				clock.stopClock();
+			});
+		}
 	}
 }

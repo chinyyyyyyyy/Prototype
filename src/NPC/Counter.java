@@ -16,7 +16,13 @@ public class Counter extends NPC {
 		super(x, y, w, h, c);
 	}
 
-	public void Welcome() {
+	public String Welcome() {
+		return "";
+	}
+	
+	@Override
+	public String getDialog() {
+		return "What do you want Today?";
 	}
 
 	public void checkAction(Rectangle r) {
