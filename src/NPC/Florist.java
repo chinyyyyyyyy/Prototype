@@ -29,7 +29,7 @@ public class Florist extends NPC {
 		double hi = intersect.getBoundsInLocal().getHeight();
 		double wa = r.getWidth();
 		double ha = r.getHeight();
-		if (wi >= 0.9 * wa && hi >= 0.9 * ha) {
+		if (wi >= 0.5 * wa && hi >= 0.5 * ha) {
 			SceneManager.setHasConversation(true);
 			System.out.println("Hello, My name is "+this.name);
 		}

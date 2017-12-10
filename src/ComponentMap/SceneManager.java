@@ -228,4 +228,8 @@ public class SceneManager extends Rectangle {
 	public static void setHasThank(boolean hasThank) {
 		SceneManager.hasThank = hasThank;
 	}
+	
+	public static void stopMusic() {
+		bgm.stop();
+	}
 }

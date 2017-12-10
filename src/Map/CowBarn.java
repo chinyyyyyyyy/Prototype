@@ -18,7 +18,9 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Pair;
 
@@ -34,65 +36,68 @@ public class CowBarn implements setsceneable, HasAnimal, HaveTime {
 	private Canvas barn;
 	public static List<Pair<Integer, Integer>> position = new ArrayList<Pair<Integer, Integer>>();
 	private ClockCanvas clock = new ClockCanvas();
+	public static final ImagePattern cowleftimg = new ImagePattern(
+			new Image(ClassLoader.getSystemResource("cowleft.png").toString()));
+	public static final ImagePattern sheepleftimg = new ImagePattern(
+			new Image(ClassLoader.getSystemResource("sheepleft.png").toString()));
+	public static final ImagePattern cowrightimg = new ImagePattern(
+			new Image(ClassLoader.getSystemResource("cowright.png").toString()));
+	public static final ImagePattern sheeprightimg = new ImagePattern(
+			new Image(ClassLoader.getSystemResource("sheepright.png").toString()));
 
 	public CowBarn(int starthx, int starthy) {
 		root = new Group();
 		scene = new Scene(root, 1280, 720);
 		Canvas bg = new Canvas(1280, 720);
 		GraphicsContext gc = bg.getGraphicsContext2D();
-		gc.setFill(Color.TAN);
-		gc.fillRect(0, 0, 1280, 720);
+		Image background = new Image(ClassLoader.getSystemResource("inBarnhouse.png").toString());
+		gc.drawImage(background, 0, 0);
 		root.getChildren().add(bg);
 
 		// Boarder
 		e.add(new Environment(-10, 0, 10, 720, Color.BLACK));// boarderLEFT
-		e.add(new Environment(0, -10, 1280, 10, Color.BLACK));// boarderTOP
+		e.add(new Environment(0, 225, 1280, 10, Color.BLACK));// boarderTOP
 		e.add(new Environment(1280, 0, 10, 720, Color.BLACK));// boarderRIGHT
 		e.add(new Environment(0, 720, 1280, 10, Color.BLACK));// boarderBOTTOM
 		// Partition LEFT
-		e.add(new Environment(0, 129, 200, 15, Color.BLACK));
 		e.add(new Environment(0, 273, 200, 15, Color.BLACK));
 		e.add(new Environment(0, 417, 200, 15, Color.BLACK));
 		e.add(new Environment(0, 561, 200, 15, Color.BLACK));
 		// Partition RIGHT
-		e.add(new Environment(1080, 129, 200, 15, Color.BLACK));
 		e.add(new Environment(1080, 273, 200, 15, Color.BLACK));
 		e.add(new Environment(1080, 417, 200, 15, Color.BLACK));
 		e.add(new Environment(1080, 561, 200, 15, Color.BLACK));
 		// stall LEFT
-		e.add(new Environment(0, 0, 200, 129, Color.CHOCOLATE));
+
 		e.add(new Environment(0, 144, 200, 129, Color.CHOCOLATE));
 		e.add(new Environment(0, 288, 200, 129, Color.CHOCOLATE));
 		e.add(new Environment(0, 432, 200, 129, Color.CHOCOLATE));
 		e.add(new Environment(0, 576, 200, 144, Color.CHOCOLATE));
 		// stall RIGHT
-		e.add(new Environment(1080, 0, 200, 129, Color.CHOCOLATE));
 		e.add(new Environment(1080, 144, 200, 129, Color.CHOCOLATE));
 		e.add(new Environment(1080, 288, 200, 129, Color.CHOCOLATE));
 		e.add(new Environment(1080, 432, 200, 129, Color.CHOCOLATE));
 		e.add(new Environment(1080, 576, 200, 144, Color.CHOCOLATE));
 
 		// HAY
-		e.add(new Environment(540, 0, 200, 150, Color.BLACK));
-		haygetter = new HayGetter(540, 0, 200, 150, Color.BLACK);
+		e.add(new Environment(600, 200, 150, 100, Color.BLACK));
+		haygetter = new HayGetter(600, 200, 150, 100, Color.BLACK);
 		re.add(haygetter);
 
-		root.getChildren().addAll(e);
+		//root.getChildren().addAll(e);
 
 		// stall LEFT
-		// position.add(new Pair<Integer, Integer>(100, 15));
 		position.add(new Pair<Integer, Integer>(100, 159));
 		position.add(new Pair<Integer, Integer>(100, 303));
 		position.add(new Pair<Integer, Integer>(100, 447));
 		position.add(new Pair<Integer, Integer>(100, 598));
 		// stall RIGHT
-		// position.add(new Pair<Integer, Integer>(1080, 15));
 		position.add(new Pair<Integer, Integer>(1080, 169));
 		position.add(new Pair<Integer, Integer>(1080, 303));
 		position.add(new Pair<Integer, Integer>(1080, 447));
 		position.add(new Pair<Integer, Integer>(1080, 598));
 
-		root.getChildren().addAll(re);
+		//root.getChildren().addAll(re);
 
 		Rectangle warpblocktofarm = new Rectangle(580, 695, 120, 25);
 		warpblocktofarm.setFill(Color.RED);
@@ -100,7 +105,7 @@ public class CowBarn implements setsceneable, HasAnimal, HaveTime {
 		Pair<Rectangle, Integer> tofarm = new Pair<Rectangle, Integer>(warpblocktofarm, 0);
 		WarpList.add(tofarm);
 
-		hero = new Hero(scene, starthx, starthy, e, re);
+		hero = new Hero(scene, starthx, starthy, e, re,true);
 		root.getChildren().addAll(hero.getUnitblock());
 		for (Rectangle r : hero.getActionblock()) {
 			root.getChildren().add(r);
@@ -116,18 +121,39 @@ public class CowBarn implements setsceneable, HasAnimal, HaveTime {
 		for (int i = this.CurrentAnimal; i < getAnimalCount(); i++) {
 			Animal x = Counter.animal.get(i);
 			World.getListUpdate().add(x);
-			if (x instanceof Cow) {
-				re.add(x);
-				Environment cow = new Environment((int) x.getX(), (int) x.getY(), 100, 100, Color.ALICEBLUE);
-				e.add(cow);
-				root.getChildren().add(x);
-				root.getChildren().add(cow);
-			} else if (x instanceof Sheep) {
-				re.add(x);
-				Environment sheep = new Environment((int) x.getX(), (int) x.getY(), 100, 100, Color.ANTIQUEWHITE);
-				e.add(sheep);
-				root.getChildren().add(x);
-				root.getChildren().add(sheep);
+			if (Counter.animal.indexOf(x) <= 3) {
+				if (x instanceof Cow) {
+					re.add(x);
+					Environment cow = new Environment((int) x.getX(), (int) x.getY(), 100, 100, Color.ALICEBLUE);
+					cow.setFill(cowrightimg);
+					e.add(cow);
+					root.getChildren().add(x);
+					root.getChildren().add(cow);
+				} else if (x instanceof Sheep) {
+					re.add(x);
+					Environment sheep = new Environment((int) x.getX(), (int) x.getY(), 100, 100, Color.ANTIQUEWHITE);
+					sheep.setFill(sheeprightimg);
+					e.add(sheep);
+					root.getChildren().add(x);
+					root.getChildren().add(sheep);
+				}
+
+			} else {
+				if (x instanceof Cow) {
+					re.add(x);
+					Environment cow = new Environment((int) x.getX(), (int) x.getY(), 100, 100, Color.ALICEBLUE);
+					cow.setFill(cowleftimg);
+					e.add(cow);
+					root.getChildren().add(x);
+					root.getChildren().add(cow);
+				} else if (x instanceof Sheep) {
+					re.add(x);
+					Environment sheep = new Environment((int) x.getX(), (int) x.getY(), 100, 100, Color.ANTIQUEWHITE);
+					sheep.setFill(sheepleftimg);
+					e.add(sheep);
+					root.getChildren().add(x);
+					root.getChildren().add(sheep);
+				}
 			}
 		}
 	}
@@ -137,26 +163,26 @@ public class CowBarn implements setsceneable, HasAnimal, HaveTime {
 		this.CurrentAnimal = getAnimalCount();
 		barn = new Canvas(1280, 720);
 		GraphicsContext gc = barn.getGraphicsContext2D();
-		for (int i = 0; i < this.CurrentAnimal; i++) {
-			Animal x = Counter.animal.get(i);
-			if (x.getProduceable()) {
-				if (x instanceof Cow) {
-					gc.setFill(Color.LIGHTSKYBLUE);
-					gc.fillRect(position.get(i).getKey(), position.get(i).getValue(), 100, 100);
-				} else {
-					gc.setFill(Color.LIGHTSALMON);
-					gc.fillRect(position.get(i).getKey(), position.get(i).getValue(), 100, 100);
-				}
-			} else {
-				if (x instanceof Cow) {
-					gc.setFill(Color.ALICEBLUE);
-					gc.fillRect(position.get(i).getKey(), position.get(i).getValue(), 100, 100);
-				} else {
-					gc.setFill(Color.ANTIQUEWHITE);
-					gc.fillRect(position.get(i).getKey(), position.get(i).getValue(), 100, 100);
-				}
-			}
-		}
+		// for (int i = 0; i < this.CurrentAnimal; i++) {
+		// Animal x = Counter.animal.get(i);
+		// if (x.getProduceable()) {
+		// if (x instanceof Cow) {
+		// gc.setFill(Color.LIGHTSKYBLUE);
+		// gc.fillRect(position.get(i).getKey(), position.get(i).getValue(), 100, 100);
+		// } else {
+		// gc.setFill(Color.LIGHTSALMON);
+		// gc.fillRect(position.get(i).getKey(), position.get(i).getValue(), 100, 100);
+		// }
+		// } else {
+		// if (x instanceof Cow) {
+		// gc.setFill(Color.ALICEBLUE);
+		// gc.fillRect(position.get(i).getKey(), position.get(i).getValue(), 100, 100);
+		// } else {
+		// gc.setFill(Color.ANTIQUEWHITE);
+		// gc.fillRect(position.get(i).getKey(), position.get(i).getValue(), 100, 100);
+		// }
+		// }
+		// }
 		root.getChildren().add(barn);
 	}
 

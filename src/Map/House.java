@@ -47,22 +47,23 @@ public class House implements setsceneable, HaveTime {
 		// Furniture
 		e.add(new Environment(0, 625, 95, 95, Color.BLACK));// ToolBlock
 		e.add(new Environment(600, 225, 200, 87, Color.BLACK));// TV
-		e.add(new Environment(1095, 225, 230, 160, Color.BLACK));// BED
-		e.add(new Environment(800, 225, 80, 80, Color.BLACK));// box1
-		e.add(new Environment(1000, 225, 95, 80, Color.BLACK));// box2
-		// root.getChildren().addAll(e);
-
+		e.add(new Environment(1095, 225, 230, 240, Color.BLACK));//BED
+		e.add(new Environment(800, 225, 80, 80, Color.BLACK));//box1
+		e.add(new Environment(1000, 225, 95, 80, Color.BLACK));//box2
+		//root.getChildren().addAll(e);
+		
+		
 		re.add(new ReceiveAction(600, 225, 150, 50, Color.MEDIUMPURPLE));// TV
-		re.add(new Bed(1095, 225, 230, 160, Color.RED));// BED
-		// root.getChildren().addAll(re);
-
-		Rectangle warpblocktofarm = new Rectangle(580, 695, 120, 25);
+		re.add(new Bed(1095, 225, 230, 240, Color.RED));//BED
+		//root.getChildren().addAll(re);
+		
+		Rectangle warpblocktofarm = new Rectangle(580,695,120,25);
 		warpblocktofarm.setFill(Color.RED);
 		// root.getChildren().add(warpblocktofarm);
 		Pair<Rectangle, Integer> tofarm = new Pair<Rectangle, Integer>(warpblocktofarm, 0);
 		WarpList.add(tofarm);
 
-		hero = new Hero(scene, starthx, starthy, e, re);
+		hero = new Hero(scene, starthx, starthy, e, re,true);
 		root.getChildren().addAll(hero.getUnitblock());
 		for (Rectangle r : hero.getActionblock()) {
 			root.getChildren().add(r);

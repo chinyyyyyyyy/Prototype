@@ -5,9 +5,10 @@ import ComponentMap.ActionByToolAble;
 import ComponentMap.StackAble;
 import Logic.Backpack;
 import Logic.InBackpack;
+import javafx.scene.image.Image;
 
 public class Hay implements InBackpack, StackAble {
-
+	public static final Image img = new Image(ClassLoader.getSystemResource("hay.png").toString());
 	protected static int HayCount = 0;
 
 	public Hay() {
@@ -43,6 +44,12 @@ public class Hay implements InBackpack, StackAble {
 	
 	public void clear() {
 		HayCount=0;
+	}
+
+	@Override
+	public Image getImage() {
+		// TODO Auto-generated method stub
+		return img;
 	}
 
 }

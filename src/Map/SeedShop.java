@@ -54,13 +54,13 @@ public class SeedShop implements setsceneable, HasNPC, HaveTime {
 		e.add(new Environment(1155, 465, 100, 370, Color.LIMEGREEN));
 
 		// counter
-		e.add(new Environment(1080, 225, 50, 155, Color.BLACK));
-		e.add(new Environment(1130, 320, 150, 60, Color.BLACK));
-		Counter counter = new CounterSeed(1140, 320, 100, 50, Color.YELLOW);
+		e.add(new Environment(1090, 350, 60, 145, Color.BLACK));
+		e.add(new Environment(1170, 370, 75, 75, Color.BLACK));
+		Counter counter = new CounterSeed(1090, 370, 60, 100, Color.YELLOW);
 		re.add(counter);
 
 		// npc
-		florist = new Florist(1175, 225, 75, 75, Color.STEELBLUE, "Flora");
+		florist = new Florist(1170, 370, 75, 75, Color.STEELBLUE, "Flora");
 		npc = florist;
 		re.add(florist);
 
@@ -73,7 +73,7 @@ public class SeedShop implements setsceneable, HasNPC, HaveTime {
 		Pair<Rectangle, Integer> totown = new Pair<Rectangle, Integer>(warpblocktotown, 1);
 		WarpList.add(totown);
 
-		hero = new Hero(scene, starthx, starthy, e, re);
+		hero = new Hero(scene, starthx, starthy, e, re,true);
 		root.getChildren().addAll(hero.getUnitblock());
 		for (Rectangle r : hero.getActionblock()) {
 			root.getChildren().add(r);

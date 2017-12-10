@@ -65,6 +65,7 @@ public class Summary implements setsceneable, SpecialScene {
 			}else {
 				name = x.getKey().getClass().getSimpleName();
 			}
+			gc.drawImage(x.getKey().getImage(), 50, 220+60*i, 50, 50);
 			gc.fillText(name, 150, 270+60*i);
 			gc.fillText("x"+x.getValue(), 800, 270+60*i);
 			gc.fillText(""+x.getKey().getPrice()*x.getValue(), 970, 270+60*i);		
