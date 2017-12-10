@@ -1,9 +1,11 @@
 package SpecialScene;
 
+import ComponentMap.DialogCanvas;
 import ComponentMap.SceneManager;
 import Logic.Backpack;
 import Logic.World;
 import Map.setsceneable;
+import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -14,7 +16,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
-public class UpgradeBag extends BuyScene implements setsceneable, SpecialScene{
+public class UpgradeBag extends BuyScene implements setsceneable, SpecialScene {
 
 	private Group root;
 	public Scene scene;
@@ -46,16 +48,19 @@ public class UpgradeBag extends BuyScene implements setsceneable, SpecialScene{
 						SceneManager.warpTo(18);
 					} else if (countupgrade == 0) {
 						cost = 2000;
-					} 
-					if(upgradeable) {
+					}
+					if (upgradeable) {
 						World.setMoney(World.getMoney() - cost);
 						if (World.getBuyable()) {
 							Backpack.upgrade();
 							countupgrade++;
 							System.out.println("Total cost is " + cost);
-							if(countupgrade==MAX_UPGRADE)upgradeable=false;
-							SceneManager.warpTo(18);
-						}				
+							chat("Total cost is " + cost);
+							if (countupgrade == MAX_UPGRADE)
+								upgradeable = false;
+							if (DialogCanvas.isHasDialog() == false)
+								SceneManager.warpTo(18);
+						}
 					}
 				}
 			}
@@ -63,7 +68,7 @@ public class UpgradeBag extends BuyScene implements setsceneable, SpecialScene{
 	}
 
 	public void update() {
-		gc.drawImage(Background,0,0);
+		gc.drawImage(Background, 0, 0);
 		gc.setFill(Color.BLACK);
 		gc.setFont(new Font("abc", 50));
 		gc.fillText("Upgrade Bag", 500, 50);
@@ -72,10 +77,10 @@ public class UpgradeBag extends BuyScene implements setsceneable, SpecialScene{
 		if (countupgrade == MAX_UPGRADE) {
 			gc.fillText("Back", 150, 200);
 		} else if (countupgrade == 0) {
-			gc.fillText("Bag with " + ((Backpack.getMaxSize() - 1)+10) + " slots", 150, 200);
+			gc.fillText("Bag with " + ((Backpack.getMaxSize() - 1) + 10) + " slots", 150, 200);
 			gc.fillText("2000", 1000, 200);
 		} else if (countupgrade == 1) {
-			gc.fillText("Bag with " + ((Backpack.getMaxSize() - 1)+10) + " slots", 150, 200);
+			gc.fillText("Bag with " + ((Backpack.getMaxSize() - 1) + 10) + " slots", 150, 200);
 			gc.fillText("5000", 1000, 200);
 		}
 		gc.fillText("Bag", 150, 120);
@@ -87,4 +92,17 @@ public class UpgradeBag extends BuyScene implements setsceneable, SpecialScene{
 		return scene;
 	}
 
+	public void chat(String word) {
+		DialogCanvas d = DialogCanvas.Dialog;
+		Platform.runLater(() -> {
+			if (DialogCanvas.isHasDialog() == false) {
+				root.getChildren().add(d);
+				d.Chat(word);
+			}
+		});
+		if (DialogCanvas.isHasDialog() == false) {
+			DialogCanvas.stopDialog();
+			root.getChildren().remove(d);
+		}
+	}
 }

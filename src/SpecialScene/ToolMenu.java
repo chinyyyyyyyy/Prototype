@@ -1,11 +1,13 @@
 package SpecialScene;
 
+import ComponentMap.DialogCanvas;
 import ComponentMap.SceneManager;
 import Logic.Backpack;
 import Logic.World;
 import Map.setsceneable;
 import Tool.Milker;
 import Tool.Scissors;
+import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -64,31 +66,34 @@ public class ToolMenu extends BuyScene implements setsceneable, SpecialScene {
 				}
 
 				if (event.getCode().equals(KeyCode.Z)) {
-					if(buyMilker && buyScissors) {
+					if (buyMilker && buyScissors) {
 						SceneManager.warpTo(13);
 						return;
 					}
-					if (row == 0 && buyMilker==false) {
+					if (row == 0 && buyMilker == false) {
 						World.setMoney(World.getMoney() - priceof1);
 						if (World.getBuyable()) {
 							Backpack.getBackpack().add(new Milker());
 							System.out.println("Total cost is " + priceof1);
-							buyMilker=true;
+							chat("Total cost is " + priceof1);
+							buyMilker = true;
 						}
 					} else {
 						World.setMoney(World.getMoney() - priceof2);
 						if (World.getBuyable()) {
 							Backpack.getBackpack().add(new Scissors());
 							System.out.println("Total cost is " + priceof2);
-							buyScissors=true;
+							chat("Total cost is " + priceof2);
+							buyScissors = true;
 							row--;
 						}
 					}
 
 					if (World.getBuyable()) {
-						SceneManager.warpTo(6);
+						if (DialogCanvas.isHasDialog() == false)
+							SceneManager.warpTo(6);
 						MAX_ROW--;
-						row=0;
+						row = 0;
 					}
 				}
 			}
@@ -96,7 +101,7 @@ public class ToolMenu extends BuyScene implements setsceneable, SpecialScene {
 	}
 
 	private void addRow(boolean incresae) {
-		if(MAX_ROW <= 0) {
+		if (MAX_ROW <= 0) {
 			return;
 		}
 		if (incresae) {
@@ -115,29 +120,29 @@ public class ToolMenu extends BuyScene implements setsceneable, SpecialScene {
 	}
 
 	public void update() {
-		gc.drawImage(Background,0,0);
+		gc.drawImage(Background, 0, 0);
 		gc.setFill(Color.BLACK);
 		gc.setFont(new Font("abc", 50));
 		gc.fillText("ToolJA", 500, 50);
 		gc.setStroke(Color.RED);
-		
-		if(buyMilker && buyScissors) {
+
+		if (buyMilker && buyScissors) {
 			gc.fillText("Back", 150, 200);
-		}else if(buyMilker) {
+		} else if (buyMilker) {
 			gc.fillText(type2, 150, 200);
 			gc.fillText("" + priceof2, 1000, 200);
-		}else if(buyScissors) {
+		} else if (buyScissors) {
 			gc.fillText(type1, 150, 200);
 			gc.fillText("" + priceof1, 1000, 200);
-		}else {
+		} else {
 			gc.fillText(type1, 150, 200);
 			gc.fillText(type2, 150, 350);
-			
+
 			gc.fillText("" + priceof1, 1000, 200);
 			gc.fillText("" + priceof2, 1000, 350);
 		}
-		gc.fillText("Tool", 150, 120);	
-		gc.fillText("Cost", 1000, 120);		
+		gc.fillText("Tool", 150, 120);
+		gc.fillText("Cost", 1000, 120);
 		gc.strokeRect(50, 150 + row * 150, 50, 50);
 	}
 
@@ -145,4 +150,17 @@ public class ToolMenu extends BuyScene implements setsceneable, SpecialScene {
 		return scene;
 	}
 
+	public void chat(String word) {
+		DialogCanvas d = DialogCanvas.Dialog;
+		Platform.runLater(() -> {
+			if (DialogCanvas.isHasDialog() == false) {
+				root.getChildren().add(d);
+				d.Chat(word);
+			}
+		});
+		if (DialogCanvas.isHasDialog() == false) {
+			DialogCanvas.stopDialog();
+			root.getChildren().remove(d);
+		}
+	}
 }

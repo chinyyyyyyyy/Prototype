@@ -71,11 +71,19 @@ public class House implements setsceneable, HaveTime {
 		hero.setWarpBlockList(WarpList);
 	}
 	
-//	public void chat(String word) {
-//		Platform.runLater(() -> {
-//			root.getChildren().add(DialogCanvas.Dialog);
-//		});
-//	}
+	public void chat(String word) {
+		DialogCanvas d = DialogCanvas.Dialog;
+		Platform.runLater(() -> {
+			if(DialogCanvas.isHasDialog() == false) {
+				root.getChildren().add(d);
+				d.Chat(word);
+			}
+		});
+		if(DialogCanvas.isHasDialog() == false) {
+			DialogCanvas.stopDialog();
+			root.getChildren().remove(d);
+		}
+	}
 
 	public void addClock() {
 		clock = new ClockCanvas();

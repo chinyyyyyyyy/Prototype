@@ -1,8 +1,10 @@
 package Animal;
 
 import ComponentMap.ActionByToolAble;
+import ComponentMap.SceneManager;
 import Logic.Backpack;
 import Logic.InBackpack;
+import Map.CowBarn;
 import Product.Milk;
 import Tool.Hay;
 import Tool.Milker;
@@ -18,6 +20,7 @@ public class Cow extends Animal implements ActionByToolAble {
 	protected int love;
 	private int daycount;
 	public static final int COST = 5000;
+	private static CowBarn scene;
 
 	public Cow(int x, int y, int w, int h, Color c) {
 		super(x, y, w, h, c);
@@ -28,12 +31,14 @@ public class Cow extends Animal implements ActionByToolAble {
 	}
 
 	public void cry() {
+		scene.chat("Mooooooooo");
 		System.out.println("Mooooooooo");
 	}
 
 	public void produce() {
 		if (Milk.getMilkCount() == 0) {
 			if(Backpack.isFull()) {
+				scene.chat("Your bag is full.");
 				System.out.println("Your bag is full.");
 				return;
 			}
@@ -44,6 +49,7 @@ public class Cow extends Animal implements ActionByToolAble {
 		cry();
 		this.love++;
 		this.daycount=0;
+		scene.chat("Milk Success");
 		System.out.println("Milk Success");
 	}
 	
@@ -60,7 +66,8 @@ public class Cow extends Animal implements ActionByToolAble {
 		double hi = intersect.getBoundsInLocal().getHeight();
 		double wa = r.getWidth();
 		double ha = r.getHeight();
-		if (wi >= 0.9 * wa && hi >= 0.9 * ha) {
+		if (wi >= 0.9 * wa && hi >= 0.9 * ha) 
+			scene = (CowBarn) SceneManager.getListMap().get(6);{
 			InBackpack item = Backpack.CheckItemOnHand();
 			if(item instanceof Milker) {
 				((Milker) item).Action(this);

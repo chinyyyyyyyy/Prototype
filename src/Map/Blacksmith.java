@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ComponentMap.ClockCanvas;
+import ComponentMap.DialogCanvas;
 import ComponentMap.Environment;
 import ComponentMap.HasNPC;
 import ComponentMap.Hero;
@@ -20,7 +21,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Pair;
 
-public class Blacksmith implements setsceneable, HasNPC, HaveTime {
+public class Blacksmith implements setsceneable, HasNPC, HaveTime,HasDialog {
 	private Group root;
 	public Scene scene;
 	private Hero hero;
@@ -113,6 +114,21 @@ public class Blacksmith implements setsceneable, HasNPC, HaveTime {
 			Platform.runLater(() -> {
 				clock.stopClock();
 			});
+		}
+	}
+	
+
+	public void chat(String word) {
+		DialogCanvas d = DialogCanvas.Dialog;
+		Platform.runLater(() -> {
+			if(DialogCanvas.isHasDialog() == false) {
+				root.getChildren().add(d);
+				d.Chat(word);
+			}
+		});
+		if(DialogCanvas.isHasDialog() == false) {
+			DialogCanvas.stopDialog();
+			root.getChildren().remove(d);
 		}
 	}
 }

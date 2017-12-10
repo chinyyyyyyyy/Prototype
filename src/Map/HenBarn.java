@@ -5,6 +5,7 @@ import java.util.List;
 import Animal.Animal;
 import Animal.Hen;
 import ComponentMap.ClockCanvas;
+import ComponentMap.DialogCanvas;
 import ComponentMap.Environment;
 import ComponentMap.HasAnimal;
 import ComponentMap.Hero;
@@ -177,6 +178,20 @@ public class HenBarn implements setsceneable, HasAnimal, HaveTime {
 			Platform.runLater(() -> {
 				clock.stopClock();
 			});
+		}
+	}
+	
+	public void chat(String word) {
+		DialogCanvas d = DialogCanvas.Dialog;
+		Platform.runLater(() -> {
+			if(DialogCanvas.isHasDialog() == false) {
+				root.getChildren().add(d);
+				d.Chat(word);
+			}
+		});
+		if(DialogCanvas.isHasDialog() == false) {
+			DialogCanvas.stopDialog();
+			root.getChildren().remove(d);
 		}
 	}
 }

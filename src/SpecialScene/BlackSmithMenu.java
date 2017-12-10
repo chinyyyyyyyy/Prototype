@@ -1,5 +1,6 @@
 package SpecialScene;
 
+import ComponentMap.DialogCanvas;
 import ComponentMap.SceneManager;
 import Logic.Backpack;
 import Logic.InBackpack;
@@ -10,6 +11,7 @@ import Tool.Hammer;
 import Tool.Hoe;
 import Tool.Tool;
 import Tool.WateringCan;
+import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -56,25 +58,26 @@ public class BlackSmithMenu extends BuyScene implements setsceneable, SpecialSce
 				}
 
 				if (event.getCode().equals(KeyCode.Z)) {
-					InBackpack item = Backpack.getBackpack().get(row+1);
-					if(((Tool) item).CheckUpgrade()) {
+					InBackpack item = Backpack.getBackpack().get(row + 1);
+					if (((Tool) item).CheckUpgrade()) {
 						int cost = 0;
-						if(item instanceof Axe) {
-							cost=Axe.UpgradeCost();
-						}else if(item instanceof Hoe) {
-							cost=Hoe.UpgradeCost();
-						}else if(item instanceof Hammer) {
-							cost=Hammer.UpgradeCost();
-						}else if(item instanceof WateringCan) {
-							cost=WateringCan.UpgradeCost();
+						if (item instanceof Axe) {
+							cost = Axe.UpgradeCost();
+						} else if (item instanceof Hoe) {
+							cost = Hoe.UpgradeCost();
+						} else if (item instanceof Hammer) {
+							cost = Hammer.UpgradeCost();
+						} else if (item instanceof WateringCan) {
+							cost = WateringCan.UpgradeCost();
 						}
-						World.setMoney(World.getMoney()-cost);
-						if(World.getBuyable()) {
+						World.setMoney(World.getMoney() - cost);
+						if (World.getBuyable()) {
 							((Tool) item).upgrade();
-							update();	
+							update();
 						}
-					}else
+					} else
 						System.out.println("Sorry Your Tool can't upgrade.");
+					chat("Sorry Your Tool can't upgrade.");
 				}
 			}
 		});
@@ -100,7 +103,7 @@ public class BlackSmithMenu extends BuyScene implements setsceneable, SpecialSce
 	}
 
 	public void update() {
-		gc.drawImage(Background,0,0);
+		gc.drawImage(Background, 0, 0);
 
 		gc.setFill(Color.BLACK);
 		gc.setFont(new Font("abc", 50));
@@ -112,27 +115,27 @@ public class BlackSmithMenu extends BuyScene implements setsceneable, SpecialSce
 
 		gc.strokeRect(50, 220, 80, 80);
 		gc.fillText("Axe", 150, 280);
-		gc.fillText(Axe.StateUpgradeable(), 400, 280,500);
-		if(Axe.isUpgradeable().equals("") == false && Axe.UpgradeCost()!=0)
-			gc.fillText(""+Axe.UpgradeCost(), 970, 280);
+		gc.fillText(Axe.StateUpgradeable(), 400, 280, 500);
+		if (Axe.isUpgradeable().equals("") == false && Axe.UpgradeCost() != 0)
+			gc.fillText("" + Axe.UpgradeCost(), 970, 280);
 
 		gc.strokeRect(50, 340, 80, 80);
 		gc.fillText("Hammer", 150, 400);
-		gc.fillText(Hammer.StateUpgradeable(), 400, 400,500);
-		if(Hammer.isUpgradeable().equals("") == false && Hammer.UpgradeCost()!=0)
-			gc.fillText(""+Hammer.UpgradeCost(), 970, 400);
+		gc.fillText(Hammer.StateUpgradeable(), 400, 400, 500);
+		if (Hammer.isUpgradeable().equals("") == false && Hammer.UpgradeCost() != 0)
+			gc.fillText("" + Hammer.UpgradeCost(), 970, 400);
 
 		gc.strokeRect(50, 460, 80, 80);
 		gc.fillText("Hoe", 150, 520);
-		gc.fillText(Hoe.StateUpgradeable(), 400, 520,500);
-		if(Hoe.isUpgradeable().equals("") == false && Hoe.UpgradeCost()!=0)
-			gc.fillText(""+Hoe.UpgradeCost(), 970, 520);
+		gc.fillText(Hoe.StateUpgradeable(), 400, 520, 500);
+		if (Hoe.isUpgradeable().equals("") == false && Hoe.UpgradeCost() != 0)
+			gc.fillText("" + Hoe.UpgradeCost(), 970, 520);
 
 		gc.strokeRect(50, 580, 80, 80);
-		gc.fillText("Watering Can", 150, 640 , 200);
-		gc.fillText(WateringCan.StateUpgradeable(), 400, 640,500);
-		if(WateringCan.isUpgradeable().equals("") == false && WateringCan.UpgradeCost()!=0)
-			gc.fillText(""+WateringCan.UpgradeCost(), 970, 640);
+		gc.fillText("Watering Can", 150, 640, 200);
+		gc.fillText(WateringCan.StateUpgradeable(), 400, 640, 500);
+		if (WateringCan.isUpgradeable().equals("") == false && WateringCan.UpgradeCost() != 0)
+			gc.fillText("" + WateringCan.UpgradeCost(), 970, 640);
 
 		gc.strokeRect(1200, 240 + row * 120, 50, 50);
 	}
@@ -141,4 +144,17 @@ public class BlackSmithMenu extends BuyScene implements setsceneable, SpecialSce
 		return scene;
 	}
 
+	public void chat(String word) {
+		DialogCanvas d = DialogCanvas.Dialog;
+		Platform.runLater(() -> {
+			if (DialogCanvas.isHasDialog() == false) {
+				root.getChildren().add(d);
+				d.Chat(word);
+			}
+		});
+		if (DialogCanvas.isHasDialog() == false) {
+			DialogCanvas.stopDialog();
+			root.getChildren().remove(d);
+		}
+	}
 }

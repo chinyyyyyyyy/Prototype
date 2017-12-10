@@ -2,8 +2,10 @@ package Tool;
 
 import ComponentMap.ActionByToolAble;
 import ComponentMap.Feild;
+import ComponentMap.SceneManager;
 import Logic.Backpack;
 import Logic.InBackpack;
+import Map.Farm;
 import Plant.PlantA;
 import javafx.scene.image.Image;
 
@@ -23,13 +25,16 @@ public class SeedA extends Seed implements InBackpack {
 
 	@Override
 	public void Action(ActionByToolAble a) {
+		Farm scene = (Farm) SceneManager.getListMap().get(0);
 		if (a instanceof Feild) {
 			if (((Feild) a).canplant() && seedamout > 0) {
 				((Feild) a).setPlant(new PlantA());
 			}
 			seedamout--;
+			scene.chat("Seed Left = " + seedamout);
 			System.out.println("Seed Left = " + seedamout);
 			if (seedamout == 0) {
+				scene.chat("Seed Out");
 				System.out.println("Seed Out");
 				Backpack.deleteItem();
 			}

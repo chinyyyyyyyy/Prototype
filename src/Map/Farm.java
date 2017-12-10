@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ComponentMap.ClockCanvas;
+import ComponentMap.DialogCanvas;
 import ComponentMap.Dropbox;
 import ComponentMap.Environment;
 import ComponentMap.Feild;
@@ -197,6 +198,19 @@ public class Farm implements setsceneable, HaveTime {
 			Platform.runLater(() -> {
 				clock.stopClock();
 			});
+		}
+	}
+	
+	public void chat(String word) {
+		DialogCanvas d = DialogCanvas.Dialog;
+		Platform.runLater(() -> {
+			if(DialogCanvas.isHasDialog() == false) {
+				root.getChildren().add(d);
+				d.Chat(word);
+			}
+		});
+		if(DialogCanvas.isHasDialog() == false) {
+			root.getChildren().remove(d);
 		}
 	}
 }
