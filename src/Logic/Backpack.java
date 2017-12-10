@@ -22,7 +22,13 @@ public class Backpack {
 	}
 
 	public static InBackpack CheckItemOnHand() {
-		return backpack.get(indexitemonhand);
+		InBackpack x;
+		try {
+			x = backpack.get(indexitemonhand);
+		} catch (IndexOutOfBoundsException e) {
+			x = backpack.get(0);
+		}
+		return x;
 	}
 
 	public static void ChangeItem() {
@@ -42,7 +48,7 @@ public class Backpack {
 	}
 
 	public static void SelectItem(int row, int column) throws IndexOutOfBoundsException {
-		indexitemonhand = (10 * row + column) % 10 + 1;
+		indexitemonhand = (10 * row + column) % (max_bagsize-1) + 1;
 		InBackpack item = backpack.get(indexitemonhand);
 		if (item instanceof OnHandAble) {
 			Hand.setOnhand(((OnHandAble) item));

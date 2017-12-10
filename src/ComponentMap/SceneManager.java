@@ -3,13 +3,17 @@ package ComponentMap;
 import java.util.ArrayList;
 import java.util.List;
 
+import Map.AnimalShop;
 import Map.HasDialog;
 import Map.HaveTime;
-import Map.House;
 import Map.setsceneable;
+import NPC.Counter;
+import SpecialScene.AnimalBuyer;
+import SpecialScene.BuyInterface;
 import SpecialScene.BuyScene;
 import SpecialScene.SpecialScene;
 import application.Main;
+import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -30,12 +34,6 @@ public class SceneManager extends Rectangle {
 	private static int sceneNumber;
 	private static int previousScene;
 	private static int currentScene;
-	public static boolean hasDialog = false;
-	public static boolean hasConversation = false;
-	public static boolean hasThank = false;
-
-	public static String dialog;
-	public static String conversation;
 
 	public static AudioClip bgm = new AudioClip(ClassLoader.getSystemResource("bgm.mp3").toString());
 
@@ -85,7 +83,7 @@ public class SceneManager extends Rectangle {
 		}
 
 		primaryStage.setScene(listmap.get(mapno).getScene());
-		
+
 		if (listmap.get(mapno) instanceof HaveTime) {
 			((HaveTime) listmap.get(mapno)).removeClock();
 			((HaveTime) listmap.get(mapno)).addClock();
@@ -93,36 +91,22 @@ public class SceneManager extends Rectangle {
 				((HaveTime) listmap.get(previousScene)).stopClock();
 		}
 
-		//--------------------------------------------------------Dialog--------------------------------------------------------
-//		if(listmap.get(mapno) instanceof House) {
-//			((House) listmap.get(mapno)).chat("eiei");
-//		}
-		if (listmap.get(mapno) instanceof HasNPC && listmap.get(previousScene) instanceof BuyScene) {
-			setHasThank(true);
-		} else
-			setHasThank(false);
-
-		if (listmap.get(mapno) instanceof HasNPC && listmap.get(previousScene) instanceof SpecialScene == false) {
-			System.out.println(((HasNPC) listmap.get(mapno)).getNPC().Welcome());
-			if (((HasNPC) listmap.get(mapno)).getNPC().Welcome().equals("") == false) {
-				setHasDialog(true);
-				setDialog(((HasNPC) listmap.get(mapno)).getNPC().Welcome());
-				setConversation(((HasNPC) listmap.get(mapno)).getNPC().getDialog());
+		// --------------------------------------------------------Dialog--------------------------------------------------------
+		if (listmap.get(mapno) instanceof HasDialog && listmap.get(mapno) instanceof HasNPC) {
+			if (listmap.get(previousScene) instanceof SpecialScene == false) {
+				((HasDialog) listmap.get(mapno)).chat(((HasNPC) listmap.get(mapno)).getNPC().Welcome());
+			}else if(listmap.get(previousScene) instanceof BuyScene) {
+				((HasDialog) listmap.get(mapno)).chat(BuyScene.getThank());			
+			}else if (listmap.get(previousScene) instanceof BuyInterface) {
+				((HasDialog) listmap.get(mapno)).chat(BuyScene.getThank2());
 			}
-		} else {
-			setHasDialog(false);
-			setDialog("");
-			setHasConversation(false);
-			setConversation("");
 		}
 
-		if (listmap.get(mapno) instanceof HasDialog) {
-			((HasDialog) listmap.get(mapno)).removeDialog();
-			((HasDialog) listmap.get(mapno)).addDialog();
-			if (listmap.get(previousScene) instanceof HasDialog)
-				((HasDialog) listmap.get(previousScene)).stopDialog();
+		if (listmap.get(mapno) instanceof BuyInterface && listmap.get(previousScene) instanceof BuyScene == false) {
+			((BuyInterface) listmap.get(mapno)).chat(Counter.getQuestion());
 		}
-		//---------------------------------------------------------------------------------------------------------------------------
+
+		// ---------------------------------------------------------------------------------------------------------------------------
 		setCurrentScene(mapno);
 	}
 
@@ -186,49 +170,7 @@ public class SceneManager extends Rectangle {
 	public static void setCurrentScene(int currentScene) {
 		SceneManager.currentScene = currentScene;
 	}
-	
-	//-------------------------------------------------------------Dialog Scene------------------------------------------------
 
-	public static boolean isHasDialog() {
-		return hasDialog;
-	}
-
-	public static void setHasDialog(boolean hasDialog) {
-		SceneManager.hasDialog = hasDialog;
-	}
-
-	public static String getDialog() {
-		return dialog;
-	}
-
-	public static void setDialog(String dialog) {
-		SceneManager.dialog = dialog;
-	}
-
-	public static String getConversation() {
-		return conversation;
-	}
-
-	public static void setConversation(String conversation) {
-		SceneManager.conversation = conversation;
-	}
-
-	public static boolean isHasConversation() {
-		return hasConversation;
-	}
-
-	public static void setHasConversation(boolean hasConversation) {
-		SceneManager.hasConversation = hasConversation;
-	}
-
-	public static boolean isHasThank() {
-		return hasThank;
-	}
-
-	public static void setHasThank(boolean hasThank) {
-		SceneManager.hasThank = hasThank;
-	}
-	
 	public static void stopMusic() {
 		bgm.stop();
 	}

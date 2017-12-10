@@ -3,11 +3,10 @@ package Animal;
 import ComponentMap.ActionByToolAble;
 import ComponentMap.SceneManager;
 import Logic.Backpack;
+import Map.HenBarn;
 import Product.Egg;
 import Tool.Hay;
-import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 
@@ -18,6 +17,7 @@ public class Hen extends Animal implements ActionByToolAble {
 	protected int age;
 	protected int love;
 	public static final int COST = 1000;
+	private static HenBarn scene;
 
 	public Hen(int x, int y, int w, int h, Color c) {
 		super(x, y, w, h, c);
@@ -28,18 +28,21 @@ public class Hen extends Animal implements ActionByToolAble {
 	}
 
 	public void cry() {
+		scene.chat("Pokkkk Pokk Pokkk");
 		System.out.println("Pokkkk Pokk Pokkk");
 	}
 
 	public void produce() {
 		if (Egg.getEggCount() == 0) {
 			if (Backpack.isFull()) {
+				scene.chat("Your bag is full.");
 				System.out.println("Your bag is full.");
 				return;
 			} else
 				Backpack.addItem(new Egg());
 		}
 		Egg.addEgg();
+		scene.chat("Get Egg");
 		System.out.println("Get Egg");
 		this.produceable = false;
 	}
@@ -57,6 +60,7 @@ public class Hen extends Animal implements ActionByToolAble {
 		double wa = r.getWidth();
 		double ha = r.getHeight();
 		if (wi >= 0.9 * wa && hi >= 0.9 * ha) {
+			scene = (HenBarn) SceneManager.getListMap().get(4);
 			if (this.getProduceable()) {
 				produce();
 				SceneManager.warpTo(SceneManager.getSceneNumber());

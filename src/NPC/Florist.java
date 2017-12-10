@@ -2,6 +2,7 @@ package NPC;
 
 import ComponentMap.NPC;
 import ComponentMap.SceneManager;
+import Map.SeedShop;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
@@ -30,8 +31,9 @@ public class Florist extends NPC {
 		double wa = r.getWidth();
 		double ha = r.getHeight();
 		if (wi >= 0.5 * wa && hi >= 0.5 * ha) {
-			SceneManager.setHasConversation(true);
 			System.out.println("Hello, My name is "+this.name);
+			SeedShop scene = (SeedShop) SceneManager.getListMap().get(7);
+			scene.chat(getDialog());
 		}
 	}
 

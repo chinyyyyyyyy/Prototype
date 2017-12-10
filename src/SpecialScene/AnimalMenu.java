@@ -1,9 +1,11 @@
 package SpecialScene;
 
+import ComponentMap.DialogCanvas;
 import ComponentMap.SceneManager;
 import Logic.World;
 import Map.setsceneable;
 import NPC.CounterAnimal;
+import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -14,7 +16,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
-public class AnimalMenu extends BuyScene implements setsceneable,SpecialScene {
+public class AnimalMenu extends BuyScene implements setsceneable, SpecialScene {
 
 	private Group root;
 	public Scene scene;
@@ -123,7 +125,7 @@ public class AnimalMenu extends BuyScene implements setsceneable,SpecialScene {
 	}
 
 	public void update() {
-		gc.drawImage(Background,0,0);
+		gc.drawImage(Background, 0, 0);
 		gc.setFill(Color.BLACK);
 		gc.setFont(header);
 		gc.fillText("AnimalShop", 470, 100);
@@ -185,12 +187,14 @@ public class AnimalMenu extends BuyScene implements setsceneable,SpecialScene {
 				} catch (IndexOutOfBoundsException e) {
 					reset();
 				}
-				if(CounterAnimal.isBuyable()) {
-					World.setMoney(World.getMoney()-AnimalMenu.getTotalCost());
+				if (CounterAnimal.isBuyable()) {
+					World.setMoney(World.getMoney() - AnimalMenu.getTotalCost());
 					if (CounterAnimal.canBuyBarn && CounterAnimal.canBuyHen && World.getBuyable()) {
 						CounterAnimal.update(amouttype1, amouttype2, amouttype3);
-						SceneManager.warpTo(6);
-					}		
+						chat("Total cost is " + AnimalMenu.getTotalCost() + " $");
+						if (DialogCanvas.isHasDialog() == false)
+							SceneManager.warpTo(6);
+					}
 				}
 				reset();
 			}
@@ -238,4 +242,17 @@ public class AnimalMenu extends BuyScene implements setsceneable,SpecialScene {
 		return priceof3;
 	}
 
+	public void chat(String word) {
+		DialogCanvas d = DialogCanvas.Dialog;
+		Platform.runLater(() -> {
+			if (DialogCanvas.isHasDialog() == false) {
+				root.getChildren().add(d);
+				d.Chat(word);
+			}
+		});
+		if (DialogCanvas.isHasDialog() == false) {
+			DialogCanvas.stopDialog();
+			root.getChildren().remove(d);
+		}
+	}
 }

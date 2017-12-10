@@ -2,6 +2,7 @@ package NPC;
 
 import ComponentMap.NPC;
 import ComponentMap.SceneManager;
+import Map.Blacksmith;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
@@ -31,8 +32,9 @@ public class BlackSmith extends NPC {
 		double ha = r.getHeight();
 
 		if (wi >= 0.5 * wa && hi >= 0.5 * ha) {
-			SceneManager.setHasConversation(true);
 			System.out.println("Hello, My name is "+this.name);
+			Blacksmith scene = (Blacksmith) SceneManager.getListMap().get(5);
+			scene.chat(getDialog());
 			SceneManager.warpTo(18);
 		}
 	}

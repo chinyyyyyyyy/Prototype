@@ -3,9 +3,10 @@ package ComponentMap;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 
 public class DialogCanvas extends Canvas {
-	public static DialogCanvas Dialog;
+	public static DialogCanvas Dialog = new DialogCanvas();
 
 	public static Thread dialog;
 	public static GraphicsContext gc;
@@ -31,22 +32,25 @@ public class DialogCanvas extends Canvas {
 					if (isHasDialog()) {
 						gc.setFill(Color.ALICEBLUE);
 						gc.setStroke(Color.BLACK);
-						gc.fillRect(260, 620, 500, 80);
-						gc.strokeRect(260, 620, 500, 80);
+						gc.setFont(new Font("Monospace", 25));
+						gc.fillRect(260, 630, 500, 80);
+						gc.strokeRect(260, 630, 500, 80);
 						gc.setFill(Color.BLACK);
-						gc.fillText(word, 280, 665, 460);
+						gc.fillText(word, 280, 680, 460);
 						time += 10;
 						if (time == 2000) {
 							setHasDialog(false);
 							time = 0;
 							word = "";
 							gc.clearRect(0, 0, 1280, 720);
+							stopDialog();
 							break;
 						}
 					}
 
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
+					stopDialog();
 					break;
 				}
 			}
@@ -55,7 +59,8 @@ public class DialogCanvas extends Canvas {
 	}
 
 	public static void stopDialog() {
-		dialog.interrupt();
+		if (dialog != null)
+			dialog.interrupt();
 	}
 
 	public static boolean isHasDialog() {

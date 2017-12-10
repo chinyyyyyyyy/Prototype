@@ -24,6 +24,10 @@ public class Counter extends NPC {
 	public String getDialog() {
 		return "What do you want Today?";
 	}
+	
+	public static String getQuestion() {
+		return "What do you want Today?";
+	}
 
 	public void checkAction(Rectangle r) {
 	}

@@ -1,8 +1,10 @@
 package Animal;
 
 import ComponentMap.ActionByToolAble;
+import ComponentMap.SceneManager;
 import Logic.Backpack;
 import Logic.InBackpack;
+import Map.CowBarn;
 import Product.Wool;
 import Tool.Hay;
 import Tool.Scissors;
@@ -18,6 +20,7 @@ public class Sheep extends Animal implements ActionByToolAble{
 	protected int love;
 	public static final int COST = 3000;
 	protected int daycount;
+	private static CowBarn scene;
 
 	public Sheep(int x, int y, int w, int h, Color c) {
 		super(x, y, w, h, c);
@@ -35,12 +38,14 @@ public class Sheep extends Animal implements ActionByToolAble{
 	}
 
 	public void cry() {
+		scene.chat("Baaa Baaa");
 		System.out.println("Baaa Baaa");
 	}
 
 	public void produce() {
 		if (Wool.getWoolCount() == 0) {
 			if(Backpack.isFull()) {
+				scene.chat("Your bag is full.");
 				System.out.println("Your bag is full.");
 				return;
 			}
@@ -51,6 +56,7 @@ public class Sheep extends Animal implements ActionByToolAble{
 		cry();
 		this.love++;
 		this.daycount=0;
+		scene.chat("Cut Success");
 		System.out.println("Cut Success");
 	}
 
@@ -61,6 +67,7 @@ public class Sheep extends Animal implements ActionByToolAble{
 		double wa = r.getWidth();
 		double ha = r.getHeight();
 		if (wi >= 0.9 * wa && hi >= 0.9 * ha) {
+			scene = (CowBarn) SceneManager.getListMap().get(6);
 			InBackpack item = Backpack.CheckItemOnHand();
 			if(item instanceof Scissors) {
 				((Scissors) item).Action(this);

@@ -1,9 +1,11 @@
 package SpecialScene;
 
+import ComponentMap.DialogCanvas;
 import ComponentMap.SceneManager;
 import Logic.World;
 import Map.setsceneable;
 import NPC.CounterSeed;
+import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -14,7 +16,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
-public class SeedMenu extends BuyScene implements setsceneable,SpecialScene {
+public class SeedMenu extends BuyScene implements setsceneable, SpecialScene {
 	private Group root;
 	public Scene scene;
 	private Canvas c = new Canvas(1280, 720);
@@ -122,7 +124,7 @@ public class SeedMenu extends BuyScene implements setsceneable,SpecialScene {
 	}
 
 	public void update() {
-		gc.drawImage(Background,0,0);
+		gc.drawImage(Background, 0, 0);
 		gc.setFill(Color.BLACK);
 		gc.setFont(header);
 		gc.fillText("SeedShop", 470, 100);
@@ -180,12 +182,14 @@ public class SeedMenu extends BuyScene implements setsceneable,SpecialScene {
 				amouttype3++;
 			else if (row == 3) {
 				CounterSeed.update(amouttype1, amouttype2, amouttype3);
-				if(CounterSeed.isBuyable()) {
-					World.setMoney(World.getMoney() - SeedMenu.getTotalCost());		
+				if (CounterSeed.isBuyable()) {
+					World.setMoney(World.getMoney() - SeedMenu.getTotalCost());
 					if (World.getBuyable()) {
 						System.out.println("Total cost is " + SeedMenu.getTotalCost() + " $");
+						chat("Total cost is " + SeedMenu.getTotalCost() + " $");
 						System.out.println("Thank you very much ~");
-						SceneManager.warpTo(this.sc);
+						if (DialogCanvas.isHasDialog() == false)
+							SceneManager.warpTo(this.sc);
 					}
 				}
 				reset();
@@ -233,4 +237,17 @@ public class SeedMenu extends BuyScene implements setsceneable,SpecialScene {
 		return priceof3;
 	}
 
+	public void chat(String word) {
+		DialogCanvas d = DialogCanvas.Dialog;
+		Platform.runLater(() -> {
+			if (DialogCanvas.isHasDialog() == false) {
+				root.getChildren().add(d);
+				d.Chat(word);
+			}
+		});
+		if (DialogCanvas.isHasDialog() == false) {
+			DialogCanvas.stopDialog();
+			root.getChildren().remove(d);
+		}
+	}
 }

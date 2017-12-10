@@ -1,7 +1,9 @@
 package SpecialScene;
 
+import ComponentMap.DialogCanvas;
 import ComponentMap.SceneManager;
 import Map.setsceneable;
+import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -12,7 +14,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
-public class BlackSmithInterface extends BuyScene implements setsceneable,SpecialScene{
+public class BlackSmithInterface implements setsceneable,SpecialScene,BuyInterface{
 	private Group root;
 	public Scene scene;
 	private Canvas c = new Canvas(1280, 720);
@@ -88,4 +90,17 @@ public class BlackSmithInterface extends BuyScene implements setsceneable,Specia
 		return scene;
 	}
 
+	public void chat(String word) {
+		DialogCanvas d = DialogCanvas.Dialog;
+		Platform.runLater(() -> {
+			if(DialogCanvas.isHasDialog() == false) {
+				root.getChildren().add(d);
+				d.Chat(word);
+			}
+		});
+		if(DialogCanvas.isHasDialog() == false) {
+			DialogCanvas.stopDialog();
+			root.getChildren().remove(d);
+		}
+	}
 }

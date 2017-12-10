@@ -1,5 +1,6 @@
 package SpecialScene;
 
+import ComponentMap.DialogCanvas;
 import ComponentMap.SceneManager;
 import ComponentMap.StackAble;
 import Logic.Backpack;
@@ -10,6 +11,7 @@ import Tool.Hay;
 import Tool.Seed;
 import Tool.Tool;
 import Tool.WateringCan;
+import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -72,6 +74,7 @@ public class Inventory implements setsceneable, SpecialScene {
 					try {
 						Backpack.SelectItem(row, column);
 					} catch (IndexOutOfBoundsException e) {
+						chat("This slot is empty.");
 						System.out.println("This slot is empty.");
 						Backpack.SelectItem(0,0);
 					}
@@ -173,5 +176,19 @@ public class Inventory implements setsceneable, SpecialScene {
 	public static void upgrade() {
 		MAX_ROW++;
 		size=Backpack.getMaxSize();
+	}
+	
+	public void chat(String word) {
+		DialogCanvas d = DialogCanvas.Dialog;
+		Platform.runLater(() -> {
+			if(DialogCanvas.isHasDialog() == false) {
+				root.getChildren().add(d);
+				d.Chat(word);
+			}
+		});
+		if(DialogCanvas.isHasDialog() == false) {
+			DialogCanvas.stopDialog();
+			root.getChildren().remove(d);
+		}
 	}
 }

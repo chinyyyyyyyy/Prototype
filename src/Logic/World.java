@@ -6,7 +6,9 @@ import ComponentMap.Dropbox;
 import ComponentMap.HasAnimal;
 import ComponentMap.Hero;
 import ComponentMap.SceneManager;
+import Map.House;
 import Map.setsceneable;
+import SpecialScene.BuyScene;
 
 public class World {
 	private static boolean nextday=false;
@@ -16,6 +18,7 @@ public class World {
 	private static boolean Buyable;
 	private static List<String> season = new ArrayList<>();
 	private static int ss = 0;
+	private static setsceneable scene;
 	public World() {
 		days = 1;
 		money = 50000;
@@ -46,6 +49,9 @@ public class World {
 			days = 1;
 		}	
 		setMoney(money+Dropbox.getTotalsell());
+		scene = SceneManager.getListMap().get(2);
+		((House) scene).chat("Good Morning " + Hero.getName());
+		((House) scene).chat("Today is day " + World.getDay());
 		System.out.println("Good Morning " + Hero.getName());
 		System.out.println("Today is day " + World.getDay());
 		Dropbox.clear();
@@ -69,7 +75,9 @@ public class World {
 	}
 
 	public static void setMoney(int x) {
+		scene = SceneManager.getListMap().get(SceneManager.getCurrentScene());
 		if (x < 0) {
+			((BuyScene) scene).chat("You don't have enough money.");
 			System.out.println("You don't have enough money.");
 			System.out.println("You have " + money + "$");
 			Buyable = false;

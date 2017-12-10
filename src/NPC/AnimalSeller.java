@@ -2,6 +2,7 @@ package NPC;
 
 import ComponentMap.NPC;
 import ComponentMap.SceneManager;
+import Map.AnimalShop;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
@@ -31,12 +32,14 @@ public class AnimalSeller extends NPC {
 		double ha = r.getHeight();
 
 		if (wi >= 0.5 * wa && hi >= 0.5 * ha) {
-			SceneManager.setHasConversation(true);
 			System.out.println("Hello, My name is " + this.name);
+			AnimalShop scene = (AnimalShop) SceneManager.getListMap().get(6);
+			scene.chat(getDialog());
 		}
 	}
 
 	public String getName() {
 		return this.name;
 	}
+	
 }

@@ -3,8 +3,10 @@ package Tool;
 import ComponentMap.ActionByToolAble;
 import ComponentMap.Dropbox;
 import ComponentMap.Feild;
+import ComponentMap.SceneManager;
 import Logic.Backpack;
 import Logic.InBackpack;
+import Map.Farm;
 import Plant.OnHandAble;
 import Plant.Plant;
 import Plant.PlantA;
@@ -24,11 +26,13 @@ public class Hand implements InBackpack {
 	@Override
 	public void Action(ActionByToolAble a) {
 		// TODO Auto-generated method stub
+		Farm scene = (Farm) SceneManager.getListMap().get(0);
 		if (onhand == null && a instanceof Feild && ((Feild) a).getPlant() != null) {
 			Plant x = ((Feild) a).getPlant();
 			if (x instanceof PlantA) {
 				if (((PlantA) x).getAmount() == 0) {
 					if(Backpack.isFull()) {
+						scene.chat("Your bag is full.");
 						System.out.println("Your bag is full.");
 						return;
 					}
@@ -38,6 +42,7 @@ public class Hand implements InBackpack {
 			} else if (x instanceof PlantB) {
 				if (((PlantB) x).getAmount() == 0) {
 					if(Backpack.isFull()) {
+						scene.chat("Your bag is full.");
 						System.out.println("Your bag is full.");
 						return;
 					}
@@ -47,6 +52,7 @@ public class Hand implements InBackpack {
 			} else {
 				if (((PlantC) x).getAmount() == 0) {
 					if(Backpack.isFull()) {
+						scene.chat("Your bag is full.");
 						System.out.println("Your bag is full.");
 						return;
 					}

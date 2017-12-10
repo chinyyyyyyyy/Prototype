@@ -2,9 +2,6 @@ package Map;
 
 public interface HasDialog {
 
-	public void addDialog();
+	void chat(String welcome);
 
-	public void removeDialog();
-
-	public void stopDialog();
 }

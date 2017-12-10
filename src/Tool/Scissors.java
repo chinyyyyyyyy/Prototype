@@ -3,12 +3,14 @@ package Tool;
 import Animal.Sheep;
 import ComponentMap.ActionByToolAble;
 import ComponentMap.SceneManager;
+import Map.CowBarn;
 import javafx.scene.image.Image;
 
 public class Scissors extends Tool {
 
 	public static final int COST = 1000;
 	public static final Image img = new Image(ClassLoader.getSystemResource("scissor.png").toString());
+	private static CowBarn scene = (CowBarn) SceneManager.getListMap().get(3);
 
 	public Scissors() {
 		this.name = "Scissors";
@@ -22,6 +24,7 @@ public class Scissors extends Tool {
 					((Sheep) a).produce();
 					SceneManager.warpTo(SceneManager.getSceneNumber());
 			} else {
+				scene.chat("You can't cut now.");
 				System.out.println("You can't cut now.");
 			}
 

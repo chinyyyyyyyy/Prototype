@@ -126,6 +126,7 @@ public class Main extends Application {
 		listmap.add(upgradebag); // 17
 		listmap.add(blackinter); // 18
 		listmap.add(summary); // 19
+		//---------------------------------------------------------------------------------------------------------------------------
 
 		primaryStage.setResizable(false);
 		primaryStage.sizeToScene();
@@ -238,5 +239,7 @@ public class Main extends Application {
 			}
 		}
 		SceneManager.stopMusic();
+		Thread.interrupted();
+		DialogCanvas.stopDialog();
 	}
 }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ComponentMap.ClockCanvas;
+import ComponentMap.DialogCanvas;
 import ComponentMap.Environment;
 import ComponentMap.Hero;
 import ComponentMap.ReceiveAction;
@@ -151,4 +152,17 @@ public class Town implements setsceneable, HaveTime {
 		}
 	}
 
+	public void chat(String word) {
+		DialogCanvas d = DialogCanvas.Dialog;
+		Platform.runLater(() -> {
+			if(DialogCanvas.isHasDialog() == false) {
+				root.getChildren().add(d);
+				d.Chat(word);
+			}
+		});
+		if(DialogCanvas.isHasDialog() == false) {
+			DialogCanvas.stopDialog();
+			root.getChildren().remove(d);
+		}
+	}
 }

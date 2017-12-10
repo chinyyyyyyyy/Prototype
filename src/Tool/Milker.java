@@ -3,12 +3,14 @@ package Tool;
 import Animal.Cow;
 import ComponentMap.ActionByToolAble;
 import ComponentMap.SceneManager;
+import Map.CowBarn;
 import javafx.scene.image.Image;
 
 public class Milker extends Tool {
 
 	public static final int COST = 2000;
 	public static final Image img = new Image(ClassLoader.getSystemResource("milker.png").toString());
+	private static CowBarn scene = (CowBarn) SceneManager.getListMap().get(3);
 	public Milker() {
 		this.name = "Milker";
 	}
@@ -21,6 +23,7 @@ public class Milker extends Tool {
 					((Cow) a).produce();
 					SceneManager.warpTo(SceneManager.getSceneNumber());
 			}else {
+				scene.chat("You can't milk now.");
 				System.out.println("You can't milk now.");
 			}
 		}
