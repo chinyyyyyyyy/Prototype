@@ -56,8 +56,9 @@ public class Main extends Application {
 	private static int hour;
 	private static int minute;
 	private static int checktime;
-	private Thread timerThread;
-	public static String time = "";
+	private  Thread timerThread;
+	public static String time="";
+
 
 	@Override
 	public void start(Stage primaryStage) {
@@ -130,6 +131,7 @@ public class Main extends Application {
 		primaryStage.setResizable(false);
 		primaryStage.sizeToScene();
 		SceneManager sm = new SceneManager(primaryStage, listmap);
+		
 		AnimationTimer animation = new AnimationTimer() {
 			public void handle(long now) {
 				// clock(hour,minute);
@@ -228,7 +230,7 @@ public class Main extends Application {
 	}
 
 	@Override
-	public void stop() throws Exception {
+	public void stop() throws InterruptedException {
 		// TODO Auto-generated method stub
 		this.timerThread.interrupt();
 		for (setsceneable i : SceneManager.getListMap()) {

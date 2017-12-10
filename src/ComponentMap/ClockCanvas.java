@@ -47,13 +47,14 @@ public class ClockCanvas extends Canvas {
 
 						// Tool
 						InBackpack x = Backpack.CheckItemOnHand();
-						String name;
-						if (x instanceof Plant) {
-							name = ((Plant) x).getName();
-						} else {
-							name = x.getClass().getSimpleName();
-						}
-						gc.fillText(name, 180, 665, 60);
+						//String name;
+//						if (x instanceof Plant) {
+//							name = ((Plant) x).getName();
+//						} else {
+//							name = x.getClass().getSimpleName();
+//						}
+//						gc.fillText(name, 180, 665, 60);
+						gc.drawImage(x.getImage(), 180,630,60,60);
 
 					});
 
