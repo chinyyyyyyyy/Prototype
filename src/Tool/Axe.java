@@ -17,7 +17,7 @@ public class Axe extends Tool {
 
 	public Axe() {
 		this.name = "AXE";
-		this.timeofuse = 120;
+		this.timeofuse = 0;
 		this.level=0;
 	}
 

@@ -18,7 +18,7 @@ public class Hoe extends Tool {
 
 	public Hoe() {
 		this.name = "HOE";
-		this.timeofuse = 300;
+		this.timeofuse = 0;
 		upgradeable = false;
 		this.level = 0;
 	}
