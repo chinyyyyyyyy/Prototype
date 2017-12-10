@@ -56,13 +56,9 @@ public class Main extends Application {
 	private static int hour;
 	private static int minute;
 	private static int checktime;
-<<<<<<< HEAD
 	private  Thread timerThread;
 	public static String time="";
-=======
-	private Thread timerThread;
-	public static String time = "";
->>>>>>> 8557ff9a822f0741484cbef82cd44c97f495efb8
+
 
 	@Override
 	public void start(Stage primaryStage) {
@@ -181,12 +177,7 @@ public class Main extends Application {
 			}
 		});
 		this.timerThread.start();
-<<<<<<< HEAD
-		
-			
-=======
 
->>>>>>> 8557ff9a822f0741484cbef82cd44c97f495efb8
 	}
 
 	public static void main(String[] args) {
