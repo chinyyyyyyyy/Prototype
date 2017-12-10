@@ -78,7 +78,7 @@ public class Axe extends Tool {
 
 	public static String StateUpgradeable() {
 		if (max)
-			return "MAX";
+			return "       MAX";
 		if (Axe.isUpgrade12() || Axe.isUpgrade02())
 			return "Upgrade to Gold?";
 		if(Axe.isUpgrade01())

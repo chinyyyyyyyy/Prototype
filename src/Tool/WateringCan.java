@@ -94,7 +94,7 @@ public class WateringCan extends Tool {
 	
 	public static String StateUpgradeable() {
 		if (max)
-			return "MAX";
+			return "       MAX";
 		if (WateringCan.isUpgrade12() || WateringCan.isUpgrade02())
 			return "Upgrade to Gold";
 		if(WateringCan.isUpgrade01())

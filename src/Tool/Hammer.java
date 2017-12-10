@@ -77,7 +77,7 @@ public class Hammer extends Tool {
 	
 	public static String StateUpgradeable() {
 		if (max)
-			return "MAX";
+			return "       MAX";
 		if (Hammer.isUpgrade12() || Hammer.isUpgrade02())
 			return "Upgrade to Gold";
 		if(Hammer.isUpgrade01())

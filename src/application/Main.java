@@ -155,7 +155,7 @@ public class Main extends Application {
 						if (World.isNextday())
 							resetTime();
 						checktime += 10;
-						if (checktime == 1000 || currentTime == -1) {
+						if (checktime == 2000 || currentTime == -1) {
 							currentTime++;
 							minute = (currentTime * 10) % 60;
 							if (currentTime % 6 == 0) {
@@ -240,6 +240,8 @@ public class Main extends Application {
 		}
 		SceneManager.stopMusic();
 		Thread.interrupted();
-		DialogCanvas.stopDialog();
+		for (setsceneable i : SceneManager.getListMap()) {
+			DialogCanvas.stopDialog();
+		}
 	}
 }

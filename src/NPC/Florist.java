@@ -17,7 +17,7 @@ public class Florist extends NPC {
 	}
 
 	public String Welcome() {
-		return "Plant make our world beautiful~. Do you think so ?";
+		return "Plant make our world beautiful~";
 	}
 	
 	public String getDialog() {

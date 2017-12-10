@@ -20,7 +20,7 @@ public class World {
 	private static setsceneable scene;
 	public World() {
 		days = 1;
-		money = 50000;
+		money = 10000;
 		Buyable = true;
 		season.add("Spring");
 		season.add("Summer");

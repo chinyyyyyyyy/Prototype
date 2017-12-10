@@ -2,7 +2,6 @@ package SpecialScene;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import ComponentMap.SceneManager;
 import Logic.Backpack;
 import Logic.InBackpack;
@@ -20,7 +19,6 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 
 public class ToolStatus implements setsceneable, SpecialScene {
 	private Group root;

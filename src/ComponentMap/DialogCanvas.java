@@ -1,5 +1,8 @@
 package ComponentMap;
 
+import com.sun.javafx.tk.FontLoader;
+import com.sun.javafx.tk.Toolkit;
+
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -16,6 +19,7 @@ public class DialogCanvas extends Canvas {
 	private static int time = 0;
 	public static boolean hasDialog;
 	public static String word = "";
+	private FontLoader fontLoader = Toolkit.getToolkit().getFontLoader();
 
 	public DialogCanvas() {
 		super(1280, 720);
@@ -29,16 +33,23 @@ public class DialogCanvas extends Canvas {
 		word = newword;
 		setHasDialog(true);
 		dialog = new Thread(() -> {
+			double len = fontLoader.getFontMetrics(body).computeStringWidth(newword);
+			double lb = fontLoader.getFontMetrics(body).computeStringWidth(" ");
+			String blank = "";
+			for (int i = 0; i < Math.floorDiv(Math.floorDiv((int) (500 - len), 2), Math.floorDiv((int) lb, 1)); i++) {
+				blank += " ";
+			}
 			while (true) {
 				try {
 					Thread.sleep(10);
 					if (isHasDialog()) {
-						gc.setFill(Color.ALICEBLUE);
+						gc.setFill(Color.BLACK);
+						gc.fillRect(265, 625, 510, 90);
 						gc.setStroke(Color.BLACK);
 						gc.setFont(body);
-						gc.drawImage(texture,260, 630, 500, 80);
+						gc.drawImage(texture, 270, 630, 500, 80);
 						gc.setFill(Color.BLACK);
-						gc.fillText(word, 280, 680, 460);
+						gc.fillText(blank + word, 290, 680, 460);
 						time += 10;
 						if (time == 2000) {
 							setHasDialog(false);
@@ -59,20 +70,32 @@ public class DialogCanvas extends Canvas {
 		});
 		dialog.start();
 	}
-	
-	public void Chat(String word1,String word2) {
+
+	public void Chat(String word1, String word2) {
 		// Fill your code
 		setHasDialog(true);
 		dialog = new Thread(() -> {
+			double len1 = fontLoader.getFontMetrics(body).computeStringWidth(word1);
+			double len2 = fontLoader.getFontMetrics(body).computeStringWidth(word2);
+			double lb = fontLoader.getFontMetrics(body).computeStringWidth(" ");
+			String blank1 = "";
+			for (int i = 0; i < Math.floorDiv(Math.floorDiv((int) (500 - len1), 2), Math.floorDiv((int) lb, 1)); i++) {
+				blank1 += " ";
+			}
+			String blank2 = "";
+			for (int i = 0; i < Math.floorDiv(Math.floorDiv((int) (500 - len2), 2), Math.floorDiv((int) lb, 1)); i++) {
+				blank2 += " ";
+			}
 			while (true) {
 				try {
 					Thread.sleep(10);
 					if (isHasDialog()) {
-						gc.setFill(Color.ALICEBLUE);
+						gc.setFill(Color.BLACK);
+						gc.fillRect(265, 625, 510, 90);
 						gc.setStroke(Color.BLACK);
-						gc.setFont(new Font("Monospace", 25));
-						gc.fillRect(260, 630, 500, 80);
-						gc.strokeRect(260, 630, 500, 80);
+						gc.strokeRect(270, 630, 500, 80);
+						gc.setFont(body);
+						gc.drawImage(texture, 270, 630, 500, 80);
 						gc.setFill(Color.BLACK);
 						time += 10;
 						if (time == 4000) {
@@ -81,10 +104,10 @@ public class DialogCanvas extends Canvas {
 							gc.clearRect(0, 0, 1280, 720);
 							stopDialog();
 							break;
-						}else if(time >= 2000) {
-							gc.fillText(word2, 280, 680, 460);					
-						}else {
-							gc.fillText(word1, 280, 680, 460);
+						} else if (time >= 2000) {
+							gc.fillText(blank2 + word2, 290, 680, 460);
+						} else {
+							gc.fillText(blank1 + word1, 290, 680, 460);
 						}
 					}
 

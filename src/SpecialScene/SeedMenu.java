@@ -14,7 +14,6 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 
 public class SeedMenu extends BuyScene implements setsceneable, SpecialScene {
 	private Group root;
@@ -190,7 +189,11 @@ public class SeedMenu extends BuyScene implements setsceneable, SpecialScene {
 						System.out.println("Thank you very much ~");
 						if (DialogCanvas.isHasDialog() == false)
 							SceneManager.warpTo(this.sc);
+					}else {
+						chat("You don't have enough money");
 					}
+				}else {
+					chat("Your bag is full.");
 				}
 				reset();
 			}

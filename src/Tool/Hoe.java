@@ -79,7 +79,7 @@ public class Hoe extends Tool {
 	
 	public static String StateUpgradeable() {
 		if (max)
-			return "MAX";
+			return "       MAX";
 		if (Hoe.isUpgrade12() || Hoe.isUpgrade02())
 			return "Upgrade to Gold?";
 		if(Hoe.isUpgrade01())

@@ -20,7 +20,6 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 
 public class BlackSmithMenu extends BuyScene implements setsceneable, SpecialScene {
 	private Group root;
@@ -74,10 +73,14 @@ public class BlackSmithMenu extends BuyScene implements setsceneable, SpecialSce
 						if (World.getBuyable()) {
 							((Tool) item).upgrade();
 							update();
+							chat("Upgrade Success !");	
+						}else {
+							chat("You don't have enough money.");	
 						}
-					} else
+					} else {
 						System.out.println("Sorry Your Tool can't upgrade.");
-					chat("Sorry Your Tool can't upgrade.");
+						chat("Sorry Your Tool can't upgrade.");	
+					}
 				}
 			}
 		});
@@ -115,24 +118,28 @@ public class BlackSmithMenu extends BuyScene implements setsceneable, SpecialSce
 		gc.fillText("Cost", 970, 180);
 
 		gc.strokeRect(50, 220, 80, 80);
+		gc.drawImage(Backpack.getBackpack().get(1).getImage(), 50, 220);
 		gc.fillText("Axe", 150, 280);
 		gc.fillText(Axe.StateUpgradeable(), 400, 280, 500);
 		if (Axe.isUpgradeable().equals("") == false && Axe.UpgradeCost() != 0)
 			gc.fillText("" + Axe.UpgradeCost(), 970, 280);
 
 		gc.strokeRect(50, 340, 80, 80);
+		gc.drawImage(Backpack.getBackpack().get(2).getImage(), 50, 340);
 		gc.fillText("Hammer", 150, 400);
 		gc.fillText(Hammer.StateUpgradeable(), 400, 400, 500);
 		if (Hammer.isUpgradeable().equals("") == false && Hammer.UpgradeCost() != 0)
 			gc.fillText("" + Hammer.UpgradeCost(), 970, 400);
 
 		gc.strokeRect(50, 460, 80, 80);
+		gc.drawImage(Backpack.getBackpack().get(3).getImage(), 50, 460);
 		gc.fillText("Hoe", 150, 520);
 		gc.fillText(Hoe.StateUpgradeable(), 400, 520, 500);
 		if (Hoe.isUpgradeable().equals("") == false && Hoe.UpgradeCost() != 0)
 			gc.fillText("" + Hoe.UpgradeCost(), 970, 520);
 
 		gc.strokeRect(50, 580, 80, 80);
+		gc.drawImage(Backpack.getBackpack().get(4).getImage(), 50, 580);
 		gc.fillText("Watering Can", 150, 640, 200);
 		gc.fillText(WateringCan.StateUpgradeable(), 400, 640, 500);
 		if (WateringCan.isUpgradeable().equals("") == false && WateringCan.UpgradeCost() != 0)
