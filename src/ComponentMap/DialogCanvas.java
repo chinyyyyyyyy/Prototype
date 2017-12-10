@@ -57,6 +57,44 @@ public class DialogCanvas extends Canvas {
 		});
 		dialog.start();
 	}
+	
+	public void Chat(String word1,String word2) {
+		// Fill your code
+		setHasDialog(true);
+		dialog = new Thread(() -> {
+			while (true) {
+				try {
+					Thread.sleep(10);
+					if (isHasDialog()) {
+						gc.setFill(Color.ALICEBLUE);
+						gc.setStroke(Color.BLACK);
+						gc.setFont(new Font("Monospace", 25));
+						gc.fillRect(260, 630, 500, 80);
+						gc.strokeRect(260, 630, 500, 80);
+						gc.setFill(Color.BLACK);
+						time += 10;
+						if (time == 4000) {
+							setHasDialog(false);
+							time = 0;
+							gc.clearRect(0, 0, 1280, 720);
+							stopDialog();
+							break;
+						}else if(time >= 2000) {
+							gc.fillText(word2, 280, 680, 460);					
+						}else {
+							gc.fillText(word1, 280, 680, 460);
+						}
+					}
+
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					stopDialog();
+					break;
+				}
+			}
+		});
+		dialog.start();
+	}
 
 	public static void stopDialog() {
 		if (dialog != null)

@@ -76,7 +76,7 @@ public class Inventory implements setsceneable, SpecialScene {
 					} catch (IndexOutOfBoundsException e) {
 						chat("This slot is empty.");
 						System.out.println("This slot is empty.");
-						Backpack.SelectItem(0,0);
+						Backpack.CheckItemOnHand();
 					}
 				}
 				if (event.getCode().equals(KeyCode.I)) {

@@ -42,8 +42,7 @@ public class Summary implements setsceneable, SpecialScene {
 			public void handle(KeyEvent event) {
 				if (event.getCode().equals(KeyCode.ENTER)) {
 					World.Tomorrow();
-					if (DialogCanvas.isHasDialog() == false)
-						SceneManager.warpTo(2);
+					SceneManager.warpTo(2);
 				}
 			}
 		});
@@ -74,10 +73,6 @@ public class Summary implements setsceneable, SpecialScene {
 			gc.fillText("" + x.getKey().getPrice() * x.getValue(), 970, 270 + 60 * i);
 		}
 		gc.fillText("Total Selling : " + Dropbox.getTotalsell(), 730, 670);
-
-		// gc.setFill(Color.RED);
-		// gc.fillText("Press Enter to continue", 150, 670);
-		chat("Press Enter to continue");
 	}
 
 	public Scene getScene() {

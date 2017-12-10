@@ -84,6 +84,20 @@ public class House implements setsceneable, HaveTime {
 			root.getChildren().remove(d);
 		}
 	}
+	
+	public void chat(String word1,String word2) {
+		DialogCanvas d = DialogCanvas.Dialog;
+		Platform.runLater(() -> {
+			if(DialogCanvas.isHasDialog() == false) {
+				root.getChildren().add(d);
+				d.Chat(word1,word2);
+			}
+		});
+		if(DialogCanvas.isHasDialog() == false) {
+			DialogCanvas.stopDialog();
+			root.getChildren().remove(d);
+		}
+	}
 
 	public void addClock() {
 		clock = new ClockCanvas();

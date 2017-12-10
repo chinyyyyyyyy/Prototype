@@ -3,15 +3,18 @@ package ComponentMap;
 import java.util.ArrayList;
 import java.util.List;
 
+import Logic.World;
 import Map.AnimalShop;
 import Map.HasDialog;
 import Map.HaveTime;
+import Map.House;
 import Map.setsceneable;
 import NPC.Counter;
 import SpecialScene.AnimalBuyer;
 import SpecialScene.BuyInterface;
 import SpecialScene.BuyScene;
 import SpecialScene.SpecialScene;
+import SpecialScene.Summary;
 import application.Main;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
@@ -104,6 +107,14 @@ public class SceneManager extends Rectangle {
 
 		if (listmap.get(mapno) instanceof BuyInterface && listmap.get(previousScene) instanceof BuyScene == false) {
 			((BuyInterface) listmap.get(mapno)).chat(Counter.getQuestion());
+		}
+		
+		if (listmap.get(mapno) instanceof Summary) {
+			((Summary) listmap.get(mapno)).chat("Press Enter to continue");
+		}
+		
+		if (listmap.get(mapno) instanceof House && listmap.get(previousScene) instanceof Summary) {
+			((House) listmap.get(mapno)).chat("Good Morning " + Hero.getName(),"Today is day " + World.getDay());
 		}
 
 		// ---------------------------------------------------------------------------------------------------------------------------

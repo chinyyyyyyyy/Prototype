@@ -2,7 +2,6 @@ package ComponentMap;
 
 import Logic.Backpack;
 import Logic.InBackpack;
-import Plant.Plant;
 import application.Main;
 import javafx.application.Platform;
 import javafx.scene.canvas.Canvas;

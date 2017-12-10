@@ -6,7 +6,6 @@ import ComponentMap.Dropbox;
 import ComponentMap.HasAnimal;
 import ComponentMap.Hero;
 import ComponentMap.SceneManager;
-import Map.House;
 import Map.setsceneable;
 import SpecialScene.BuyScene;
 
@@ -49,9 +48,6 @@ public class World {
 			days = 1;
 		}	
 		setMoney(money+Dropbox.getTotalsell());
-		scene = SceneManager.getListMap().get(2);
-		((House) scene).chat("Good Morning " + Hero.getName());
-		((House) scene).chat("Today is day " + World.getDay());
 		System.out.println("Good Morning " + Hero.getName());
 		System.out.println("Today is day " + World.getDay());
 		Dropbox.clear();

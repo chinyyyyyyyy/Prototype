@@ -26,6 +26,7 @@ public class Backpack {
 		try {
 			x = backpack.get(indexitemonhand);
 		} catch (IndexOutOfBoundsException e) {
+			indexitemonhand=0;
 			x = backpack.get(0);
 		}
 		return x;

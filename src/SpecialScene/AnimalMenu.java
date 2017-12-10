@@ -184,7 +184,11 @@ public class AnimalMenu extends BuyScene implements setsceneable, SpecialScene {
 						chat("Total cost is " + AnimalMenu.getTotalCost() + " $");
 						if (DialogCanvas.isHasDialog() == false)
 							SceneManager.warpTo(6);
+					} else {
+						chat("You don't have enough money.");
 					}
+				} else {
+					chat("Your barn is full.");
 				}
 				reset();
 			}
