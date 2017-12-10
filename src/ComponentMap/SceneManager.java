@@ -3,8 +3,11 @@ package ComponentMap;
 import java.util.ArrayList;
 import java.util.List;
 
+import Map.HasDialog;
 import Map.HaveTime;
+import Map.House;
 import Map.setsceneable;
+import SpecialScene.BuyScene;
 import SpecialScene.SpecialScene;
 import application.Main;
 import javafx.event.EventHandler;
@@ -27,35 +30,41 @@ public class SceneManager extends Rectangle {
 	private static int sceneNumber;
 	private static int previousScene;
 	private static int currentScene;
-	public static AudioClip  bgm = new AudioClip(ClassLoader.getSystemResource("bgm.mp3").toString()) ;
+	public static boolean hasDialog = false;
+	public static boolean hasConversation = false;
+	public static boolean hasThank = false;
+
+	public static String dialog;
+	public static String conversation;
+
+	public static AudioClip bgm = new AudioClip(ClassLoader.getSystemResource("bgm.mp3").toString());
 
 	public SceneManager(Stage s, List<setsceneable> lm) {
 		Main.setPause(true);
 		primaryStage = s;
 		listmap = lm;
-		
+
 		Group root = new Group();
-		Scene scene = new Scene(root,1280,760);
-		Canvas c = new Canvas(1280,760);
+		Scene scene = new Scene(root, 1280, 760);
+		Canvas c = new Canvas(1280, 760);
 		Image OpenSceneImg = new Image(ClassLoader.getSystemResource("MainMenu.jpg").toString());
 		GraphicsContext gc = c.getGraphicsContext2D();
-		gc.drawImage(OpenSceneImg ,0,0);
+		gc.drawImage(OpenSceneImg, 0, 0);
 		root.getChildren().add(c);
-		
+
 		primaryStage.setScene(scene);
 		primaryStage.show();
 		primaryStage.setTitle("Harvest Sun");
-		
+
 		scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
 			@Override
 			public void handle(KeyEvent event) {
 				if (event.getCode().equals(KeyCode.ENTER)) {
 					primaryStage.setScene(lm.get(10).getScene());
-					bgm.play();    
-				} 
+					bgm.play();
+				}
 			}
 		});
-		
 
 	}
 
@@ -64,26 +73,56 @@ public class SceneManager extends Rectangle {
 		if (listmap.get(mapno) instanceof HasAnimal) {
 			((HasAnimal) listmap.get(mapno)).update();
 		}
-		
+
 		if (listmap.get(mapno) instanceof SpecialScene) {
 			((SpecialScene) listmap.get(mapno)).update();
 			Main.setPause(true);
 		}
-		
+
 		if (listmap.get(mapno) instanceof SpecialScene == false) {
 			setSceneNumber(mapno);
 			Main.setPause(false);
 		}
+
 		primaryStage.setScene(listmap.get(mapno).getScene());
-		if (listmap.get(mapno) instanceof HasNPC && listmap.get(previousScene) instanceof SpecialScene == false) {
-			((HasNPC) listmap.get(mapno)).getNPC().Welcome();
-		}
 		
-		if(listmap.get(mapno) instanceof HaveTime) {
+		if (listmap.get(mapno) instanceof HaveTime) {
 			((HaveTime) listmap.get(mapno)).removeClock();
 			((HaveTime) listmap.get(mapno)).addClock();
-			Clock.stopClock();
+			if (listmap.get(previousScene) instanceof HaveTime)
+				((HaveTime) listmap.get(previousScene)).stopClock();
 		}
+
+		//--------------------------------------------------------Dialog--------------------------------------------------------
+//		if(listmap.get(mapno) instanceof House) {
+//			((House) listmap.get(mapno)).chat("eiei");
+//		}
+		if (listmap.get(mapno) instanceof HasNPC && listmap.get(previousScene) instanceof BuyScene) {
+			setHasThank(true);
+		} else
+			setHasThank(false);
+
+		if (listmap.get(mapno) instanceof HasNPC && listmap.get(previousScene) instanceof SpecialScene == false) {
+			System.out.println(((HasNPC) listmap.get(mapno)).getNPC().Welcome());
+			if (((HasNPC) listmap.get(mapno)).getNPC().Welcome().equals("") == false) {
+				setHasDialog(true);
+				setDialog(((HasNPC) listmap.get(mapno)).getNPC().Welcome());
+				setConversation(((HasNPC) listmap.get(mapno)).getNPC().getDialog());
+			}
+		} else {
+			setHasDialog(false);
+			setDialog("");
+			setHasConversation(false);
+			setConversation("");
+		}
+
+		if (listmap.get(mapno) instanceof HasDialog) {
+			((HasDialog) listmap.get(mapno)).removeDialog();
+			((HasDialog) listmap.get(mapno)).addDialog();
+			if (listmap.get(previousScene) instanceof HasDialog)
+				((HasDialog) listmap.get(previousScene)).stopDialog();
+		}
+		//---------------------------------------------------------------------------------------------------------------------------
 		setCurrentScene(mapno);
 	}
 
@@ -127,8 +166,8 @@ public class SceneManager extends Rectangle {
 	public static void setSceneNumber(int sceneNumber) {
 		SceneManager.sceneNumber = sceneNumber;
 	}
-	
-	public static List<setsceneable> getListMap(){
+
+	public static List<setsceneable> getListMap() {
 		return listmap;
 	}
 
@@ -146,6 +185,48 @@ public class SceneManager extends Rectangle {
 
 	public static void setCurrentScene(int currentScene) {
 		SceneManager.currentScene = currentScene;
+	}
+	
+	//-------------------------------------------------------------Dialog Scene------------------------------------------------
+
+	public static boolean isHasDialog() {
+		return hasDialog;
+	}
+
+	public static void setHasDialog(boolean hasDialog) {
+		SceneManager.hasDialog = hasDialog;
+	}
+
+	public static String getDialog() {
+		return dialog;
+	}
+
+	public static void setDialog(String dialog) {
+		SceneManager.dialog = dialog;
+	}
+
+	public static String getConversation() {
+		return conversation;
+	}
+
+	public static void setConversation(String conversation) {
+		SceneManager.conversation = conversation;
+	}
+
+	public static boolean isHasConversation() {
+		return hasConversation;
+	}
+
+	public static void setHasConversation(boolean hasConversation) {
+		SceneManager.hasConversation = hasConversation;
+	}
+
+	public static boolean isHasThank() {
+		return hasThank;
+	}
+
+	public static void setHasThank(boolean hasThank) {
+		SceneManager.hasThank = hasThank;
 	}
 	
 	public static void stopMusic() {

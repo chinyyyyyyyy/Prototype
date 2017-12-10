@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import Animal.Animal;
 import Animal.Hen;
+import ComponentMap.ClockCanvas;
 import ComponentMap.Environment;
 import ComponentMap.HasAnimal;
 import ComponentMap.Hero;
@@ -11,6 +12,7 @@ import ComponentMap.ReceiveAction;
 import Logic.World;
 import NPC.Counter;
 import NPC.HayGetter;
+import javafx.application.Platform;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -21,7 +23,7 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Pair;
 
-public class HenBarn implements setsceneable, HasAnimal {
+public class HenBarn implements setsceneable, HasAnimal, HaveTime {
 	private Group root;
 	public Scene scene;
 	private Hero hero;
@@ -34,6 +36,7 @@ public class HenBarn implements setsceneable, HasAnimal {
 	public static List<Pair<Integer, Integer>> actionposition = new ArrayList<Pair<Integer, Integer>>();
 	private Canvas bg;
 	private Canvas egg;
+	private ClockCanvas clock = new ClockCanvas();
 	private static final ImagePattern chickenimg = new ImagePattern(
 			new Image(ClassLoader.getSystemResource("Chicken.png").toString()));
 
@@ -76,6 +79,7 @@ public class HenBarn implements setsceneable, HasAnimal {
 		position.add(new Pair<Integer, Integer>(600, 260));
 		position.add(new Pair<Integer, Integer>(733, 260));
 		position.add(new Pair<Integer, Integer>(866, 260));
+
 		actionposition.add(new Pair<Integer, Integer>(320, 350));
 		actionposition.add(new Pair<Integer, Integer>(455, 350));
 		actionposition.add(new Pair<Integer, Integer>(585, 350));
@@ -145,5 +149,34 @@ public class HenBarn implements setsceneable, HasAnimal {
 
 	public static int getAnimalCount() {
 		return Hen.getHenCount();
+	}
+
+	public void addClock() {
+		clock = new ClockCanvas();
+		Platform.runLater(() -> {
+			root.getChildren().add(clock);
+		});
+		try {
+			clock.TurnClock();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public void removeClock() {
+		if (root.getChildren().contains(clock)) {
+			Platform.runLater(() -> {
+				root.getChildren().remove(clock);
+			});
+		}
+	}
+
+	public void stopClock() {
+		if (root.getChildren().contains(clock)) {
+			Platform.runLater(() -> {
+				clock.stopClock();
+			});
+		}
 	}
 }

@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ComponentMap.Bed;
-import ComponentMap.Clock;
+import ComponentMap.ClockCanvas;
+import ComponentMap.DialogCanvas;
 import ComponentMap.Environment;
 import ComponentMap.Hero;
 import ComponentMap.ReceiveAction;
@@ -18,14 +19,14 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Pair;
 
-public class House implements setsceneable,HaveTime{
+public class House implements setsceneable, HaveTime {
 	private Group root;
 	public Scene scene;
 	private Hero hero;
 	private List<Environment> e = new ArrayList<>();
 	private List<ReceiveAction> re = new ArrayList<>();
-	private  List<Pair<Rectangle,Integer>> WarpList = new ArrayList<>();
-	private Clock clock = new Clock();
+	private List<Pair<Rectangle, Integer>> WarpList = new ArrayList<>();
+	private ClockCanvas clock = new ClockCanvas();
 
 	public House(int starthx, int starthy) {
 		root = new Group();
@@ -33,18 +34,18 @@ public class House implements setsceneable,HaveTime{
 		Canvas bg = new Canvas(1280, 720);
 		GraphicsContext gc = bg.getGraphicsContext2D();
 		Image background = new Image(ClassLoader.getSystemResource("inHouse.png").toString());
-		gc.drawImage(background,0,0);
-		//gc.setFill(Color.TOMATO);
-		//gc.fillOval(440,210,400, 300);
+		gc.drawImage(background, 0, 0);
+		// gc.setFill(Color.TOMATO);
+		// gc.fillOval(440,210,400, 300);
 		root.getChildren().add(bg);
 
-		//Boarder
+		// Boarder
 		e.add(new Environment(-10, 0, 10, 720, Color.BLACK));// boarderLEFT
-		e.add(new Environment(0,225, 1280, 10, Color.BLACK));// boarderTOP
+		e.add(new Environment(0, 225, 1280, 10, Color.BLACK));// boarderTOP
 		e.add(new Environment(1280, 0, 10, 720, Color.BLACK));// boarderRIGHT
 		e.add(new Environment(0, 720, 1280, 10, Color.BLACK));// boarderBOTTOM
-		//Furniture
-		e.add(new Environment(0, 625, 95,95, Color.BLACK));//ToolBlock
+		// Furniture
+		e.add(new Environment(0, 625, 95, 95, Color.BLACK));// ToolBlock
 		e.add(new Environment(600, 225, 200, 87, Color.BLACK));// TV
 		e.add(new Environment(1095, 225, 230, 240, Color.BLACK));//BED
 		e.add(new Environment(800, 225, 80, 80, Color.BLACK));//box1
@@ -58,8 +59,8 @@ public class House implements setsceneable,HaveTime{
 		
 		Rectangle warpblocktofarm = new Rectangle(580,695,120,25);
 		warpblocktofarm.setFill(Color.RED);
-		//root.getChildren().add(warpblocktofarm);
-		Pair<Rectangle,Integer> tofarm = new Pair<Rectangle,Integer>(warpblocktofarm,0);
+		// root.getChildren().add(warpblocktofarm);
+		Pair<Rectangle, Integer> tofarm = new Pair<Rectangle, Integer>(warpblocktofarm, 0);
 		WarpList.add(tofarm);
 
 		hero = new Hero(scene, starthx, starthy, e, re,true);
@@ -70,12 +71,19 @@ public class House implements setsceneable,HaveTime{
 		hero.setWarpBlockList(WarpList);
 	}
 	
+//	public void chat(String word) {
+//		Platform.runLater(() -> {
+//			root.getChildren().add(DialogCanvas.Dialog);
+//		});
+//	}
+
 	public void addClock() {
+		clock = new ClockCanvas();
 		Platform.runLater(() -> {
 			root.getChildren().add(clock);
 		});
 		try {
-			Clock.TurnClock();
+			clock.TurnClock();
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -83,14 +91,22 @@ public class House implements setsceneable,HaveTime{
 	}
 
 	public void removeClock() {
-		if(root.getChildren().contains(clock)) {
+		if (root.getChildren().contains(clock)) {
 			Platform.runLater(() -> {
 				root.getChildren().remove(clock);
-			});		
+			});
 		}
 	}
 
 	public Scene getScene() {
 		return this.scene;
+	}
+
+	public void stopClock() {
+		if (root.getChildren().contains(clock)) {
+			Platform.runLater(() -> {
+				clock.stopClock();
+			});
+		}
 	}
 }

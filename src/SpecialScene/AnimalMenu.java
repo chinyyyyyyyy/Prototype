@@ -14,7 +14,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
-public class AnimalMenu implements setsceneable,SpecialScene {
+public class AnimalMenu extends BuyScene implements setsceneable,SpecialScene {
 
 	private Group root;
 	public Scene scene;

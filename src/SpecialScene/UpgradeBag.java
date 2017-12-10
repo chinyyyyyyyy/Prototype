@@ -14,7 +14,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
-public class UpgradeBag implements setsceneable, SpecialScene {
+public class UpgradeBag extends BuyScene implements setsceneable, SpecialScene{
 
 	private Group root;
 	public Scene scene;

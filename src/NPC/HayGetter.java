@@ -13,7 +13,12 @@ public class HayGetter extends NPC{
 		super(x, y, w, h, c);
 	}
 
-	public void Welcome() {
+	public String Welcome() {
+		return "";
+	}
+	
+	public String getDialog() {
+		return "";
 	}
 
 	public void checkAction(Rectangle r) {
