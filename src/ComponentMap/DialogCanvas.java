@@ -2,12 +2,15 @@ package ComponentMap;
 
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
 public class DialogCanvas extends Canvas {
 	public static DialogCanvas Dialog = new DialogCanvas();
-
+	static final Font header = Font.loadFont(ClassLoader.getSystemResource("fonteiei.ttf").toString(), 60);
+	static final Font body = Font.loadFont(ClassLoader.getSystemResource("fonteiei.ttf").toString(), 40);
+	static final Image texture = new Image(ClassLoader.getSystemResource("texture.png").toString());
 	public static Thread dialog;
 	public static GraphicsContext gc;
 	private static int time = 0;
@@ -32,9 +35,8 @@ public class DialogCanvas extends Canvas {
 					if (isHasDialog()) {
 						gc.setFill(Color.ALICEBLUE);
 						gc.setStroke(Color.BLACK);
-						gc.setFont(new Font("Monospace", 25));
-						gc.fillRect(260, 630, 500, 80);
-						gc.strokeRect(260, 630, 500, 80);
+						gc.setFont(body);
+						gc.drawImage(texture,260, 630, 500, 80);
 						gc.setFill(Color.BLACK);
 						gc.fillText(word, 280, 680, 460);
 						time += 10;

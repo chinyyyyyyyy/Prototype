@@ -51,9 +51,10 @@ public class Summary implements setsceneable, SpecialScene {
 	public void update() {
 		gc.drawImage(Background, 0, 0);
 		gc.setFill(Color.BLACK);
-		gc.setFont(new Font("abc", 50));
-		gc.fillText("Summary", 500, 80);
+		gc.setFont(header);
+		gc.fillText("Summary", 470, 100);
 		gc.setStroke(Color.BLACK);
+		gc.setFont(body);
 		gc.fillText("Sell List", 150, 180);
 		gc.fillText("Price", 970, 180);
 

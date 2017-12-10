@@ -76,15 +76,13 @@ public class AnimalBuyer implements setsceneable,SpecialScene,BuyInterface{
 	public void update() {
 		gc.drawImage(Background,0,0);
 		gc.setFill(Color.BLACK);
-		System.out.println(gc.getFont());
 		gc.setFont(header);
-		gc.fillText("AnimalShop", 500, 50);
+		gc.fillText("AnimalShop", 470, 100);
 		gc.setStroke(Color.RED);
 		gc.setFont(body);
 		gc.fillText("Buy Animal", 150, 200);
 		gc.fillText("Buy Tool", 150, 350);
-
-		gc.strokeRect(50, 150 + row * 150, 50, 50);
+		gc.drawImage(hand,50, 150 + row * 150);
 	}
 
 	public Scene getScene() {
