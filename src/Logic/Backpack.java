@@ -22,7 +22,13 @@ public class Backpack {
 	}
 
 	public static InBackpack CheckItemOnHand() {
-		return backpack.get(indexitemonhand);
+		InBackpack x;
+		try {
+			x = backpack.get(indexitemonhand);
+		} catch (IndexOutOfBoundsException e) {
+			x = backpack.get(0);
+		}
+		return x;
 	}
 
 	public static void ChangeItem() {

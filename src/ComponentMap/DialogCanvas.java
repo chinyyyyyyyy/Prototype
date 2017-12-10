@@ -33,26 +33,27 @@ public class DialogCanvas extends Canvas {
 						gc.setFill(Color.ALICEBLUE);
 						gc.setStroke(Color.BLACK);
 						gc.setFont(new Font("Monospace", 25));
-						gc.fillRect(260, 620, 500, 80);
-						gc.strokeRect(260, 620, 500, 80);
+						gc.fillRect(260, 630, 500, 80);
+						gc.strokeRect(260, 630, 500, 80);
 						gc.setFill(Color.BLACK);
-						gc.fillText(word, 280, 670, 460);
+						gc.fillText(word, 280, 680, 460);
 						time += 10;
 						if (time == 2000) {
 							setHasDialog(false);
 							time = 0;
 							word = "";
 							gc.clearRect(0, 0, 1280, 720);
+							stopDialog();
 							break;
 						}
 					}
 
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
+					stopDialog();
 					break;
 				}
 			}
-			stopDialog();
 		});
 		dialog.start();
 	}

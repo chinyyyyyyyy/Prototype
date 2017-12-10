@@ -33,15 +33,15 @@ public class ClockCanvas extends Canvas {
 
 						gc.setFill(Color.ALICEBLUE);
 						gc.setStroke(Color.BLACK);
-						gc.fillRect(10, 620, 150, 80);
-						gc.strokeRect(10, 620, 150, 80);
-						gc.fillRect(170, 620, 80, 80);
-						gc.strokeRect(170, 620, 80, 80);
+						gc.fillRect(10, 630, 150, 80);
+						gc.strokeRect(10, 630, 150, 80);
+						gc.fillRect(170, 630, 80, 80);
+						gc.strokeRect(170, 630, 80, 80);
 						gc.setFill(Color.BLACK);
 						
 						// Clock
 						gc.setFont(new Font("abc", 40));
-						gc.fillText(Main.getTime(), 35, 675, 100);
+						gc.fillText(Main.getTime(), 35, 685, 100);
 
 						gc.setFont(new Font("abc", 20));
 
@@ -54,7 +54,7 @@ public class ClockCanvas extends Canvas {
 //							name = x.getClass().getSimpleName();
 //						}
 //						gc.fillText(name, 180, 665, 60);
-						gc.drawImage(x.getImage(), 180,630,60,60);
+						gc.drawImage(x.getImage(), 180,640,60,60);
 
 					});
 
@@ -70,16 +70,16 @@ public class ClockCanvas extends Canvas {
 	private void initializeGUI() {
 		gc.setFill(Color.ALICEBLUE);
 		gc.setStroke(Color.BLACK);
-		gc.fillRect(10, 620, 150, 80);
-		gc.strokeRect(10, 620, 150, 80);
-		gc.fillRect(170, 620, 80, 80);
-		gc.strokeRect(170, 620, 80, 80);
+		gc.fillRect(10, 630, 150, 80);
+		gc.strokeRect(10, 630, 150, 80);
+		gc.fillRect(170, 630, 80, 80);
+		gc.strokeRect(170, 630, 80, 80);
 
 		gc.setFill(Color.BLACK);
 		gc.setFont(new Font("abc", 20));
-		gc.fillText(Backpack.CheckItemOnHand().getClass().getSimpleName(), 180, 665, 60);
+		gc.fillText(Backpack.CheckItemOnHand().getClass().getSimpleName(), 180, 675, 60);
 		gc.setFont(new Font("abc", 40));
-		gc.fillText("", 35, 675, 100);
+		gc.fillText("", 35, 685, 100);
 	}
 
 	public void stopClock() {
