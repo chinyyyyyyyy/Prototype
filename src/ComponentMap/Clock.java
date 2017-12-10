@@ -22,7 +22,7 @@ public class Clock extends GridPane{
 		this.setHgap(10);
 	}
 	
-	public static void TurnClock() throws InterruptedException {
+	public static void TurnClock() throws InterruptedException{
 		// Fill your code
 		clock = new Thread(() -> {
 			while (true) {
@@ -48,6 +48,8 @@ public class Clock extends GridPane{
 					
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
+					System.out.println("stop clock");
+					//break;
 				}
 			}
 		});
