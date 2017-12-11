@@ -5,7 +5,7 @@ import javafx.scene.image.Image;
 public class Milk extends Product{
 	
 	protected static int MilkCount=0;
-	protected static final int COST = 300;
+	protected static final int COST = 500;
 	private Image img = new Image(ClassLoader.getSystemResource("milik.png").toString());
 	
 	public Milk() {

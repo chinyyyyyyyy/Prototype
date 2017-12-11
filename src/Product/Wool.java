@@ -4,7 +4,7 @@ import javafx.scene.image.Image;
 
 public class Wool extends Product{
 	protected static int WoolCount=0;
-	protected static final int COST = 200;
+	protected static final int COST = 300;
 	private Image img = new Image(ClassLoader.getSystemResource("wool.png").toString());
 	
 	

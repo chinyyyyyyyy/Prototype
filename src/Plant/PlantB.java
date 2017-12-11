@@ -4,9 +4,9 @@ import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
 
 public class PlantB extends Plant {
-	private final int SEED_DURATION = 2;
-	private final int SPOURT_DURATION = 4;
-	public static final int SeedCost = 100;
+	private final int SEED_DURATION = 3;
+	private final int SPOURT_DURATION = 6;
+	public static final int SeedCost = 75;
 	public static final int FruitCost = 150;
 	protected static int PlantCount = 0;
 	public static final ImagePattern seedstate = new ImagePattern(
