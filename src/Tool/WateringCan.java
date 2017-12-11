@@ -18,8 +18,6 @@ public class WateringCan extends Tool {
 	private Image silver = new Image(ClassLoader.getSystemResource("silver_can.png").toString());
 	private Image gold = new Image(ClassLoader.getSystemResource("gold_can.png").toString());
 
-	
-
 	public WateringCan() {
 		this.name = "WATERINGCAN";
 		this.timeofuse = 0;
@@ -33,12 +31,11 @@ public class WateringCan extends Tool {
 			water_level = MAX_CAPACITY;
 			System.out.println("Water level MAX");
 		} else if (a instanceof Feild && water_level > 0 && ((Feild) a).canwater()) {
-
 			((Feild) a).watering();
 			water_level--;
+			this.timeofuse++;
 		}
 	}
-
 
 	public void cry() {
 		System.out.println(name + " has " + water_level);
@@ -48,19 +45,19 @@ public class WateringCan extends Tool {
 		if (this.level == 2) {
 			upgradeable = false;
 			max = true;
-		}else if (this.timeofuse >= ToolStatus.getUpgradeLevel().get(this.level))
+		} else if (this.timeofuse >= ToolStatus.getUpgradeLevel().get(this.level))
 			upgradeable = true;
 		else
 			upgradeable = false;
-		
+
 		setUpgrade01(false);
 		setUpgrade02(false);
 		setUpgrade12(false);
-		if(this.level==1 && this.timeofuse >= ToolStatus.getUpgradeLevel().get(1)) {
+		if (this.level == 1 && this.timeofuse >= ToolStatus.getUpgradeLevel().get(1)) {
 			setUpgrade12(true);
-		}else if(this.level==0 && this.timeofuse >= ToolStatus.getUpgradeLevel().get(1)) {
+		} else if (this.level == 0 && this.timeofuse >= ToolStatus.getUpgradeLevel().get(1)) {
 			setUpgrade02(true);
-		}else if(this.level==0 && this.timeofuse >= ToolStatus.getUpgradeLevel().get(0)) {
+		} else if (this.level == 0 && this.timeofuse >= ToolStatus.getUpgradeLevel().get(0)) {
 			setUpgrade01(true);
 		}
 		return upgradeable;
@@ -77,42 +74,42 @@ public class WateringCan extends Tool {
 	public static void setUpgradeable(boolean upgradeable) {
 		WateringCan.upgradeable = upgradeable;
 	}
-	
+
 	public static double getWaterLevel() {
-		return (water_level+0.0)/MAX_CAPACITY;
+		return (water_level + 0.0) / MAX_CAPACITY;
 	}
-	
+
 	public Image getImage() {
-		if(this.level == 2) {
+		if (this.level == 2) {
 			return gold;
-		}else if (this.level == 1) {
+		} else if (this.level == 1) {
 			return silver;
-		}else {
+		} else {
 			return bronze;
 		}
 	}
-	
+
 	public static String StateUpgradeable() {
 		if (max)
 			return "       MAX";
 		if (WateringCan.isUpgrade12() || WateringCan.isUpgrade02())
 			return "Upgrade to Gold";
-		if(WateringCan.isUpgrade01())
+		if (WateringCan.isUpgrade01())
 			return "Upgrade to Silver";
 		return "";
 	}
-	
+
 	public static int UpgradeCost() {
-		int cost=0;
+		int cost = 0;
 		if (WateringCan.isUpgrade12())
-			cost=5000;
+			cost = 5000;
 		if (WateringCan.isUpgrade02())
-			cost=8000;
-		if(WateringCan.isUpgrade01())
-			cost=3000;
+			cost = 8000;
+		if (WateringCan.isUpgrade01())
+			cost = 3000;
 		return cost;
 	}
-	
+
 	public static boolean isUpgrade02() {
 		return upgrade02;
 	}
@@ -136,6 +133,5 @@ public class WateringCan extends Tool {
 	public static void setUpgrade12(boolean upgrade12) {
 		WateringCan.upgrade12 = upgrade12;
 	}
-
 
 }

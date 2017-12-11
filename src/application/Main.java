@@ -240,8 +240,10 @@ public class Main extends Application {
 		}
 		SceneManager.stopMusic();
 		Thread.interrupted();
-		for (setsceneable i : SceneManager.getListMap()) {
-			DialogCanvas.stopDialog();
+		for (int i=0 ; i< SceneManager.getListMap().size();i++) {
+			DialogCanvas.dialog.interrupt();
 		}
+		DialogCanvas.stopDialog();
 	}
+	
 }

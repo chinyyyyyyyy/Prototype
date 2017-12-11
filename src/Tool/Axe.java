@@ -27,6 +27,7 @@ public class Axe extends Tool {
 		if (a instanceof Feild) {
 			if (((Feild) a).getWood() != null) {
 				((Feild) a).delWood();
+				this.timeofuse++;
 			}
 		}
 
