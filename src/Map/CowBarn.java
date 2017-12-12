@@ -36,7 +36,7 @@ public class CowBarn implements setsceneable, HasAnimal, HaveTime {
 	private List<Pair<Rectangle, Integer>> WarpList = new ArrayList<>();
 	private Canvas barn;
 	public static List<Pair<Integer, Integer>> position = new ArrayList<Pair<Integer, Integer>>();
-	private ClockCanvas clock = new ClockCanvas();
+	private ClockCanvas clock;
 	public static final ImagePattern cowleftimg = new ImagePattern(
 			new Image(ClassLoader.getSystemResource("cowleft.png").toString()));
 	public static final ImagePattern sheepleftimg = new ImagePattern(

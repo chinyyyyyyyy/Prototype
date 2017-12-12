@@ -1,11 +1,9 @@
 package application;
 
-import javafx.animation.AnimationTimer;
-import javafx.application.Application;
-import javafx.application.Platform;
-import javafx.stage.Stage;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+
 import Animal.Cow;
 import Animal.Hen;
 import Animal.Sheep;
@@ -48,6 +46,10 @@ import Tool.SeedA;
 import Tool.SeedB;
 import Tool.SeedC;
 import Tool.WateringCan;
+import javafx.animation.AnimationTimer;
+import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.stage.Stage;
 
 public class Main extends Application {
 
@@ -177,6 +179,7 @@ public class Main extends Application {
 				}
 			}
 		});
+		timerThread.setName("Timerthread");
 		this.timerThread.start();
 
 	}
@@ -244,6 +247,8 @@ public class Main extends Application {
 			DialogCanvas.dialog.interrupt();
 		}
 		DialogCanvas.stopDialog();
+		
+		
 	}
 	
 }

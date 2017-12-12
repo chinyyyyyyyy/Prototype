@@ -106,14 +106,17 @@ public class DialogCanvas extends Canvas {
 							break;
 						} else if (time >= 1000) {
 							gc.fillText(blank2 + word2, 290, 680, 460);
+							break;
 						} else {
 							gc.fillText(blank1 + word1, 290, 680, 460);
+							break;
 						}
 					}
 
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					stopDialog();
+					System.out.println("check");
 					break;
 				}
 			}
