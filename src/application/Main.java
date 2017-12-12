@@ -74,17 +74,17 @@ public class Main extends Application {
 		Hoe hoe = new Hoe();
 		WateringCan wateringcan = new WateringCan();
 		Hand hand = new Hand();
-		SeedA seed1 = new SeedA(5);
-		SeedB seed2 = new SeedB(5);
-		SeedC seed3 = new SeedC(5);
+//		SeedA seed1 = new SeedA(5);
+//		SeedB seed2 = new SeedB(5);
+//		SeedC seed3 = new SeedC(5);
 		Backpack.addItem(hand);
 		Backpack.addItem(axe);
 		Backpack.addItem(hammer);
 		Backpack.addItem(hoe);
 		Backpack.addItem(wateringcan);
-		Backpack.addItem(seed1);
-		Backpack.addItem(seed2);
-		Backpack.addItem(seed3);
+//		Backpack.addItem(seed1);
+//		Backpack.addItem(seed2);
+//		Backpack.addItem(seed3);
 		// ---------------set up map---------------------//
 		List<setsceneable> listmap = new ArrayList<>();
 		Farm farm = new Farm(1000, 300);

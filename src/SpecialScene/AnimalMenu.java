@@ -192,6 +192,8 @@ public class AnimalMenu extends BuyScene implements setsceneable, SpecialScene {
 						CounterAnimal.update(amouttype1, amouttype2, amouttype3);
 						if (AnimalMenu.getTotalCost() != 0)
 							chat("Buying Success !", "Total cost is " + AnimalMenu.getTotalCost() + " $");
+						else
+							chat("You don't buy anything.");
 					} else {
 						chat("You don't have enough money.");
 					}

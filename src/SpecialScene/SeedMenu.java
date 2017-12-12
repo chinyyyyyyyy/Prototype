@@ -147,15 +147,15 @@ public class SeedMenu extends BuyScene implements setsceneable, SpecialScene {
 		gc.fillText(amouttype3 * priceof3 + "", 1000, 550);
 		gc.fillText("RESET", 675, 700);
 		gc.fillText("OK", 925, 700);
-		gc.drawImage(plus, 850,200);
-		gc.drawImage(plus, 850,350);
-		gc.drawImage(plus, 850,500);
-		gc.drawImage(minus, 600,200);
-		gc.drawImage(minus, 600,350);
-		gc.drawImage(minus, 600,500);
-		if(row == MAX_ROW-1) {
-			gc.drawImage(hand,600 + column * 250, 200 + row * 150);
-		}else {
+		gc.drawImage(plus, 850, 200);
+		gc.drawImage(plus, 850, 350);
+		gc.drawImage(plus, 850, 500);
+		gc.drawImage(minus, 600, 200);
+		gc.drawImage(minus, 600, 350);
+		gc.drawImage(minus, 600, 500);
+		if (row == MAX_ROW - 1) {
+			gc.drawImage(hand, 600 + column * 250, 200 + row * 150);
+		} else {
 			gc.strokeRect(600 + column * 250, 200 + row * 150, 50, 50);
 		}
 	}
@@ -185,11 +185,14 @@ public class SeedMenu extends BuyScene implements setsceneable, SpecialScene {
 					World.setMoney(World.getMoney() - SeedMenu.getTotalCost());
 					if (World.getBuyable()) {
 						System.out.println("Total cost is " + SeedMenu.getTotalCost() + " $");
-						chat("Buying Success !","Total cost is " + SeedMenu.getTotalCost() + " $");
-					}else {
+						if (SeedMenu.getTotalCost() != 0)
+							chat("Buying Success !", "Total cost is " + SeedMenu.getTotalCost() + " $");
+						else
+							chat("You don't buy anything.");
+					} else {
 						chat("You don't have enough money");
 					}
-				}else {
+				} else {
 					chat("Your bag is full.");
 				}
 				reset();
@@ -250,17 +253,17 @@ public class SeedMenu extends BuyScene implements setsceneable, SpecialScene {
 			root.getChildren().remove(d);
 		}
 	}
-	
+
 	public void chat(String word1, String word2) {
 		// TODO Auto-generated method stub
 		DialogCanvas d = DialogCanvas.Dialog;
 		Platform.runLater(() -> {
-			if(DialogCanvas.isHasDialog() == false) {
+			if (DialogCanvas.isHasDialog() == false) {
 				root.getChildren().add(d);
-				d.Chat(word1,word2);
+				d.Chat(word1, word2);
 			}
 		});
-		if(DialogCanvas.isHasDialog() == false) {
+		if (DialogCanvas.isHasDialog() == false) {
 			DialogCanvas.stopDialog();
 			root.getChildren().remove(d);
 		}

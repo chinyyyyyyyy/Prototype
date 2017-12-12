@@ -65,10 +65,10 @@ public class Hero {
 		Rectangle abld = new Rectangle(startx + unitblock.getWidth(), starty + unitblock.getHeight(), 75, 75);
 		Rectangle abru = new Rectangle(startx - unitblock.getWidth(), starty - unitblock.getHeight(), 75, 75);
 		Rectangle abrd = new Rectangle(startx - unitblock.getWidth(), starty + unitblock.getHeight(), 75, 75);
-		ablu.setOpacity(0.1);
-		abld.setOpacity(0.1);
-		abru.setOpacity(0.1);
-		abrd.setOpacity(0.1);
+		ablu.setOpacity(0);
+		abld.setOpacity(0);
+		abru.setOpacity(0);
+		abrd.setOpacity(0);
 
 		actionblock.add(ablu);
 		actionblock.add(abld);
@@ -138,10 +138,10 @@ public class Hero {
 			abd = new Rectangle(startx, starty + unitblock.getHeight(), 75, 75);
 		}
 
-		abl.setOpacity(0.1);
-		abu.setOpacity(0.1);
-		abd.setOpacity(0.1);
-		abr.setOpacity(0.1);
+		abl.setOpacity(0);
+		abu.setOpacity(0);
+		abd.setOpacity(0);
+		abr.setOpacity(0);
 
 		actionblock.add(abl);
 		actionblock.add(abu);
@@ -171,10 +171,10 @@ public class Hero {
 			abru = new Rectangle(startx - unitblock.getWidth(), starty - unitblock.getHeight(), 75, 75);
 			abrd = new Rectangle(startx - unitblock.getWidth(), starty + unitblock.getHeight(), 75, 75);
 		}
-		ablu.setOpacity(0.1);
-		abld.setOpacity(0.1);
-		abru.setOpacity(0.1);
-		abrd.setOpacity(0.1);
+		ablu.setOpacity(0);
+		abld.setOpacity(0);
+		abru.setOpacity(0);
+		abrd.setOpacity(0);
 
 		actionblock.add(ablu);
 		actionblock.add(abld);
