@@ -16,7 +16,7 @@ import javafx.scene.text.Font;
 
 public class ClockCanvas extends Canvas {
 
-	public static Thread clock;
+	public Thread clock;
 	public static GraphicsContext gc;
 	static final Font header = Font.loadFont(ClassLoader.getSystemResource("fonteiei.ttf").toString(), 60);
 	static final Font body = Font.loadFont(ClassLoader.getSystemResource("fonteiei.ttf").toString(), 40);
@@ -80,10 +80,12 @@ public class ClockCanvas extends Canvas {
 
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
-					break;
+					stopClock();
+					return;
 				}
 			}
 		});
+		clock.setName("clockcanvas");
 		clock.start();
 	}
 
@@ -100,6 +102,8 @@ public class ClockCanvas extends Canvas {
 	}
 
 	public void stopClock() {
-		clock.interrupt();
+		if (clock != null)
+			clock.interrupt();
 	}
+
 }

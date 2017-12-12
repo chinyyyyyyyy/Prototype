@@ -187,7 +187,7 @@ public class Feild extends ReceiveAction implements ActionByToolAble, updateEver
 		double hr = this.getHeight();
 		double wa = r.getWidth();
 		double ha = r.getHeight();
-		if (wi >= 0.9 * wa && hi >= 0.9 * ha) {
+		if (wi >= 0.6 * wa && hi >= 0.6 * ha) {
 			Backpack.CheckItemOnHand().Action(this);
 		}
 	}

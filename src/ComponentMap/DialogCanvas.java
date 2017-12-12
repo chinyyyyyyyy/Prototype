@@ -63,11 +63,11 @@ public class DialogCanvas extends Canvas {
 
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
-					stopDialog();
 					break;
 				}
 			}
 		});
+//		dialog.setName("dialog");
 		dialog.start();
 	}
 
@@ -115,9 +115,14 @@ public class DialogCanvas extends Canvas {
 
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
+					setHasDialog(false);
 					stopDialog();
+<<<<<<< HEAD
 					System.out.println("check");
 					break;
+=======
+					return;
+>>>>>>> 43f2e2f3201aaf7d150f6cf6bba6b2bab1e877ca
 				}
 			}
 		});
@@ -135,6 +140,10 @@ public class DialogCanvas extends Canvas {
 
 	public static void setHasDialog(boolean hasDialog) {
 		DialogCanvas.hasDialog = hasDialog;
+	}
+
+	public static Thread getDialog() {
+		return dialog;
 	}
 
 }

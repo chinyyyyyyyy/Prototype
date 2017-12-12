@@ -59,7 +59,8 @@ public class Profile implements setsceneable, SpecialScene {
 		gc.setFont(body);
 		gc.setStroke(Color.RED);
 		gc.drawImage(heroicon,150,50);
-		gc.fillText("Name : " + Hero.getName(), 400, 80);
+		gc.fillText("Name : ", 400, 80);
+		gc.fillText(Hero.getName(), 580, 80,200);
 		gc.fillText("Money : " + World.getMoney()+" $", 800, 80);
 		gc.fillText("" + World.getSeason(), 400, 180);
 		gc.fillText("day " + World.getDay(), 800, 180);

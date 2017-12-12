@@ -7,6 +7,7 @@ import java.util.Set;
 import Animal.Cow;
 import Animal.Hen;
 import Animal.Sheep;
+import ComponentMap.ClockCanvas;
 import ComponentMap.DialogCanvas;
 import ComponentMap.SceneManager;
 import Logic.Backpack;
@@ -58,7 +59,7 @@ public class Main extends Application {
 	private static int hour;
 	private static int minute;
 	private static int checktime;
-	private  Thread timerThread;
+	private   Thread timerThread;
 	public static String time="";
 
 
@@ -179,7 +180,11 @@ public class Main extends Application {
 				}
 			}
 		});
+<<<<<<< HEAD
 		timerThread.setName("Timerthread");
+=======
+		timerThread.setName("ThreadTime");
+>>>>>>> 43f2e2f3201aaf7d150f6cf6bba6b2bab1e877ca
 		this.timerThread.start();
 
 	}
@@ -235,20 +240,24 @@ public class Main extends Application {
 	@Override
 	public void stop() throws InterruptedException {
 		// TODO Auto-generated method stub
-		this.timerThread.interrupt();
+		Thread.interrupted();
+		this.timerThread.interrupt();	
 		for (setsceneable i : SceneManager.getListMap()) {
 			if (i instanceof HaveTime) {
 				((HaveTime) i).stopClock();
 			}
 		}
 		SceneManager.stopMusic();
-		Thread.interrupted();
-		for (int i=0 ; i< SceneManager.getListMap().size();i++) {
-			DialogCanvas.dialog.interrupt();
+		if(DialogCanvas.getDialog() != null) {
+			DialogCanvas.stopDialog();
+			System.out.println(DialogCanvas.getDialog().getState());
 		}
+<<<<<<< HEAD
 		DialogCanvas.stopDialog();
 		
 		
+=======
+>>>>>>> 43f2e2f3201aaf7d150f6cf6bba6b2bab1e877ca
 	}
 	
 }

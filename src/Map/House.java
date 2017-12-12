@@ -26,7 +26,7 @@ public class House implements setsceneable, HaveTime {
 	private List<Environment> e = new ArrayList<>();
 	private List<ReceiveAction> re = new ArrayList<>();
 	private List<Pair<Rectangle, Integer>> WarpList = new ArrayList<>();
-	private ClockCanvas clock = new ClockCanvas();
+	private ClockCanvas clock;
 
 	public House(int starthx, int starthy) {
 		root = new Group();
@@ -113,10 +113,11 @@ public class House implements setsceneable, HaveTime {
 	}
 
 	public void removeClock() {
+		stopClock();
 		if (root.getChildren().contains(clock)) {
-			Platform.runLater(() -> {
+			//Platform.runLater(() -> {
 				root.getChildren().remove(clock);
-			});
+			//});
 		}
 	}
 
@@ -126,9 +127,9 @@ public class House implements setsceneable, HaveTime {
 
 	public void stopClock() {
 		if (root.getChildren().contains(clock)) {
-			Platform.runLater(() -> {
+			//Platform.runLater(() -> {
 				clock.stopClock();
-			});
+			//});
 		}
 	}
 }
