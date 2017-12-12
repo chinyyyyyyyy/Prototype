@@ -46,10 +46,10 @@ public class Hero {
 		Rectangle abu = new Rectangle(startx, starty - unitblock.getHeight(), 75, 75);
 		Rectangle abr = new Rectangle(startx - unitblock.getWidth(), starty, 75, 75);
 		Rectangle abd = new Rectangle(startx, starty + unitblock.getHeight(), 75, 75);
-		abl.setOpacity(0.1);
-		abu.setOpacity(0.1);
-		abd.setOpacity(0.1);
-		abr.setOpacity(0.1);
+		abl.setOpacity(0);
+		abu.setOpacity(0);
+		abd.setOpacity(0);
+		abr.setOpacity(0);
 
 		actionblock.add(abl);
 		actionblock.add(abu);

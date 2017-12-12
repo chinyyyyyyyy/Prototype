@@ -117,12 +117,7 @@ public class DialogCanvas extends Canvas {
 					// TODO Auto-generated catch block
 					setHasDialog(false);
 					stopDialog();
-<<<<<<< HEAD
-					System.out.println("check");
-					break;
-=======
 					return;
->>>>>>> 43f2e2f3201aaf7d150f6cf6bba6b2bab1e877ca
 				}
 			}
 		});

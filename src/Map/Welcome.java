@@ -11,6 +11,9 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
@@ -51,8 +54,15 @@ public class Welcome implements setsceneable,SpecialScene {
 			@Override
 			public void handle(ActionEvent event) {
 				// TODO Auto-generated method stub
+				if(nameField.getText().equals("")) {
+					Alert alert = new Alert(AlertType.WARNING, "Please enter your name!!", ButtonType.OK);
+					alert.setHeaderText("");
+					alert.setTitle("Warning");
+					alert.showAndWait();
+				}else {
 				Hero.setName(nameField.getText());
 				SceneManager.warpTo(0);
+				}
 			}
 		});
 	}

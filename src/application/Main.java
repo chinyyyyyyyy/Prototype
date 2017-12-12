@@ -180,11 +180,7 @@ public class Main extends Application {
 				}
 			}
 		});
-<<<<<<< HEAD
 		timerThread.setName("Timerthread");
-=======
-		timerThread.setName("ThreadTime");
->>>>>>> 43f2e2f3201aaf7d150f6cf6bba6b2bab1e877ca
 		this.timerThread.start();
 
 	}
@@ -252,12 +248,7 @@ public class Main extends Application {
 			DialogCanvas.stopDialog();
 			System.out.println(DialogCanvas.getDialog().getState());
 		}
-<<<<<<< HEAD
-		DialogCanvas.stopDialog();
-		
-		
-=======
->>>>>>> 43f2e2f3201aaf7d150f6cf6bba6b2bab1e877ca
+
 	}
 	
 }
