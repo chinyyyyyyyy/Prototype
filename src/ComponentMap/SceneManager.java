@@ -84,20 +84,23 @@ public class SceneManager extends Rectangle {
 
 		primaryStage.setScene(listmap.get(mapno).getScene());
 
-		if (listmap.get(mapno) instanceof HaveTime) {
+		// ------------------------------------------------------Clock-----------------------------------------------------------
+
+		if (listmap.get(previousScene) instanceof SpecialScene == false && listmap.get(mapno) instanceof HaveTime) {
 			((HaveTime) listmap.get(mapno)).removeClock();
 			((HaveTime) listmap.get(mapno)).addClock();
-			if (listmap.get(previousScene) instanceof HaveTime)
+			if (listmap.get(previousScene) instanceof HaveTime) {
 				((HaveTime) listmap.get(previousScene)).stopClock();
+			}
 		}
 
 		// --------------------------------------------------------Dialog--------------------------------------------------------
 		if (listmap.get(mapno) instanceof HasDialog && listmap.get(mapno) instanceof HasNPC) {
 			if (listmap.get(previousScene) instanceof SpecialScene == false) {
 				((HasDialog) listmap.get(mapno)).chat(((HasNPC) listmap.get(mapno)).getNPC().Welcome());
-			}else if(listmap.get(previousScene) instanceof BuyScene) {
-				((HasDialog) listmap.get(mapno)).chat(BuyScene.getThank());			
-			}else if (listmap.get(previousScene) instanceof BuyInterface) {
+			} else if (listmap.get(previousScene) instanceof BuyScene) {
+				((HasDialog) listmap.get(mapno)).chat(BuyScene.getThank());
+			} else if (listmap.get(previousScene) instanceof BuyInterface) {
 				((HasDialog) listmap.get(mapno)).chat(BuyScene.getThank2());
 			}
 		}
@@ -105,13 +108,13 @@ public class SceneManager extends Rectangle {
 		if (listmap.get(mapno) instanceof BuyInterface && listmap.get(previousScene) instanceof BuyScene == false) {
 			((BuyInterface) listmap.get(mapno)).chat(Counter.getQuestion());
 		}
-		
+
 		if (listmap.get(mapno) instanceof Summary) {
 			((Summary) listmap.get(mapno)).chat("Press Enter to continue");
 		}
-		
+
 		if (listmap.get(mapno) instanceof House && listmap.get(previousScene) instanceof Summary) {
-			((House) listmap.get(mapno)).chat("Good Morning " + Hero.getName(),"Today is day " + World.getDay());
+			((House) listmap.get(mapno)).chat("Good Morning " + Hero.getName(), "Today is day " + World.getDay());
 		}
 
 		// ---------------------------------------------------------------------------------------------------------------------------
