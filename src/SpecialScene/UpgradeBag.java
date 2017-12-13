@@ -59,6 +59,9 @@ public class UpgradeBag extends BuyScene implements setsceneable, SpecialScene {
 							if (countupgrade == MAX_UPGRADE)
 								upgradeable = false;
 						}
+						if (World.getBuyable()==false) {
+							chat("You don't have enough money.");
+						}
 					}
 				}
 			}

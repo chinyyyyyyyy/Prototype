@@ -31,7 +31,6 @@ public class DialogCanvas extends Canvas {
 	public void Chat(String newword) {
 		// Fill your code
 		word = newword;
-		setHasDialog(true);
 		dialog = new Thread(() -> {
 			double len = fontLoader.getFontMetrics(body).computeStringWidth(newword);
 			double lb = fontLoader.getFontMetrics(body).computeStringWidth(" ");
@@ -39,6 +38,7 @@ public class DialogCanvas extends Canvas {
 			for (int i = 0; i < Math.floorDiv(Math.floorDiv((int) (500 - len), 2), Math.floorDiv((int) lb, 1)); i++) {
 				blank += " ";
 			}
+			setHasDialog(true);
 			while (true) {
 				try {
 					Thread.sleep(10);
@@ -73,7 +73,6 @@ public class DialogCanvas extends Canvas {
 
 	public void Chat(String word1, String word2) {
 		// Fill your code
-		setHasDialog(true);
 		dialog = new Thread(() -> {
 			double len1 = fontLoader.getFontMetrics(body).computeStringWidth(word1);
 			double len2 = fontLoader.getFontMetrics(body).computeStringWidth(word2);
@@ -86,6 +85,7 @@ public class DialogCanvas extends Canvas {
 			for (int i = 0; i < Math.floorDiv(Math.floorDiv((int) (500 - len2), 2), Math.floorDiv((int) lb, 1)); i++) {
 				blank2 += " ";
 			}
+			setHasDialog(true);
 			while (true) {
 				try {
 					Thread.sleep(10);
@@ -106,18 +106,14 @@ public class DialogCanvas extends Canvas {
 							break;
 						} else if (time >= 1000) {
 							gc.fillText(blank2 + word2, 290, 680, 460);
-							break;
 						} else {
 							gc.fillText(blank1 + word1, 290, 680, 460);
-							break;
 						}
 					}
 
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
-					setHasDialog(false);
-					stopDialog();
-					return;
+					break;
 				}
 			}
 		});

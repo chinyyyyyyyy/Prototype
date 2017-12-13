@@ -9,6 +9,7 @@ import Map.HaveTime;
 import Map.House;
 import Map.setsceneable;
 import NPC.Counter;
+import SpecialScene.BlackSmithInterface;
 import SpecialScene.BuyInterface;
 import SpecialScene.BuyScene;
 import SpecialScene.SpecialScene;
@@ -106,7 +107,10 @@ public class SceneManager extends Rectangle {
 		}
 
 		if (listmap.get(mapno) instanceof BuyInterface && listmap.get(previousScene) instanceof BuyScene == false) {
-			((BuyInterface) listmap.get(mapno)).chat(Counter.getQuestion());
+			if (listmap.get(mapno) instanceof BlackSmithInterface) {
+				((BlackSmithInterface) listmap.get(mapno)).chat("Hello, My name is Gill.", "What do you want today?");
+			} else
+				((BuyInterface) listmap.get(mapno)).chat(Counter.getQuestion());
 		}
 
 		if (listmap.get(mapno) instanceof Summary) {

@@ -253,11 +253,13 @@ public class AnimalMenu extends BuyScene implements setsceneable, SpecialScene {
 				root.getChildren().add(d);
 				d.Chat(word);
 			}
+			System.out.println(DialogCanvas.getDialog().getState() + "" + DialogCanvas.isHasDialog());
 		});
 		if (DialogCanvas.isHasDialog() == false) {
 			DialogCanvas.stopDialog();
 			root.getChildren().remove(d);
-		}
+		}	
+		System.out.println(DialogCanvas.getDialog().getState() + "" + DialogCanvas.isHasDialog());
 	}
 
 	public void chat(String word1, String word2) {

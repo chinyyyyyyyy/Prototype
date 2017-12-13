@@ -34,7 +34,7 @@ public class BlackSmith extends NPC {
 		if (wi >= 0.5 * wa && hi >= 0.5 * ha) {
 			System.out.println("Hello, My name is "+this.name);
 			BlackSmithInterface scene = (BlackSmithInterface) SceneManager.getListMap().get(18);
-			scene.chat("Hello, My name is "+this.name,"What do you want today?");
+			
 			SceneManager.warpTo(18);
 		}
 	}

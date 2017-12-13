@@ -41,8 +41,10 @@ public class Summary implements setsceneable, SpecialScene {
 			@Override
 			public void handle(KeyEvent event) {
 				if (event.getCode().equals(KeyCode.ENTER)) {
-					World.Tomorrow();
-					SceneManager.warpTo(2);
+					if(DialogCanvas.isHasDialog() == false) {
+						World.Tomorrow();
+						SceneManager.warpTo(2);
+					}
 				}
 			}
 		});

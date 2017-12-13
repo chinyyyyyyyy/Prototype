@@ -17,7 +17,6 @@ public class World {
 	private static boolean Buyable;
 	private static List<String> season = new ArrayList<>();
 	private static int ss = 0;
-	private static setsceneable scene;
 	public World() {
 		days = 1;
 		money = 500;
@@ -71,9 +70,7 @@ public class World {
 	}
 
 	public static void setMoney(int x) {
-		scene = SceneManager.getListMap().get(SceneManager.getCurrentScene());
 		if (x < 0) {
-			((BuyScene) scene).chat("You don't have enough money.");
 			System.out.println("You don't have enough money.");
 			System.out.println("You have " + money + "$");
 			Buyable = false;

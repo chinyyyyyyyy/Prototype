@@ -13,7 +13,6 @@ import javafx.scene.shape.Shape;
 public class CounterSeed extends Counter {
 
 	private static boolean buyable;
-	private static SeedMenu scene;
 
 	public CounterSeed(int x, int y, int w, int h, Color c) {
 		super(x, y, w, h, c);
@@ -33,7 +32,6 @@ public class CounterSeed extends Counter {
 	}
 
 	public static void update(int numA, int numB, int numC) {
-		scene = (SeedMenu) SceneManager.getListMap().get(9);
 		if (numA != 0)
 			BuySeedA(numA);
 		if (numB != 0)
@@ -46,7 +44,6 @@ public class CounterSeed extends Counter {
 		// TODO Auto-generated method stub
 		if (SeedC.getSeedAmount() == 0) {
 			if (Backpack.isFull()) {
-				scene.chat("Your bag is full.");
 				System.out.println("Your bag is full.");
 				setBuyable(isBuyable() && false);
 				return;
@@ -60,7 +57,6 @@ public class CounterSeed extends Counter {
 		// TODO Auto-generated method stub
 		if (SeedB.getSeedAmount() == 0) {
 			if (Backpack.isFull()) {
-				scene.chat("Your bag is full.");
 				System.out.println("Your bag is full.");
 				setBuyable(isBuyable() && false);
 				return;
@@ -74,7 +70,6 @@ public class CounterSeed extends Counter {
 		// TODO Auto-generated method stub
 		if (SeedA.getSeedAmount() == 0) {
 			if (Backpack.isFull()) {
-				scene.chat("Your bag is full.");
 				System.out.println("Your bag is full.");
 				setBuyable(isBuyable() && false);
 				return;

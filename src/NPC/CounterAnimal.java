@@ -16,8 +16,6 @@ public class CounterAnimal extends Counter {
 	public static boolean canBuyBarn = true;
 	public static boolean canBuyHen = true;
 	private static boolean buyable;
-	private static AnimalMenu scene;
-
 	public CounterAnimal(int x, int y, int w, int h, Color c) {
 		super(x, y, w, h, c);
 	}
@@ -36,16 +34,12 @@ public class CounterAnimal extends Counter {
 			int testcow = CowBarn.position.get(barncheck).getKey();
 			int testsheep = CowBarn.position.get(barncheck).getKey();
 		} catch (IndexOutOfBoundsException e) {
-			scene.chat("Your barn is full.");
-			System.out.println("Your barn is full.");
 			canBuyBarn = false;
 		}
 
 		try {
 			int testhen = HenBarn.actionposition.get(hencheck).getKey();
 		} catch (IndexOutOfBoundsException e) {
-			scene.chat("Your coop is full.");
-			System.out.println("Your coop is full.");
 			canBuyHen = false;
 		}
 	}
@@ -98,11 +92,9 @@ public class CounterAnimal extends Counter {
 	}
 
 	public static void update(int numcow, int numsheep, int numhen) {
-		scene = (AnimalMenu) SceneManager.getListMap().get(8);
 		BuyCow(numcow);
 		BuySheep(numsheep);
 		BuyHen(numhen);
-		scene.chat("Total cost is " + AnimalMenu.getTotalCost() + " $");
 		System.out.println("Total cost is " + AnimalMenu.getTotalCost() + " $");
 		System.out.println("Thank you very much ~");
 		// System.out.println("You have " + Cow.getCowCount() + " Cow.");

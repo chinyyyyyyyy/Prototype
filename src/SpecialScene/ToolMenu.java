@@ -92,6 +92,8 @@ public class ToolMenu extends BuyScene implements setsceneable, SpecialScene {
 						chat("Buying Success !","Total cost is " + AnimalMenu.getTotalCost() + " $");
 						MAX_ROW--;
 						row = 0;
+					}else {
+						chat("You don't have enough money.");
 					}
 				}
 			}
