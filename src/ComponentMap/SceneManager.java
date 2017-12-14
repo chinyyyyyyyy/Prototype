@@ -115,10 +115,13 @@ public class SceneManager extends Rectangle {
 
 		if (listmap.get(mapno) instanceof Summary) {
 			((Summary) listmap.get(mapno)).chat("Press Enter to continue");
+			((House) listmap.get(previousScene)).stopClock();
+			((House) listmap.get(previousScene)).removeClock();
 		}
 
 		if (listmap.get(mapno) instanceof House && listmap.get(previousScene) instanceof Summary) {
 			((House) listmap.get(mapno)).chat("Good Morning " + Hero.getName(), "Today is day " + World.getDay());
+			((House) listmap.get(mapno)).addClock();
 		}
 
 		// ---------------------------------------------------------------------------------------------------------------------------
