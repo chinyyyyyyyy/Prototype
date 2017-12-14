@@ -88,11 +88,11 @@ public class Main extends Application {
 		// ---------------set up map---------------------//
 		List<setsceneable> listmap = new ArrayList<>();
 		Farm farm = new Farm(1000, 300);
-		Town town = new Town(0, 560);
-		House house = new House(603, 610);
-		CowBarn cowbarn = new CowBarn(603, 610);
-		HenBarn henbarn = new HenBarn(603, 610);
-		Blacksmith blacksmith = new Blacksmith(603, 610);
+		Town town = new Town(0, 520);
+		House house = new House(595, 610);
+		CowBarn cowbarn = new CowBarn(595, 610);
+		HenBarn henbarn = new HenBarn(595, 610);
+		Blacksmith blacksmith = new Blacksmith(595, 610);
 		AnimalShop animalshop = new AnimalShop(0, 420);
 		SeedShop seedshop = new SeedShop(0, 420);
 		AnimalMenu animalmenu = new AnimalMenu("Cow", Cow.COST, "Sheep", Sheep.COST, "Hen", Hen.COST, 13);

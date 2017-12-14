@@ -100,7 +100,7 @@ public class CowBarn implements setsceneable, HasAnimal, HaveTime {
 
 		// root.getChildren().addAll(re);
 
-		Rectangle warpblocktofarm = new Rectangle(580, 695, 120, 25);
+		Rectangle warpblocktofarm = new Rectangle(575, 695, 140, 30);
 		warpblocktofarm.setFill(Color.RED);
 		root.getChildren().add(warpblocktofarm);
 		Pair<Rectangle, Integer> tofarm = new Pair<Rectangle, Integer>(warpblocktofarm, 0);

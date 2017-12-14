@@ -47,7 +47,7 @@ public class Town implements setsceneable, HaveTime {
 		e.add(new Environment(-10, 0, 10, 720, Color.BLACK));// boarderLEFT
 		e.add(new Environment(0, -10, 1280, 10, Color.BLACK));// boarderTOP
 		e.add(new Environment(1280, 0, 10, 720, Color.BLACK));// boarderRIGHT
-		Environment tree = new Environment(0, 640, 1280, 10, Color.BLACK);
+		Environment tree = new Environment(0, 630, 1280, 10, Color.BLACK);
 		tree.setOpacity(0);
 		e.add(tree);// boarderBOTTOM
 
@@ -77,7 +77,7 @@ public class Town implements setsceneable, HaveTime {
 		e.add(seedshop1);
 		e.add(seedshop2);
 		e.add(seedshop3);
-		Rectangle warpblocktoseedshop = new Rectangle(1020, 157, 25, 120);
+		Rectangle warpblocktoseedshop = new Rectangle(1020, 145, 25, 140);
 		warpblocktoseedshop.setOpacity(0);
 		root.getChildren().addAll(warpblocktoseedshop);
 		Pair<Rectangle, Integer> toseedshop = new Pair<Rectangle, Integer>(warpblocktoseedshop, 7);
@@ -93,7 +93,7 @@ public class Town implements setsceneable, HaveTime {
 		e.add(animalshop1);
 		e.add(animalshop2);
 		e.add(animalshop3);
-		Rectangle warpblocktoanimalshop = new Rectangle(1020, 467, 25, 120);
+		Rectangle warpblocktoanimalshop = new Rectangle(1000, 450, 25, 140);
 		warpblocktoanimalshop.setOpacity(0);
 		root.getChildren().addAll(warpblocktoanimalshop);
 		Pair<Rectangle, Integer> toanimalshop = new Pair<Rectangle, Integer>(warpblocktoanimalshop, 6);
@@ -105,7 +105,7 @@ public class Town implements setsceneable, HaveTime {
 
 		root.getChildren().addAll(e);
 
-		Rectangle warpblocktofarm = new Rectangle(0, 520, 15, 120);
+		Rectangle warpblocktofarm = new Rectangle(0, 490, 20, 120);
 		warpblocktofarm.setOpacity(0);
 		root.getChildren().addAll(warpblocktofarm);
 		Pair<Rectangle, Integer> tofarm = new Pair<Rectangle, Integer>(warpblocktofarm, 0);

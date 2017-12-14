@@ -68,7 +68,7 @@ public class SeedShop implements setsceneable, HasNPC, HaveTime ,HasDialog{
 		// root.getChildren().addAll(e);
 		// root.getChildren().addAll(re);
 
-		Rectangle warpblocktotown = new Rectangle(0, 420, 25, 90);
+		Rectangle warpblocktotown = new Rectangle(0, 350, 25, 170);
 		warpblocktotown.setFill(Color.RED);
 		// root.getChildren().add(warpblocktotown);
 		Pair<Rectangle, Integer> totown = new Pair<Rectangle, Integer>(warpblocktotown, 1);
