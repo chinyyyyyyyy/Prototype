@@ -30,7 +30,7 @@ public class Inventory implements SetsSeneable, SpecialScene {
 	GraphicsContext gc = c.getGraphicsContext2D();
 	private int column;
 	private int row;
-	private static int MAX_ROW = 1;
+	private static int max_row = 1;
 	private static final int MAX_COLUMN = 10;
 	private static int size = 11;
 
@@ -85,24 +85,24 @@ public class Inventory implements SetsSeneable, SpecialScene {
 		});
 	}
 
-	private void addRow(boolean incresae) {
-		if (incresae) {
-			if (row == MAX_ROW - 1) {
+	private void addRow(boolean increase) {
+		if (increase) {
+			if (row == max_row - 1) {
 				row = 0;
 			} else {
 				row += 1;
 			}
 		} else {
 			if (row == 0) {
-				row = MAX_ROW - 1;
+				row = max_row - 1;
 			} else {
 				row -= 1;
 			}
 		}
 	}
 
-	private void addColumn(boolean incresae) {
-		if (incresae) {
+	private void addColumn(boolean increase) {
+		if (increase) {
 			if (column == MAX_COLUMN - 1) {
 				column = 0;
 			} else {
@@ -127,7 +127,7 @@ public class Inventory implements SetsSeneable, SpecialScene {
 		gc.setFont(body);
 		gc.fillText("Item List", 150, 180);
 
-		for (int i = 0; i < MAX_ROW; i++) {
+		for (int i = 0; i < max_row; i++) {
 			for (int j = 1; j <= MAX_COLUMN; j++) {
 				gc.setStroke(Color.BLACK);
 				gc.setFill(Color.ALICEBLUE);
@@ -173,7 +173,7 @@ public class Inventory implements SetsSeneable, SpecialScene {
 	}
 	
 	public static void upgrade() {
-		MAX_ROW++;
+		max_row++;
 		size=Backpack.getMaxSize();
 	}
 	

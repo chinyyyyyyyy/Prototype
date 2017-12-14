@@ -1,6 +1,6 @@
 package SpecialScene;
 
-public class BuyScene {
+public abstract class BuyScene {
 	public static String getThank() {
 		return "Thank you very much ~";
 	}
@@ -10,11 +10,8 @@ public class BuyScene {
 	}
 	
 	public static String getQuestion() {
-		return "What do you want Today?";
+		return "What do you want today?";
 	}
 
-	public void chat(String string) {
-		// TODO Auto-generated method stub
-		
-	}
+	public abstract void chat(String string);
 }

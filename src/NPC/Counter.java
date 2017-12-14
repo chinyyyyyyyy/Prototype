@@ -19,13 +19,12 @@ public class Counter extends NPC {
 		return "";
 	}
 	
-	@Override
 	public String getDialog() {
-		return "What do you want Today?";
+		return "What do you want today?";
 	}
 	
 	public static String getQuestion() {
-		return "What do you want Today?";
+		return "What do you want today?";
 	}
 
 	public void checkAction(Rectangle r) {

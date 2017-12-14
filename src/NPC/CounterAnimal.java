@@ -6,7 +6,6 @@ import Animal.Sheep;
 import Logic.SceneManager;
 import Map.CowBarn;
 import Map.HenBarn;
-import SpecialScene.AnimalMenu;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
@@ -95,11 +94,8 @@ public class CounterAnimal extends Counter {
 		BuyCow(numcow);
 		BuySheep(numsheep);
 		BuyHen(numhen);
-		System.out.println("Total cost is " + AnimalMenu.getTotalCost() + " $");
-		System.out.println("Thank you very much ~");
-		// System.out.println("You have " + Cow.getCowCount() + " Cow.");
-		// System.out.println("You have " + Sheep.getSheepCount() + " Sheep.");
-		// System.out.println("You have " + Hen.getHenCount() + " Hen.");
+//		System.out.println("Total cost is " + AnimalMenu.getTotalCost() + " $");
+//		System.out.println("Thank you very much ~");
 	}
 
 	public static boolean isBuyable() {

@@ -19,7 +19,11 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Pair;
 
+<<<<<<< HEAD
 public class House implements SetsSeneable, HasTime {
+=======
+public class House implements setsceneable, HaveTime, HasDialog {
+>>>>>>> f3c354b692b021d6c4927e589aa32e55ae9356de
 	private Group root;
 	public Scene scene;
 	private Hero hero;

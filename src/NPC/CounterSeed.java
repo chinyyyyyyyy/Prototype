@@ -1,8 +1,11 @@
 package NPC;
 
 import Logic.Backpack;
+<<<<<<< HEAD
 import Logic.SceneManager;
 import SpecialScene.SeedMenu;
+=======
+>>>>>>> f3c354b692b021d6c4927e589aa32e55ae9356de
 import Tool.SeedA;
 import Tool.SeedB;
 import Tool.SeedC;
@@ -48,7 +51,7 @@ public class CounterSeed extends Counter {
 				setBuyable(isBuyable() && false);
 				return;
 			}
-			Backpack.getBackpack().add(new SeedC(0));
+			Backpack.addItem(new SeedC(0));
 		}
 		SeedC.addSeed(numC);
 	}
@@ -61,7 +64,7 @@ public class CounterSeed extends Counter {
 				setBuyable(isBuyable() && false);
 				return;
 			}
-			Backpack.getBackpack().add(new SeedB(0));
+			Backpack.addItem(new SeedB(0));
 		}
 		SeedB.addSeed(numB);
 	}
@@ -74,7 +77,7 @@ public class CounterSeed extends Counter {
 				setBuyable(isBuyable() && false);
 				return;
 			}
-			Backpack.getBackpack().add(new SeedA(0));
+			Backpack.addItem(new SeedA(0));
 		}
 		SeedA.addSeed(numA);
 	}

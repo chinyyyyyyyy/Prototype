@@ -2,6 +2,6 @@ package Map;
 
 public interface HasDialog {
 
-	void chat(String welcome);
+	void chat(String word);
 
 }

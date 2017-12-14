@@ -23,7 +23,11 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Pair;
 
+<<<<<<< HEAD
 public class HenBarn implements SetsSeneable, HasAnimal, HasTime {
+=======
+public class HenBarn implements setsceneable, HasAnimal, HaveTime, HasDialog {
+>>>>>>> f3c354b692b021d6c4927e589aa32e55ae9356de
 	private Group root;
 	public Scene scene;
 	private Hero hero;
@@ -132,7 +136,7 @@ public class HenBarn implements SetsSeneable, HasAnimal, HasTime {
 		addAnimal();
 		this.CurrentAnimal = getAnimalCount();
 		egg = new Canvas(1280, 720);
-		GraphicsContext gc = egg.getGraphicsContext2D();
+//		GraphicsContext gc = egg.getGraphicsContext2D();
 		for (int i = 0; i < this.CurrentAnimal; i++) {
 			if (Counter.hen.get(i).getProduceable()) {
 				Counter.hen.get(i).setTraywithegg();

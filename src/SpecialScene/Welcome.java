@@ -19,8 +19,13 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 
+<<<<<<< HEAD:src/SpecialScene/Welcome.java
 public class Welcome implements SetsSeneable,SpecialScene {
 	TextField nameField;
+=======
+public class Welcome implements setsceneable,SpecialScene {
+	private TextField nameField;
+>>>>>>> f3c354b692b021d6c4927e589aa32e55ae9356de:src/Map/Welcome.java
 	private Canvas c = new Canvas(1280, 720);
 	GraphicsContext gc = c.getGraphicsContext2D();
 	private Scene scene;

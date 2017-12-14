@@ -25,13 +25,13 @@ public class AnimalMenu extends BuyScene implements SetsSeneable, SpecialScene {
 	private static final int MAX_COLUMN = 2;
 	private int row;
 	private int column;
-	private static int amouttype1;
-	private static int amouttype2;
-	private static int amouttype3;
+	private static int amounttype1;
+	private static int amounttype2;
+	private static int amounttype3;
 	private static int priceof1;
 	private static int priceof2;
 	private static int priceof3;
-	private int sc;
+	private int scenewarp;
 	private String type1;
 	private String type2;
 	private String type3;
@@ -42,16 +42,16 @@ public class AnimalMenu extends BuyScene implements SetsSeneable, SpecialScene {
 		root.getChildren().add(c);
 		row = 0;
 		column = 0;
-		amouttype1 = 0;
-		amouttype2 = 0;
-		amouttype3 = 0;
+		amounttype1 = 0;
+		amounttype2 = 0;
+		amounttype3 = 0;
 		this.type1 = type1;
 		this.type2 = type2;
 		this.type3 = type3;
 		priceof1 = price1;
 		priceof2 = price2;
 		priceof3 = price3;
-		this.sc = sc;
+		this.scenewarp = sc;
 
 		update();
 		EventKeyPress(scene);
@@ -62,7 +62,7 @@ public class AnimalMenu extends BuyScene implements SetsSeneable, SpecialScene {
 			@Override
 			public void handle(KeyEvent event) {
 				if (event.getCode().equals(KeyCode.X)) {
-					SceneManager.warpTo(sc);
+					SceneManager.warpTo(scenewarp);
 				}
 				if (event.getCode().equals(KeyCode.UP)) {
 					gc.clearRect(0, 0, 1280, 720);
@@ -91,8 +91,8 @@ public class AnimalMenu extends BuyScene implements SetsSeneable, SpecialScene {
 		});
 	}
 
-	private void addRow(boolean incresae) {
-		if (incresae) {
+	private void addRow(boolean increase) {
+		if (increase) {
 			if (row == MAX_ROW - 1) {
 				row = 0;
 			} else {
@@ -107,8 +107,8 @@ public class AnimalMenu extends BuyScene implements SetsSeneable, SpecialScene {
 		}
 	}
 
-	private void addColumn(boolean incresae) {
-		if (incresae) {
+	private void addColumn(boolean increase) {
+		if (increase) {
 			if (column == MAX_COLUMN - 1) {
 				column = 0;
 			} else {
@@ -140,12 +140,12 @@ public class AnimalMenu extends BuyScene implements SetsSeneable, SpecialScene {
 		gc.fillText("X" + priceof3, 725, 550);
 		gc.fillText("Amount", 675, 170);
 		gc.fillText("Cost", 1000, 170);
-		gc.fillText(amouttype1 + "", 675, 250);
-		gc.fillText(amouttype2 + "", 675, 400);
-		gc.fillText(amouttype3 + "", 675, 550);
-		gc.fillText(amouttype1 * priceof1 + "", 1000, 250);
-		gc.fillText(amouttype2 * priceof2 + "", 1000, 400);
-		gc.fillText(amouttype3 * priceof3 + "", 1000, 550);
+		gc.fillText(amounttype1 + "", 675, 250);
+		gc.fillText(amounttype2 + "", 675, 400);
+		gc.fillText(amounttype3 + "", 675, 550);
+		gc.fillText(amounttype1 * priceof1 + "", 1000, 250);
+		gc.fillText(amounttype2 * priceof2 + "", 1000, 400);
+		gc.fillText(amounttype3 * priceof3 + "", 1000, 550);
 		gc.fillText("RESET", 675, 700);
 		gc.fillText("OK", 925, 700);
 		gc.drawImage(plus, 875, 200);
@@ -161,35 +161,35 @@ public class AnimalMenu extends BuyScene implements SetsSeneable, SpecialScene {
 		}
 	}
 
-	protected void editAmount() {
+	private void editAmount() {
 		if (column == 0) {
-			if (row == 0 && amouttype1 > 0)
-				amouttype1--;
-			else if (row == 1 && amouttype2 > 0)
-				amouttype2--;
-			else if (row == 2 && amouttype3 > 0)
-				amouttype3--;
+			if (row == 0 && amounttype1 > 0)
+				amounttype1--;
+			else if (row == 1 && amounttype2 > 0)
+				amounttype2--;
+			else if (row == 2 && amounttype3 > 0)
+				amounttype3--;
 			else if (row == 3) {
 				reset();
 			}
 
 		} else if (column == 1) {
 			if (row == 0)
-				amouttype1++;
+				amounttype1++;
 			else if (row == 1)
-				amouttype2++;
+				amounttype2++;
 			else if (row == 2)
-				amouttype3++;
+				amounttype3++;
 			else if (row == 3) {
 				try {
-					CounterAnimal.CheckBuyable(amouttype1, amouttype2, amouttype3);
+					CounterAnimal.CheckBuyable(amounttype1, amounttype2, amounttype3);
 				} catch (IndexOutOfBoundsException e) {
 					reset();
 				}
 				if (CounterAnimal.isBuyable()) {
 					World.setMoney(World.getMoney() - AnimalMenu.getTotalCost());
 					if (CounterAnimal.canBuyBarn && CounterAnimal.canBuyHen && World.getBuyable()) {
-						CounterAnimal.update(amouttype1, amouttype2, amouttype3);
+						CounterAnimal.update(amounttype1, amounttype2, amounttype3);
 						if (AnimalMenu.getTotalCost() != 0)
 							chat("Buying Success !", "Total cost is " + AnimalMenu.getTotalCost() + " $");
 						else
@@ -211,27 +211,27 @@ public class AnimalMenu extends BuyScene implements SetsSeneable, SpecialScene {
 	}
 
 	public void reset() {
-		amouttype1 = 0;
-		amouttype2 = 0;
-		amouttype3 = 0;
+		amounttype1 = 0;
+		amounttype2 = 0;
+		amounttype3 = 0;
 		CounterAnimal.canBuyBarn = true;
 		CounterAnimal.canBuyHen = true;
 	}
 
 	public static int getTotalCost() {
-		return amouttype1 * priceof1 + amouttype2 * priceof2 + amouttype3 * priceof3;
+		return amounttype1 * priceof1 + amounttype2 * priceof2 + amounttype3 * priceof3;
 	}
 
-	public static int getAmouttype1() {
-		return amouttype1;
+	public static int getamounttype1() {
+		return amounttype1;
 	}
 
-	public static int getAmouttype2() {
-		return amouttype2;
+	public static int getamounttype2() {
+		return amounttype2;
 	}
 
-	public static int getAmouttype3() {
-		return amouttype3;
+	public static int getamounttype3() {
+		return amounttype3;
 	}
 
 	public static int getPriceof1() {

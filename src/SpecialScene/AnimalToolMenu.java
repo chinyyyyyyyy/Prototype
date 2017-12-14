@@ -72,7 +72,7 @@ public class AnimalToolMenu extends BuyScene implements SetsSeneable, SpecialSce
 					if (row == 0 && buyMilker == false) {
 						World.setMoney(World.getMoney() - priceof1);
 						if (World.getBuyable()) {
-							Backpack.getBackpack().add(new Milker());
+							Backpack.addItem(new Milker());
 							System.out.println("Total cost is " + priceof1);
 							chat("Total cost is " + priceof1);
 							buyMilker = true;
@@ -80,7 +80,7 @@ public class AnimalToolMenu extends BuyScene implements SetsSeneable, SpecialSce
 					} else {
 						World.setMoney(World.getMoney() - priceof2);
 						if (World.getBuyable()) {
-							Backpack.getBackpack().add(new Scissors());
+							Backpack.addItem(new Scissors());
 							System.out.println("Total cost is " + priceof2);
 							chat("Total cost is " + priceof2);
 							buyScissors = true;

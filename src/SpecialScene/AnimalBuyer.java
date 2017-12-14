@@ -12,13 +12,12 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 
 public class AnimalBuyer implements SetsSeneable,SpecialScene,BuyInterface{
 	private Group root;
 	public Scene scene;
 	private Canvas c = new Canvas(1280, 720);
-	GraphicsContext gc = c.getGraphicsContext2D();
+	private GraphicsContext gc = c.getGraphicsContext2D();
 	private static final int MAX_ROW = 2;
 	private int row;
 
@@ -57,8 +56,8 @@ public class AnimalBuyer implements SetsSeneable,SpecialScene,BuyInterface{
 		});
 	}
 
-	private void addRow(boolean incresae) {
-		if (incresae) {
+	private void addRow(boolean increase) {
+		if (increase) {
 			if (row == MAX_ROW - 1) {
 				row = 0;
 			} else {
