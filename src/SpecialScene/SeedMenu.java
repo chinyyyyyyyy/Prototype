@@ -30,7 +30,7 @@ public class SeedMenu extends BuyScene implements setsceneable, SpecialScene {
 	private static int priceof1;
 	private static int priceof2;
 	private static int priceof3;
-	private int sc;
+	private int scenewarp;
 	private String type1;
 	private String type2;
 	private String type3;
@@ -50,7 +50,7 @@ public class SeedMenu extends BuyScene implements setsceneable, SpecialScene {
 		priceof1 = price1;
 		priceof2 = price2;
 		priceof3 = price3;
-		this.sc = sc;
+		this.scenewarp = sc;
 
 		update();
 		EventKeyPress(scene);
@@ -61,7 +61,7 @@ public class SeedMenu extends BuyScene implements setsceneable, SpecialScene {
 			@Override
 			public void handle(KeyEvent event) {
 				if (event.getCode().equals(KeyCode.X)) {
-					SceneManager.warpTo(sc);
+					SceneManager.warpTo(scenewarp);
 				}
 				if (event.getCode().equals(KeyCode.UP)) {
 					gc.clearRect(0, 0, 1280, 720);

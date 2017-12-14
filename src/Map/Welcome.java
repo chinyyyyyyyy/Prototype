@@ -20,7 +20,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 
 public class Welcome implements setsceneable,SpecialScene {
-	TextField nameField;
+	private TextField nameField;
 	private Canvas c = new Canvas(1280, 720);
 	GraphicsContext gc = c.getGraphicsContext2D();
 	private Scene scene;

@@ -2,7 +2,6 @@ package NPC;
 
 import ComponentMap.NPC;
 import ComponentMap.SceneManager;
-import SpecialScene.BlackSmithInterface;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
@@ -21,7 +20,7 @@ public class BlackSmith extends NPC {
 	}
 	
 	public String getDialog() {
-		return "Hello, My name is " + this.name + ", What do you want today?";
+		return "Hello, My name is " + this.name;
 	}
 
 	public void checkAction(Rectangle r) {
@@ -33,8 +32,6 @@ public class BlackSmith extends NPC {
 
 		if (wi >= 0.5 * wa && hi >= 0.5 * ha) {
 			System.out.println("Hello, My name is "+this.name);
-			BlackSmithInterface scene = (BlackSmithInterface) SceneManager.getListMap().get(18);
-			
 			SceneManager.warpTo(18);
 		}
 	}
