@@ -1,12 +1,8 @@
 package NPC;
 
-<<<<<<< HEAD
+
 import Logic.SceneManager;
 import SpecialScene.BlackSmithInterface;
-=======
-import ComponentMap.NPC;
-import ComponentMap.SceneManager;
->>>>>>> f3c354b692b021d6c4927e589aa32e55ae9356de
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;

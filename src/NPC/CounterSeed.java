@@ -1,11 +1,8 @@
 package NPC;
 
 import Logic.Backpack;
-<<<<<<< HEAD
 import Logic.SceneManager;
 import SpecialScene.SeedMenu;
-=======
->>>>>>> f3c354b692b021d6c4927e589aa32e55ae9356de
 import Tool.SeedA;
 import Tool.SeedB;
 import Tool.SeedC;

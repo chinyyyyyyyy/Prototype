@@ -24,11 +24,9 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Pair;
 
-<<<<<<< HEAD
-public class CowBarn implements SetsSeneable, HasAnimal, HasTime {
-=======
-public class CowBarn implements setsceneable, HasAnimal, HaveTime , HasDialog {
->>>>>>> f3c354b692b021d6c4927e589aa32e55ae9356de
+
+public class CowBarn implements SetsSeneable, HasAnimal, HasTime , HasDialog {
+
 	private Group root;
 	public Scene scene;
 	private Hero hero;
