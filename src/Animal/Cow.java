@@ -8,12 +8,12 @@ import Map.CowBarn;
 import Product.Milk;
 import Tool.Hay;
 import Tool.Milker;
+import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 
 public class Cow extends Animal implements ActionByToolAble {
-
 	protected String name;
 	protected static int CowCount = 0;
 	protected int age;
@@ -21,6 +21,8 @@ public class Cow extends Animal implements ActionByToolAble {
 	private int daycount;
 	public static final int COST = 5000;
 	private static CowBarn scene;
+	public static AudioClip soundeffect = new AudioClip(ClassLoader.getSystemResource("cowsound.mp3").toString());
+
 
 	public Cow(int x, int y, int w, int h, Color c) {
 		super(x, y, w, h, c);
@@ -31,8 +33,7 @@ public class Cow extends Animal implements ActionByToolAble {
 	}
 
 	public void cry() {
-		scene.chat("Mooooooooo");
-		System.out.println("Mooooooooo");
+		soundeffect.play();
 	}
 
 	public void produce() {
@@ -66,8 +67,8 @@ public class Cow extends Animal implements ActionByToolAble {
 		double hi = intersect.getBoundsInLocal().getHeight();
 		double wa = r.getWidth();
 		double ha = r.getHeight();
-		if (wi >= 0.9 * wa && hi >= 0.9 * ha) 
-			scene = (CowBarn) SceneManager.getListMap().get(6);{
+		if (wi >= 0.9 * wa && hi >= 0.9 * ha) {
+			scene = (CowBarn) SceneManager.getListMap().get(3);
 			InBackpack item = Backpack.CheckItemOnHand();
 			if(item instanceof Milker) {
 				((Milker) item).Action(this);

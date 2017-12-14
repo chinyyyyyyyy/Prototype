@@ -3,6 +3,7 @@ package Tool;
 import ComponentMap.Feild;
 import SpecialScene.ToolStatus;
 import javafx.scene.image.Image;
+import javafx.scene.media.AudioClip;
 import ComponentMap.ActionByToolAble;
 
 public class Hoe extends Tool {
@@ -14,6 +15,7 @@ public class Hoe extends Tool {
 	private Image bronze = new Image(ClassLoader.getSystemResource("bronze_hoe.png").toString());
 	private Image silver = new Image(ClassLoader.getSystemResource("silver_hoe.png").toString());
 	private Image gold = new Image(ClassLoader.getSystemResource("gold_hoe.png").toString());
+	public static AudioClip soundeffect = new AudioClip(ClassLoader.getSystemResource("soilsound.mp3").toString());
 
 
 	public Hoe() {
@@ -27,6 +29,7 @@ public class Hoe extends Tool {
 	public void Action(ActionByToolAble a) {
 		// TODO Auto-generated method stub
 		if (a instanceof Feild && ((Feild) a).canshovel()) {
+			soundeffect.play();
 			((Feild) a).shovel();
 			this.timeofuse++;
 			CheckUpgrade();

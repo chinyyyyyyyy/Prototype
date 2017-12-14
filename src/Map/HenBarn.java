@@ -181,7 +181,7 @@ public class HenBarn implements setsceneable, HasAnimal, HaveTime {
 		}
 	}
 	
-	public void chat(String word) {
+	public  void chat(String word) {
 		DialogCanvas d = DialogCanvas.Dialog;
 		Platform.runLater(() -> {
 			if(DialogCanvas.isHasDialog() == false) {

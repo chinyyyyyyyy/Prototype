@@ -4,6 +4,7 @@ import ComponentMap.Feild;
 import ComponentMap.Pond;
 import SpecialScene.ToolStatus;
 import javafx.scene.image.Image;
+import javafx.scene.media.AudioClip;
 import ComponentMap.ActionByToolAble;
 
 public class WateringCan extends Tool {
@@ -17,6 +18,7 @@ public class WateringCan extends Tool {
 	private Image bronze = new Image(ClassLoader.getSystemResource("bronze_can.png").toString());
 	private Image silver = new Image(ClassLoader.getSystemResource("silver_can.png").toString());
 	private Image gold = new Image(ClassLoader.getSystemResource("gold_can.png").toString());
+	public static AudioClip soundeffect = new AudioClip(ClassLoader.getSystemResource("watersound.mp3").toString());
 
 	public WateringCan() {
 		this.name = "WATERINGCAN";
@@ -28,9 +30,11 @@ public class WateringCan extends Tool {
 	public void Action(ActionByToolAble a) {
 		// TODO Auto-generated method stub
 		if (a instanceof Pond) {
+			soundeffect.play();
 			water_level = MAX_CAPACITY;
 			System.out.println("Water level MAX");
 		} else if (a instanceof Feild && water_level > 0 && ((Feild) a).canwater()) {
+			soundeffect.play();
 			((Feild) a).watering();
 			water_level--;
 			this.timeofuse++;

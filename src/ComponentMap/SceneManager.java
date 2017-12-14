@@ -35,7 +35,6 @@ public class SceneManager extends Rectangle {
 	private static int sceneNumber;
 	private static int previousScene;
 	private static int currentScene;
-
 	public static AudioClip bgm = new AudioClip(ClassLoader.getSystemResource("bgm.mp3").toString());
 
 	public SceneManager(Stage s, List<setsceneable> lm) {

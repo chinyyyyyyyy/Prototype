@@ -6,6 +6,7 @@ import Logic.Backpack;
 import Map.HenBarn;
 import Product.Egg;
 import Tool.Hay;
+import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
@@ -17,19 +18,21 @@ public class Hen extends Animal implements ActionByToolAble {
 	protected int age;
 	protected int love;
 	public static final int COST = 1000;
-	private static HenBarn scene;
+	private HenBarn scene ;
+	public static AudioClip soundeffect = new AudioClip(ClassLoader.getSystemResource("chickensound.mp3").toString());
+
 
 	public Hen(int x, int y, int w, int h, Color c) {
 		super(x, y, w, h, c);
 		this.age = 1;
 		this.love = 0;
 		this.produceable = false;
+		scene = (HenBarn) SceneManager.getListMap().get(4);
 
 	}
 
 	public void cry() {
-		scene.chat("Pokkkk Pokk Pokkk");
-		System.out.println("Pokkkk Pokk Pokkk");
+		soundeffect.play();
 	}
 
 	public void produce() {
@@ -60,7 +63,6 @@ public class Hen extends Animal implements ActionByToolAble {
 		double wa = r.getWidth();
 		double ha = r.getHeight();
 		if (wi >= 0.9 * wa && hi >= 0.9 * ha) {
-			scene = (HenBarn) SceneManager.getListMap().get(4);
 			if (this.getProduceable()) {
 				produce();
 				SceneManager.warpTo(SceneManager.getSceneNumber());

@@ -69,7 +69,7 @@ public class AnimalShop implements setsceneable, HasNPC, HaveTime ,HasDialog{
 		// root.getChildren().addAll(e);
 		// root.getChildren().addAll(re);
 
-		Rectangle warpblocktotown = new Rectangle(0, 350, 25, 155);
+		Rectangle warpblocktotown = new Rectangle(0, 350, 25, 185);
 		warpblocktotown.setFill(Color.RED);
 		//root.getChildren().add(warpblocktotown);
 		Pair<Rectangle, Integer> totown = new Pair<Rectangle, Integer>(warpblocktotown, 1);
