@@ -1,14 +1,13 @@
 package Plant;
 
-import ComponentMap.ActionByToolAble;
 import ComponentMap.Dropbox;
 import ComponentMap.StackAble;
 import Logic.Backpack;
 import Logic.InBackpack;
+import Tool.ActionByToolAble;
 import javafx.scene.paint.ImagePattern;
 
 public abstract class Plant implements InBackpack, StackAble, OnHandAble {
-
 	protected int dayofgrowth;
 	protected String name;
 	protected int price;
@@ -27,7 +26,6 @@ public abstract class Plant implements InBackpack, StackAble, OnHandAble {
 
 	public void addDayOfGrowth() {
 		dayofgrowth += 1;
-		System.out.println(dayofgrowth);
 	}
 
 	public String getName() {

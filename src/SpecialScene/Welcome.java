@@ -1,8 +1,8 @@
-package Map;
+package SpecialScene;
 
 import ComponentMap.Hero;
-import ComponentMap.SceneManager;
-import SpecialScene.SpecialScene;
+import Logic.SceneManager;
+import Map.SetsSeneable;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -19,7 +19,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 
-public class Welcome implements setsceneable,SpecialScene {
+public class Welcome implements SetsSeneable,SpecialScene {
 	TextField nameField;
 	private Canvas c = new Canvas(1280, 720);
 	GraphicsContext gc = c.getGraphicsContext2D();

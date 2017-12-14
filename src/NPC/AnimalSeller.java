@@ -1,7 +1,6 @@
 package NPC;
 
-import ComponentMap.NPC;
-import ComponentMap.SceneManager;
+import Logic.SceneManager;
 import Map.AnimalShop;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;

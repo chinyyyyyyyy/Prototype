@@ -2,10 +2,11 @@ package SpecialScene;
 
 import java.util.ArrayList;
 import java.util.List;
-import ComponentMap.SceneManager;
+
 import Logic.Backpack;
 import Logic.InBackpack;
-import Map.setsceneable;
+import Logic.SceneManager;
+import Map.SetsSeneable;
 import Tool.Axe;
 import Tool.Hammer;
 import Tool.Hoe;
@@ -20,7 +21,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 
-public class ToolStatus implements setsceneable, SpecialScene {
+public class ToolStatus implements SetsSeneable, SpecialScene {
 	private Group root;
 	public Scene scene;
 	private Canvas c = new Canvas(1280, 720);

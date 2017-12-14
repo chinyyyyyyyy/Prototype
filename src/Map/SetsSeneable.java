@@ -2,7 +2,7 @@ package Map;
 
 import javafx.scene.Scene;
 
-public interface setsceneable {
+public interface SetsSeneable {
 	Scene getScene();
 //
 //	public void addDialog();

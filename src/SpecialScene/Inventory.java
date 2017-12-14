@@ -1,11 +1,11 @@
 package SpecialScene;
 
 import ComponentMap.DialogCanvas;
-import ComponentMap.SceneManager;
 import ComponentMap.StackAble;
 import Logic.Backpack;
 import Logic.InBackpack;
-import Map.setsceneable;
+import Logic.SceneManager;
+import Map.SetsSeneable;
 import Tool.Hay;
 import Tool.Seed;
 import Tool.Tool;
@@ -22,7 +22,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
-public class Inventory implements setsceneable, SpecialScene {
+public class Inventory implements SetsSeneable, SpecialScene {
 
 	private Group root;
 	public Scene scene;

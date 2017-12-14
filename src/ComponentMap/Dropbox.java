@@ -8,6 +8,7 @@ import Logic.updateEveryday;
 import Plant.OnHandAble;
 import Plant.Plant;
 import Product.Product;
+import Tool.ActionByToolAble;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
@@ -15,8 +16,7 @@ import javafx.util.Pair;
 
 public class Dropbox extends ReceiveAction implements ActionByToolAble,updateEveryday {
 	private static List<Pair<OnHandAble, Integer>> listindropbox = new ArrayList<>();
-
-	private static int totalsell=0;
+	private static int totalsell = 0;
 
 	public Dropbox(int x, int y, int w, int h, Color c) {
 		super(x, y, w, h, c);

@@ -3,7 +3,6 @@ package NPC;
 import java.util.ArrayList;
 import java.util.List;
 import Animal.Animal;
-import ComponentMap.NPC;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 

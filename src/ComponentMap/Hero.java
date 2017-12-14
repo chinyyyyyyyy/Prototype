@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import Logic.Backpack;
 import Logic.InBackpack;
+import Logic.SceneManager;
 import Tool.Tool;
 import javafx.animation.AnimationTimer;
 import javafx.event.EventHandler;
@@ -32,10 +33,6 @@ public class Hero {
 	private static List<ImagePattern> walkright = new ArrayList<>();
 	private static List<ImagePattern> walkdown = new ArrayList<>();
 	private static String Direction;
-
-	public Hero() {
-
-	}
 
 	public Hero(Scene scene, int startx, int starty) {
 
@@ -273,9 +270,6 @@ public class Hero {
 					moveRight(false);
 
 				} else if (event.getCode().equals(KeyCode.Z)) {
-					// for (ReceiveAction receive : re) {
-					// receive.checkAction(getActiveBlock());
-					// }
 					for (ReceiveAction receive : re) {
 						for (Rectangle x : getActiveBlock()) {
 							receive.checkAction(x);
@@ -288,34 +282,10 @@ public class Hero {
 				} else if (event.getCode().equals(KeyCode.I)) {
 					SceneManager.warpTo(15);
 				}
-//				} else if (event.getCode().equals(KeyCode.B)) {
-//					SceneManager.warpTo(18);
-//				} else if (event.getCode().equals(KeyCode.V)) {
-//					SceneManager.warpTo(13);
-//				} else if (event.getCode().equals(KeyCode.N)) {
-//					SceneManager.warpTo(9);
-//				}
 			}
 		});
 
 		scene.setOnKeyReleased(new EventHandler<KeyEvent>() {
-			// @Override
-			// public void handle(KeyEvent event) {
-			// walkupanimation.stop();
-			// walkdownanimation.stop();
-			// walkleftanimation.stop();
-			// walkrightanimation.stop();
-			// if(getActiveBlock() == actionblock.get(0)) {
-			// unitblock.setFill(walkright.get(1));
-			// }else if(getActiveBlock() == actionblock.get(1)) {
-			// unitblock.setFill(walkup.get(1));
-			// }else if(getActiveBlock() == actionblock.get(2)) {
-			// unitblock.setFill(walkleft.get(1));
-			// }else if(getActiveBlock() == actionblock.get(3)) {
-			// unitblock.setFill(walkdown.get(1));
-			// }
-			// }
-
 			@Override
 			public void handle(KeyEvent event) {
 				walkupanimation.stop();
@@ -399,13 +369,7 @@ public class Hero {
 						int p = Math.floorDiv(activeblocklevel2.get(pos).getValue(), (int) (Math.pow(10, i)));
 						actionblock.get(p%10).setVisible(true);
 					}
-					// for (int i = 0; i < actionblock.size(); i++) {
-					// if (i != pos) {
-					// actionblock.get(i).setVisible(false);
-					// } else {
-					// actionblock.get(i).setVisible(true);
-					// }
-					// }
+
 				}else {
 					for (int i = 0; i < actionblock.size(); i++) {
 						actionblock.get(i).setVisible(true);
@@ -491,16 +455,6 @@ public class Hero {
 		return actionblock;
 	}
 
-	// public List<Rectangle> getActiveBlock() {
-	//
-	// Rectangle activeblock = null;
-	// for (Rectangle r : actionblock) {
-	// if (r.isVisible()) {
-	// activeblock = r;
-	// }
-	// }
-	// return activeblock;
-	// }
 
 	public List<Rectangle> getActiveBlock() {
 
@@ -517,9 +471,6 @@ public class Hero {
 		return this.env;
 	}
 
-	public void addReceive(ReceiveAction receive) {
-		re.add(receive);
-	}
 
 	public void addEnvlist(List<Environment> recieveEnv) {
 		for (Environment e : recieveEnv) {

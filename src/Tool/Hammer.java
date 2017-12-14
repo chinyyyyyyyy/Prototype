@@ -1,10 +1,9 @@
 package Tool;
 
-import ComponentMap.Feild;
+import ComponentMap.Field;
 import SpecialScene.ToolStatus;
 import javafx.scene.image.Image;
 import javafx.scene.media.AudioClip;
-import ComponentMap.ActionByToolAble;
 
 public class Hammer extends Tool {
 	private static boolean upgradeable;
@@ -26,10 +25,10 @@ public class Hammer extends Tool {
 	@Override
 	public void Action(ActionByToolAble a) {
 		// TODO Auto-generated method stub
-		if (a instanceof Feild) {
+		if (a instanceof Field) {
 			soundeffect.play();
-			if (((Feild) a).getStone() != null) {
-				((Feild) a).delStone();
+			if (((Field) a).getStone() != null) {
+				((Field) a).delStone();
 				this.timeofuse++;
 			}
 		}

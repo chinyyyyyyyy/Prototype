@@ -1,10 +1,10 @@
 package SpecialScene;
 
 import ComponentMap.DialogCanvas;
-import ComponentMap.SceneManager;
 import Logic.Backpack;
+import Logic.SceneManager;
 import Logic.World;
-import Map.setsceneable;
+import Map.SetsSeneable;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
@@ -15,7 +15,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 
-public class UpgradeBag extends BuyScene implements setsceneable, SpecialScene {
+public class UpgradeBagMenu extends BuyScene implements SetsSeneable, SpecialScene {
 
 	private Group root;
 	public Scene scene;
@@ -25,7 +25,7 @@ public class UpgradeBag extends BuyScene implements setsceneable, SpecialScene {
 	private static int countupgrade = 0;
 	private static boolean upgradeable = true;
 
-	public UpgradeBag() {
+	public UpgradeBagMenu() {
 		root = new Group();
 		scene = new Scene(root);
 		root.getChildren().add(c);

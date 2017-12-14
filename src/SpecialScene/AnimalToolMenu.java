@@ -1,10 +1,10 @@
 package SpecialScene;
 
 import ComponentMap.DialogCanvas;
-import ComponentMap.SceneManager;
 import Logic.Backpack;
+import Logic.SceneManager;
 import Logic.World;
-import Map.setsceneable;
+import Map.SetsSeneable;
 import Tool.Milker;
 import Tool.Scissors;
 import javafx.application.Platform;
@@ -17,7 +17,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 
-public class ToolMenu extends BuyScene implements setsceneable, SpecialScene {
+public class AnimalToolMenu extends BuyScene implements SetsSeneable, SpecialScene {
 
 	private Group root;
 	public Scene scene;
@@ -32,7 +32,7 @@ public class ToolMenu extends BuyScene implements setsceneable, SpecialScene {
 	private static boolean buyMilker = false;
 	private static boolean buyScissors = false;
 
-	public ToolMenu(String type1, int price1, String type2, int price2) {
+	public AnimalToolMenu(String type1, int price1, String type2, int price2) {
 		root = new Group();
 		scene = new Scene(root);
 		root.getChildren().add(c);

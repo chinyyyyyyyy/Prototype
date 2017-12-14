@@ -1,10 +1,9 @@
 package NPC;
 
-import ComponentMap.HasAnimal;
-import ComponentMap.NPC;
-import ComponentMap.SceneManager;
 import Logic.Backpack;
+import Logic.SceneManager;
 import Map.CowBarn;
+import Map.HasAnimal;
 import Map.HenBarn;
 import Tool.Hay;
 import javafx.scene.paint.Color;

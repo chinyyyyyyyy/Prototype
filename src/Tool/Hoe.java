@@ -1,10 +1,9 @@
 package Tool;
 
-import ComponentMap.Feild;
+import ComponentMap.Field;
 import SpecialScene.ToolStatus;
 import javafx.scene.image.Image;
 import javafx.scene.media.AudioClip;
-import ComponentMap.ActionByToolAble;
 
 public class Hoe extends Tool {
 	private static boolean upgradeable;
@@ -28,9 +27,9 @@ public class Hoe extends Tool {
 	@Override
 	public void Action(ActionByToolAble a) {
 		// TODO Auto-generated method stub
-		if (a instanceof Feild && ((Feild) a).canshovel()) {
+		if (a instanceof Field && ((Field) a).canshovel()) {
 			soundeffect.play();
-			((Feild) a).shovel();
+			((Field) a).shovel();
 			this.timeofuse++;
 			CheckUpgrade();
 		}

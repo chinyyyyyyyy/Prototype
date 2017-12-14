@@ -3,10 +3,9 @@ package Logic;
 import java.util.ArrayList;
 import java.util.List;
 import ComponentMap.Dropbox;
-import ComponentMap.HasAnimal;
 import ComponentMap.Hero;
-import ComponentMap.SceneManager;
-import Map.setsceneable;
+import Map.HasAnimal;
+import Map.SetsSeneable;
 import SpecialScene.BuyScene;
 import javafx.scene.media.AudioClip;
 
@@ -35,7 +34,7 @@ public class World {
 			i.updateafterendday();
 		}
 	
-		for(setsceneable i : SceneManager.getListMap()) {
+		for(SetsSeneable i : SceneManager.getListMap()) {
 			if(i instanceof HasAnimal) {
 				((HasAnimal) i).update();
 			}

@@ -1,5 +1,6 @@
-package ComponentMap;
+package NPC;
 
+import ComponentMap.ReceiveAction;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 

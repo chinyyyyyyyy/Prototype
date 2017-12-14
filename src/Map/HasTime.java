@@ -1,6 +1,6 @@
 package Map;
 
-public interface HaveTime {
+public interface HasTime {
 
 	public void addClock();
 

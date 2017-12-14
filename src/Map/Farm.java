@@ -7,7 +7,7 @@ import ComponentMap.ClockCanvas;
 import ComponentMap.DialogCanvas;
 import ComponentMap.Dropbox;
 import ComponentMap.Environment;
-import ComponentMap.Feild;
+import ComponentMap.Field;
 import ComponentMap.Hero;
 import ComponentMap.Pond;
 import ComponentMap.ReceiveAction;
@@ -25,7 +25,7 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Pair;
 
-public class Farm implements setsceneable, HaveTime {
+public class Farm implements SetsSeneable, HasTime {
 	private Group root;
 	private Scene scene;
 	private static Hero hero;
@@ -109,17 +109,17 @@ public class Farm implements setsceneable, HaveTime {
 			for (int j = 220; j < 620; j += 80) {
 				double random = Math.random();
 				if (0 <= random && random < 0.7) {
-					Feild r = new Feild(i, j, 80, 80, Color.rgb(185, 156, 107));
+					Field r = new Field(i, j, 80, 80, Color.rgb(185, 156, 107));
 					re.add(r);
 					World.getListUpdate().add(r);
 				} else if (0.7 <= random && random < 0.85) {
 					Stone s = new Stone();
-					Feild r = new Feild(i, j, 80, 80, Color.rgb(185, 156, 107), s);
+					Field r = new Field(i, j, 80, 80, Color.rgb(185, 156, 107), s);
 					re.add(r);
 					World.getListUpdate().add(r);
 				} else {
 					Wood w = new Wood();
-					Feild r = new Feild(i, j, 80, 80, Color.rgb(185, 156, 107), w);
+					Field r = new Field(i, j, 80, 80, Color.rgb(185, 156, 107), w);
 					re.add(r);
 					World.getListUpdate().add(r);
 				}

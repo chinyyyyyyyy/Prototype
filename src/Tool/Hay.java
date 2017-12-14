@@ -1,13 +1,12 @@
 package Tool;
 
 import Animal.Animal;
-import ComponentMap.ActionByToolAble;
-import ComponentMap.HasAnimal;
-import ComponentMap.SceneManager;
 import ComponentMap.StackAble;
 import Logic.Backpack;
 import Logic.InBackpack;
+import Logic.SceneManager;
 import Map.CowBarn;
+import Map.HasAnimal;
 import Map.HenBarn;
 import javafx.scene.image.Image;
 

@@ -7,19 +7,19 @@ public class PlantB extends Plant {
 	private final int SEED_DURATION = 2;
 	private final int SPOURT_DURATION = 5;
 	public static final int SeedCost = 75;
-	public static final int FruitCost = 150;
-	protected static int PlantCount = 0;
-	public static final ImagePattern seedstate = new ImagePattern(
+	private static final int FruitCost = 150;
+	private static int PlantCount = 0;
+	private static final ImagePattern seedstate = new ImagePattern(
 			new Image(ClassLoader.getSystemResource("seedstate.png").toString()));
-	public static final ImagePattern wateredseedstate = new ImagePattern(
+	private static final ImagePattern wateredseedstate = new ImagePattern(
 			new Image(ClassLoader.getSystemResource("wateredseedstate.png").toString()));
-	public static final ImagePattern sproutstate = new ImagePattern(
+	private static final ImagePattern sproutstate = new ImagePattern(
 			new Image(ClassLoader.getSystemResource("potatosprout.png").toString()));
-	public static final ImagePattern wateredsproutstate = new ImagePattern(
+	private static final ImagePattern wateredsproutstate = new ImagePattern(
 			new Image(ClassLoader.getSystemResource("wateredpotatosprout.png").toString()));
-	public static final ImagePattern matualstate = new ImagePattern(
+	private static final ImagePattern matualstate = new ImagePattern(
 			new Image(ClassLoader.getSystemResource("potatomatual.png").toString()));
-	public static final Image potato = new Image(ClassLoader.getSystemResource("potato.png").toString());
+	private static final Image potato = new Image(ClassLoader.getSystemResource("potato.png").toString());
 
 	public PlantB() {
 		dayofgrowth = 0;

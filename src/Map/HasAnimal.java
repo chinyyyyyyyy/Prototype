@@ -1,4 +1,4 @@
-package ComponentMap;
+package Map;
 
 public interface HasAnimal {
 

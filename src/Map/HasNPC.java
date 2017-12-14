@@ -1,4 +1,6 @@
-package ComponentMap;
+package Map;
+
+import NPC.NPC;
 
 public interface HasNPC{
 

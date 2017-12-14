@@ -1,8 +1,7 @@
 package Tool;
 
 import Animal.Cow;
-import ComponentMap.ActionByToolAble;
-import ComponentMap.SceneManager;
+import Logic.SceneManager;
 import Map.CowBarn;
 import javafx.scene.image.Image;
 

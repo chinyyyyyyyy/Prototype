@@ -8,7 +8,6 @@ import Animal.Sheep;
 import ComponentMap.ClockCanvas;
 import ComponentMap.DialogCanvas;
 import ComponentMap.Environment;
-import ComponentMap.HasAnimal;
 import ComponentMap.Hero;
 import ComponentMap.ReceiveAction;
 import Logic.World;
@@ -25,7 +24,7 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Pair;
 
-public class CowBarn implements setsceneable, HasAnimal, HaveTime {
+public class CowBarn implements SetsSeneable, HasAnimal, HasTime {
 	private Group root;
 	public Scene scene;
 	private Hero hero;

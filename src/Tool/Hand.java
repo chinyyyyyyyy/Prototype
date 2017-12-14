@@ -1,11 +1,10 @@
 package Tool;
 
-import ComponentMap.ActionByToolAble;
 import ComponentMap.Dropbox;
-import ComponentMap.Feild;
-import ComponentMap.SceneManager;
+import ComponentMap.Field;
 import Logic.Backpack;
 import Logic.InBackpack;
+import Logic.SceneManager;
 import Map.Farm;
 import Plant.OnHandAble;
 import Plant.Plant;
@@ -27,8 +26,8 @@ public class Hand implements InBackpack {
 	public void Action(ActionByToolAble a) {
 		// TODO Auto-generated method stub
 		Farm scene = (Farm) SceneManager.getListMap().get(0);
-		if (onhand == null && a instanceof Feild && ((Feild) a).getPlant() != null) {
-			Plant x = ((Feild) a).getPlant();
+		if (onhand == null && a instanceof Field && ((Field) a).getPlant() != null) {
+			Plant x = ((Field) a).getPlant();
 			if (x instanceof PlantA) {
 				if (((PlantA) x).getAmount() == 0) {
 					if(Backpack.isFull()) {
@@ -60,7 +59,7 @@ public class Hand implements InBackpack {
 				}
 				((PlantC) x).Harvest();
 			}
-			((Feild) a).resetPlant();
+			((Field) a).resetPlant();
 		} 
 		
 		if (onhand != null && a instanceof Dropbox) {

@@ -1,8 +1,8 @@
 package SpecialScene;
 
 import ComponentMap.DialogCanvas;
-import ComponentMap.SceneManager;
-import Map.setsceneable;
+import Logic.SceneManager;
+import Map.SetsSeneable;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
@@ -13,7 +13,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 
-public class BlackSmithInterface implements setsceneable,SpecialScene,BuyInterface{
+public class BlackSmithInterface implements SetsSeneable,SpecialScene,BuyInterface{
 	private Group root;
 	public Scene scene;
 	private Canvas c = new Canvas(1280, 720);

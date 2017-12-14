@@ -2,9 +2,9 @@ package SpecialScene;
 
 import ComponentMap.DialogCanvas;
 import ComponentMap.Dropbox;
-import ComponentMap.SceneManager;
+import Logic.SceneManager;
 import Logic.World;
-import Map.setsceneable;
+import Map.SetsSeneable;
 import Plant.OnHandAble;
 import Plant.Plant;
 import javafx.application.Platform;
@@ -19,7 +19,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.util.Pair;
 
-public class Summary implements setsceneable, SpecialScene {
+public class Summary implements SetsSeneable, SpecialScene {
 
 	private Group root;
 	public Scene scene;

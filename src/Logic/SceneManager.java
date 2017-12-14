@@ -1,13 +1,15 @@
-package ComponentMap;
+package Logic;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import Logic.World;
+import ComponentMap.Hero;
+import Map.HasAnimal;
 import Map.HasDialog;
-import Map.HaveTime;
+import Map.HasNPC;
+import Map.HasTime;
 import Map.House;
-import Map.setsceneable;
+import Map.SetsSeneable;
 import NPC.Counter;
 import SpecialScene.BlackSmithInterface;
 import SpecialScene.BuyInterface;
@@ -31,13 +33,13 @@ import javafx.util.Pair;
 
 public class SceneManager extends Rectangle {
 	private static Stage primaryStage;
-	private static List<setsceneable> listmap = new ArrayList<>();
+	private static List<SetsSeneable> listmap = new ArrayList<>();
 	private static int sceneNumber;
 	private static int previousScene;
 	private static int currentScene;
 	public static AudioClip bgm = new AudioClip(ClassLoader.getSystemResource("bgm.mp3").toString());
 
-	public SceneManager(Stage s, List<setsceneable> lm) {
+	public SceneManager(Stage s, List<SetsSeneable> lm) {
 		Main.setPause(true);
 		primaryStage = s;
 		listmap = lm;
@@ -86,13 +88,13 @@ public class SceneManager extends Rectangle {
 
 		// ------------------------------------------------------Clock-----------------------------------------------------------
 
-		if (listmap.get(previousScene) instanceof SpecialScene == false && listmap.get(mapno) instanceof HaveTime) {
+		if (listmap.get(previousScene) instanceof SpecialScene == false && listmap.get(mapno) instanceof HasTime) {
 			System.out.println("warp");
-			((HaveTime) listmap.get(mapno)).removeClock();
-			((HaveTime) listmap.get(mapno)).addClock();
-			if (listmap.get(previousScene) instanceof HaveTime) {
+			((HasTime) listmap.get(mapno)).removeClock();
+			((HasTime) listmap.get(mapno)).addClock();
+			if (listmap.get(previousScene) instanceof HasTime) {
 				System.out.println("warp");
-				((HaveTime) listmap.get(previousScene)).stopClock();
+				((HasTime) listmap.get(previousScene)).stopClock();
 			}
 		}
 
@@ -170,7 +172,7 @@ public class SceneManager extends Rectangle {
 		SceneManager.sceneNumber = sceneNumber;
 	}
 
-	public static List<setsceneable> getListMap() {
+	public static List<SetsSeneable> getListMap() {
 		return listmap;
 	}
 

@@ -4,14 +4,14 @@ import Logic.Backpack;
 import Logic.updateEveryday;
 import Map.Farm;
 import Plant.Plant;
-import ComponentMap.ActionByToolAble;
+import Tool.ActionByToolAble;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 
-public class Feild extends ReceiveAction implements ActionByToolAble, updateEveryday {
+public class Field extends ReceiveAction implements ActionByToolAble, updateEveryday {
 	private Stone stone = null;
 	private Wood wood = null;
 	private Boolean isWaterToday = false;
@@ -28,7 +28,7 @@ public class Feild extends ReceiveAction implements ActionByToolAble, updateEver
 
 	//// --------------------Constructor-----------------------//
 
-	public Feild(int x, int y, int w, int h, Color c) {
+	public Field(int x, int y, int w, int h, Color c) {
 		super(x, y, w, h, c);
 		xpos = x;
 		ypos = y;
@@ -38,7 +38,7 @@ public class Feild extends ReceiveAction implements ActionByToolAble, updateEver
 
 	}
 
-	public Feild(int x, int y, int w, int h, Color c, Stone stone) {
+	public Field(int x, int y, int w, int h, Color c, Stone stone) {
 		super(x, y, w, h, c);
 		xpos = x;
 		ypos = y;
@@ -50,7 +50,7 @@ public class Feild extends ReceiveAction implements ActionByToolAble, updateEver
 		update();
 	}
 
-	public Feild(int x, int y, int w, int h, Color c, Wood wood) {
+	public Field(int x, int y, int w, int h, Color c, Wood wood) {
 		super(x, y, w, h, c);
 		xpos = x;
 		ypos = y;

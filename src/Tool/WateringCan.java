@@ -1,11 +1,10 @@
 package Tool;
 
-import ComponentMap.Feild;
+import ComponentMap.Field;
 import ComponentMap.Pond;
 import SpecialScene.ToolStatus;
 import javafx.scene.image.Image;
 import javafx.scene.media.AudioClip;
-import ComponentMap.ActionByToolAble;
 
 public class WateringCan extends Tool {
 	private static final int MAX_CAPACITY = 10;
@@ -33,9 +32,9 @@ public class WateringCan extends Tool {
 			soundeffect.play();
 			water_level = MAX_CAPACITY;
 			System.out.println("Water level MAX");
-		} else if (a instanceof Feild && water_level > 0 && ((Feild) a).canwater()) {
+		} else if (a instanceof Field && water_level > 0 && ((Field) a).canwater()) {
 			soundeffect.play();
-			((Feild) a).watering();
+			((Field) a).watering();
 			water_level--;
 			this.timeofuse++;
 		}

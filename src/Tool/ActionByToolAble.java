@@ -1,4 +1,4 @@
-package ComponentMap;
+package Tool;
 
 public interface ActionByToolAble {
 

@@ -6,11 +6,10 @@ import java.util.List;
 import ComponentMap.ClockCanvas;
 import ComponentMap.DialogCanvas;
 import ComponentMap.Environment;
-import ComponentMap.HasNPC;
 import ComponentMap.Hero;
-import ComponentMap.NPC;
 import ComponentMap.ReceiveAction;
 import NPC.BlackSmith;
+import NPC.NPC;
 import javafx.application.Platform;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -21,7 +20,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Pair;
 
-public class Blacksmith implements setsceneable, HasNPC, HaveTime,HasDialog {
+public class BlackSmithShop implements SetsSeneable, HasNPC, HasTime,HasDialog {
 	private Group root;
 	public Scene scene;
 	private Hero hero;
@@ -32,7 +31,7 @@ public class Blacksmith implements setsceneable, HasNPC, HaveTime,HasDialog {
 	private List<Pair<Rectangle, Integer>> WarpList = new ArrayList<>();
 	private ClockCanvas clock = new ClockCanvas();
 
-	public Blacksmith(int starthx, int starthy) {
+	public BlackSmithShop(int starthx, int starthy) {
 		root = new Group();
 		scene = new Scene(root, 1280, 720);
 		Canvas bg = new Canvas(1280, 720);

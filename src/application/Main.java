@@ -9,20 +9,19 @@ import Animal.Hen;
 import Animal.Sheep;
 import ComponentMap.ClockCanvas;
 import ComponentMap.DialogCanvas;
-import ComponentMap.SceneManager;
 import Logic.Backpack;
+import Logic.SceneManager;
 import Logic.World;
 import Map.AnimalShop;
-import Map.Blacksmith;
+import Map.BlackSmithShop;
 import Map.CowBarn;
 import Map.Farm;
-import Map.HaveTime;
+import Map.HasTime;
 import Map.HenBarn;
 import Map.House;
 import Map.SeedShop;
 import Map.Town;
-import Map.Welcome;
-import Map.setsceneable;
+import Map.SetsSeneable;
 import Plant.PlantA;
 import Plant.PlantB;
 import Plant.PlantC;
@@ -34,9 +33,10 @@ import SpecialScene.Inventory;
 import SpecialScene.Profile;
 import SpecialScene.SeedMenu;
 import SpecialScene.Summary;
-import SpecialScene.ToolMenu;
+import SpecialScene.AnimalToolMenu;
 import SpecialScene.ToolStatus;
-import SpecialScene.UpgradeBag;
+import SpecialScene.UpgradeBagMenu;
+import SpecialScene.Welcome;
 import Tool.Axe;
 import Tool.Hammer;
 import Tool.Hand;
@@ -86,13 +86,13 @@ public class Main extends Application {
 //		Backpack.addItem(seed2);
 //		Backpack.addItem(seed3);
 		// ---------------set up map---------------------//
-		List<setsceneable> listmap = new ArrayList<>();
+		List<SetsSeneable> listmap = new ArrayList<>();
 		Farm farm = new Farm(1000, 300);
 		Town town = new Town(0, 520);
 		House house = new House(595, 610);
 		CowBarn cowbarn = new CowBarn(595, 610);
 		HenBarn henbarn = new HenBarn(595, 610);
-		Blacksmith blacksmith = new Blacksmith(595, 610);
+		BlackSmithShop blacksmith = new BlackSmithShop(595, 610);
 		AnimalShop animalshop = new AnimalShop(0, 420);
 		SeedShop seedshop = new SeedShop(0, 420);
 		AnimalMenu animalmenu = new AnimalMenu("Cow", Cow.COST, "Sheep", Sheep.COST, "Hen", Hen.COST, 13);
@@ -102,10 +102,10 @@ public class Main extends Application {
 		Profile profile = new Profile();
 		ToolStatus toolstatus = new ToolStatus();
 		AnimalBuyer animalbuyer = new AnimalBuyer();
-		ToolMenu toolmenu = new ToolMenu("Milker", Milker.COST, "Scissors", Scissors.COST);
+		AnimalToolMenu toolmenu = new AnimalToolMenu("Milker", Milker.COST, "Scissors", Scissors.COST);
 		Inventory inventory = new Inventory();
 		BlackSmithMenu blackmenu = new BlackSmithMenu();
-		UpgradeBag upgradebag = new UpgradeBag();
+		UpgradeBagMenu upgradebag = new UpgradeBagMenu();
 		BlackSmithInterface blackinter = new BlackSmithInterface();
 		Summary summary = new Summary();
 
@@ -238,9 +238,9 @@ public class Main extends Application {
 		// TODO Auto-generated method stub
 		Thread.interrupted();
 		this.timerThread.interrupt();	
-		for (setsceneable i : SceneManager.getListMap()) {
-			if (i instanceof HaveTime) {
-				((HaveTime) i).stopClock();
+		for (SetsSeneable i : SceneManager.getListMap()) {
+			if (i instanceof HasTime) {
+				((HasTime) i).stopClock();
 			}
 		}
 		SceneManager.stopMusic();

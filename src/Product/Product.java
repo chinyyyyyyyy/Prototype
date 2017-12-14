@@ -1,11 +1,11 @@
 package Product;
 
-import ComponentMap.ActionByToolAble;
 import ComponentMap.Dropbox;
 import ComponentMap.StackAble;
 import Logic.Backpack;
 import Logic.InBackpack;
 import Plant.OnHandAble;
+import Tool.ActionByToolAble;
 
 public abstract class Product implements InBackpack, StackAble, OnHandAble {
 

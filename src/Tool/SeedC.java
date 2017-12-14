@@ -1,10 +1,9 @@
 package Tool;
 
-import ComponentMap.ActionByToolAble;
-import ComponentMap.Feild;
-import ComponentMap.SceneManager;
+import ComponentMap.Field;
 import Logic.Backpack;
 import Logic.InBackpack;
+import Logic.SceneManager;
 import Map.Farm;
 import Plant.PlantC;
 import javafx.scene.image.Image;
@@ -26,9 +25,9 @@ public class SeedC extends Seed implements InBackpack {
 	@Override
 	public void Action(ActionByToolAble a) {
 		Farm scene = (Farm) SceneManager.getListMap().get(0);
-		if (a instanceof Feild) {
-			if (((Feild) a).canplant() && seedamout > 0) {
-				((Feild) a).setPlant(new PlantC());
+		if (a instanceof Field) {
+			if (((Field) a).canplant() && seedamout > 0) {
+				((Field) a).setPlant(new PlantC());
 			}
 			seedamout--;
 			scene.chat("Seed Left = " + seedamout);

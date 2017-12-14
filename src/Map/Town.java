@@ -19,7 +19,7 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Pair;
 
-public class Town implements setsceneable, HaveTime {
+public class Town implements SetsSeneable, HasTime {
 	private Group root;
 	public Scene scene;
 	private Hero hero;

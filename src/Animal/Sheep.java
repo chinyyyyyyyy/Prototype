@@ -1,11 +1,11 @@
 package Animal;
 
-import ComponentMap.ActionByToolAble;
-import ComponentMap.SceneManager;
 import Logic.Backpack;
 import Logic.InBackpack;
+import Logic.SceneManager;
 import Map.CowBarn;
 import Product.Wool;
+import Tool.ActionByToolAble;
 import Tool.Hay;
 import Tool.Scissors;
 import javafx.scene.media.AudioClip;

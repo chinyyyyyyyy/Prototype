@@ -10,5 +10,5 @@ public interface OnHandAble {
 	
 	public int getPrice();
 	
-	Image getImage();
+	public Image getImage();
 }

@@ -1,10 +1,10 @@
 package Animal;
 
-import ComponentMap.ActionByToolAble;
-import ComponentMap.SceneManager;
 import Logic.Backpack;
+import Logic.SceneManager;
 import Map.HenBarn;
 import Product.Egg;
+import Tool.ActionByToolAble;
 import Tool.Hay;
 import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;

@@ -1,9 +1,9 @@
 package SpecialScene;
 
 import ComponentMap.DialogCanvas;
-import ComponentMap.SceneManager;
+import Logic.SceneManager;
 import Logic.World;
-import Map.setsceneable;
+import Map.SetsSeneable;
 import NPC.CounterSeed;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
@@ -15,7 +15,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 
-public class SeedMenu extends BuyScene implements setsceneable, SpecialScene {
+public class SeedMenu extends BuyScene implements SetsSeneable, SpecialScene {
 	private Group root;
 	public Scene scene;
 	private Canvas c = new Canvas(1280, 720);

@@ -1,10 +1,9 @@
 package Tool;
 
-import ComponentMap.Feild;
+import ComponentMap.Field;
 import SpecialScene.ToolStatus;
 import javafx.scene.image.Image;
 import javafx.scene.media.AudioClip;
-import ComponentMap.ActionByToolAble;
 
 public class Axe extends Tool {
 	private static boolean upgradeable;
@@ -15,7 +14,7 @@ public class Axe extends Tool {
 	private  Image bronze = new Image(ClassLoader.getSystemResource("bronze_axe.png").toString());
 	private  Image silver = new Image(ClassLoader.getSystemResource("silver_axe.png").toString());
 	private  Image gold = new Image(ClassLoader.getSystemResource("gold_axe.png").toString());
-	public static AudioClip soundeffect = new AudioClip(ClassLoader.getSystemResource("axesound.mp3").toString());
+	private static AudioClip soundeffect = new AudioClip(ClassLoader.getSystemResource("axesound.mp3").toString());
 
 
 	public Axe() {
@@ -27,10 +26,10 @@ public class Axe extends Tool {
 	@Override
 	public void Action(ActionByToolAble a) {
 		// TODO Auto-generated method stub
-		if (a instanceof Feild) {
+		if (a instanceof Field) {
 			soundeffect.play();
-			if (((Feild) a).getWood() != null) {
-				((Feild) a).delWood();
+			if (((Field) a).getWood() != null) {
+				((Field) a).delWood();
 				this.timeofuse++;
 			}
 		}

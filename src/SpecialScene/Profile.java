@@ -4,9 +4,9 @@ import Animal.Cow;
 import Animal.Hen;
 import Animal.Sheep;
 import ComponentMap.Hero;
-import ComponentMap.SceneManager;
+import Logic.SceneManager;
 import Logic.World;
-import Map.setsceneable;
+import Map.SetsSeneable;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -17,7 +17,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 
-public class Profile implements setsceneable, SpecialScene {
+public class Profile implements SetsSeneable, SpecialScene {
 	private Group root;
 	public Scene scene;
 	private Canvas c = new Canvas(1280, 720);

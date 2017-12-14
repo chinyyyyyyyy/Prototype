@@ -3,7 +3,7 @@ package NPC;
 import Animal.Cow;
 import Animal.Hen;
 import Animal.Sheep;
-import ComponentMap.SceneManager;
+import Logic.SceneManager;
 import Map.CowBarn;
 import Map.HenBarn;
 import SpecialScene.AnimalMenu;
