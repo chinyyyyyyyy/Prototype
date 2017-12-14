@@ -8,6 +8,7 @@ import Map.CowBarn;
 import Product.Wool;
 import Tool.Hay;
 import Tool.Scissors;
+import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
@@ -21,6 +22,8 @@ public class Sheep extends Animal implements ActionByToolAble{
 	public static final int COST = 3000;
 	protected int daycount;
 	private static CowBarn scene;
+	public static AudioClip soundeffect = new AudioClip(ClassLoader.getSystemResource("sheepsound.mp3").toString());
+
 
 	public Sheep(int x, int y, int w, int h, Color c) {
 		super(x, y, w, h, c);
@@ -38,8 +41,7 @@ public class Sheep extends Animal implements ActionByToolAble{
 	}
 
 	public void cry() {
-		scene.chat("Baaa Baaa");
-		System.out.println("Baaa Baaa");
+		soundeffect.play();
 	}
 
 	public void produce() {
@@ -67,7 +69,7 @@ public class Sheep extends Animal implements ActionByToolAble{
 		double wa = r.getWidth();
 		double ha = r.getHeight();
 		if (wi >= 0.9 * wa && hi >= 0.9 * ha) {
-			scene = (CowBarn) SceneManager.getListMap().get(6);
+			scene = (CowBarn) SceneManager.getListMap().get(3);
 			InBackpack item = Backpack.CheckItemOnHand();
 			if(item instanceof Scissors) {
 				((Scissors) item).Action(this);

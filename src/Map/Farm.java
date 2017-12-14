@@ -66,7 +66,7 @@ public class Farm implements setsceneable, HaveTime {
 		e.add(henhouse1);
 		e.add(henhouse2);
 		e.add(henhouse3);
-		Rectangle warpblocktohenbarn = new Rectangle(95, 115, 100, 25);
+		Rectangle warpblocktohenbarn = new Rectangle(90, 120, 120, 25);
 		warpblocktohenbarn.setOpacity(0);
 		root.getChildren().add(warpblocktohenbarn);
 		Pair<Rectangle, Integer> tohenbarn = new Pair<Rectangle, Integer>(warpblocktohenbarn, 4);
@@ -82,7 +82,7 @@ public class Farm implements setsceneable, HaveTime {
 		e.add(barn1);
 		e.add(barn2);
 		e.add(barn3);
-		Rectangle warpblocktocowbarn = new Rectangle(440, 115, 100, 25);
+		Rectangle warpblocktocowbarn = new Rectangle(440, 120, 110, 25);
 		warpblocktocowbarn.setOpacity(0);
 		root.getChildren().add(warpblocktocowbarn);
 		Pair<Rectangle, Integer> tocowbarn = new Pair<Rectangle, Integer>(warpblocktocowbarn, 3);
@@ -98,7 +98,7 @@ public class Farm implements setsceneable, HaveTime {
 		e.add(house1);
 		e.add(house2);
 		e.add(house3);
-		Rectangle warpblocktohouse = new Rectangle(1050, 180, 100, 25);
+		Rectangle warpblocktohouse = new Rectangle(1050, 185, 110, 25);
 		warpblocktohouse.setOpacity(0);
 		root.getChildren().add(warpblocktohouse);
 		Pair<Rectangle, Integer> tohouse = new Pair<Rectangle, Integer>(warpblocktohouse, 2);
@@ -148,7 +148,7 @@ public class Farm implements setsceneable, HaveTime {
 		root.getChildren().addAll(e);
 		root.getChildren().addAll(re);
 
-		Rectangle warpblocktotown = new Rectangle(1265, 250, 15, 120);
+		Rectangle warpblocktotown = new Rectangle(1255, 210, 25, 165);
 		warpblocktotown.setOpacity(0);
 		root.getChildren().addAll(warpblocktotown);
 		Pair<Rectangle, Integer> totown = new Pair<Rectangle, Integer>(warpblocktotown, 1);

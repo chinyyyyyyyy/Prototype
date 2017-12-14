@@ -90,7 +90,7 @@ public class HenBarn implements setsceneable, HasAnimal, HaveTime {
 		// root.getChildren().addAll(e);
 		// root.getChildren().addAll(re);
 
-		Rectangle warpblocktofarm = new Rectangle(580, 695, 120, 25);
+		Rectangle warpblocktofarm = new Rectangle(570, 695, 140, 25);
 		warpblocktofarm.setFill(Color.RED);
 		root.getChildren().add(warpblocktofarm);
 		Pair<Rectangle, Integer> tofarm = new Pair<Rectangle, Integer>(warpblocktofarm, 0);
@@ -181,7 +181,7 @@ public class HenBarn implements setsceneable, HasAnimal, HaveTime {
 		}
 	}
 	
-	public void chat(String word) {
+	public  void chat(String word) {
 		DialogCanvas d = DialogCanvas.Dialog;
 		Platform.runLater(() -> {
 			if(DialogCanvas.isHasDialog() == false) {

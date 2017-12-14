@@ -8,6 +8,7 @@ import ComponentMap.Hero;
 import ComponentMap.SceneManager;
 import Map.setsceneable;
 import SpecialScene.BuyScene;
+import javafx.scene.media.AudioClip;
 
 public class World {
 	private static boolean nextday=false;
@@ -17,9 +18,11 @@ public class World {
 	private static boolean Buyable;
 	private static List<String> season = new ArrayList<>();
 	private static int ss = 0;
+	public static AudioClip soundeffect = new AudioClip(ClassLoader.getSystemResource("roastersound.mp3").toString());
+	
 	public World() {
 		days = 1;
-		money = 500;
+		money = 50000;
 		Buyable = true;
 		season.add("Spring");
 		season.add("Summer");
@@ -46,6 +49,7 @@ public class World {
 			ss = (ss + 1) % 4;
 			days = 1;
 		}	
+		soundeffect.play();
 		setMoney(money+Dropbox.getTotalsell());
 		System.out.println("Good Morning " + Hero.getName());
 		System.out.println("Today is day " + World.getDay());

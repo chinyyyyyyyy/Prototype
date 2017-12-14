@@ -35,7 +35,6 @@ public class SceneManager extends Rectangle {
 	private static int sceneNumber;
 	private static int previousScene;
 	private static int currentScene;
-
 	public static AudioClip bgm = new AudioClip(ClassLoader.getSystemResource("bgm.mp3").toString());
 
 	public SceneManager(Stage s, List<setsceneable> lm) {
@@ -88,9 +87,11 @@ public class SceneManager extends Rectangle {
 		// ------------------------------------------------------Clock-----------------------------------------------------------
 
 		if (listmap.get(previousScene) instanceof SpecialScene == false && listmap.get(mapno) instanceof HaveTime) {
+			System.out.println("warp");
 			((HaveTime) listmap.get(mapno)).removeClock();
 			((HaveTime) listmap.get(mapno)).addClock();
 			if (listmap.get(previousScene) instanceof HaveTime) {
+				System.out.println("warp");
 				((HaveTime) listmap.get(previousScene)).stopClock();
 			}
 		}
