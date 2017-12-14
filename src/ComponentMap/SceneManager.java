@@ -87,9 +87,11 @@ public class SceneManager extends Rectangle {
 		// ------------------------------------------------------Clock-----------------------------------------------------------
 
 		if (listmap.get(previousScene) instanceof SpecialScene == false && listmap.get(mapno) instanceof HaveTime) {
+			System.out.println("warp");
 			((HaveTime) listmap.get(mapno)).removeClock();
 			((HaveTime) listmap.get(mapno)).addClock();
 			if (listmap.get(previousScene) instanceof HaveTime) {
+				System.out.println("warp");
 				((HaveTime) listmap.get(previousScene)).stopClock();
 			}
 		}

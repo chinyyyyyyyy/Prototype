@@ -65,10 +65,10 @@ public class Hen extends Animal implements ActionByToolAble {
 		if (wi >= 0.9 * wa && hi >= 0.9 * ha) {
 			if (this.getProduceable()) {
 				produce();
-				SceneManager.warpTo(SceneManager.getSceneNumber());
+				((HenBarn) SceneManager.getListMap().get(4)).update();
 			} else if (Backpack.CheckItemOnHand() instanceof Hay) {
 				((Hay) Backpack.CheckItemOnHand()).Action(this);
-				SceneManager.warpTo(SceneManager.getSceneNumber());
+				((HenBarn) SceneManager.getListMap().get(4)).update();
 			} else {
 				cry();
 				this.love++;
