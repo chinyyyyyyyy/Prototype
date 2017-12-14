@@ -26,7 +26,7 @@ public class Blacksmith implements setsceneable, HasNPC, HaveTime,HasDialog {
 	public Scene scene;
 	private Hero hero;
 	private NPC npc;
-	BlackSmith blacksmith;
+	private BlackSmith blacksmith;
 	private List<Environment> e = new ArrayList<>();
 	private List<ReceiveAction> re = new ArrayList<>();
 	private List<Pair<Rectangle, Integer>> WarpList = new ArrayList<>();

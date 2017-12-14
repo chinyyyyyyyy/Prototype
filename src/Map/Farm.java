@@ -25,7 +25,7 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Pair;
 
-public class Farm implements setsceneable, HaveTime {
+public class Farm implements setsceneable, HaveTime, HasDialog {
 	private Group root;
 	private Scene scene;
 	private static Hero hero;

@@ -134,13 +134,6 @@ public class Main extends Application {
 		primaryStage.setResizable(false);
 		primaryStage.sizeToScene();
 		SceneManager sm = new SceneManager(primaryStage, listmap);
-		
-		AnimationTimer animation = new AnimationTimer() {
-			public void handle(long now) {
-				// clock(hour,minute);
-			}
-		};
-		animation.start();
 
 		// ------------------------------------------------Clock------------------------------------------------
 		checktime = 0;

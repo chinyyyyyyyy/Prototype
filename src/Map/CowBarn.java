@@ -25,7 +25,7 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Pair;
 
-public class CowBarn implements setsceneable, HasAnimal, HaveTime {
+public class CowBarn implements setsceneable, HasAnimal, HaveTime , HasDialog {
 	private Group root;
 	public Scene scene;
 	private Hero hero;
@@ -163,27 +163,6 @@ public class CowBarn implements setsceneable, HasAnimal, HaveTime {
 		addAnimal();
 		this.CurrentAnimal = getAnimalCount();
 		barn = new Canvas(1280, 720);
-		GraphicsContext gc = barn.getGraphicsContext2D();
-		// for (int i = 0; i < this.CurrentAnimal; i++) {
-		// Animal x = Counter.animal.get(i);
-		// if (x.getProduceable()) {
-		// if (x instanceof Cow) {
-		// gc.setFill(Color.LIGHTSKYBLUE);
-		// gc.fillRect(position.get(i).getKey(), position.get(i).getValue(), 100, 100);
-		// } else {
-		// gc.setFill(Color.LIGHTSALMON);
-		// gc.fillRect(position.get(i).getKey(), position.get(i).getValue(), 100, 100);
-		// }
-		// } else {
-		// if (x instanceof Cow) {
-		// gc.setFill(Color.ALICEBLUE);
-		// gc.fillRect(position.get(i).getKey(), position.get(i).getValue(), 100, 100);
-		// } else {
-		// gc.setFill(Color.ANTIQUEWHITE);
-		// gc.fillRect(position.get(i).getKey(), position.get(i).getValue(), 100, 100);
-		// }
-		// }
-		// }
 		root.getChildren().add(barn);
 	}
 
